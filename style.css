@@ -1,0 +1,79 @@
+function showSection(sectionId) {
+const sections = ["ride", "hotel", "packages", "reels"];
+
+sections.forEach(function(id) {
+const section = document.getElementById(id);
+if (section) {
+section.hidden = id !== sectionId;
+}
+});
+
+const selected = document.getElementById(sectionId);
+if (selected) {
+selected.scrollIntoView({
+behavior: "smooth",
+block: "start"
+});
+}
+}
+
+function bookRide() {
+const pickup = document.getElementById("pickup").value.trim();
+const destination = document.getElementById("destination").value.trim();
+const vehicle = document.getElementById("vehicle").value;
+const message = document.getElementById("rideMessage");
+
+if (!pickup || !destination) {
+message.textContent = "कृपया Pickup और Destination दोनों भरें।";
+return;
+}
+
+message.textContent =
+"आपकी जानकारी तैयार है: " + pickup + " से " +
+destination + " तक " + vehicle +
+" की राइड। अभी यह केवल शुरुआती फ़ॉर्म है; असली बुकिंग के लिए बैकएंड जोड़ना बाकी है।";
+}
+
+function searchHotels() {
+const city = document.getElementById("hotelCity").value.trim();
+const checkIn = document.getElementById("checkIn").value;
+const checkOut = document.getElementById("checkOut").value;
+const guests = Number(document.getElementById("guests").value);
+const message = document.getElementById("hotelMessage");
+
+if (!city || !checkIn || !checkOut || guests < 1) {
+message.textContent = "कृपया शहर, तारीखें और मेहमानों की संख्या भरें।";
+return;
+}
+
+if (checkOut <= checkIn) {
+message.textContent = "Check-out की तारीख, Check-in के बाद की रखें।";
+return;
+}
+
+message.textContent =
+city + " के लिए " + guests +
+" मेहमानों की होटल खोज की जानकारी तैयार है। असली उपलब्धता और बुकिंग जोड़ना बाकी है।";
+}
+
+function searchPackages() {
+const destination =
+document.getElementById("packageDestination").value.trim();
+const days =
+Number(document.getElementById("packageDays").value);
+const message = document.getElementById("packageMessage");
+
+if (!destination || !Number.isInteger(days) || days < 1) {
+message.textContent =
+"कृपया घूमने की जगह और दिनों की सही संख्या भरें।";
+return;
+}
+
+message.textContent =
+destination + " के लिए " + days +
+" दिन का पैकेज चुना गया है। असली पैकेज और कीमतें जोड़ना बाकी है।";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+showSection("ride");
+});
