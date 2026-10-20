@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NV TRAVELSS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <h1>NV TRAVELSS ✈️</h1>
+    <p>Travel • Ride • Hotel • Packages</p>
+  </header>
+
+  <main>
+    <section class="welcome">
+      <h2>Where do you want to go today?</h2>
+      <p>आपका सफर, हमारी ज़िम्मेदारी ❤️</p>
+    </section>
+
+    <section class="options">
+      <button onclick="showSection('ride')">🚕 Ride</button>
+      <button onclick="showSection('hotel')">🏨 Hotel</button>
+      <button onclick="showSection('packages')">🧳 Packages</button>
+      <button onclick="showSection('reels')">🎬 Reels</button>
+    </section>
+
+    <section id="ride" class="panel">
+      <h2>Book a Ride</h2>
+      <label>Pickup Location</label>
+      <input id="pickup" placeholder="Pickup location">
+      <label>Destination</label>
+      <input id="destination" placeholder="Where to go?">
+      <label>Vehicle</label>
+      <select id="vehicle">
+        <option value="Bike">Bike</option>
+        <option value="Auto">Auto</option>
+        <option value="Hatchback">Hatchback</option>
+        <option value="Sedan">Sedan</option>
+        <option value="SUV">SUV</option>
+        <option value="MUV">MUV</option>
+        <option value="Premium">Premium</option>
+        <option value="6-7 Seater">6–7 Seater</option>
+        <option value="8-12 Seater">8–12 Seater</option>
+        <option value="Tempo Traveller">Tempo Traveller</option>
+        <option value="Mini Bus">Mini Bus</option>
+        <option value="Bus">Bus</option>
+      </select>
+      <button onclick="bookRide()">Request Ride</button>
+      <p id="rideMessage"></p>
+    </section>
+
+    <section id="hotel" class="panel" hidden>
+      <h2>Hotel Booking 🏨</h2>
+      <input id="hotelCity" placeholder="City or destination">
+      <input id="checkIn" type="date" aria-label="Check-in date">
+      <input id="checkOut" type="date" aria-label="Check-out date">
+      <input id="guests" type="number" min="1" value="2" placeholder="Guests">
+      <button onclick="searchHotels()">Search Hotels</button>
+      <p id="hotelMessage"></p>
+    </section>
+
+    <section id="packages" class="panel" hidden>
+      <h2>Travel Packages 🧳</h2>
+      <input id="packageDestination" placeholder="Enter destination">
+      <input id="packageDays" type="number" min="1" placeholder="Number of days">
+      <button onclick="searchPackages()">Find Packages</button>
+      <p id="packageMessage"></p>
+    </section>
+
+    <section id="reels" class="panel" hidden>
+      <h2>Travel Reels 🎬</h2>
+      <p>जल्द ही यहाँ ट्रैवल वीडियो और पोस्ट देखने की सुविधा जुड़ेगी।</p>
+    </section>
+
+    <section class="contact">
+      <h3>Contact NV TRAVELSS</h3>
+      <p>Call: 9098533390</p>
+      <p>Instagram: @NV_travelss</p>
+    </section>
+  </main>
+
+  <footer>
+    <button onclick="showSection('ride')">Home</button>
+    <button onclick="showSection('reels')">Reels</button>
+    <button onclick="showSection('packages')">Packages</button>
+    <button onclick="showSection('hotel')">Hotel</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
