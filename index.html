@@ -5,85 +5,98 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NV TRAVELSS</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="hero-header">
-    <div class="top-bar">
-      <div class="brand">
-        <div class="logo">
-          <i class="fa-solid fa-paper-plane"></i>
-        </div>
-        <div>
-          <h1>NV <span>TRAVELSS</span></h1>
-          <p class="tagline">Travel • Ride • Hotel • Packages • Tickets</p>
-        </div>
-      </div>
-      <div class="nav-icons">
-        <i class="fa-regular fa-bell"></i>
-        <i class="fa-regular fa-user"></i>
-      </div>
+<header class="hero">
+  <div class="top">
+    <div class="logo">N✈V</div>
+    <div>
+      <h1>NV <span>TRAVELSS</span></h1>
+      <p>Travel • Ride • Hotel • Packages • Tickets</p>
     </div>
-    <div class="slogan">
-      आपका सफर, हमारी ज़िम्मेदारी ❤️
+  </div>
+
+  <h2>आपका सफर, हमारी ज़िम्मेदारी ❤️</h2>
+</header>
+
+<main>
+  <section class="welcome">
+    <div class="pin">📍</div>
+    <div>
+      <h2>Where do you want to go?</h2>
+      <p>नई जगहें, नए अनुभव, एक ही ऐप में!</p>
     </div>
-  </header>
+    <span class="plane">✈️</span>
+  </section>
 
-  <main class="app-content">
-    <section class="search-card">
-      <div class="search-info">
-        <div class="search-icon">
-          <i class="fa-solid fa-location-dot"></i>
-        </div>
-        <div>
-          <h2>Where do you want to go?</h2>
-          <p>नई जगहें, नए अनुभव, एक ही ऐप में!</p>
-        </div>
-      </div>
-      <div class="search-art">
-        <i class="fa-solid fa-mountain-sun"></i>
-      </div>
-    </section>
-
-    <!-- Services Grid will go here -->
-    <section class="services-grid">
-      <!-- Service cards -->
-    </section>
-
-    <!-- Reels Banner -->
-    <section class="reels-banner">
-      <!-- Reels content -->
-    </section>
-
-    <!-- Contact Banner -->
-    <section class="contact-banner">
-      <!-- Contact content -->
-    </section>
-  </main>
-
-  <nav class="bottom-nav">
-    <a href="#" class="nav-item active">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
+  <section class="grid">
+    <a class="card ride" href="#ride">
+      <div class="picture">🚘</div>
+      <div class="info"><h3>🚕 Ride</h3><p>टैक्सी बुकिंग</p></div>
     </a>
-    <a href="#" class="nav-item">
-      <i class="fa-solid fa-film"></i>
-      <span>Reels</span>
+
+    <a class="card hotel" href="#hotel">
+      <div class="picture">🛏️</div>
+      <div class="info"><h3>🛏 Hotel</h3><p>होटल बुकिंग</p></div>
     </a>
-    <div class="plus-btn-wrapper">
-      <button class="plus-btn"><i class="fa-solid fa-plus"></i></button>
+
+    <a class="card bus" href="#bus">
+      <div class="picture">🚌</div>
+      <div class="info"><h3>🚌 Bus Tickets</h3><p>बस टिकट</p></div>
+    </a>
+
+    <a class="card train" href="#train">
+      <div class="picture">🚆</div>
+      <div class="info"><h3>🚆 Train Tickets</h3><p>ट्रेन टिकट</p></div>
+    </a>
+
+    <a class="card flight" href="#flight">
+      <div class="picture">✈️</div>
+      <div class="info"><h3>✈️ Flight Tickets</h3><p>हवाई टिकट</p></div>
+    </a>
+
+    <a class="card packages" href="#packages">
+      <div class="picture">🏝️</div>
+      <div class="info"><h3>🧳 Packages</h3><p>टूर पैकेज</p></div>
+    </a>
+  </section>
+
+  <section class="reels" id="reels">
+    <div class="reel-icon">🎬</div>
+    <div>
+      <h2>Reels</h2>
+      <p>Travel Videos &amp; More</p>
     </div>
-    <a href="#" class="nav-item">
-      <i class="fa-solid fa-briefcase"></i>
-      <span>Packages</span>
-    </a>
-    <a href="#" class="nav-item">
-      <i class="fa-solid fa-hotel"></i>
-      <span>Hotel</span>
-    </a>
-  </nav>
+    <span>➜</span>
+  </section>
+
+  <section class="contact">
+    <div class="support">🎧</div>
+    <div>
+      <h3>Contact NV TRAVELSS</h3>
+      <p>Call: 9098533390</p>
+      <p>Instagram: @NV_travelss</p>
+    </div>
+  </section>
+
+  <section class="destinations">
+    <h2>Popular Destinations</h2>
+    <div class="places">
+      <div class="place manali"><span>📍 Manali</span><small>Snow • Adventure</small></div>
+      <div class="place goa"><span>📍 Goa</span><small>Beach • Relax</small></div>
+      <div class="place jaipur"><span>📍 Jaipur</span><small>Heritage • Culture</small></div>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom">
+  <a href="#">🏠<small>Home</small></a>
+  <a href="#reels">🎬<small>Reels</small></a>
+  <a href="#post" class="plus">＋</a>
+  <a href="#packages">🧳<small>Packages</small></a>
+  <a href="#hotel">🛏️<small>Hotel</small></a>
+</nav>
 
 </body>
 </html>
