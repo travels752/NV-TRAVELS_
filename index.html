@@ -4,90 +4,215 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NV TRAVELSS</title>
+  <!-- CSS Link -->
   <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="top">
-    <h1>NV TRAVELSS ✈️</h1>
-    <p>Travel • Ride • Hotel • Packages</p>
+  <!-- Top Hero Header -->
+  <header class="hero-header">
+    <div class="top-bar">
+      <div class="brand">
+        <div class="logo">
+          <i class="fa-solid fa-paper-plane"></i>
+        </div>
+        <div>
+          <h1>NV <span>TRAVELSS</span></h1>
+          <p class="tagline">Travel • Ride • Hotel • Packages • Tickets</p>
+        </div>
+      </div>
+      <div class="nav-icons">
+        <i class="fa-regular fa-bell"></i>
+        <i class="fa-regular fa-user"></i>
+      </div>
+    </div>
+    <div class="slogan">
+      आपका सफर, हमारी ज़िम्मेदारी ❤️
+    </div>
   </header>
 
-  <main>
-    <section class="welcome">
-      <h2>Where do you want to go today?</h2>
-      <p>आपका सफर, हमारी ज़िम्मेदारी ❤️</p>
+  <!-- Main App Container -->
+  <main class="app-content">
+
+    <!-- Search Box Card -->
+    <section class="search-card">
+      <div class="search-info">
+        <div class="search-icon">
+          <i class="fa-solid fa-location-dot"></i>
+        </div>
+        <div>
+          <h2>Where do you want to go?</h2>
+          <p>नई जगहें, नए अनुभव, एक ही ऐप में!</p>
+        </div>
+      </div>
+      <div class="search-art">
+        <i class="fa-solid fa-mountain-sun"></i>
+      </div>
     </section>
 
-    <section class="options">
-      <button onclick="showSection('ride')">🚕 Ride</button>
-      <button onclick="showSection('hotel')">🏨 Hotel</button>
-      <button onclick="showSection('packages')">🧳 Packages</button>
-      <button onclick="showSection('reels')">🎬 Reels</button>
+    <!-- Services Grid (6 Main Cards) -->
+    <section class="services-grid">
+      
+      <!-- Ride -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-ride"><i class="fa-solid fa-car"></i></div>
+          <div class="service-text">
+            <h3>Ride</h3>
+            <span>टैक्सी बुकिंग</span>
+          </div>
+          <button class="arrow-btn btn-ride"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Hotel -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-hotel"><i class="fa-solid fa-bed"></i></div>
+          <div class="service-text">
+            <h3>Hotel</h3>
+            <span>होटल बुकिंग</span>
+          </div>
+          <button class="arrow-btn btn-hotel"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Bus Tickets -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-bus"><i class="fa-solid fa-bus"></i></div>
+          <div class="service-text">
+            <h3>Bus Tickets</h3>
+            <span>बस टिकट</span>
+          </div>
+          <button class="arrow-btn btn-bus"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Train Tickets -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-train"><i class="fa-solid fa-train"></i></div>
+          <div class="service-text">
+            <h3>Train Tickets</h3>
+            <span>ट्रेन टिकट</span>
+          </div>
+          <button class="arrow-btn btn-train"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Flight Tickets -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-flight"><i class="fa-solid fa-plane"></i></div>
+          <div class="service-text">
+            <h3>Flight Tickets</h3>
+            <span>हवाई टिकट</span>
+          </div>
+          <button class="arrow-btn btn-flight"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Packages -->
+      <div class="service-card">
+        <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500');"></div>
+        <div class="card-footer">
+          <div class="service-icon icon-package"><i class="fa-solid fa-suitcase"></i></div>
+          <div class="service-text">
+            <h3>Packages</h3>
+            <span>टूर पैकेज</span>
+          </div>
+          <button class="arrow-btn btn-package"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+
     </section>
 
-    <section id="ride" class="panel">
-      <h2>Book a Ride</h2>
-      <label>Pickup Location</label>
-      <input id="pickup" placeholder="Pickup location">
-      <label>Destination</label>
-      <input id="destination" placeholder="Where to go?">
-      <label>Vehicle</label>
-      <select id="vehicle">
-        <option value="Bike">Bike</option>
-        <option value="Auto">Auto</option>
-        <option value="Hatchback">Hatchback</option>
-        <option value="Sedan">Sedan</option>
-        <option value="SUV">SUV</option>
-        <option value="MUV">MUV</option>
-        <option value="Premium">Premium</option>
-        <option value="6-7 Seater">6–7 Seater</option>
-        <option value="8-12 Seater">8–12 Seater</option>
-        <option value="Tempo Traveller">Tempo Traveller</option>
-        <option value="Mini Bus">Mini Bus</option>
-        <option value="Bus">Bus</option>
-      </select>
-      <button onclick="bookRide()">Request Ride</button>
-      <p id="rideMessage"></p>
+    <!-- Reels Banner -->
+    <section class="reels-banner">
+      <div class="reels-left">
+        <div class="reels-icon"><i class="fa-solid fa-clapperboard"></i></div>
+        <div>
+          <h3>Reels</h3>
+          <p>Travel Videos & More</p>
+        </div>
+        <button class="arrow-btn btn-reels"><i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="reels-tagline">
+        Travel • Explore • Share ♥
+      </div>
     </section>
 
-    <section id="hotel" class="panel" hidden>
-      <h2>Hotel Booking 🏨</h2>
-      <input id="hotelCity" placeholder="City or destination">
-      <input id="checkIn" type="date" aria-label="Check-in date">
-      <input id="checkOut" type="date" aria-label="Check-out date">
-      <input id="guests" type="number" min="1" value="2" placeholder="Guests">
-      <button onclick="searchHotels()">Search Hotels</button>
-      <p id="hotelMessage"></p>
+    <!-- Contact Banner -->
+    <section class="contact-banner">
+      <div class="contact-icon"><i class="fa-solid fa-headset"></i></div>
+      <div class="contact-info">
+        <h4>Contact NV TRAVELSS</h4>
+        <p>Call: 9098533390 | Instagram: @NV_travelss</p>
+      </div>
     </section>
 
-    <section id="packages" class="panel" hidden>
-      <h2>Travel Packages 🧳</h2>
-      <input id="packageDestination" placeholder="Enter destination">
-      <input id="packageDays" type="number" min="1" placeholder="Number of days">
-      <button onclick="searchPackages()">Find Packages</button>
-      <p id="packageMessage"></p>
+    <!-- Popular Destinations -->
+    <section class="destinations-section">
+      <div class="dest-header">
+        <h3>Popular Destinations</h3>
+        <a href="#">View All <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+      <div class="dest-scroll">
+        <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500');">
+          <div class="dest-overlay">
+            <h4><i class="fa-solid fa-location-dot"></i> Manali</h4>
+            <p>Snow • Adventure</p>
+          </div>
+        </div>
+        <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500');">
+          <div class="dest-overlay">
+            <h4><i class="fa-solid fa-location-dot"></i> Goa</h4>
+            <p>Beach • Relax</p>
+          </div>
+        </div>
+        <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1477587458883-47145ed94245?w=500');">
+          <div class="dest-overlay">
+            <h4><i class="fa-solid fa-location-dot"></i> Jaipur</h4>
+            <p>Heritage • Culture</p>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="reels" class="panel" hidden>
-      <h2>Travel Reels 🎬</h2>
-      <p>जल्द ही यहाँ ट्रैवल वीडियो और पोस्ट देखने की सुविधा जुड़ेगी।</p>
-    </section>
-
-    <section class="contact">
-      <h3>Contact NV TRAVELSS</h3>
-      <p>Call: 9098533390</p>
-      <p>Instagram: @NV_travelss</p>
-    </section>
   </main>
 
-  <footer>
-    <button onclick="showSection('ride')">Home</button>
-    <button onclick="showSection('reels')">Reels</button>
-    <button onclick="showSection('packages')">Packages</button>
-    <button onclick="showSection('hotel')">Hotel</button>
-  </footer>
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="#" class="nav-item active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fa-solid fa-film"></i>
+      <span>Reels</span>
+    </a>
+    <div class="plus-btn-wrapper">
+      <button class="plus-btn"><i class="fa-solid fa-plus"></i></button>
+    </div>
+    <a href="#" class="nav-item">
+      <i class="fa-solid fa-briefcase"></i>
+      <span>Packages</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fa-solid fa-hotel"></i>
+      <span>Hotel</span>
+    </a>
+  </nav>
 
-  <script src="script.js"></script>
 </body>
 </html>
