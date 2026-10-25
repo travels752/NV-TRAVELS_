@@ -1,26 +1,324 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 :root {
-  --body-bg: #FDFBF7;
-  --header-bg: #0F4C5C;
-  --accent-color: #E07A5F;
-  --card-bg: #FFFFFF;
-  --text-main: #1D3337;
-  --text-muted: #7A9E9F;
-  --border-color: #EBE5D5;
+  --blue: #0755b8;
+  --dark-blue: #062c65;
+  --light-blue: #eaf4ff;
+  --white: #ffffff;
 }
 
 body {
-  background-color: var(--body-bg);
-  color: var(--text-main);
-  padding-bottom: 90px;
+  font-family: Arial, sans-serif;
+  background: #f3f7fc;
+  color: #14243b;
+  padding-bottom: 85px;
 }
 
-.hero-header {
-  background: linear-gradient(135deg, #0F4C5C, #1B5B6E);
-  color: #FFFFFF;
+.hero {
+  background: linear-gradient(145deg, #0876e8, #073477);
+  color: white;
+  padding: 24px 18px 32px;
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 5px 18px #123c6c30;
 }
 
-.search-card {
-  background-color: var(--card-bg);
-  color: var(--text-main);
-  border: 1px solid var(--border-color);
+.top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 65px;
+  height: 65px;
+  border: 2px solid white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+  font-weight: bold;
+  background: #ffffff20;
+}
+
+.hero h1 {
+  font-size: 24px;
+  letter-spacing: 1px;
+}
+
+.hero h1 span {
+  color: #ffdc55;
+}
+
+.hero p {
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.hero > h2 {
+  font-size: 19px;
+  margin-top: 28px;
+}
+
+main {
+  padding: 16px;
+}
+
+.welcome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 17px 12px;
+  background: white;
+  border-radius: 17px;
+  box-shadow: 0 3px 12px #123c6c10;
+  margin-bottom: 20px;
+}
+
+.pin {
+  font-size: 26px;
+}
+
+.welcome h2 {
+  font-size: 15px;
+}
+
+.welcome p {
+  color: #718096;
+  font-size: 11px;
+  margin-top: 6px;
+}
+
+.plane {
+  margin-left: auto;
+  font-size: 25px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.card {
+  text-decoration: none;
+  color: #14243b;
+  background: white;
+  overflow: hidden;
+  border-radius: 17px;
+  box-shadow: 0 3px 12px #123c6c12;
+  border: 1px solid #e8eef7;
+  transition: transform 0.2s;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+.picture {
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 49px;
+  background: linear-gradient(135deg, #d9edff, #a8d4ff);
+}
+
+.hotel .picture {
+  background: linear-gradient(135deg, #ffe5d6, #ffc4a5);
+}
+
+.bus .picture {
+  background: linear-gradient(135deg, #fff0c7, #ffda77);
+}
+
+.train .picture {
+  background: linear-gradient(135deg, #e5dcff, #c7b5ff);
+}
+
+.flight .picture {
+  background: linear-gradient(135deg, #d3f8f1, #96e4d7);
+}
+
+.packages .picture {
+  background: linear-gradient(135deg, #ffe0eb, #ffb9d1);
+}
+
+.info {
+  padding: 12px 10px 14px;
+}
+
+.info h3 {
+  font-size: 15px;
+}
+
+.info p {
+  font-size: 12px;
+  color: #718096;
+  margin-top: 5px;
+}
+
+.reels {
+  margin-top: 20px;
+  padding: 17px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: linear-gradient(110deg, #092f70, #0879df);
+  border-radius: 17px;
+  color: white;
+}
+
+.reel-icon {
+  font-size: 29px;
+}
+
+.reels h2 {
+  font-size: 17px;
+}
+
+.reels p {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #dcecff;
+}
+
+.reels > span {
+  margin-left: auto;
+  font-size: 24px;
+}
+
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid #e5edf7;
+}
+
+.support {
+  font-size: 28px;
+}
+
+.contact h3 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.contact p {
+  color: #61738a;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.destinations {
+  margin-top: 23px;
+}
+
+.destinations h2 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.places {
+  display: grid;
+  gap: 10px;
+}
+
+.place {
+  min-height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 15px;
+  border-radius: 15px;
+  color: white;
+  background: linear-gradient(120deg, #0755b8, #35a5e8);
+}
+
+.place span {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.place small {
+  font-size: 12px;
+}
+
+.goa {
+  background: linear-gradient(120deg, #087f8c, #35c5b0);
+}
+
+.jaipur {
+  background: linear-gradient(120deg, #873c75, #e78b83);
+}
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  min-height: 67px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: white;
+  border-top: 1px solid #e4ebf4;
+  box-shadow: 0 -3px 15px #123c6c10;
+  padding: 7px 4px;
+  z-index: 10;
+}
+
+.bottom a {
+  text-decoration: none;
+  color: #66758a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 21px;
+  min-width: 45px;
+}
+
+.bottom small {
+  font-size: 10px;
+}
+
+.bottom a:first-child {
+  color: #0768d5;
+}
+
+.bottom .plus {
+  width: 43px;
+  height: 43px;
+  border-radius: 14px;
+  background: #0876e8;
+  color: white;
+  font-size: 30px;
+}
+
+@media (min-width: 600px) {
+  body {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .bottom {
+    max-width: 600px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
