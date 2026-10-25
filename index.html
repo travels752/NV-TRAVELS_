@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -7,96 +8,86 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <main class="app">
 
-<header class="hero">
-  <div class="top">
-    <div class="logo">N✈V</div>
-    <div>
-      <h1>NV <span>TRAVELSS</span></h1>
-      <p>Travel • Ride • Hotel • Packages • Tickets</p>
-    </div>
-  </div>
+    <header class="top">
+      <div class="logo">✈️ NV <span>TRAVELSS</span></div>
+      <p>आपका सफर, हमारी ज़िम्मेदारी ❤️</p>
+      <div class="tagline">TRAVEL • RIDE • HOTEL • TICKETS</div>
+    </header>
 
-  <h2>आपका सफर, हमारी ज़िम्मेदारी ❤️</h2>
-</header>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">EXPLORE THE WORLD</span>
+        <h1>आपका अगला सफर<br>यहाँ से शुरू होता है!</h1>
+        <p>Travel more. Worry less.</p>
+        <div class="plane">✈</div>
+      </div>
+    </section>
 
-<main>
-  <section class="welcome">
-    <div class="pin">📍</div>
-    <div>
-      <h2>Where do you want to go?</h2>
-      <p>नई जगहें, नए अनुभव, एक ही ऐप में!</p>
-    </div>
-    <span class="plane">✈️</span>
-  </section>
+    <section class="services">
+      <h2>कहाँ जाना चाहते हैं?</h2>
+      <p class="subtitle">अपनी पसंद की सर्विस चुनें</p>
 
-  <section class="grid">
-    <a class="card ride" href="#ride">
-      <div class="picture">🚘</div>
-      <div class="info"><h3>🚕 Ride</h3><p>टैक्सी बुकिंग</p></div>
-    </a>
+      <div class="service-grid">
+        <button class="service ride" onclick="choose('Ride')">
+          <span class="emoji">🚕</span>
+          <strong>Ride</strong>
+          <small>Book your ride</small>
+        </button>
 
-    <a class="card hotel" href="#hotel">
-      <div class="picture">🛏️</div>
-      <div class="info"><h3>🛏 Hotel</h3><p>होटल बुकिंग</p></div>
-    </a>
+        <button class="service hotel" onclick="choose('Hotel')">
+          <span class="emoji">🏨</span>
+          <strong>Hotel</strong>
+          <small>Stay comfortably</small>
+        </button>
 
-    <a class="card bus" href="#bus">
-      <div class="picture">🚌</div>
-      <div class="info"><h3>🚌 Bus Tickets</h3><p>बस टिकट</p></div>
-    </a>
+        <button class="service bus" onclick="choose('Bus Tickets')">
+          <span class="emoji">🚌</span>
+          <strong>Bus Tickets</strong>
+          <small>Book bus seats</small>
+        </button>
 
-    <a class="card train" href="#train">
-      <div class="picture">🚆</div>
-      <div class="info"><h3>🚆 Train Tickets</h3><p>ट्रेन टिकट</p></div>
-    </a>
+        <button class="service train" onclick="choose('Train Tickets')">
+          <span class="emoji">🚆</span>
+          <strong>Train Tickets</strong>
+          <small>Plan your journey</small>
+        </button>
 
-    <a class="card flight" href="#flight">
-      <div class="picture">✈️</div>
-      <div class="info"><h3>✈️ Flight Tickets</h3><p>हवाई टिकट</p></div>
-    </a>
+        <button class="service flight" onclick="choose('Flight Tickets')">
+          <span class="emoji">✈️</span>
+          <strong>Flight Tickets</strong>
+          <small>Fly anywhere</small>
+        </button>
 
-    <a class="card packages" href="#packages">
-      <div class="picture">🏝️</div>
-      <div class="info"><h3>🧳 Packages</h3><p>टूर पैकेज</p></div>
-    </a>
-  </section>
+        <button class="service packages" onclick="choose('Packages')">
+          <span class="emoji">🏔️</span>
+          <strong>Packages</strong>
+          <small>Explore destinations</small>
+        </button>
 
-  <section class="reels" id="reels">
-    <div class="reel-icon">🎬</div>
-    <div>
-      <h2>Reels</h2>
-      <p>Travel Videos &amp; More</p>
-    </div>
-    <span>➜</span>
-  </section>
+        <button class="service reels" onclick="choose('Reels')">
+          <span class="emoji">▶️</span>
+          <strong>Travel Reels</strong>
+          <small>Watch & share</small>
+        </button>
 
-  <section class="contact">
-    <div class="support">🎧</div>
-    <div>
-      <h3>Contact NV TRAVELSS</h3>
-      <p>Call: 9098533390</p>
-      <p>Instagram: @NV_travelss</p>
-    </div>
-  </section>
+        <button class="service more" onclick="choose('More Services')">
+          <span class="emoji">✨</span>
+          <strong>More</strong>
+          <small>Explore more</small>
+        </button>
+      </div>
+    </section>
 
-  <section class="destinations">
-    <h2>Popular Destinations</h2>
-    <div class="places">
-      <div class="place manali"><span>📍 Manali</span><small>Snow • Adventure</small></div>
-      <div class="place goa"><span>📍 Goa</span><small>Beach • Relax</small></div>
-      <div class="place jaipur"><span>📍 Jaipur</span><small>Heritage • Culture</small></div>
-    </div>
-  </section>
-</main>
+    <footer class="bottom">
+      <button onclick="choose('Home')">🏠<small>Home</small></button>
+      <button onclick="choose('Reels')">🎬<small>Reels</small></button>
+      <button onclick="choose('Search')">🔎<small>Search</small></button>
+      <button onclick="choose('Profile')">👤<small>Profile</small></button>
+    </footer>
 
-<nav class="bottom">
-  <a href="#">🏠<small>Home</small></a>
-  <a href="#reels">🎬<small>Reels</small></a>
-  <a href="#post" class="plus">＋</a>
-  <a href="#packages">🧳<small>Packages</small></a>
-  <a href="#hotel">🛏️<small>Hotel</small></a>
-</nav>
-
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
