@@ -13,3 +13,14 @@ body {
   color: var(--text-main);
   padding-bottom: 90px;
 }
+
+.hero-header {
+  background: linear-gradient(135deg, #0F4C5C, #1B5B6E);
+  color: #FFFFFF;
+}
+
+.search-card {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
