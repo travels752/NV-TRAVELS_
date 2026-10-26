@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NV TRAVELSS - Official Home</title>
-    <!-- आइकन्स के लिए FontAwesome -->
+    <title>NV TRAVELSS</title>
+    <!-- आइकन्स लाइब्रेरी -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <style>
-        /* ==================== CSS स्टाइल यहाँ शुरू है ==================== */
         * {
             margin: 0;
             padding: 0;
@@ -24,7 +23,7 @@
             margin: 0;
         }
 
-        /* मोबाइल ऐप फ्रेम लेआउट */
+        /* मोबाइल ऐप फ्रेम */
         .app-container {
             width: 100vw;
             max-width: 430px;
@@ -40,7 +39,7 @@
             display: none;
         }
 
-        /* 1. टॉप हेडर बैनर (प्रीमियम माउंटेन ग्रेडिएंट) */
+        /* 1. टॉप हेडर बैनर */
         .hero-section {
             background: linear-gradient(180deg, #0957d0 0%, #3b82f6 70%, #ffffff 100%);
             padding: 15px 20px 25px 20px;
@@ -50,7 +49,7 @@
             position: relative;
         }
 
-        /* स्टेटस बार (9:41, सिग्नल, बैटरी) */
+        /* स्टेटस बार */
         .status-bar {
             display: flex;
             justify-content: space-between;
@@ -207,7 +206,7 @@
             padding: 16px;
         }
 
-        /* 2. ग्रिड लेआउट (Ride & Hotel) */
+        /* ग्रिड लेआउट (Ride & Hotel) */
         .services-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -228,10 +227,6 @@
             justify-content: flex-start;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .service-card:active {
-            transform: scale(0.98);
         }
 
         .card-icon-round {
@@ -272,7 +267,7 @@
             color: #94a3b8;
         }
 
-        /* सफ़ेद गाड़ी इफ़ेक्ट */
+        /* गाड़ी इफ़ेक्ट */
         .ride-card::after {
             content: "🚗";
             position: absolute;
@@ -291,7 +286,7 @@
             opacity: 0.15;
         }
 
-        /* टिकट्स के अंदर सब-व्हीकल्स (बस, ट्रेन, हवाई टिकट) */
+        /* टिकट्स के अंदर सब-व्हीकल्स */
         .ticket-modes {
             display: flex;
             gap: 6px;
@@ -320,7 +315,7 @@
         .mode-box span { font-size: 15px; }
         .mode-box p { color: white !important; font-size: 9px; opacity: 0.95; margin-top: 2px; }
 
-        /* 3. पॉपुलर डेस्टिनेशन्स */
+        /* पॉपुलर डेस्टिनेशन्स */
         .section-area {
             margin-top: 5px;
             margin-bottom: 18px;
@@ -367,3 +362,12 @@
             font-weight: 600;
         }
         .d1 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #3b82f6; }
+        .d2 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #10b981; }
+        .d3 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #f59e0b; }
+
+        /* लेटेस्ट रील्स सेक्शन */
+        .reels-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
