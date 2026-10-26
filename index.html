@@ -4,134 +4,386 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NV TRAVELSS - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Icons के लिए FontAwesome लिंक (ताकि UI सुंदर दिखे) -->
+    <!-- Icons के लिए FontAwesome लिंक -->
     <link rel="stylesheet" href="https://cloudflare.com">
-</head>
-<body>
+    
+    <style>
+        /* ==================== CSS डिजाइन यहाँ शुरू है ==================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
 
-    <!-- मेन कंटेनर (मोबाइल ऐप फ्रेम के लिए) -->
-    <div class="app-container">
-        
-        <!-- 1. टॉप हेडर और बैनर सेक्शन -->
-        <header class="hero-section">
-            <div class="status-bar">
-                <span class="time">9:41</span>
-                <div class="status-icons">
-                    <i class="fas fa-signal"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-battery-full"></i>
-                </div>
-            </div>
-            
-            <div class="nav-bar">
-                <div class="logo-area">
-                    <span class="logo-text">NV TRAVELS<span class="logo-s">S</span></span>
-                    <p class="tagline">Travel • Ride • Hotel • Packages • Tickets</p>
-                </div>
-                <div class="nav-right">
-                    <div class="icon-badge"><i class="fas fa-bell"></i></div>
-                    <div class="profile-pic"><i class="fas fa-user"></i></div>
-                </div>
-            </div>
+        body {
+            background-color: #0b1528;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
 
-            <div class="hero-content">
-                <h1>Explore The World<br>With <span class="highlight">NV Travelss</span></h1>
-                <p>Your journey, our responsibility 💙</p>
-            </div>
+        /* मोबाइल ऐप फ्रेम */
+        .app-container {
+            width: 100%;
+            max-width: 412px;
+            height: 880px;
+            background-color: #f6f9fe;
+            position: relative;
+            overflow-y: auto;
+            border-radius: 36px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            padding-bottom: 90px;
+        }
 
-            <!-- सर्च बार -->
-            <div class="search-container">
-                <i class="fas fa-map-marker-alt search-icon"></i>
-                <input type="text" placeholder="Where do you want to go?">
-                <button class="search-btn"><i class="fas fa-arrow-right"></i></button>
-            </div>
+        .app-container::-webkit-scrollbar {
+            display: none;
+        }
 
-            <!-- कैटगरी चिप्स -->
-            <div class="categories-scroll">
-                <div class="chip"><i class="fas fa-mountain"></i> Mountains</div>
-                <div class="chip"><i class="fas fa-umbrella-beach"></i> Beaches</div>
-                <div class="chip"><i class="fas fa-building"></i> City Tours</div>
-                <div class="chip"><i class="fas fa-compass"></i> Adventure</div>
-            </div>
-        </header>
+        /* टॉप हेडर और बैनर */
+        .hero-section {
+            background: linear-gradient(180deg, #0750c7 0%, #3081f7 65%, #f6f9fe 100%);
+            padding: 20px 20px 25px 20px;
+            color: white;
+        }
 
-        <!-- 2. मुख्य सर्विसेज ग्रिड -->
-        <main class="main-content">
-            <div class="services-grid">
-                <!-- Ride Card -->
-                <div class="service-card ride-card">
-                    <div class="card-info">
-                        <div class="card-icon blue-icon"><i class="fas fa-car"></i></div>
-                        <h2>Ride</h2>
-                        <p>Book your taxi in seconds</p>
-                    </div>
-                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
-                    <img src="https://unsplash.com" alt="Ride Car" class="card-img-car">
-                </div>
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            opacity: 0.95;
+        }
 
-                <!-- Hotel Card -->
-                <div class="service-card hotel-card">
-                    <div class="card-info">
-                        <div class="card-icon orange-icon"><i class="fas fa-bed"></i></div>
-                        <h2>Hotel</h2>
-                        <p>Comfortable stays for your journey</p>
-                    </div>
-                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
-                </div>
-            </div>
+        .status-icons i {
+            margin-left: 6px;
+        }
 
-            <!-- 3. सब-सर्विसेज (Packages & Tickets) -->
-            <div class="sub-services-grid">
-                <div class="service-card compact-card">
-                    <div class="card-icon green-icon"><i class="fas fa-map-marked-alt"></i></div>
-                    <div>
-                        <h2>Packages</h2>
-                        <p>Discover amazing tour packages</p>
-                    </div>
-                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
-                </div>
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
 
-                <div class="service-card compact-card">
-                    <div class="card-icon purple-icon"><i class="fas fa-ticket-alt"></i></div>
-                    <div>
-                        <h2>Tickets</h2>
-                        <p>Bus • Train • Flight All in one place</p>
-                    </div>
-                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
-                </div>
-            </div>
+        .logo-text {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
 
-            <!-- 4. पॉपुलर डेस्टिनेशन्स -->
-            <section class="section-area">
-                <div class="section-header">
-                    <h3>Popular Destinations</h3>
-                    <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="horizontal-scroll">
-                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
-                        <span><i class="fas fa-map-marker-alt"></i> Manali</span>
-                    </div>
-                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
-                        <span><i class="fas fa-map-marker-alt"></i> Goa</span>
-                    </div>
-                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
-                        <span><i class="fas fa-map-marker-alt"></i> Kashmir</span>
-                    </div>
-                </div>
-            </section>
-        </main>
+        .logo-s {
+            color: #3ee1a2;
+        }
 
-        <!-- 5. बॉटम नेविगेशन बार -->
-        <nav class="bottom-nav">
-            <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
-            <div class="nav-item"><i class="fas fa-play-circle"></i><span>Reels</span></div>
-            <div class="nav-item add-btn"><i class="fas fa-plus"></i></div>
-            <div class="nav-item"><i class="fas fa-search"></i><span>Search</span></div>
-            <div class="nav-item"><i class="fas fa-user-circle"></i><span>Profile</span></div>
-        </nav>
+        .tagline {
+            font-size: 11px;
+            opacity: 0.85;
+            margin-top: 2px;
+        }
 
-    </div>
+        .nav-right {
+            display: flex;
+            gap: 12px;
+        }
 
-</body>
-</html>
+        .icon-badge, .profile-pic {
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(5px);
+        }
+
+        .hero-content h1 {
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1.25;
+            margin-bottom: 6px;
+        }
+
+        .hero-content p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 22px;
+        }
+
+        /* सर्च बार */
+        .search-container {
+            background: white;
+            border-radius: 30px;
+            padding: 6px 6px 6px 18px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 25px rgba(7, 80, 199, 0.15);
+            margin-bottom: 22px;
+        }
+
+        .search-icon {
+            color: #ff4d4d;
+            font-size: 18px;
+            margin-right: 12px;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .search-btn {
+            background: #0066ff;
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        /* कैटगरी चिप्स */
+        .categories-scroll {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .categories-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .chip {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* मुख्य सर्विसेज ग्रिड */
+        .main-content {
+            padding: 0 20px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 155px;
+            overflow: hidden;
+        }
+
+        .card-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .blue-icon { background: #eaf2ff; color: #0066ff; }
+        .orange-icon { background: #fff5eb; color: #ff8400; }
+        .green-icon { background: #e6f9f0; color: #00cc66; }
+        .purple-icon { background: #f4ebff; color: #8433ff; }
+
+        .service-card h2 {
+            font-size: 19px;
+            color: #1e293b;
+            margin-bottom: 4px;
+        }
+
+        .service-card p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.3;
+        }
+
+        .card-arrow {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 28px;
+            height: 28px;
+            background: #f1f5f9;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        /* राइड कार्ड के लिए कार इमेज की जगह स्टाइलिश शेड */
+        .ride-card::after {
+            content: "🚗";
+            position: absolute;
+            font-size: 70px;
+            bottom: -10px;
+            right: -10px;
+            opacity: 0.8;
+        }
+
+        /* होटल कार्ड शेड */
+        .hotel-card::after {
+            content: "🛏️";
+            position: absolute;
+            font-size: 65px;
+            bottom: -10px;
+            right: -5px;
+            opacity: 0.15;
+        }
+
+        /* सब-सर्विसेज (Packages & Tickets) */
+        .sub-services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .compact-card {
+            min-height: auto;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 15px;
+            padding: 14px 20px;
+        }
+
+        .compact-card .card-icon {
+            margin-bottom: 0;
+            flex-shrink: 0;
+        }
+
+        /* पॉपुलर डेस्टिनेशन्स */
+        .section-area {
+            margin-bottom: 25px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .section-header h3 {
+            font-size: 17px;
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        .view-all {
+            font-size: 13px;
+            color: #0066ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+
+        .horizontal-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .dest-card {
+            min-width: 125px;
+            height: 125px;
+            border-radius: 18px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 12px;
+            background: #e2e8f0;
+            box-shadow: inset 0 -40px 40px rgba(0,0,0,0.5);
+        }
+
+        /* डेस्टिनेशन डमी कलर्स (बिना इमेज एरर के दिखने के लिए) */
+        .dest-1 { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), #4a90e2; }
+        .dest-2 { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), #50e3c2; }
+        .dest-3 { background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), #b8e986; }
+
+        .dest-card span {
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* बॉटम नेविगेशन बार */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+            background: #ffffff;
+            border-top: 1px solid #edf2f9;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 12px;
+            z-index: 10;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .nav-item i {
+            font-size: 22px;
+            margin-bottom: 3px;
+        }
+
+        .nav-item.active {
+            color: #0066ff;
+        }
+
