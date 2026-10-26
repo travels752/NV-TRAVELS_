@@ -1,20 +1,137 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NV TRAVELSS</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NV TRAVELSS - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Icons के लिए FontAwesome लिंक (ताकि UI सुंदर दिखे) -->
+    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body>
 
-  <main class="app-screen">
-    <img
-      src="theme-home.png"
-      alt="NV TRAVELSS Modern Home Theme"
-      class="theme-image"
-    >
-  </main>
+    <!-- मेन कंटेनर (मोबाइल ऐप फ्रेम के लिए) -->
+    <div class="app-container">
+        
+        <!-- 1. टॉप हेडर और बैनर सेक्शन -->
+        <header class="hero-section">
+            <div class="status-bar">
+                <span class="time">9:41</span>
+                <div class="status-icons">
+                    <i class="fas fa-signal"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-battery-full"></i>
+                </div>
+            </div>
+            
+            <div class="nav-bar">
+                <div class="logo-area">
+                    <span class="logo-text">NV TRAVELS<span class="logo-s">S</span></span>
+                    <p class="tagline">Travel • Ride • Hotel • Packages • Tickets</p>
+                </div>
+                <div class="nav-right">
+                    <div class="icon-badge"><i class="fas fa-bell"></i></div>
+                    <div class="profile-pic"><i class="fas fa-user"></i></div>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <h1>Explore The World<br>With <span class="highlight">NV Travelss</span></h1>
+                <p>Your journey, our responsibility 💙</p>
+            </div>
+
+            <!-- सर्च बार -->
+            <div class="search-container">
+                <i class="fas fa-map-marker-alt search-icon"></i>
+                <input type="text" placeholder="Where do you want to go?">
+                <button class="search-btn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- कैटगरी चिप्स -->
+            <div class="categories-scroll">
+                <div class="chip"><i class="fas fa-mountain"></i> Mountains</div>
+                <div class="chip"><i class="fas fa-umbrella-beach"></i> Beaches</div>
+                <div class="chip"><i class="fas fa-building"></i> City Tours</div>
+                <div class="chip"><i class="fas fa-compass"></i> Adventure</div>
+            </div>
+        </header>
+
+        <!-- 2. मुख्य सर्विसेज ग्रिड -->
+        <main class="main-content">
+            <div class="services-grid">
+                <!-- Ride Card -->
+                <div class="service-card ride-card">
+                    <div class="card-info">
+                        <div class="card-icon blue-icon"><i class="fas fa-car"></i></div>
+                        <h2>Ride</h2>
+                        <p>Book your taxi in seconds</p>
+                    </div>
+                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
+                    <img src="https://unsplash.com" alt="Ride Car" class="card-img-car">
+                </div>
+
+                <!-- Hotel Card -->
+                <div class="service-card hotel-card">
+                    <div class="card-info">
+                        <div class="card-icon orange-icon"><i class="fas fa-bed"></i></div>
+                        <h2>Hotel</h2>
+                        <p>Comfortable stays for your journey</p>
+                    </div>
+                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <!-- 3. सब-सर्विसेज (Packages & Tickets) -->
+            <div class="sub-services-grid">
+                <div class="service-card compact-card">
+                    <div class="card-icon green-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <div>
+                        <h2>Packages</h2>
+                        <p>Discover amazing tour packages</p>
+                    </div>
+                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+
+                <div class="service-card compact-card">
+                    <div class="card-icon purple-icon"><i class="fas fa-ticket-alt"></i></div>
+                    <div>
+                        <h2>Tickets</h2>
+                        <p>Bus • Train • Flight All in one place</p>
+                    </div>
+                    <div class="card-arrow"><i class="fas fa-chevron-right"></i></div>
+                </div>
+            </div>
+
+            <!-- 4. पॉपुलर डेस्टिनेशन्स -->
+            <section class="section-area">
+                <div class="section-header">
+                    <h3>Popular Destinations</h3>
+                    <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="horizontal-scroll">
+                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
+                        <span><i class="fas fa-map-marker-alt"></i> Manali</span>
+                    </div>
+                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
+                        <span><i class="fas fa-map-marker-alt"></i> Goa</span>
+                    </div>
+                    <div class="dest-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent), url('https://unsplash.com');">
+                        <span><i class="fas fa-map-marker-alt"></i> Kashmir</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- 5. बॉटम नेविगेशन बार -->
+        <nav class="bottom-nav">
+            <div class="nav-item active"><i class="fas fa-home"></i><span>Home</span></div>
+            <div class="nav-item"><i class="fas fa-play-circle"></i><span>Reels</span></div>
+            <div class="nav-item add-btn"><i class="fas fa-plus"></i></div>
+            <div class="nav-item"><i class="fas fa-search"></i><span>Search</span></div>
+            <div class="nav-item"><i class="fas fa-user-circle"></i><span>Profile</span></div>
+        </nav>
+
+    </div>
 
 </body>
 </html>
