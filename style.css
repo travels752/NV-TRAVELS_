@@ -1,4 +1,3 @@
-/* बेसिक रीसेट और फोंट्स */
 * {
     margin: 0;
     padding: 0;
@@ -7,371 +6,377 @@
 }
 
 body {
-    background-color: #f5f7fb;
+    background-color: #f4f7f6;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
 }
 
-/* मोबाइल ऐप जैसा फ्रेम */
 .app-container {
     width: 100%;
-    max-width: 430px; /* iPhone 14 Pro Max साइज */
-    height: 932px;
-    background-color: #ffffff;
+    max-width: 450px;
+    background: #ffffff;
+    min-height: 100vh;
     position: relative;
-    overflow-y: auto;
-    border-radius: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    padding-bottom: 90px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow-x: hidden;
 }
 
-/* हाइड स्क्रॉलबार */
-.app-container::-webkit-scrollbar {
-    display: none;
-}
-
-/* 1. हेडर और बैनर स्टाइल */
-.hero-section {
-    background: linear-gradient(to bottom, #0052cc, #4c9aff, #ffffff);
-    padding: 20px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
-    color: white;
-    position: relative;
-}
-
-.status-bar {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.status-icons i {
-    margin-left: 5px;
-}
-
-.nav-bar {
+/* Header */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    padding: 15px 20px;
+    background: #fff;
 }
 
-.logo-text {
-    font-size: 22px;
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    background: #0052cc;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.logo-text h1 {
+    font-size: 18px;
     font-weight: 800;
+    color: #0b132b;
     letter-spacing: 0.5px;
 }
 
-.logo-s {
-    color: #4ce6a6;
+.logo-text h1 span {
+    color: #0066ff;
 }
 
-.tagline {
+.logo-text p {
     font-size: 10px;
-    opacity: 0.9;
+    color: #666;
 }
 
-.nav-right {
+.header-icons {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
-.icon-badge, .profile-pic {
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.2);
+.header-icons i {
+    font-size: 18px;
+    color: #444;
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    background: #e0e6ed;
     border-radius: 50%;
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
-    font-size: 18px;
+    justify-content: center;
+    color: #0066ff;
 }
 
-.hero-content h1 {
-    font-size: 26px;
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    margin: 0 15px;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content h2 {
+    font-size: 22px;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 5px;
 }
 
-.hero-content .highlight {
-    color: #ffffff;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+.hero-content h2 span {
+    color: #4facfe;
 }
 
 .hero-content p {
-    font-size: 13px;
+    font-size: 12px;
+    margin-top: 5px;
     opacity: 0.9;
-    margin-bottom: 20px;
 }
 
-/* सर्च बार */
-.search-container {
+.search-box {
     background: white;
-    border-radius: 30px;
-    padding: 8px 8px 8px 20px;
     display: flex;
     align-items: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-    margin-bottom: 20px;
+    padding: 8px 15px;
+    border-radius: 30px;
+    margin-top: 15px;
 }
 
-.search-icon {
-    color: #ff4d4d;
-    font-size: 18px;
+.search-box i {
+    color: #777;
     margin-right: 10px;
 }
 
-.search-container input {
+.search-box input {
     border: none;
     outline: none;
     width: 100%;
-    font-size: 15px;
-    color: #333;
+    font-size: 13px;
 }
 
 .search-btn {
     background: #0066ff;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
     color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: 0.2s;
 }
 
-/* स्क्रॉल कैटगरी */
-.categories-scroll {
+.filter-chips {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    margin-top: 15px;
     overflow-x: auto;
     padding-bottom: 5px;
 }
 
-.categories-scroll::-webkit-scrollbar {
+.filter-chips::-webkit-scrollbar {
     display: none;
 }
 
 .chip {
-    background: rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(10px);
-    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
     border-radius: 20px;
-    font-size: 12px;
+    font-size: 11px;
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 6px;
-    border: 1px solid rgba(255,255,255,0.3);
+    gap: 5px;
+    cursor: pointer;
 }
 
-/* 2. मुख्य सर्विसेज ग्रिड स्टाइल */
-.main-content {
-    padding: 20px;
+.chip.active {
+    background: white;
+    color: #1e3c72;
+    font-weight: 600;
 }
 
-.services-grid {
+/* Cards Grid */
+.cards-grid {
+    padding: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
 }
 
 .service-card {
-    background: #ffffff;
-    border-radius: 24px;
-    padding: 16px;
+    background: #eef2f7;
+    padding: 15px;
+    border-radius: 16px;
     position: relative;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    border: 1px solid #edf2f9;
+    min-height: 120px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    min-height: 160px;
-    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
 }
 
-.card-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    margin-bottom: 12px;
+.service-card:active {
+    transform: scale(0.97);
 }
 
-.blue-icon { background: #e8f2ff; color: #0066ff; }
-.orange-icon { background: #fff4eb; color: #ff8800; }
-.green-icon { background: #e6f9f0; color: #00cc66; }
-.purple-icon { background: #f3ebff; color: #8833ff; }
+.service-card.ride { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+.service-card.hotel { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.service-card.packages { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+.service-card.tickets { background: linear-gradient(135deg, #ede7f6, #d1c4e9); grid-column: span 2; }
 
-.service-card h2 {
-    font-size: 18px;
-    color: #1e293b;
-    margin-bottom: 4px;
+.card-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
 }
 
-.service-card p {
+.card-info p {
     font-size: 11px;
-    color: #64748b;
-    line-height: 1.3;
+    color: #555;
+    margin-top: 3px;
 }
 
-.card-arrow {
+.card-action {
     position: absolute;
-    top: 16px;
-    right: 16px;
+    top: 15px;
+    right: 15px;
+    background: white;
     width: 28px;
     height: 28px;
-    background: #f1f5f9;
     border-radius: 50%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
     font-size: 12px;
-    color: #64748b;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
-.card-img-car {
-    width: 110%;
-    position: absolute;
-    bottom: -10px;
-    right: -10px;
-    object-fit: contain;
+.ticket-sub-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
-/* 3. सब-सर्विसेज लेआउट */
-.sub-services-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 25px;
+.ticket-sub-icons span {
+    background: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #444;
 }
 
-.compact-card {
-    min-height: auto;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding: 12px 20px;
-}
-
-.compact-card .card-icon {
-    margin-bottom: 0;
-}
-
-/* 4. डेस्टिनेशन्स स्टाइल */
-.section-area {
-    margin-bottom: 20px;
+/* Sections */
+.section {
+    padding: 0 15px;
+    margin-top: 15px;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .section-header h3 {
-    font-size: 16px;
-    color: #1e293b;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.view-all {
+.section-header a {
     font-size: 12px;
     color: #0066ff;
     text-decoration: none;
     font-weight: 600;
 }
 
-.horizontal-scroll {
+.destinations-scroll, .reels-scroll {
     display: flex;
     gap: 12px;
     overflow-x: auto;
     padding-bottom: 5px;
 }
 
-.horizontal-scroll::-webkit-scrollbar {
+.destinations-scroll::-webkit-scrollbar, .reels-scroll::-webkit-scrollbar {
     display: none;
 }
 
 .dest-card {
     min-width: 120px;
-    height: 120px;
-    border-radius: 16px;
+    height: 140px;
+    border-radius: 14px;
     background-size: cover;
     background-position: center;
     position: relative;
-    display: flex;
-    align-items: flex-end;
-    padding: 10px;
+    flex-shrink: 0;
 }
 
-.dest-card span {
+.dest-name {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
     color: white;
     font-size: 12px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    background: rgba(0,0,0,0.4);
+    padding: 3px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
 }
 
-/* 5. बॉटम बार स्टाइल */
-.bottom-nav {
+.reel-card {
+    min-width: 100px;
+    height: 140px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.reel-likes {
     position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    font-size: 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
-    height: 75px;
-    background: #ffffff;
-    border-top: 1px solid #edf2f9;
+    max-width: 450px;
+    background: white;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding-bottom: 10px;
-    z-index: 10;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
 }
 
 .nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #94a3b8;
-    font-size: 11px;
-    cursor: pointer;
+    text-decoration: none;
+    color: #888;
+    font-size: 10px;
+    gap: 3px;
 }
 
 .nav-item i {
-    font-size: 20px;
-    margin-bottom: 2px;
+    font-size: 18px;
 }
 
 .nav-item.active {
     color: #0066ff;
 }
 
-.add-btn {
-    width: 48px;
-    height: 48px;
-    background: #f1f5f9;
-    border: 1px solid #cbd5e1;
+.post-btn .plus-circle {
+    width: 35px;
+    height: 35px;
+    background: #0066ff;
+    color: white;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    color: #64748b;
-}
-
-.add-btn i {
-    font-size: 18px;
-    margin-bottom: 0;
+    font-size: 14px;
+    margin-top: -10px;
 }
