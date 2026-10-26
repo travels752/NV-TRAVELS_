@@ -1,153 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NV TRAVELSS</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NV TRAVELSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Pretendard', sans-serif;
+      background-color: #f4f6f9;
+      color: #1a1a1a;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
 </head>
-<body>
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header">
-            <div class="logo-area">
-                <div class="logo-icon"><i class="fa-solid fa-plane"></i></div>
-                <div class="logo-text">
-                    <h1>NV TRAVELS<span>S</span></h1>
-                    <p>Travel • Ride • Hotel • Packages • Tickets</p>
-                </div>
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4">
+
+  <div class="w-full max-w-md bg-[#ffffff] min-h-screen sm:min-h-[844px] sm:h-[844px] sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col relative border border-gray-100">
+    
+    <div class="px-6 pt-3 pb-2 flex justify-between items-center text-xs text-[#1a1a1a]">
+      <span class="font-semibold text-[15px] tracking-wide">9:41</span>
+      <div class="flex items-center space-x-1.5 text-[15px]">
+        <i class="fa-solid fa-signal"></i>
+        <i class="fa-solid fa-wifi"></i>
+        <i class="fa-solid fa-battery-full"></i>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
+      
+      <div class="relative h-[280px] w-full">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain" class="w-full h-full object-cover">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-transparent"></div>
+
+        <header class="px-5 py-4 flex justify-between items-center absolute top-0 w-full z-20">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
+              <i class="fa-solid fa-plane-up text-lg"></i>
             </div>
-            <div class="header-icons">
-                <i class="fa-solid fa-bell"></i>
-                <div class="profile-icon"><i class="fa-solid fa-user"></i></div>
+            <div>
+              <div class="flex items-center">
+                <h1 class="text-xl font-extrabold tracking-wider text-white">NV TRAVEL<span class="text-cyan-400">S</span><span>S</span></h1>
+              </div>
+              <p class="text-[11px] text-white/90 font-medium tracking-wide">Travel • Ride • Hotel • Packages • Tickets</p>
             </div>
+          </div>
+          <div class="flex items-center space-x-4 text-white">
+            <button class="relative">
+              <i class="fa-solid fa-bell text-lg"></i>
+              <span class="w-2.5 h-2.5 bg-red-500 border-2 border-slate-900 rounded-full absolute -top-0.5 -right-0.5"></span>
+            </button>
+            <div class="w-9 h-9 rounded-full bg-white/20 border border-white/30 flex items-center justify-center">
+              <i class="fa-solid fa-user"></i>
+            </div>
+          </div>
         </header>
 
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-content">
-                <h2>Explore The World<br>With <span>NV Travelss</span></h2>
-                <p>Your journey, our responsibility 💙</p>
-            </div>
-            <div class="search-box">
-                <i class="fa-solid fa-location-dot"></i>
-                <input type="text" placeholder="Where do you want to go?">
-                <button class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
-            </div>
-            <div class="filter-chips">
-                <span class="chip active"><i class="fa-solid fa-mountain"></i> Mountains</span>
-                <span class="chip"><i class="fa-solid fa-umbrella-beach"></i> Beaches</span>
-                <span class="chip"><i class="fa-solid fa-city"></i> City Tours</span>
-                <span class="chip"><i class="fa-solid fa-compass"></i> Adventure</span>
-            </div>
-        </section>
-
-        <!-- Main Cards Grid -->
-        <div class="cards-grid">
-            <div class="service-card ride">
-                <div class="card-info">
-                    <h3>Ride</h3>
-                    <p>Book your taxi in seconds</p>
-                </div>
-                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
-            </div>
-
-            <div class="service-card hotel">
-                <div class="card-info">
-                    <h3>Hotel</h3>
-                    <p>Comfortable stays for your journey</p>
-                </div>
-                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
-            </div>
-
-            <div class="service-card packages">
-                <div class="card-info">
-                    <h3>Packages</h3>
-                    <p>Discover amazing tour packages</p>
-                </div>
-                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
-            </div>
-
-            <div class="service-card tickets">
-                <div class="card-info">
-                    <h3>Tickets</h3>
-                    <p>Bus • Train • Flight<br>All in one place</p>
-                </div>
-                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
-                <div class="ticket-sub-icons">
-                    <span>Bus</span>
-                    <span>Train</span>
-                    <span>Flight</span>
-                </div>
-            </div>
+        <div class="absolute bottom-16 px-6 z-20 text-white w-full">
+          <h2 class="text-[28px] font-extrabold text-white leading-tight">Explore The World <br>With <span class="text-[#4facfe]">NV Travelss</span></h2>
+          <p class="text-sm text-white/90 mt-1 font-medium">Your journey, our responsibility 💙</p>
         </div>
 
-        <!-- Popular Destinations -->
-        <section class="section">
-            <div class="section-header">
-                <h3><i class="fa-solid fa-location-dot" style="color:#0066ff;"></i> Popular Destinations</h3>
-                <a href="#">View All <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="destinations-scroll">
-                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=500&q=80')">
-                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Manali</span>
-                </div>
-                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=500&q=80')">
-                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Goa</span>
-                </div>
-                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=500&q=80')">
-                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Kashmir</span>
-                </div>
-                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=500&q=80')">
-                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Shimla</span>
-                </div>
-            </div>
-        </section>
+        <div class="absolute bottom-0 w-full h-12 bg-[#F4F6F9] rounded-t-[32px] z-10"></div>
+      </div>
 
-        <!-- Latest Reels -->
-        <section class="section" style="margin-bottom: 80px;">
-            <div class="section-header">
-                <h3><i class="fa-solid fa-clapperboard" style="color:#0066ff;"></i> Latest Reels</h3>
-                <a href="#">View All <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="reels-scroll">
-                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80')">
-                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 1.2k</span>
-                </div>
-                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80')">
-                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 856</span>
-                </div>
-                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80')">
-                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 932</span>
-                </div>
-            </div>
-        </section>
+      <div class="px-5 -mt-6 relative z-10">
+        
+        <div class="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-2 flex items-center border border-gray-100 mb-4 h-16">
+          <div class="w-12 h-12 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl ml-1">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <input type="text" placeholder="Where do you want to go?" class="flex-1 bg-transparent border-none outline-none px-4 text-sm font-semibold text-gray-800 placeholder-gray-400">
+          <button class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-blue-300">
+            <i class="fa-solid fa-arrow-right text-lg"></i>
+          </button>
+        </div>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item active">
-                <i class="fa-solid fa-house"></i>
-                <span>Home</span>
+        <div class="flex space-x-3 overflow-x-auto no-scrollbar pb-3 mb-2">
+          <button class="bg-gray-800 text-white px-5 py-3 rounded-2xl text-[13px] font-semibold flex items-center space-x-2 whitespace-nowrap shadow-lg shadow-gray-400">
+            <i class="fa-solid fa-mountain text-sm"></i> <span>Mountains</span>
+          </button>
+          <button class="bg-white text-gray-600 px-5 py-3 rounded-2xl text-[13px] font-semibold flex items-center space-x-2 whitespace-nowrap border border-gray-100 shadow-sm hover:shadow-gray-200">
+            <i class="fa-solid fa-umbrella-beach text-sm text-blue-500"></i> <span>Beaches</span>
+          </button>
+          <button class="bg-white text-gray-600 px-5 py-3 rounded-2xl text-[13px] font-semibold flex items-center space-x-2 whitespace-nowrap border border-gray-100 shadow-sm hover:shadow-gray-200">
+            <i class="fa-solid fa-city text-sm text-blue-500"></i> <span>City Tours</span>
+          </button>
+          <button class="bg-white text-gray-600 px-5 py-3 rounded-2xl text-[13px] font-semibold flex items-center space-x-2 whitespace-nowrap border border-gray-100 shadow-sm hover:shadow-gray-200">
+            <i class="fa-solid fa-compass text-sm text-blue-500"></i> <span>Adventure</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          
+          <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-5 relative overflow-hidden h-[180px] flex flex-col justify-between group cursor-pointer shadow-lg shadow-blue-100/50 border border-blue-200">
+            <div>
+              <h3 class="font-bold text-[20px] text-gray-900 leading-tight">Ride</h3>
+              <p class="text-[12px] text-gray-600 mt-1 font-semibold leading-tight">Book your taxi<br>in seconds</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-5 right-5 group-hover:scale-105 transition-transform">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="absolute -right-6 -bottom-4 w-36 h-20">
+              <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=400&q=80" alt="Car" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-5 relative overflow-hidden h-[180px] flex flex-col justify-between group cursor-pointer shadow-lg shadow-orange-100/50 border border-orange-200">
+            <div>
+              <h3 class="font-bold text-[20px] text-gray-900 leading-tight">Hotel</h3>
+              <p class="text-[12px] text-gray-600 mt-1 font-semibold leading-tight">Comfortable stays<br>for your journey</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-5 right-5 group-hover:scale-105 transition-transform">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="absolute -right-6 -bottom-4 w-40 h-24">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-3xl p-5 relative overflow-hidden h-[180px] flex flex-col justify-between group cursor-pointer shadow-lg shadow-emerald-100/50 border border-emerald-200">
+            <div>
+              <h3 class="font-bold text-[20px] text-gray-900 leading-tight">Packages</h3>
+              <p class="text-[12px] text-gray-600 mt-1 font-semibold leading-tight">Discover amazing<br>tour packages</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-5 right-5 group-hover:scale-105 transition-transform">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="absolute -right-6 -bottom-4 w-40 h-24">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Packages" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <div class="bg-[#ece1ff] rounded-3xl p-5 relative overflow-hidden h-[180px] flex flex-col justify-between group cursor-pointer shadow-lg shadow-purple-100/50 border border-purple-200">
+            <div>
+              <h3 class="font-bold text-[20px] text-gray-900 leading-tight">Tickets</h3>
+              <p class="text-[12px] text-gray-600 mt-1 font-semibold leading-tight">Bus • Train • Flight<br>All in one place</p>
+            </div>
+            <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-5 right-5 group-hover:scale-105 transition-transform">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+            <div class="absolute bottom-4 left-5 flex space-x-2">
+              <span class="bg-white/60 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-gray-800 border border-white">Bus</span>
+              <span class="bg-white/60 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-gray-800 border border-white">Train</span>
+              <span class="bg-white/60 backdrop-blur-md px-3 py-1.5 rounded-xl text-[10px] font-bold text-gray-800 border border-white">Flight</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-[18px] text-gray-900 flex items-center">
+              <i class="fa-solid fa-circle text-blue-600 text-sm mr-3"></i> Popular Destinations
+            </h3>
+            <a href="#" class="text-[13px] font-bold text-blue-600 flex items-center hover:underline">
+              View All <i class="fa-solid fa-chevron-right text-[11px] ml-1.5"></i>
             </a>
-            <a href="#" class="nav-item">
-                <i class="fa-solid fa-clapperboard"></i>
-                <span>Reels</span>
+          </div>
+
+          <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
+            
+            <div class="w-36 h-48 rounded-3xl overflow-hidden relative flex-shrink-0 group cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" alt="Manali" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center">
+                <i class="fa-solid fa-location-dot text-white text-sm mr-2"></i>
+                <span class="text-white font-bold text-sm tracking-wide">Manali</span>
+              </div>
+            </div>
+
+            <div class="w-36 h-48 rounded-3xl overflow-hidden relative flex-shrink-0 group cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Goa" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center">
+                <i class="fa-solid fa-location-dot text-white text-sm mr-2"></i>
+                <span class="text-white font-bold text-sm tracking-wide">Goa</span>
+              </div>
+            </div>
+
+            <div class="w-36 h-48 rounded-3xl overflow-hidden relative flex-shrink-0 group cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=400&q=80" alt="Kashmir" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center">
+                <i class="fa-solid fa-location-dot text-white text-sm mr-2"></i>
+                <span class="text-white font-bold text-sm tracking-wide">Kashmir</span>
+              </div>
+            </div>
+
+            <div class="w-36 h-48 rounded-3xl overflow-hidden relative flex-shrink-0 group cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=400&q=80" alt="Shimla" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center">
+                <i class="fa-solid fa-location-dot text-white text-sm mr-2"></i>
+                <span class="text-white font-bold text-sm tracking-wide">Shimla</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="font-bold text-[18px] text-gray-900 flex items-center">
+              <i class="fa-solid fa-circle text-blue-600 text-sm mr-3"></i> Latest Reels
+            </h3>
+            <a href="#" class="text-[13px] font-bold text-blue-600 flex items-center hover:underline">
+              View All <i class="fa-solid fa-chevron-right text-[11px] ml-1.5"></i>
             </a>
-            <a href="#" class="nav-item post-btn">
-                <div class="plus-circle"><i class="fa-solid fa-plus"></i></div>
-                <span>Post</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <span>Search</span>
-            </a>
-            <a href="#" class="nav-item">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </nav>
+          </div>
+
+          <div class="flex space-x-4 overflow-x-auto no-scrollbar pb-2">
+            
+            <div class="w-32 h-44 rounded-3xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" alt="Reel 1" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center space-x-1.5">
+                <i class="fa-solid fa-heart text-white/90 text-xs"></i>
+                <span class="text-white font-bold text-[13px]">1.2K</span>
+              </div>
+            </div>
+
+            <div class="w-32 h-44 rounded-3xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Reel 2" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center space-x-1.5">
+                <i class="fa-solid fa-heart text-white/90 text-xs"></i>
+                <span class="text-white font-bold text-[13px]">856</span>
+              </div>
+            </div>
+
+            <div class="w-32 h-44 rounded-3xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-lg shadow-gray-200">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Reel 3" class="w-full h-full object-cover">
+              <div class="absolute bottom-3 left-4 flex items-center space-x-1.5">
+                <i class="fa-solid fa-heart text-white/90 text-xs"></i>
+                <span class="text-white font-bold text-[13px]">932</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <nav class="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-100 px-6 py-4 z-40">
+      <div class="flex justify-between items-center max-w-sm mx-auto">
+        <a href="#" class="flex flex-col items-center text-blue-600">
+          <i class="fa-solid fa-house text-[18px]"></i>
+          <span class="text-[10px] font-bold mt-1.5">Home</span>
+        </a>
+        <a href="#" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fa-solid fa-clapperboard text-[18px]"></i>
+          <span class="text-[10px] font-semibold mt-1.5">Reels</span>
+        </a>
+        <a href="#" class="flex flex-col items-center -mt-9">
+          <div class="w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center text-white text-[22px] shadow-lg shadow-blue-300 border-4 border-white">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+        </a>
+        <a href="#" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fa-solid fa-magnifying-glass text-[18px]"></i>
+          <span class="text-[10px] font-semibold mt-1.5">Search</span>
+        </a>
+        <a href="#" class="flex flex-col items-center text-gray-400 hover:text-gray-600 transition-colors">
+          <i class="fa-solid fa-user text-[18px]"></i>
+          <span class="text-[10px] font-semibold mt-1.5">Profile</span>
+        </a>
+      </div>
+    </nav>
+
+  </div>
+
 </body>
 </html>
