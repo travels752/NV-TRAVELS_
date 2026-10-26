@@ -1,373 +1,153 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NV TRAVELSS</title>
-    <!-- आइकन्स लाइब्रेरी -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        }
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-plane"></i></div>
+                <div class="logo-text">
+                    <h1>NV TRAVELS<span>S</span></h1>
+                    <p>Travel • Ride • Hotel • Packages • Tickets</p>
+                </div>
+            </div>
+            <div class="header-icons">
+                <i class="fa-solid fa-bell"></i>
+                <div class="profile-icon"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
 
-        body {
-            background-color: #0b111e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Explore The World<br>With <span>NV Travelss</span></h2>
+                <p>Your journey, our responsibility 💙</p>
+            </div>
+            <div class="search-box">
+                <i class="fa-solid fa-location-dot"></i>
+                <input type="text" placeholder="Where do you want to go?">
+                <button class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="filter-chips">
+                <span class="chip active"><i class="fa-solid fa-mountain"></i> Mountains</span>
+                <span class="chip"><i class="fa-solid fa-umbrella-beach"></i> Beaches</span>
+                <span class="chip"><i class="fa-solid fa-city"></i> City Tours</span>
+                <span class="chip"><i class="fa-solid fa-compass"></i> Adventure</span>
+            </div>
+        </section>
 
-        /* मोबाइल ऐप फ्रेम */
-        .app-container {
-            width: 100vw;
-            max-width: 430px;
-            height: 100vh;
-            background-color: #ffffff;
-            position: relative;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding-bottom: 90px;
-        }
+        <!-- Main Cards Grid -->
+        <div class="cards-grid">
+            <div class="service-card ride">
+                <div class="card-info">
+                    <h3>Ride</h3>
+                    <p>Book your taxi in seconds</p>
+                </div>
+                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
 
-        .app-container::-webkit-scrollbar {
-            display: none;
-        }
+            <div class="service-card hotel">
+                <div class="card-info">
+                    <h3>Hotel</h3>
+                    <p>Comfortable stays for your journey</p>
+                </div>
+                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
 
-        /* 1. टॉप हेडर बैनर */
-        .hero-section {
-            background: linear-gradient(180deg, #0957d0 0%, #3b82f6 70%, #ffffff 100%);
-            padding: 15px 20px 25px 20px;
-            color: white;
-            border-bottom-left-radius: 35px;
-            border-bottom-right-radius: 35px;
-            position: relative;
-        }
+            <div class="service-card packages">
+                <div class="card-info">
+                    <h3>Packages</h3>
+                    <p>Discover amazing tour packages</p>
+                </div>
+                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
+            </div>
 
-        /* स्टेटस बार */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
+            <div class="service-card tickets">
+                <div class="card-info">
+                    <h3>Tickets</h3>
+                    <p>Bus • Train • Flight<br>All in one place</p>
+                </div>
+                <div class="card-action"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="ticket-sub-icons">
+                    <span>Bus</span>
+                    <span>Train</span>
+                    <span>Flight</span>
+                </div>
+            </div>
+        </div>
 
-        .status-icons {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        <!-- Popular Destinations -->
+        <section class="section">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-location-dot" style="color:#0066ff;"></i> Popular Destinations</h3>
+                <a href="#">View All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="destinations-scroll">
+                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=500&q=80')">
+                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Manali</span>
+                </div>
+                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=500&q=80')">
+                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Goa</span>
+                </div>
+                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=500&q=80')">
+                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Kashmir</span>
+                </div>
+                <div class="dest-card" style="background-image: url('https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=500&q=80')">
+                    <span class="dest-name"><i class="fa-solid fa-location-dot"></i> Shimla</span>
+                </div>
+            </div>
+        </section>
 
-        /* ऐप लोगो रो */
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+        <!-- Latest Reels -->
+        <section class="section" style="margin-bottom: 80px;">
+            <div class="section-header">
+                <h3><i class="fa-solid fa-clapperboard" style="color:#0066ff;"></i> Latest Reels</h3>
+                <a href="#">View All <i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+            <div class="reels-scroll">
+                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=80')">
+                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 1.2k</span>
+                </div>
+                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=500&q=80')">
+                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 856</span>
+                </div>
+                <div class="reel-card" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80')">
+                    <span class="reel-likes"><i class="fa-solid fa-heart"></i> 932</span>
+                </div>
+            </div>
+        </section>
 
-        .logo-title {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: 0.5px;
-        }
-
-        .logo-s { color: #3ee1a2; }
-
-        .tagline {
-            font-size: 11px;
-            font-weight: 600;
-            opacity: 0.95;
-            margin-top: 1px;
-        }
-
-        .nav-right {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .notification-btn {
-            font-size: 22px;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .notification-btn::after {
-            content: "";
-            position: absolute;
-            top: 2px; right: 2px;
-            width: 8px; height: 8px;
-            background-color: #ff4d4d;
-            border-radius: 50%;
-        }
-
-        .profile-btn {
-            width: 38px;
-            height: 38px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 18px;
-        }
-
-        /* हेडिंग टेक्स्ट */
-        .hero-content h1 {
-            font-size: 28px;
-            font-weight: 800;
-            line-height: 1.25;
-            margin-bottom: 4px;
-            color: #ffffff;
-        }
-
-        .hero-content p {
-            font-size: 13px;
-            font-weight: 600;
-            opacity: 0.95;
-            margin-bottom: 18px;
-        }
-
-        /* वाइट सर्च बार */
-        .search-container {
-            background: white;
-            border-radius: 30px;
-            padding: 6px 6px 6px 18px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            margin-bottom: 18px;
-        }
-
-        .search-icon {
-            color: #ef4444;
-            font-size: 18px;
-            margin-right: 12px;
-        }
-
-        .search-container input {
-            border: none;
-            outline: none;
-            width: 100%;
-            font-size: 15px;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .search-btn {
-            background: #0957d0;
-            border: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        /* कैटगरी चिप्स */
-        .categories-scroll {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .categories-scroll::-webkit-scrollbar { display: none; }
-
-        .chip {
-            background: rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 8px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            color: #1e293b;
-        }
-
-        /* मुख्य कंटेंट */
-        .main-content {
-            padding: 16px;
-        }
-
-        /* ग्रिड लेआउट (Ride & Hotel) */
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-
-        .service-card {
-            background: #ffffff;
-            border-radius: 24px;
-            padding: 16px;
-            position: relative;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-            border: 1px solid #f0f4f9;
-            min-height: 155px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .card-icon-round {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .blue-icon { background: #e8f2ff; color: #0066ff; }
-        .orange-icon { background: #fff4eb; color: #ff7700; }
-        .green-icon { background: #e6f9f0; color: #00cc66; }
-        .purple-icon { background: #f3ebff; color: #8833ff; }
-
-        .service-card h2 {
-            font-size: 19px;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 4px;
-        }
-
-        .service-card p {
-            font-size: 11px;
-            color: #64748b;
-            font-weight: 500;
-            line-height: 1.3;
-        }
-
-        .arrow-round {
-            position: absolute;
-            top: 16px;
-            right: 16px;
-            font-size: 12px;
-            color: #94a3b8;
-        }
-
-        /* गाड़ी इफ़ेक्ट */
-        .ride-card::after {
-            content: "🚗";
-            position: absolute;
-            font-size: 55px;
-            bottom: -5px;
-            right: -5px;
-        }
-
-        /* होटल इफ़ेक्ट */
-        .hotel-card::after {
-            content: "🏨";
-            position: absolute;
-            font-size: 50px;
-            bottom: -5px;
-            right: -2px;
-            opacity: 0.15;
-        }
-
-        /* टिकट्स के अंदर सब-व्हीकल्स */
-        .ticket-modes {
-            display: flex;
-            gap: 6px;
-            margin-top: 12px;
-            width: 100%;
-        }
-
-        .mode-box {
-            flex: 1;
-            border-radius: 12px;
-            padding: 6px 4px;
-            text-align: center;
-            color: white;
-            font-size: 10px;
-            font-weight: bold;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-        .mode-bus { background: linear-gradient(135deg, #00c6ff, #0072ff); }
-        .mode-train { background: linear-gradient(135deg, #7f00ff, #e100ff); }
-        .mode-flight { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
-        
-        .mode-box span { font-size: 15px; }
-        .mode-box p { color: white !important; font-size: 9px; opacity: 0.95; margin-top: 2px; }
-
-        /* पॉपुलर डेस्टिनेशन्स */
-        .section-area {
-            margin-top: 5px;
-            margin-bottom: 18px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .section-header h3 {
-            font-size: 17px;
-            font-weight: 700;
-            color: #1e293b;
-        }
-
-        .view-all-btn {
-            font-size: 13px;
-            color: #0957d0;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .dest-scroll {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
-        }
-        .dest-scroll::-webkit-scrollbar { display: none; }
-
-        .dest-thumb {
-            min-width: 115px;
-            height: 115px;
-            border-radius: 18px;
-            position: relative;
-            display: flex;
-            align-items: flex-end;
-            padding: 10px;
-            color: white;
-            font-size: 12px;
-            font-weight: 600;
-        }
-        .d1 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #3b82f6; }
-        .d2 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #10b981; }
-        .d3 { background: linear-gradient(0deg, rgba(0,0,0,0.6), transparent), #f59e0b; }
-
-        /* लेटेस्ट रील्स सेक्शन */
-        .reels-scroll {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item active">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-clapperboard"></i>
+                <span>Reels</span>
+            </a>
+            <a href="#" class="nav-item post-btn">
+                <div class="plus-circle"><i class="fa-solid fa-plus"></i></div>
+                <span>Post</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+</body>
+</html>
