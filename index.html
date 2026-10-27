@@ -15,6 +15,33 @@
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* 3D Depth Utilities */
+    .perspective-container {
+      perspective: 1000px;
+    }
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 6px -5px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    }
+    .card-3d:hover, .card-3d:active {
+      transform: translateY(-6px) rotateX(4deg) rotateY(-2deg) scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+    .badge-3d {
+      transform-style: preserve-3d;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .badge-3d:hover, .badge-3d:active {
+      transform: translateZ(12px) scale(1.05);
+      box-shadow: 0 8px 12px -2px rgba(0,0,0,0.3);
+    }
+    .img-3d {
+      transform: translateZ(20px);
+      filter: drop-shadow(0 10px 8px rgba(0,0,0,0.2));
+    }
   </style>
 </head>
 <body class="flex justify-center items-center min-h-screen p-0 sm:p-4 bg-slate-900">
@@ -25,17 +52,16 @@
     <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
       
       <!-- Top Hero Section -->
-      <div class="relative h-[280px] w-full">
+      <div class="relative h-[270px] w-full">
         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain Header" class="w-full h-full object-cover">
         
-        <!-- Dark Overlay -->
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80"></div>
 
         <!-- Header Bar -->
         <header class="px-5 pt-5 pb-3 flex justify-between items-center absolute top-0 w-full z-20">
           <div class="flex items-center space-x-2.5">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white shadow-lg">
-              <i class="fa-solid fa-plane-up text-lg"></i>
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-blue-500/40">
+              <i class="fa-solid fa-paper-plane text-lg transform -rotate-12"></i>
             </div>
             <div>
               <h1 class="text-xl font-extrabold tracking-wider text-white flex items-center">
@@ -56,19 +82,18 @@
         </header>
 
         <!-- Banner Content -->
-        <div class="absolute bottom-12 px-5 z-20 text-white w-full">
+        <div class="absolute bottom-10 px-5 z-20 text-white w-full">
           <h2 class="text-[26px] font-extrabold text-white leading-tight drop-shadow-md">
             Explore The World <br>With <span class="text-[#4facfe]">NV Travelss</span>
           </h2>
           <p class="text-xs text-white/90 mt-1 font-medium">Your journey, our responsibility 💙</p>
         </div>
 
-        <!-- Curved Divider -->
-        <div class="absolute bottom-0 w-full h-8 bg-white rounded-t-[30px] z-10"></div>
+        <div class="absolute bottom-0 w-full h-6 bg-white rounded-t-[30px] z-10"></div>
       </div>
 
       <!-- Main Body Content -->
-      <div class="px-4 relative z-10 -mt-2">
+      <div class="px-4 relative z-10 -mt-2 perspective-container">
         
         <!-- Search Bar -->
         <div class="bg-white rounded-full shadow-xl shadow-gray-200/60 p-1.5 flex items-center border border-gray-100 mb-4 h-14">
@@ -97,76 +122,75 @@
           </button>
         </div>
 
-        <!-- Main Category Grid (2x2) -->
-        <div class="grid grid-cols-2 gap-3 mb-5">
+        <!-- 3D Main Category Cards Grid -->
+        <div class="grid grid-cols-2 gap-3.5 mb-5">
           
-          <!-- Ride -->
-          <div onclick="choose('Ride')" class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer shadow-sm border border-blue-200">
-            <div>
-              <h3 class="font-bold text-xl text-gray-900 leading-tight">Ride</h3>
-              <p class="text-[11px] text-gray-600 mt-0.5 font-semibold leading-tight">Book your taxi<br>in seconds</p>
+          <!-- Ride 3D Card -->
+          <div onclick="choose('Ride')" class="card-3d bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-blue-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Ride</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Book your taxi<br>in seconds</p>
             </div>
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-4 right-4">
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-blue-600 shadow-sm absolute top-4 right-4 z-10">
               <i class="fa-solid fa-chevron-right text-xs"></i>
             </div>
-            <div class="absolute -right-4 -bottom-2 w-32 h-20">
+            <div class="absolute -right-4 -bottom-2 w-32 h-20 z-0 img-3d">
               <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=400&q=80" alt="Car" class="w-full h-full object-cover">
             </div>
           </div>
 
-          <!-- Hotel -->
-          <div onclick="choose('Hotel')" class="bg-gradient-to-br from-orange-100 to-orange-50 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer shadow-sm border border-orange-200">
-            <div>
-              <h3 class="font-bold text-xl text-gray-900 leading-tight">Hotel</h3>
-              <p class="text-[11px] text-gray-600 mt-0.5 font-semibold leading-tight">Comfortable stays<br>for your journey</p>
+          <!-- Hotel 3D Card -->
+          <div onclick="choose('Hotel')" class="card-3d bg-gradient-to-br from-orange-100 via-orange-50 to-amber-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-amber-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Hotel</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Comfortable stays<br>for your journey</p>
             </div>
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-4 right-4">
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-amber-600 shadow-sm absolute top-4 right-4 z-10">
               <i class="fa-solid fa-chevron-right text-xs"></i>
             </div>
-            <div class="absolute -right-4 -bottom-2 w-36 h-22">
+            <div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
               <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel" class="w-full h-full object-cover">
             </div>
           </div>
 
-          <!-- Packages -->
-          <div onclick="choose('Packages')" class="bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer shadow-sm border border-emerald-200">
-            <div>
-              <h3 class="font-bold text-xl text-gray-900 leading-tight">Packages</h3>
-              <p class="text-[11px] text-gray-600 mt-0.5 font-semibold leading-tight">Discover amazing<br>tour packages</p>
+          <!-- Packages 3D Card -->
+          <div onclick="choose('Packages')" class="card-3d bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-emerald-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Packages</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Discover amazing<br>tour packages</p>
             </div>
-            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-gray-800 shadow-sm absolute top-4 right-4">
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-sm absolute top-4 right-4 z-10">
               <i class="fa-solid fa-chevron-right text-xs"></i>
             </div>
-            <div class="absolute -right-4 -bottom-2 w-36 h-22">
+            <div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
               <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Packages" class="w-full h-full object-cover">
             </div>
           </div>
 
-          <!-- Bigger & Enhanced Tickets Card -->
-          <div onclick="choose('Tickets')" class="bg-gradient-to-br from-purple-100 via-indigo-50 to-purple-200 rounded-3xl p-4 relative overflow-hidden h-[210px] flex flex-col justify-between cursor-pointer shadow-md border border-purple-200">
+          <!-- Tickets 3D Card with 3D Badges -->
+          <div onclick="choose('Tickets')" class="card-3d bg-gradient-to-br from-purple-100 via-indigo-50 to-purple-200 rounded-3xl p-4 relative overflow-hidden h-[210px] flex flex-col justify-between cursor-pointer border border-purple-200/80">
             <div>
               <div class="flex items-center justify-between">
-                <h3 class="font-extrabold text-xl text-gray-900 leading-tight">Tickets</h3>
-                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-purple-600 shadow-sm">
+                <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Tickets</h3>
+                <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm">
                   <i class="fa-solid fa-chevron-right text-xs"></i>
                 </div>
               </div>
               <p class="text-[11px] text-purple-900 font-semibold mt-1">Bus • Train • Flight<br>All in one place</p>
             </div>
 
-            <!-- Sub-ticket Badges Grid -->
             <div class="grid grid-cols-3 gap-1.5 z-10 mt-auto">
-              <div onclick="event.stopPropagation(); choose('Bus Ticket')" class="bg-blue-600 text-white rounded-xl p-2 text-center shadow-md active:scale-95 transition-transform">
+              <div onclick="event.stopPropagation(); choose('Bus Ticket')" class="badge-3d bg-gradient-to-tr from-blue-700 to-blue-500 text-white rounded-xl p-2 text-center">
                 <i class="fa-solid fa-bus text-xs mb-0.5 block"></i>
                 <p class="text-[10px] font-extrabold leading-none">Bus</p>
                 <p class="text-[8px] font-medium text-blue-100 mt-0.5">बस टिकट</p>
               </div>
-              <div onclick="event.stopPropagation(); choose('Train Ticket')" class="bg-indigo-600 text-white rounded-xl p-2 text-center shadow-md active:scale-95 transition-transform">
+              <div onclick="event.stopPropagation(); choose('Train Ticket')" class="badge-3d bg-gradient-to-tr from-indigo-700 to-indigo-500 text-white rounded-xl p-2 text-center">
                 <i class="fa-solid fa-train text-xs mb-0.5 block"></i>
                 <p class="text-[10px] font-extrabold leading-none">Train</p>
                 <p class="text-[8px] font-medium text-indigo-100 mt-0.5">ट्रेन टिकट</p>
               </div>
-              <div onclick="event.stopPropagation(); choose('Flight Ticket')" class="bg-teal-600 text-white rounded-xl p-2 text-center shadow-md active:scale-95 transition-transform">
+              <div onclick="event.stopPropagation(); choose('Flight Ticket')" class="badge-3d bg-gradient-to-tr from-teal-700 to-teal-500 text-white rounded-xl p-2 text-center">
                 <i class="fa-solid fa-plane text-xs mb-0.5 block"></i>
                 <p class="text-[10px] font-extrabold leading-none">Flight</p>
                 <p class="text-[8px] font-medium text-teal-100 mt-0.5">हवाई टिकट</p>
@@ -176,7 +200,7 @@
 
         </div>
 
-        <!-- Popular Destinations (Smaller Cards) -->
+        <!-- Popular Destinations (Compact) -->
         <div class="mb-5">
           <div class="flex justify-between items-center mb-2.5">
             <h3 class="font-bold text-base text-gray-900 flex items-center">
@@ -224,7 +248,7 @@
           </div>
         </div>
 
-        <!-- Latest Reels (Smaller Cards) -->
+        <!-- Latest Reels (Compact) -->
         <div class="mb-4">
           <div class="flex justify-between items-center mb-2.5">
             <h3 class="font-bold text-base text-gray-900 flex items-center">
@@ -287,7 +311,7 @@
       </div>
     </div>
 
-    <!-- Bottom Navigation Bar -->
+    <!-- Restored Bottom Navigation Bar -->
     <nav class="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-100 px-6 py-2.5 z-40">
       <div class="flex justify-between items-center max-w-sm mx-auto">
         <button onclick="choose('Home')" class="flex flex-col items-center text-blue-600 font-bold active:scale-90 transition-transform">
@@ -299,4 +323,40 @@
           <span class="text-[10px] mt-1">Reels</span>
         </button>
         <button onclick="choose('Post')" class="flex flex-col items-center -mt-7 active:scale-95 transition-transform">
-          <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl shadow-lg shadow-blue-300 
+          <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl shadow-lg shadow-blue-300 border-4 border-white">
+            <i class="fa-solid fa-plus"></i>
+          </div>
+          <span class="text-[10px] font-semibold text-gray-400 mt-0.5">Post</span>
+        </button>
+        <button onclick="choose('Search Tab')" class="flex flex-col items-center text-gray-400 font-semibold active:scale-90 transition-transform">
+          <i class="fa-solid fa-magnifying-glass text-lg"></i>
+          <span class="text-[10px] mt-1">Search</span>
+        </button>
+        <button onclick="choose('Profile Tab')" class="flex flex-col items-center text-gray-400 font-semibold active:scale-90 transition-transform">
+          <i class="fa-regular fa-user text-lg"></i>
+          <span class="text-[10px] mt-1">Profile</span>
+        </button>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- JavaScript Function -->
+  <script>
+    function choose(service) {
+      if (service === "Home") {
+        const scrollContainer = document.querySelector('.overflow-y-auto');
+        if (scrollContainer) {
+          scrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        return;
+      }
+
+      alert(service + " का पेज अभी बनाया नहीं गया है।");
+    }
+  </script>
+
+</body>
+</html>
