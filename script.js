@@ -1,153 +1,205 @@
-/* NV TRAVELSS - ALL OPTIONS */
 
-function openPage(title, content) {
-  document.getElementById("pageTitle").textContent = title;
-  document.getElementById("pageContent").innerHTML = content;
-  document.getElementById("page").style.display = "block";
-  document.getElementById("page").scrollTop = 0;
-}
+/* =====================================
+   NV TRAVELSS
+   HOME PAGE SAFE - APP FUNCTIONALITY
+   ===================================== */
 
-function closePage() {
-  document.getElementById("page").style.display = "none";
-}
+(function () {
+  "use strict";
 
-function goHome() {
-  closePage();
-}
+  let currentService = "";
 
-function field(label, placeholder, type = "text") {
-  return `
-    <div class="field">
-      <label>${label}</label>
-      <input type="${type}" placeholder="${placeholder}">
-    </div>`;
-}
+  function saveBooking(booking) {
+    const bookings = JSON.parse(
+      localStorage.getItem("nvBookings") || "[]"
+    );
 
-function choose(service) {
+    booking.id = "NV" + Date.now();
+    booking.createdAt = new Date().toISOString();
+    booking.status = "Pending";
 
-  if (service === "Ride") {
-    openPage("Book Your Ride", `
-      <div class="info">🚕 Book a ride with NV TRAVELSS</div>
-      ${field("Pickup Location", "Enter pickup location")}
-      ${field("Destination", "Enter destination")}
-      <div class="field">
-        <label>Select Vehicle</label>
-        <select id="vehicle">
-          <option>Bike - ₹10/km</option>
-          <option>Auto - ₹15/km</option>
-          <option>Hatchback - ₹16/km</option>
-          <option>Sedan - ₹18/km</option>
-          <option>SUV - ₹22/km</option>
-          <option>MUV - ₹24/km</option>
-          <option>Premium - ₹30/km</option>
-          <option>6-7 Seater - ₹25/km</option>
-          <option>8-12 Seater - ₹30/km</option>
-          <option>Tempo Traveller - ₹35/km</option>
-          <option>Mini Bus - ₹45/km</option>
-          <option>Bus - ₹60/km</option>
-        </select>
+    bookings.push(booking);
+
+    localStorage.setItem(
+      "nvBookings",
+      JSON.stringify(bookings)
+    );
+
+    return booking;
+  }
+
+  function closePage() {
+    const page = document.getElementById("nv-service-page");
+    if (page) page.remove();
+  }
+
+  function openPage(service) {
+    currentService = service;
+
+    closePage();
+
+    const fields = {
+      Ride: [
+        ["Pickup Location", "pickup"],
+        ["Destination", "destination"],
+        ["Travel Date", "date", "date"],
+        ["Select Vehicle", "vehicle", "vehicle"]
+      ],
+      Hotel: [
+        ["City / Location", "location"],
+        ["Check-in", "checkin", "date"],
+        ["Check-out", "checkout", "date"],
+        ["Guests", "guests", "number"]
+      ],
+      Packages: [
+        ["Destination", "destination"],
+        ["Number of Days", "days", "number"],
+        ["Travel Date", "date", "date"],
+        ["Travelers", "travelers", "number"]
+      ],
+      "Bus Tickets": [
+        ["From", "from"],
+        ["To", "to"],
+        ["Journey Date", "date", "date"],
+        ["Passengers", "passengers", "number"]
+      ],
+      "Train Tickets": [
+        ["From Station", "from"],
+        ["To Station", "to"],
+        ["Journey Date", "date", "date"],
+        ["Passengers", "passengers", "number"]
+      ],
+      "Flight Tickets": [
+        ["From Airport / City", "from"],
+        ["To Airport / City", "to"],
+        ["Departure Date", "date", "date"],
+        ["Passengers", "passengers", "number"]
+      ]
+    };
+
+    const selectedFields = fields[service];
+
+    if (!selectedFields) {
+      alert(service + " का विकल्प जल्द उपलब्ध होगा।");
+      return;
+    }
+
+    const page = document.createElement("div");
+
+    page.id = "nv-service-page";
+
+    page.innerHTML = `
+      <div class="nv-booking-box">
+
+        <button type="button"
+          class="nv-close"
+          onclick="closeNVPage()">✕</button>
+
+        <h2>NV TRAVELSS</h2>
+        <h3>${service}</h3>
+
+        <form id="nv-booking-form">
+
+          ${selectedFields.map(field => {
+            let type = field[2] || "text";
+
+            if (field[1] === "vehicle") {
+              return `
+                <label>${field[0]}</label>
+                <select name="${field[1]}" required>
+                  <option value="">Select Vehicle</option>
+                  <option>Bike</option>
+                  <option>Auto</option>
+                  <option>Hatchback</option>
+                  <option>Sedan</option>
+                  <option>SUV</option>
+                  <option>MUV</option>
+                  <option>Premium</option>
+                  <option>6-7 Seater</option>
+                  <option>8-12 Seater</option>
+                  <option>Tempo Traveller</option>
+                  <option>Mini Bus</option>
+                  <option>Bus</option>
+                </select>
+              `;
+            }
+
+            return `
+              <label>${field[0]}</label>
+              <input
+                type="${type}"
+                name="${field[1]}"
+                placeholder="${field[0]}"
+                ${type === "number" ? 'min="1"' : ""}
+                required
+              >
+            `;
+          }).join("")}
+
+          <label>Your Name</label>
+          <input name="customerName"
+            placeholder="Enter your name" required>
+
+          <label>Mobile Number</label>
+          <input name="phone"
+            type="tel"
+            pattern="[0-9]{10}"
+            maxlength="10"
+            placeholder="10 digit mobile number"
+            required>
+
+          <button type="submit" class="nv-submit">
+            Submit Booking
+          </button>
+
+        </form>
+
+        <div id="nv-booking-result"></div>
+
       </div>
-      <button class="primary" onclick="bookingMessage('Ride')">Find Drivers</button>
-    `);
+    `;
+
+    document.body.appendChild(page);
+
+    document.getElementById("nv-booking-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(this);
+        const booking = {
+          service: currentService
+        };
+
+        formData.forEach((value, key) => {
+          booking[key] = value;
+        });
+
+        const saved = saveBooking(booking);
+
+        document.getElementById("nv-booking-result")
+          .innerHTML = `
+            <h3>Booking Request Saved!</h3>
+            <p>Booking ID: ${saved.id}</p>
+            <p>Status: Pending</p>
+          `;
+
+        this.reset();
+      });
   }
 
-  else if (service === "Hotel") {
-    openPage("Hotel Booking", `
-      ${field("City / Destination", "Where do you need a hotel?")}
-      ${field("Check-in Date", "", "date")}
-      ${field("Check-out Date", "", "date")}
-      ${field("Guests", "Number of guests", "number")}
-      <button class="primary" onclick="bookingMessage('Hotel')">Search Hotels</button>
-    `);
-  }
+  window.choose = function (service) {
+    if (service === "Home") {
+      closePage();
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+      return;
+    }
 
-  else if (service === "Packages") {
-    openPage("Travel Packages", `
-      ${field("Destination", "Enter destination")}
-      ${field("Number of Days", "Example: 3 days", "number")}
-      ${field("Number of Travelers", "Travelers", "number")}
-      <button class="primary" onclick="bookingMessage('Package')">Explore Packages</button>
-    `);
-  }
+    openPage(service);
+  };
 
-  else if (service === "Tickets") {
-    openPage("Book Tickets", `
-      <div class="services">
-        <div class="service" onclick="choose('Bus Tickets')">
-          <i class="fa-solid fa-bus"></i><b>Bus Tickets</b>
-        </div>
-        <div class="service" onclick="choose('Train Tickets')">
-          <i class="fa-solid fa-train"></i><b>Train Tickets</b>
-        </div>
-        <div class="service" onclick="choose('Flight Tickets')">
-          <i class="fa-solid fa-plane"></i><b>Flight Tickets</b>
-        </div>
-      </div>
-    `);
-  }
+  window.closeNVPage = closePage;
 
-  else if (service === "Bus Tickets" ||
-           service === "Train Tickets" ||
-           service === "Flight Tickets") {
-    openPage(service, `
-      ${field("From", "Departure city")}
-      ${field("To", "Arrival city")}
-      ${field("Journey Date", "", "date")}
-      ${field("Passengers", "Number of passengers", "number")}
-      <button class="primary" onclick="bookingMessage('Ticket')">Continue</button>
-      <div class="info">Ticket booking provider connection is required for actual ticket reservations.</div>
-    `);
-  }
-
-  else if (service === "Reels") {
-    openPage("NV Travelss Reels", `
-      <div class="info">🎬 Discover travel videos and experiences.</div>
-      <div class="info">❤️ Like &nbsp; 💬 Comment &nbsp; ↗ Share &nbsp; 🔖 Save</div>
-      <button class="primary" onclick="choose('Post')">Create Post</button>
-      <p style="margin-top:15px;font-size:13px;color:#718096">
-        Reels will appear here after video upload and storage are connected.
-      </p>
-    `);
-  }
-
-  else if (service === "Post") {
-    openPage("Create Post", `
-      <div class="field">
-        <label>Write Something</label>
-        <textarea rows="5" placeholder="Share your travel experience..."></textarea>
-      </div>
-      ${field("Select Photo or Video", "", "file")}
-      <button class="primary" onclick="bookingMessage('Post')">Share Post</button>
-    `);
-  }
-
-  else if (service === "Search") {
-    openPage("Search", `
-      ${field("Search", "Search places, hotels, rides...")}
-      <button class="primary" onclick="bookingMessage('Search')">Search</button>
-    `);
-  }
-
-  else if (service === "Profile") {
-    openPage("My Profile", `
-      <div class="info">👤 My Account</div>
-      <div class="info" onclick="choose('My Rides')">🚕 My Rides</div>
-      <div class="info" onclick="choose('My Bookings')">🏨 My Bookings</div>
-      <div class="info" onclick="choose('My Posts')">🎬 My Posts</div>
-      <div class="info" onclick="choose('Settings')">⚙️ Settings</div>
-    `);
-  }
-
-  else if (service === "My Rides" ||
-           service === "My Bookings" ||
-           service === "My Posts" ||
-           service === "Settings") {
-    openPage(service, `
-      <div class="info">Your ${service.toLowerCase()} will appear here after account and database connection.</div>
-    `);
-  }
-}
-
-function bookingMessage(type) {
-  alert(type + " form is ready. Actual booking and saving require Supabase connection.");
-}
+})();
