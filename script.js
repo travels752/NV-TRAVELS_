@@ -1,138 +1,153 @@
+/* NV TRAVELSS - ALL OPTIONS */
 
-/* NV TRAVELSS - ALL OPTIONS OPEN */
+function openPage(title, content) {
+  document.getElementById("pageTitle").textContent = title;
+  document.getElementById("pageContent").innerHTML = content;
+  document.getElementById("page").style.display = "block";
+  document.getElementById("page").scrollTop = 0;
+}
 
-(function () {
-  const pageStyle = `
-    position:fixed; inset:0; z-index:99999;
-    background:#f5f7fb; overflow-y:auto;
-    padding:22px; font-family:Arial,sans-serif;
-  `;
+function closePage() {
+  document.getElementById("page").style.display = "none";
+}
 
-  function openPage(title, content) {
-    let old = document.getElementById("nvDynamicPage");
-    if (old) old.remove();
+function goHome() {
+  closePage();
+}
 
-    const page = document.createElement("div");
-    page.id = "nvDynamicPage";
-    page.style.cssText = pageStyle;
+function field(label, placeholder, type = "text") {
+  return `
+    <div class="field">
+      <label>${label}</label>
+      <input type="${type}" placeholder="${placeholder}">
+    </div>`;
+}
 
-    page.innerHTML = `
-      <div style="display:flex;align-items:center;gap:15px;margin-bottom:25px">
-        <button id="nvBack" style="border:0;background:#10234d;color:white;padding:12px 18px;border-radius:12px">← Back</button>
-        <h2 style="color:#10234d;margin:0">${title}</h2>
-      </div>
-      ${content}
-    `;
+function choose(service) {
 
-    document.body.appendChild(page);
-    document.getElementById("nvBack").onclick = () => page.remove();
-  }
-
-  function field(label, placeholder) {
-    return `
-      <label style="display:block;margin:15px 0 6px;font-weight:bold">${label}</label>
-      <input placeholder="${placeholder}" style="width:100%;padding:15px;border:1px solid #ccc;border-radius:12px;font-size:16px">
-    `;
-  }
-
-  window.choose = function(service) {
-    if (service === "Home") {
-      document.getElementById("nvDynamicPage")?.remove();
-      window.scrollTo({top:0,behavior:"smooth"});
-      return;
-    }
-
-    if (service === "Reels") {
-      const reels = document.getElementById("reels");
-      if (reels) {
-        reels.scrollIntoView({behavior:"smooth"});
-      } else {
-        openPage("Reels", "<p>Reels section is ready to be connected.</p>");
-      }
-      return;
-    }
-
-    if (service === "Ride") {
-      openPage("Book Your Ride", `
-        ${field("Pickup Location","Enter pickup location")}
-        ${field("Destination","Enter destination")}
-        <label style="display:block;margin:15px 0 6px;font-weight:bold">Select Vehicle</label>
-        <select id="nvVehicle" style="width:100%;padding:15px;border-radius:12px">
-          <option>Bike</option><option>Auto</option>
-          <option>Hatchback</option><option>Sedan</option>
-          <option>SUV</option><option>MUV</option>
-          <option>Premium</option><option>6-7 Seater</option>
-          <option>8-12 Seater</option><option>Tempo Traveller</option>
-          <option>Mini Bus</option><option>Bus</option>
+  if (service === "Ride") {
+    openPage("Book Your Ride", `
+      <div class="info">🚕 Book a ride with NV TRAVELSS</div>
+      ${field("Pickup Location", "Enter pickup location")}
+      ${field("Destination", "Enter destination")}
+      <div class="field">
+        <label>Select Vehicle</label>
+        <select id="vehicle">
+          <option>Bike - ₹10/km</option>
+          <option>Auto - ₹15/km</option>
+          <option>Hatchback - ₹16/km</option>
+          <option>Sedan - ₹18/km</option>
+          <option>SUV - ₹22/km</option>
+          <option>MUV - ₹24/km</option>
+          <option>Premium - ₹30/km</option>
+          <option>6-7 Seater - ₹25/km</option>
+          <option>8-12 Seater - ₹30/km</option>
+          <option>Tempo Traveller - ₹35/km</option>
+          <option>Mini Bus - ₹45/km</option>
+          <option>Bus - ₹60/km</option>
         </select>
-        <button onclick="alert('Ride form ready. Database connection is still pending.')" style="width:100%;padding:16px;margin-top:22px;background:#10234d;color:white;border:0;border-radius:12px">Continue</button>
-      `);
-      return;
-    }
+      </div>
+      <button class="primary" onclick="bookingMessage('Ride')">Find Drivers</button>
+    `);
+  }
 
-    if (service === "Hotel") {
-      openPage("Hotel Booking", `
-        ${field("City","Enter city")}
-        ${field("Check-in Date","DD/MM/YYYY")}
-        ${field("Check-out Date","DD/MM/YYYY")}
-        ${field("Guests","Number of guests")}
-        <button onclick="alert('Hotel booking form ready. Database connection is still pending.')" style="width:100%;padding:16px;margin-top:20px;background:#10234d;color:white;border:0;border-radius:12px">Search Hotels</button>
-      `);
-      return;
-    }
+  else if (service === "Hotel") {
+    openPage("Hotel Booking", `
+      ${field("City / Destination", "Where do you need a hotel?")}
+      ${field("Check-in Date", "", "date")}
+      ${field("Check-out Date", "", "date")}
+      ${field("Guests", "Number of guests", "number")}
+      <button class="primary" onclick="bookingMessage('Hotel')">Search Hotels</button>
+    `);
+  }
 
-    if (service === "Packages") {
-      openPage("Travel Packages", `
-        ${field("Destination","Where do you want to go?")}
-        ${field("Number of Days","Example: 3 Days")}
-        ${field("Travelers","Number of travelers")}
-        <button onclick="alert('Package search form ready.')" style="width:100%;padding:16px;margin-top:20px;background:#10234d;color:white;border:0;border-radius:12px">Explore Packages</button>
-      `);
-      return;
-    }
+  else if (service === "Packages") {
+    openPage("Travel Packages", `
+      ${field("Destination", "Enter destination")}
+      ${field("Number of Days", "Example: 3 days", "number")}
+      ${field("Number of Travelers", "Travelers", "number")}
+      <button class="primary" onclick="bookingMessage('Package')">Explore Packages</button>
+    `);
+  }
 
-    if (service === "Tickets") {
-      openPage("Book Tickets", `
-        <h3>Choose Ticket Type</h3>
-        <button onclick="window.choose('Bus Tickets')" style="padding:15px;width:100%;margin:8px 0">🚌 Bus Tickets</button>
-        <button onclick="window.choose('Train Tickets')" style="padding:15px;width:100%;margin:8px 0">🚆 Train Tickets</button>
-        <button onclick="window.choose('Flight Tickets')" style="padding:15px;width:100%;margin:8px 0">✈️ Flight Tickets</button>
-      `);
-      return;
-    }
+  else if (service === "Tickets") {
+    openPage("Book Tickets", `
+      <div class="services">
+        <div class="service" onclick="choose('Bus Tickets')">
+          <i class="fa-solid fa-bus"></i><b>Bus Tickets</b>
+        </div>
+        <div class="service" onclick="choose('Train Tickets')">
+          <i class="fa-solid fa-train"></i><b>Train Tickets</b>
+        </div>
+        <div class="service" onclick="choose('Flight Tickets')">
+          <i class="fa-solid fa-plane"></i><b>Flight Tickets</b>
+        </div>
+      </div>
+    `);
+  }
 
-    if (["Bus Tickets","Train Tickets","Flight Tickets"].includes(service)) {
-      openPage(service, `
-        ${field("From","Departure city")}
-        ${field("To","Destination city")}
-        ${field("Journey Date","DD/MM/YYYY")}
-        <button onclick="alert('Ticket search form ready. Booking connection is still pending.')" style="width:100%;padding:16px;margin-top:20px;background:#10234d;color:white;border:0;border-radius:12px">Search Tickets</button>
-      `);
-      return;
-    }
+  else if (service === "Bus Tickets" ||
+           service === "Train Tickets" ||
+           service === "Flight Tickets") {
+    openPage(service, `
+      ${field("From", "Departure city")}
+      ${field("To", "Arrival city")}
+      ${field("Journey Date", "", "date")}
+      ${field("Passengers", "Number of passengers", "number")}
+      <button class="primary" onclick="bookingMessage('Ticket')">Continue</button>
+      <div class="info">Ticket booking provider connection is required for actual ticket reservations.</div>
+    `);
+  }
 
-    if (service === "Profile") {
-      openPage("My Profile", `
-        ${field("Full Name","Enter your name")}
-        ${field("Mobile Number","Enter mobile number")}
-        <button onclick="alert('Profile form ready. Saving connection is still pending.')" style="width:100%;padding:16px;margin-top:20px;background:#10234d;color:white;border:0;border-radius:12px">Save Profile</button>
-      `);
-      return;
-    }
+  else if (service === "Reels") {
+    openPage("NV Travelss Reels", `
+      <div class="info">🎬 Discover travel videos and experiences.</div>
+      <div class="info">❤️ Like &nbsp; 💬 Comment &nbsp; ↗ Share &nbsp; 🔖 Save</div>
+      <button class="primary" onclick="choose('Post')">Create Post</button>
+      <p style="margin-top:15px;font-size:13px;color:#718096">
+        Reels will appear here after video upload and storage are connected.
+      </p>
+    `);
+  }
 
-    if (service === "Search") {
-      openPage("Search", `
-        ${field("Search","Places, hotels, packages...")}
-        <button onclick="alert('Search connection is still pending.')" style="width:100%;padding:16px;margin-top:20px;background:#10234d;color:white;border:0;border-radius:12px">Search</button>
-      `);
-      return;
-    }
+  else if (service === "Post") {
+    openPage("Create Post", `
+      <div class="field">
+        <label>Write Something</label>
+        <textarea rows="5" placeholder="Share your travel experience..."></textarea>
+      </div>
+      ${field("Select Photo or Video", "", "file")}
+      <button class="primary" onclick="bookingMessage('Post')">Share Post</button>
+    `);
+  }
 
-    openPage(service, "<p>This section is ready for the next development step.</p>");
-  };
+  else if (service === "Search") {
+    openPage("Search", `
+      ${field("Search", "Search places, hotels, rides...")}
+      <button class="primary" onclick="bookingMessage('Search')">Search</button>
+    `);
+  }
 
-  window.openReels = function() {
-    window.choose("Reels");
-  };
+  else if (service === "Profile") {
+    openPage("My Profile", `
+      <div class="info">👤 My Account</div>
+      <div class="info" onclick="choose('My Rides')">🚕 My Rides</div>
+      <div class="info" onclick="choose('My Bookings')">🏨 My Bookings</div>
+      <div class="info" onclick="choose('My Posts')">🎬 My Posts</div>
+      <div class="info" onclick="choose('Settings')">⚙️ Settings</div>
+    `);
+  }
 
-})();
+  else if (service === "My Rides" ||
+           service === "My Bookings" ||
+           service === "My Posts" ||
+           service === "Settings") {
+    openPage(service, `
+      <div class="info">Your ${service.toLowerCase()} will appear here after account and database connection.</div>
+    `);
+  }
+}
+
+function bookingMessage(type) {
+  alert(type + " form is ready. Actual booking and saving require Supabase connection.");
+}
