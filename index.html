@@ -1,108 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NV TRAVELSS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NV TRAVELSS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0b132b;
+      color: #1a1a1a;
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#f4f7fc;color:#172033}
-.app{max-width:480px;margin:auto;min-height:100vh;background:#fff;padding-bottom:85px}
-header{padding:22px 18px 16px;background:#fff}
-.brand{font-size:25px;font-weight:800;color:#123c75}
-.tagline{font-size:11px;color:#718096;margin-top:5px}
-.hero{margin:10px 16px;padding:25px 20px;border-radius:22px;background:linear-gradient(135deg,#123c75,#2878ce);color:white}
-.hero h2{font-size:23px;font-weight:800;line-height:1.3}
-.hero p{font-size:13px;margin-top:9px;opacity:.9}
-.section{padding:18px 16px 5px}
-.section h3{font-size:17px;font-weight:800;margin-bottom:14px}
-.services{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.service{border:1px solid #e8edf5;border-radius:17px;padding:19px 12px;text-align:center;background:#fff;box-shadow:0 4px 14px #152b4d0a;cursor:pointer}
-.service:active{transform:scale(.97)}
-.service i{font-size:25px;color:#2468b5;margin-bottom:10px}
-.service b{display:block;font-size:14px}
-.service small{font-size:10px;color:#8491a4}
-.destinations{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.destination{background:#eef4fb;border-radius:13px;padding:17px 12px;font-weight:700;font-size:13px}
-.reel-box{padding:18px;border-radius:17px;background:#f0f5fc;color:#234b7d;cursor:pointer}
-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:white;border-top:1px solid #e8edf5;display:flex;justify-content:space-around;padding:13px 5px;z-index:10}
-nav button{border:0;background:none;color:#77849a;font-size:11px}
-nav i{display:block;font-size:19px;margin-bottom:5px}
-nav button.active{color:#2168b5}
-#page{display:none;position:fixed;inset:0;background:#f4f7fc;z-index:20;overflow-y:auto}
-.page-head{background:#fff;padding:18px;display:flex;align-items:center;gap:15px;position:sticky;top:0}
-.page-head button{border:0;background:none;font-size:20px;color:#173f70}
-.page-head h2{font-size:18px;font-weight:800}
-.page-content{padding:20px 16px}
-.field{margin-bottom:15px}
-.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;padding:14px;border:1px solid #dce4ef;border-radius:12px;background:white;font-size:14px;outline:none}
-.primary{width:100%;padding:15px;border:0;border-radius:13px;background:#2168b5;color:white;font-weight:800;font-size:15px;margin-top:8px}
-.info{background:white;border-radius:14px;padding:16px;margin-bottom:12px;font-size:13px}
-</style>
+    /* 3D Depth Utilities */
+    .perspective-container {
+      perspective: 1000px;
+    }
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15), 0 6px 6px -5px rgba(0, 0, 0, 0.08), inset 0 2px 4px rgba(255, 255, 255, 0.6);
+    }
+    .card-3d:hover, .card-3d:active {
+      transform: translateY(-6px) rotateX(4deg) rotateY(-2deg) scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+    .badge-3d {
+      transform-style: preserve-3d;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.4);
+    }
+    .badge-3d:hover, .badge-3d:active {
+      transform: translateZ(12px) scale(1.05);
+      box-shadow: 0 8px 12px -2px rgba(0,0,0,0.3);
+    }
+    .img-3d {
+      transform: translateZ(20px);
+      filter: drop-shadow(0 10px 8px rgba(0,0,0,0.2));
+    }
+  </style>
 </head>
+<body class="flex justify-center items-center min-h-screen p-0 sm:p-4 bg-slate-900">
 
-<body>
-<div class="app">
-<header>
-  <div class="brand">✈ NV TRAVELSS</div>
-  <div class="tagline">Travel • Ride • Hotel • Packages • Tickets</div>
-</header>
+  <div class="w-full max-w-md bg-white min-h-screen sm:min-h-[850px] sm:h-[850px] sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col relative border border-gray-100">
+    
+    <!-- Main Scrollable Area -->
+    <div class="flex-1 overflow-y-auto no-scrollbar pb-24">
+      
+      <!-- Top Hero Section -->
+      <div class="relative h-[270px] w-full">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain Header" class="w-full h-full object-cover">
+        
+        <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80"></div>
 
-<div class="hero">
-  <h2>Explore The World With NV Travelss</h2>
-  <p>Your journey, our responsibility 💙</p>
-</div>
+        <!-- Header Bar -->
+        <header class="px-5 pt-5 pb-3 flex justify-between items-center absolute top-0 w-full z-20">
+          <div class="flex items-center space-x-2.5">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-blue-500/40">
+              <i class="fa-solid fa-paper-plane text-lg transform -rotate-12"></i>
+            </div>
+            <div>
+              <h1 class="text-xl font-extrabold tracking-wider text-white flex items-center">
+                NV TRAVEL<span class="text-cyan-400">S</span><span>S</span>
+              </h1>
+              <p class="text-[10px] text-white/90 font-medium tracking-wide">Travel • Ride • Hotel • Packages • Tickets</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-3 text-white">
+            <button onclick="choose('Notifications')" class="relative w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+              <i class="fa-solid fa-bell text-sm"></i>
+              <span class="w-2.5 h-2.5 bg-red-500 border-2 border-slate-900 rounded-full absolute top-1 right-1"></span>
+            </button>
+            <button onclick="choose('Profile')" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
+              <i class="fa-solid fa-user text-sm"></i>
+            </button>
+          </div>
+        </header>
 
-<section class="section">
-<h3>Where do you want to go?</h3>
-<div class="services">
-  <div class="service" onclick="choose('Ride')"><i class="fa-solid fa-car"></i><b>Ride</b><small>Book your ride</small></div>
-  <div class="service" onclick="choose('Hotel')"><i class="fa-solid fa-hotel"></i><b>Hotel</b><small>Find your stay</small></div>
-  <div class="service" onclick="choose('Packages')"><i class="fa-solid fa-suitcase-rolling"></i><b>Packages</b><small>Explore trips</small></div>
-  <div class="service" onclick="choose('Tickets')"><i class="fa-solid fa-ticket"></i><b>Tickets</b><small>Bus • Train • Flight</small></div>
-</div>
-</section>
+        <!-- Banner Content -->
+        <div class="absolute bottom-10 px-5 z-20 text-white w-full">
+          <h2 class="text-[26px] font-extrabold text-white leading-tight drop-shadow-md">
+            Explore The World <br>With <span class="text-[#4facfe]">NV Travelss</span>
+          </h2>
+          <p class="text-xs text-white/90 mt-1 font-medium">Your journey, our responsibility 💙</p>
+        </div>
 
-<section class="section">
-<h3>Popular Destinations</h3>
-<div class="destinations">
-  <div class="destination" onclick="choose('Packages')">🏔️ Manali</div>
-  <div class="destination" onclick="choose('Packages')">🏖️ Goa</div>
-  <div class="destination" onclick="choose('Packages')">❄️ Kashmir</div>
-  <div class="destination" onclick="choose('Packages')">🌄 Shimla</div>
-</div>
-</section>
+        <div class="absolute bottom-0 w-full h-6 bg-white rounded-t-[30px] z-10"></div>
+      </div>
 
-<section class="section">
-<h3>Latest Reels</h3>
-<div class="reel-box" onclick="choose('Reels')">
-  <i class="fa-solid fa-play"></i> &nbsp; Explore travel videos
-</div>
-</section>
+      <!-- Main Body Content -->
+      <div class="px-4 relative z-10 -mt-2 perspective-container">
+        
+        <!-- Search Bar -->
+        <div class="bg-white rounded-full shadow-xl shadow-gray-200/60 p-1.5 flex items-center border border-gray-100 mb-4 h-14">
+          <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-base ml-1">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <input type="text" placeholder="Where do you want to go?" class="flex-1 bg-transparent border-none outline-none px-3 text-xs font-semibold text-gray-800 placeholder-gray-400">
+          <button onclick="choose('Search')" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-md shadow-blue-300">
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </button>
+        </div>
 
-<nav>
-<button class="active" onclick="goHome()"><i class="fa-solid fa-house"></i>Home</button>
-<button onclick="choose('Reels')"><i class="fa-solid fa-clapperboard"></i>Reels</button>
-<button onclick="choose('Post')"><i class="fa-solid fa-plus-circle"></i>Post</button>
-<button onclick="choose('Search')"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
-<button onclick="choose('Profile')"><i class="fa-solid fa-user"></i>Profile</button>
-</nav>
-</div>
+        <!-- Quick Filters -->
+        <div class="flex space-x-2 overflow-x-auto no-scrollbar pb-3 mb-2">
+          <button onclick="choose('Mountains')" class="bg-slate-800 text-white px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap shadow-md">
+            <i class="fa-solid fa-mountain text-xs"></i> <span>Mountains</span>
+          </button>
+          <button onclick="choose('Beaches')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
+            <i class="fa-solid fa-umbrella-beach text-xs text-blue-500"></i> <span>Beaches</span>
+          </button>
+          <button onclick="choose('City Tours')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
+            <i class="fa-solid fa-city text-xs text-blue-500"></i> <span>City Tours</span>
+          </button>
+          <button onclick="choose('Adventure')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
+            <i class="fa-solid fa-compass text-xs text-blue-500"></i> <span>Adventure</span>
+          </button>
+        </div>
 
-<div id="page">
-  <div class="page-head">
-    <button onclick="closePage()"><i class="fa-solid fa-arrow-left"></i></button>
-    <h2 id="pageTitle">NV TRAVELSS</h2>
-  </div>
-  <div class="page-content" id="pageContent"></div>
-</div>
+        <!-- 3D Main Category Cards Grid -->
+        <div class="grid grid-cols-2 gap-3.5 mb-5">
+          
+          <!-- Ride 3D Card -->
+          <div onclick="choose('Ride')" class="card-3d bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-blue-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Ride</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Book your taxi<br>in seconds</p>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-blue-600 shadow-sm absolute top-4 right-4 z-10">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </div>
+            <div class="absolute -right-4 -bottom-2 w-32 h-20 z-0 img-3d">
+              <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=400&q=80" alt="Car" class="w-full h-full object-cover">
+            </div>
+          </div>
 
-<script src="./script.js"></script>
-</body>
-</html>
+          <!-- Hotel 3D Card -->
+          <div onclick="choose('Hotel')" class="card-3d bg-gradient-to-br from-orange-100 via-orange-50 to-amber-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-amber-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Hotel</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Comfortable stays<br>for your journey</p>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-amber-600 shadow-sm absolute top-4 right-4 z-10">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </div>
+            <div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
+              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- Packages 3D Card -->
+          <div onclick="choose('Packages')" class="card-3d bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-emerald-200/80">
+            <div class="z-10">
+              <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Packages</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Discover amazing<br>tour packages</p>
+            </div>
+            <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-sm absolute top-4 right-4 z-10">
+              <i class="fa-solid fa-chevron-right text-xs"></i>
+            </div>
+            <div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Packages" class="w-full h-full object-cover">
+            </div>
+          </div>
+
+          <!-- Tickets 3D Card with 3D Badges -->
+          <div onclick="choose('Tickets')" class="card-3d bg-gradient-to-br from-purple-100 via-indigo-50 to-purple-200 rounded-3xl p-4 relative overflow-hidden h-[210px] flex flex-col justify-between cursor-pointer border border-purple-200/80">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-extrabold text-xl text-slate-900 leading-tight">Tickets</h3>
+                <div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm">
+                  <i class="fa-solid fa-chevron-right text-xs"></i>
+                </div>
+              </div>
+              <p class="text-[11px] text-purple-900 font-semibold mt-1">Bus • Train • Flight<br>All in one place</p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-1.5 z-10 mt-auto">
+              <div onclick="event.stopPropagation(); choose('Bus Ticket')" class="badge-3d bg-gradient-to-tr from-blue-700 to-blue-500 text-white rounded-xl p-2 text-center">
+                <i class="fa-solid fa-bus text-xs mb-0.5 block"></i>
+                <p class="text-[10px] font-extrabold leading-none">Bus</p>
+                <p class="text-[8px] font-medium text-blue-100 mt-0.5">बस टिकट</p>
+              </div>
+              <div onclick="event.stopPropagation(); choose('Train Ticket')" class="badge-3d bg-gradient-to-tr from-indigo-700 to-indigo-500 text-white rounded-xl p-2 text-center">
+                <i class="fa-solid fa-train text-xs mb-0.5 block"></i>
+                <p class="text-[10px] font-extrabold leading-none">Train</p>
+                <p class="text-[8px] font-medium text-indigo-100 mt-0.5">ट्रेन टिकट</p>
+              </div>
+              <div onclick="event.stopPropagation(); choose('Flight Ticket')" class="badge-3d bg-gradient-to-tr from-teal-700 to-teal-500 text-white rounded-xl p-2 text-center">
+                <i class="fa-solid fa-plane text-xs mb-0.5 block"></i>
+                <p class="text-[10px] font-extrabold leading-none">Flight</p>
+                <p class="text-[8px] font-medium text-teal-100 mt-0.5">हवाई टिकट</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Popular Destinations (Compact) -->
+        <div class="mb-5">
+          <div class="flex justify-between items-center mb-2.5">
+            <h3 class="font-bold text-base text-gray-900 flex items-center">
+              <i class="fa-solid fa-circle text-blue-600 text-xs mr-2"></i> Popular Destinations
+            </h3>
+            <button onclick="choose('View All Destinations')" class="text-xs font-bold text-blue-600">View All <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+          </div>
+
+          <div class="flex space-x-2.5 overflow-x-auto no-scrollbar pb-1">
+            <div onclick="choose('Manali')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" alt="Manali" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute bottom-2 left-2 flex items-center text-white">
+                <i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i>
+                <span class="font-bold text-xs">Manali</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Goa')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Goa" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute bottom-2 left-2 flex items-center text-white">
+                <i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i>
+                <span class="font-bold text-xs">Goa</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Kashmir')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=400&q=80" alt="Kashmir" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute bottom-2 left-2 flex items-center text-white">
+                <i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i>
+                <span class="font-bold text-xs">Kashmir</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Shimla')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=400&q=80" alt="Shimla" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute bottom-2 left-2 flex items-center text-white">
+                <i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i>
+                <span class="font-bold text-xs">Shimla</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Latest Reels (Compact) -->
+        <div class="mb-4">
+          <div class="flex justify-between items-center mb-2.5">
+            <h3 class="font-bold text-base text-gray-900 flex items-center">
+              <i class="fa-solid fa-circle text-blue-600 text-xs mr-2"></i> Latest Reels
+            </h3>
+            <button onclick="choose('View All Reels')" class="text-xs font-bold text-blue-600">View All <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
+          </div>
+
+          <div class="flex space-x-2.5 overflow-x-auto no-scrollbar pb-1">
+            <div onclick="choose('Reel 1')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" alt="Reel 1" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                <i class="fa-solid fa-play text-[8px]"></i>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white">
+                <i class="fa-solid fa-heart text-red-500 text-[10px]"></i>
+                <span class="font-bold text-[10px]">1.2K</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Reel 2')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Reel 2" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                <i class="fa-solid fa-play text-[8px]"></i>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white">
+                <i class="fa-solid fa-heart text-red-500 text-[10px]"></i>
+                <span class="font-bold text-[10px]">856</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Reel 3')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Reel 3" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                <i class="fa-solid fa-play text-[8px]"></i>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white">
+                <i class="fa-solid fa-heart text-red-500 text-[10px]"></i>
+                <span class="font-bold text-[10px]">932</span>
+              </div>
+            </div>
+
+            <div onclick="choose('Reel 4')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
+              <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Reel 4" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                <i class="fa-solid fa-play text-[8px]"></i>
+              </div>
+              <div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white"
