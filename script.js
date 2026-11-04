@@ -1,205 +1,465 @@
 
-/* =====================================
-   NV TRAVELSS
-   HOME PAGE SAFE - APP FUNCTIONALITY
-   ===================================== */
+/* ==========================================
+   NV TRAVELSS - COMPLETE BUTTON FUNCTIONALITY
+   Home Page design remains untouched.
+========================================== */
 
 (function () {
   "use strict";
 
-  let currentService = "";
+  const STORE = "nv_travelss_booking_requests";
 
-  function saveBooking(booking) {
-    const bookings = JSON.parse(
-      localStorage.getItem("nvBookings") || "[]"
-    );
+  const bookingOptions = {
+    ride: {
+      title: "Book Your Ride",
+      fields: [
+        ["Pickup Location", "text"],
+        ["Destination", "text"],
+        ["Travel Date", "date"],
+        ["Travel Time", "time"],
+        ["Vehicle", "select", [
+          "Bike", "Auto", "Hatchback", "Sedan", "SUV", "MUV",
+          "Premium", "6-7 Seater", "8-12 Seater",
+          "Tempo Traveller", "Mini Bus", "Bus"
+        ]]
+      ]
+    },
+    hotel: {
+      title: "Hotel Booking",
+      fields: [
+        ["City / Location", "text"],
+        ["Hotel Name (Optional)", "text"],
+        ["Check-in Date", "date"],
+        ["Check-out Date", "date"],
+        ["Number of Guests", "number"]
+      ]
+    },
+    packages: {
+      title: "Tour Packages",
+      fields: [
+        ["Destination", "text"],
+        ["Number of Days", "number"],
+        ["Travel Date", "date"],
+        ["Number of People", "number"]
+      ]
+    },
+    bus: {
+      title: "Bus Ticket Request",
+      fields: [
+        ["From", "text"],
+        ["To", "text"],
+        ["Journey Date", "date"],
+        ["Passengers", "number"]
+      ]
+    },
+    train: {
+      title: "Train Ticket Request",
+      fields: [
+        ["From", "text"],
+        ["To", "text"],
+        ["Journey Date", "date"],
+        ["Passengers", "number"]
+      ]
+    },
+    flight: {
+      title: "Flight Ticket Request",
+      fields: [
+        ["From", "text"],
+        ["To", "text"],
+        ["Journey Date", "date"],
+        ["Passengers", "number"]
+      ]
+    }
+  };
 
-    booking.id = "NV" + Date.now();
-    booking.createdAt = new Date().toISOString();
-    booking.status = "Pending";
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, function (char) {
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[char];
+    });
+  }
 
-    bookings.push(booking);
+  function getSavedRequests() {
+    try {
+      return JSON.parse(localStorage.getItem(STORE) || "[]");
+    } catch (error) {
+      return [];
+    }
+  }
 
-    localStorage.setItem(
-      "nvBookings",
-      JSON.stringify(bookings)
-    );
+  function saveRequest(request) {
+    const requests = getSavedRequests();
 
-    return booking;
+    requests.push({
+      id: "NV-" + Date.now(),
+      createdAt: new Date().toISOString(),
+      status: "Request Saved",
+      ...request
+    });
+
+    localStorage.setItem(STORE, JSON.stringify(requests));
   }
 
   function closePage() {
-    const page = document.getElementById("nv-service-page");
-    if (page) page.remove();
+    document.getElementById("nv-function-page")?.remove();
   }
 
-  function openPage(service) {
-    currentService = service;
-
+  function openPage(title, content) {
     closePage();
 
-    const fields = {
-      Ride: [
-        ["Pickup Location", "pickup"],
-        ["Destination", "destination"],
-        ["Travel Date", "date", "date"],
-        ["Select Vehicle", "vehicle", "vehicle"]
-      ],
-      Hotel: [
-        ["City / Location", "location"],
-        ["Check-in", "checkin", "date"],
-        ["Check-out", "checkout", "date"],
-        ["Guests", "guests", "number"]
-      ],
-      Packages: [
-        ["Destination", "destination"],
-        ["Number of Days", "days", "number"],
-        ["Travel Date", "date", "date"],
-        ["Travelers", "travelers", "number"]
-      ],
-      "Bus Tickets": [
-        ["From", "from"],
-        ["To", "to"],
-        ["Journey Date", "date", "date"],
-        ["Passengers", "passengers", "number"]
-      ],
-      "Train Tickets": [
-        ["From Station", "from"],
-        ["To Station", "to"],
-        ["Journey Date", "date", "date"],
-        ["Passengers", "passengers", "number"]
-      ],
-      "Flight Tickets": [
-        ["From Airport / City", "from"],
-        ["To Airport / City", "to"],
-        ["Departure Date", "date", "date"],
-        ["Passengers", "passengers", "number"]
-      ]
-    };
-
-    const selectedFields = fields[service];
-
-    if (!selectedFields) {
-      alert(service + " का विकल्प जल्द उपलब्ध होगा।");
-      return;
-    }
-
     const page = document.createElement("div");
+    page.id = "nv-function-page";
 
-    page.id = "nv-service-page";
+    page.style.cssText = [
+      "position:fixed",
+      "inset:0",
+      "z-index:999999",
+      "overflow-y:auto",
+      "background:#0b132b",
+      "padding:16px",
+      "font-family:Arial,sans-serif"
+    ].join(";");
 
     page.innerHTML = `
-      <div class="nv-booking-box">
-
-        <button type="button"
-          class="nv-close"
-          onclick="closeNVPage()">✕</button>
-
-        <h2>NV TRAVELSS</h2>
-        <h3>${service}</h3>
-
-        <form id="nv-booking-form">
-
-          ${selectedFields.map(field => {
-            let type = field[2] || "text";
-
-            if (field[1] === "vehicle") {
-              return `
-                <label>${field[0]}</label>
-                <select name="${field[1]}" required>
-                  <option value="">Select Vehicle</option>
-                  <option>Bike</option>
-                  <option>Auto</option>
-                  <option>Hatchback</option>
-                  <option>Sedan</option>
-                  <option>SUV</option>
-                  <option>MUV</option>
-                  <option>Premium</option>
-                  <option>6-7 Seater</option>
-                  <option>8-12 Seater</option>
-                  <option>Tempo Traveller</option>
-                  <option>Mini Bus</option>
-                  <option>Bus</option>
-                </select>
-              `;
-            }
-
-            return `
-              <label>${field[0]}</label>
-              <input
-                type="${type}"
-                name="${field[1]}"
-                placeholder="${field[0]}"
-                ${type === "number" ? 'min="1"' : ""}
-                required
-              >
-            `;
-          }).join("")}
-
-          <label>Your Name</label>
-          <input name="customerName"
-            placeholder="Enter your name" required>
-
-          <label>Mobile Number</label>
-          <input name="phone"
-            type="tel"
-            pattern="[0-9]{10}"
-            maxlength="10"
-            placeholder="10 digit mobile number"
-            required>
-
-          <button type="submit" class="nv-submit">
-            Submit Booking
-          </button>
-
-        </form>
-
-        <div id="nv-booking-result"></div>
-
+      <div style="
+        max-width:460px;
+        min-height:250px;
+        margin:20px auto;
+        padding:20px;
+        background:white;
+        border-radius:20px;
+        box-sizing:border-box;
+      ">
+        <div style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:12px;
+          margin-bottom:20px;
+        ">
+          <h2 style="margin:0;color:#0b132b;font-size:21px;font-weight:800">
+            ${escapeHTML(title)}
+          </h2>
+          <button type="button" id="nv-function-close"
+            aria-label="Close"
+            style="
+              width:38px;height:38px;border:0;border-radius:50%;
+              background:#0b132b;color:white;font-size:24px;
+            ">×</button>
+        </div>
+        ${content}
       </div>
     `;
 
     document.body.appendChild(page);
+    page.querySelector("#nv-function-close").onclick = closePage;
 
-    document.getElementById("nv-booking-form")
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const formData = new FormData(this);
-        const booking = {
-          service: currentService
-        };
-
-        formData.forEach((value, key) => {
-          booking[key] = value;
-        });
-
-        const saved = saveBooking(booking);
-
-        document.getElementById("nv-booking-result")
-          .innerHTML = `
-            <h3>Booking Request Saved!</h3>
-            <p>Booking ID: ${saved.id}</p>
-            <p>Status: Pending</p>
-          `;
-
-        this.reset();
-      });
+    return page;
   }
 
-  window.choose = function (service) {
-    if (service === "Home") {
-      closePage();
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+  function openBooking(type) {
+    const config = bookingOptions[type];
+    if (!config) return;
+
+    let fields = "";
+
+    config.fields.forEach(function (field, index) {
+      const label = field[0];
+      const inputType = field[1];
+      const id = "nv-book-field-" + index;
+
+      fields += `
+        <label for="${id}" style="
+          display:block;margin:13px 0 6px;
+          color:#26324b;font-size:14px;font-weight:700;
+        ">${escapeHTML(label)}</label>
+      `;
+
+      if (inputType === "select") {
+        fields += `
+          <select id="${id}" required style="
+            width:100%;padding:13px;border:1px solid #d6dce8;
+            border-radius:10px;background:white;box-sizing:border-box;
+          ">
+            <option value="">Select Vehicle</option>
+            ${field[2].map(option =>
+              `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`
+            ).join("")}
+          </select>
+        `;
+      } else {
+        const required = label.toLowerCase().includes("optional")
+          ? ""
+          : "required";
+
+        fields += `
+          <input id="${id}" type="${inputType}" ${required}
+            ${inputType === "number" ? 'min="1"' : ""}
+            placeholder="${escapeHTML(label)}"
+            style="
+              width:100%;padding:13px;border:1px solid #d6dce8;
+              border-radius:10px;box-sizing:border-box;
+            ">
+        `;
+      }
+    });
+
+    const page = openPage(config.title, `
+      <form id="nv-booking-form">
+        ${fields}
+        <button type="submit" style="
+          width:100%;padding:15px;margin-top:22px;
+          border:0;border-radius:12px;background:#0b132b;
+          color:white;font-size:16px;font-weight:800;
+        ">Submit Request</button>
+      </form>
+      <p style="font-size:12px;line-height:1.5;color:#64748b">
+        Request इस डिवाइस में सेव होगी। यह अभी कन्फर्म बुकिंग या टिकट नहीं है।
+      </p>
+    `);
+
+    page.querySelector("#nv-booking-form").onsubmit = function (event) {
+      event.preventDefault();
+
+      const data = { service: type };
+
+      config.fields.forEach(function (field, index) {
+        data[field[0]] =
+          page.querySelector("#nv-book-field-" + index).value.trim();
       });
+
+      saveRequest(data);
+
+      const successPage = openPage("Request Saved", `
+        <div style="text-align:center;padding:20px 5px">
+          <div style="font-size:48px;color:#16a34a">✓</div>
+          <h3 style="color:#0b132b;font-size:21px">
+            Request Saved Successfully
+          </h3>
+          <p style="color:#64748b;line-height:1.6">
+            तुम्हारी रिक्वेस्ट इस डिवाइस में सेव हो गई है।
+            अभी बुकिंग कन्फर्म नहीं हुई है।
+          </p>
+          <button type="button" id="nv-success-done" style="
+            padding:13px 30px;background:#0b132b;color:white;
+            border:0;border-radius:10px;font-weight:700;
+          ">Done</button>
+        </div>
+      `);
+
+      successPage.querySelector("#nv-success-done").onclick = closePage;
+    };
+  }
+
+  function openTickets() {
+    const page = openPage("Choose Ticket", `
+      <div style="display:grid;gap:12px">
+        <button data-ticket="bus" class="nv-ticket-choice">🚌 Bus Ticket</button>
+        <button data-ticket="train" class="nv-ticket-choice">🚆 Train Ticket</button>
+        <button data-ticket="flight" class="nv-ticket-choice">✈️ Flight Ticket</button>
+      </div>
+      <style>
+        .nv-ticket-choice {
+          padding:17px;text-align:left;border:1px solid #dbe3ef;
+          border-radius:12px;background:#f1f5f9;color:#0b132b;
+          font-size:16px;font-weight:800;
+        }
+      </style>
+    `);
+
+    page.querySelectorAll("[data-ticket]").forEach(function (button) {
+      button.onclick = function () {
+        openBooking(button.dataset.ticket);
+      };
+    });
+  }
+
+  function showMessage(title, message) {
+    const page = openPage(title, `
+      <p style="color:#475569;line-height:1.7">
+        ${escapeHTML(message)}
+      </p>
+      <button id="nv-message-close" style="
+        margin-top:18px;padding:13px 25px;
+        background:#0b132b;color:white;border:0;border-radius:10px;
+      ">Close</button>
+    `);
+
+    page.querySelector("#nv-message-close").onclick = closePage;
+  }
+
+  function showProfile() {
+    const name = localStorage.getItem("nvUserName") || "Guest";
+    const phone = localStorage.getItem("nvUserPhone") || "Not added";
+    const role = localStorage.getItem("nvUserRole") || "Customer";
+
+    showMessage(
+      "My Profile",
+      "Name: " + name + " | Mobile: " + phone + " | Account: " + role
+    );
+  }
+
+  function showNotifications() {
+    showMessage("Notifications", "अभी कोई नई notification उपलब्ध नहीं है।");
+  }
+
+  function showSearch() {
+    const page = openPage("Search", `
+      <input id="nv-search-text" type="search"
+        placeholder="Search here..."
+        style="
+          width:100%;padding:14px;border:1px solid #d6dce8;
+          border-radius:10px;box-sizing:border-box;
+        ">
+      <button id="nv-search-button" style="
+        width:100%;padding:14px;margin-top:12px;
+        border:0;border-radius:10px;background:#0b132b;color:white;
+      ">Search</button>
+      <div id="nv-search-output" style="margin-top:15px;color:#475569"></div>
+    `);
+
+    page.querySelector("#nv-search-button").onclick = function () {
+      const query = page.querySelector("#nv-search-text").value.trim();
+      const output = page.querySelector("#nv-search-output");
+
+      if (!query) {
+        output.textContent = "कृपया कुछ लिखें।";
+        return;
+      }
+
+      const matches = Object.keys(bookingOptions).filter(function (key) {
+        return key.includes(query.toLowerCase());
+      });
+
+      output.textContent = matches.length
+        ? "Available options: " + matches.join(", ")
+        : "इस शब्द के लिए कोई matching booking option नहीं मिला।";
+    };
+  }
+
+  function showSavedRequests() {
+    const requests = getSavedRequests();
+
+    if (!requests.length) {
+      showMessage("My Requests", "अभी कोई booking request सेव नहीं है।");
       return;
     }
 
-    openPage(service);
+    const rows = requests.map(function (request) {
+      return `
+        <div style="
+          padding:12px;margin:10px 0;background:#f1f5f9;
+          border-radius:10px;color:#26324b;
+        ">
+          <b>${escapeHTML(request.service)}</b><br>
+          <small>${escapeHTML(request.id)}</small><br>
+          <small>${escapeHTML(request.status)}</small>
+        </div>
+      `;
+    }).join("");
+
+    openPage("My Requests", rows);
+  }
+
+  function normalize(value) {
+    return String(value || "").trim().toLowerCase()
+      .replace(/\s+/g, " ");
+  }
+
+  const aliases = {
+    "ride": "ride",
+    "hotel": "hotel",
+    "packages": "packages",
+    "package": "packages",
+    "tickets": "tickets",
+    "ticket": "tickets",
+    "bus": "bus",
+    "bus ticket": "bus",
+    "bus tickets": "bus",
+    "train": "train",
+    "train ticket": "train",
+    "train tickets": "train",
+    "flight": "flight",
+    "flight ticket": "flight",
+    "flight tickets": "flight"
+  };
+
+  window.choose = function (option) {
+    const value = normalize(option);
+    const action = aliases[value] || value;
+
+    if (action === "home") {
+      closePage();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (bookingOptions[action]) {
+      openBooking(action);
+      return;
+    }
+
+    switch (action) {
+      case "tickets":
+        openTickets();
+        break;
+
+      case "profile":
+        showProfile();
+        break;
+
+      case "notifications":
+        showNotifications();
+        break;
+
+      case "search":
+        showSearch();
+        break;
+
+      case "reels":
+      case "view all reels":
+        showMessage(
+          "Latest Reels",
+          "Reels का पूरा वीडियो अपलोड और like/comment सिस्टम चालू करने के लिए database और storage जोड़ना होगा।"
+        );
+        break;
+
+      case "view all destinations":
+        showMessage(
+          "Popular Destinations",
+          "Manali, Goa, Kashmir और Shimla के विकल्प Home Page पर उपलब्ध हैं।"
+        );
+        break;
+
+      case "mountains":
+      case "beaches":
+      case "city tours":
+      case "adventure":
+        showMessage("Explore " + option, "Selected category: " + option);
+        break;
+
+      case "my requests":
+      case "history":
+        showSavedRequests();
+        break;
+
+      default:
+        showMessage(
+          option || "NV Travelss",
+          "यह विकल्प चुना गया है। इसका पूरा ऑनलाइन सिस्टम जोड़ना अभी बाकी है।"
+        );
+    }
   };
 
   window.closeNVPage = closePage;
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") closePage();
+  });
 
 })();
