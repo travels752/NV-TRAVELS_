@@ -498,3 +498,503 @@ body {
 #nv-booking-result:empty {
     display: none;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 450px;
+    background: #ffffff;
+    min-height: 100vh;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #fff;
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    background: #0052cc;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+}
+
+.logo-text h1 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0b132b;
+    letter-spacing: 0.5px;
+}
+
+.logo-text h1 span {
+    color: #0066ff;
+}
+
+.logo-text p {
+    font-size: 10px;
+    color: #666;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-icons i {
+    font-size: 18px;
+    color: #444;
+}
+
+.profile-icon {
+    width: 35px;
+    height: 35px;
+    background: #e0e6ed;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0066ff;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    margin: 0 15px;
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.hero-content h2 span {
+    color: #4facfe;
+}
+
+.hero-content p {
+    font-size: 12px;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.search-box {
+    background: white;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 30px;
+    margin-top: 15px;
+}
+
+.search-box i {
+    color: #777;
+    margin-right: 10px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 13px;
+}
+
+.search-btn {
+    background: #0066ff;
+    color: white;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 8px;
+    margin-top: 15px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.filter-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.chip {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.chip.active {
+    background: white;
+    color: #1e3c72;
+    font-weight: 600;
+}
+
+/* Cards Grid */
+.cards-grid {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.service-card {
+    background: #eef2f7;
+    padding: 15px;
+    border-radius: 16px;
+    position: relative;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.service-card:active {
+    transform: scale(0.97);
+}
+
+.service-card.ride { background: linear-gradient(135deg, #e3f2fd, #bbdefb); }
+.service-card.hotel { background: linear-gradient(135deg, #fff3e0, #ffe0b2); }
+.service-card.packages { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); }
+.service-card.tickets { background: linear-gradient(135deg, #ede7f6, #d1c4e9); grid-column: span 2; }
+
+.card-info h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #222;
+}
+
+.card-info p {
+    font-size: 11px;
+    color: #555;
+    margin-top: 3px;
+}
+
+.card-action {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.ticket-sub-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.ticket-sub-icons span {
+    background: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* Sections */
+.section {
+    padding: 0 15px;
+    margin-top: 15px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-header h3 {
+    font-size: 15px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-header a {
+    font-size: 12px;
+    color: #0066ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.destinations-scroll, .reels-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.destinations-scroll::-webkit-scrollbar, .reels-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.dest-card {
+    min-width: 120px;
+    height: 140px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.dest-name {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    background: rgba(0,0,0,0.4);
+    padding: 3px 8px;
+    border-radius: 6px;
+    backdrop-filter: blur(4px);
+}
+
+.reel-card {
+    min-width: 100px;
+    height: 140px;
+    border-radius: 14px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.reel-likes {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    color: white;
+    font-size: 10px;
+    background: rgba(0,0,0,0.5);
+    padding: 2px 6px;
+    border-radius: 6px;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #888;
+    font-size: 10px;
+    gap: 3px;
+}
+
+.nav-item i {
+    font-size: 18px;
+}
+
+.nav-item.active {
+    color: #0066ff;
+}
+
+.post-btn .plus-circle {
+    width: 35px;
+    height: 35px;
+    background: #0066ff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    margin-top: -10px;
+} 
+
+/* =================================
+   NV TRAVELSS - BOOKING PAGE STYLE
+   HOME PAGE SAFE
+   ================================= */
+
+#nv-service-page {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #f4f7fb;
+    overflow-y: auto;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#nv-service-page * {
+    box-sizing: border-box;
+}
+
+.nv-booking-box {
+    width: 100%;
+    max-width: 450px;
+    margin: 20px auto;
+    padding: 25px 20px;
+    background: #ffffff;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.10);
+    position: relative;
+}
+
+.nv-booking-box h2 {
+    text-align: center;
+    color: #0052cc;
+    font-size: 23px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.nv-booking-box h3 {
+    text-align: center;
+    font-size: 20px;
+    color: #172b4d;
+    margin-bottom: 25px;
+}
+
+.nv-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #edf2f7;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.nv-booking-box label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: #344563;
+    margin: 15px 0 7px;
+}
+
+.nv-booking-box input,
+.nv-booking-box select {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    border: 1px solid #dce3ed;
+    border-radius: 12px;
+    background: #f9fbfd;
+    color: #222;
+    font-size: 14px;
+    outline: none;
+}
+
+.nv-booking-box input:focus,
+.nv-booking-box select:focus {
+    border-color: #0066ff;
+    box-shadow: 0 0 0 3px rgba(0,102,255,0.10);
+}
+
+.nv-submit {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 25px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0066ff, #0044bb);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.nv-submit:active {
+    transform: scale(0.98);
+}
+
+#nv-booking-result {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    background: #e8f5e9;
+    color: #176b32;
+    font-size: 14px;
+    text-align: center;
+}
+
+#nv-booking-result:empty {
+    display: none;
+}
