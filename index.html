@@ -688,3 +688,105 @@ window.shareReel = function (index) {
 </body>
 </html>
 
+
+<section class="nv-extra-page">
+
+  <h2 class="nv-extra-title">🚘 Select Your Vehicle</h2>
+
+  <div class="nv-vehicle-grid" id="nvVehicleGrid">
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Bike')">
+      <span class="nv-vehicle-icon">🏍️</span>
+      <strong>Bike</strong>
+      <small>₹10/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Auto')">
+      <span class="nv-vehicle-icon">🛺</span>
+      <strong>Auto</strong>
+      <small>₹15/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Hatchback')">
+      <span class="nv-vehicle-icon">🚗</span>
+      <strong>Hatchback</strong>
+      <small>₹16/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Sedan')">
+      <span class="nv-vehicle-icon">🚘</span>
+      <strong>Sedan</strong>
+      <small>₹18/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'SUV')">
+      <span class="nv-vehicle-icon">🚙</span>
+      <strong>SUV</strong>
+      <small>₹22/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'MUV')">
+      <span class="nv-vehicle-icon">🚐</span>
+      <strong>MUV</strong>
+      <small>₹24/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Premium')">
+      <span class="nv-vehicle-icon">🚖</span>
+      <strong>Premium Car</strong>
+      <small>₹30/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'6-7 Seater')">
+      <span class="nv-vehicle-icon">🚐</span>
+      <strong>6–7 Seater</strong>
+      <small>₹25/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'8-12 Seater')">
+      <span class="nv-vehicle-icon">🚐</span>
+      <strong>8–12 Seater</strong>
+      <small>₹30/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Tempo Traveller')">
+      <span class="nv-vehicle-icon">🚍</span>
+      <strong>Tempo Traveller</strong>
+      <small>₹35/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Mini Bus')">
+      <span class="nv-vehicle-icon">🚌</span>
+      <strong>Mini Bus</strong>
+      <small>₹45/km</small>
+    </div>
+
+    <div class="nv-vehicle-card" onclick="nvSelectVehicle(this,'Bus')">
+      <span class="nv-vehicle-icon">🚌</span>
+      <strong>Bus</strong>
+      <small>₹60/km</small>
+    </div>
+
+  </div>
+
+  <input type="hidden" id="nvSelectedVehicle">
+
+  <h2 class="nv-extra-title" style="margin-top:25px">
+    🆘 Help & Emergency
+  </h2>
+
+  <div class="nv-emergency-card">
+    <strong>NV Travelss Helpline</strong>
+    <a class="nv-call-btn" href="tel:8450056438">
+      📞 Call 8450056438
+    </a>
+  </div>
+
+  <div class="nv-emergency-card">
+    <strong>Police Emergency</strong>
+    <a class="nv-call-btn nv-police-btn" href="tel:112">
+      🚨 Call 112
+    </a>
+  </div>
+
+</section>
