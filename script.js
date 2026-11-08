@@ -463,3 +463,17 @@
   });
 
 })();
+
+/* NV TRAVELSS VEHICLE SELECTION */
+
+window.nvSelectVehicle = function(card, vehicle) {
+  document.querySelectorAll('.nv-vehicle-card')
+    .forEach(function(item) {
+      item.classList.remove('selected');
+    });
+
+  card.classList.add('selected');
+
+  document.getElementById('nvSelectedVehicle').value = vehicle;
+  localStorage.setItem('nvSelectedVehicle', vehicle);
+};
