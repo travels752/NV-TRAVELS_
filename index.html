@@ -381,6 +381,110 @@ function openSearch(el){
  <button class="list-button" onclick="openDestination('Shimla')">Shimla</button>
  </div>`);
 }
+
 function searchItems(){
  const q=document.getElementById('searchInput').value.toLowerCase();
- const items=['Ride','Hotel','Packages','Bus Tick
+
+ const items=[
+  {name:'Ride',type:'ride'},
+  {name:'Hotel',type:'hotel'},
+  {name:'Packages',type:'package'},
+  {name:'Bus Ticket',type:'tickets'},
+  {name:'Train Ticket',type:'tickets'},
+  {name:'Flight Ticket',type:'tickets'},
+  {name:'Manali',place:'Manali'},
+  {name:'Goa',place:'Goa'},
+  {name:'Kashmir',place:'Kashmir'},
+  {name:'Shimla',place:'Shimla'}
+ ];
+
+ const found=items.filter(x=>x.name.toLowerCase().includes(q));
+
+ document.getElementById('searchResults').innerHTML=
+ found.length
+ ? found.map(x=>`
+   <button class="list-button" onclick="${
+    x.place
+    ? `openDestination('${x.place}')`
+    : `openService('${x.type}')`
+   }">${safe(x.name)}</button>
+  `).join('')
+ : '<div class="empty">No results found</div>';
+}
+
+function openProfile(el){
+ if(el)setNav(el);
+
+ const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
+
+ modal('My Profile',`
+  <div class="profile-box">
+   <div class="avatar"><i class="fa-solid fa-user"></i></div>
+   <div><b>NV Travelss Customer</b>
+   <small>Your travel account</small></div>
+  </div>
+
+  <button class="list-button" onclick="showMyBookings()">
+   <i class="fa-solid fa-ticket"></i> My Bookings (${bookings.length})
+  </button>
+
+  <button class="list-button" onclick="showSavedItems()">
+   <i class="fa-solid fa-bookmark"></i> Saved Reels
+  </button>
+
+  <button class="list-button" onclick="showHelp()">
+   <i class="fa-solid fa-headset"></i> Help & Emergency
+  </button>
+ `);
+}
+
+function showMyBookings(){
+ const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
+
+ const html=bookings.map(b=>`
+  <div class="help-card">
+   <b>${safe(b.type==='ride'?'Ride Booking':
+   b.type==='hotel'?'Hotel Booking':
+   b.type==='package'?'Tour Package':
+   (document.getElementById('ticketType')?.value||'Ticket Booking'))}</b>
+   <p style="font-size:12px;margin-top:8px">
+    ${safe(b.pickup)} → ${safe(b.destination)}
+   </p>
+   <p style="font-size:11px;margin-top:5px">
+    Name: ${safe(b.name)}<br>
+    Vehicle: ${safe(b.vehicle||'Not applicable')}<br>
+    Status: ${safe(b.status)}
+   </p>
+  </div>
+ `).join('');
+
+ modal('My Bookings',html||'<div class="empty">No bookings yet.</div>');
+}
+
+function showSavedItems(){
+ const saved=JSON.parse(localStorage.getItem('nvSaved')||'[]');
+
+ modal('Saved Reels',
+ saved.length
+ ? saved.map(x=>`<div class="list-button">${safe(x)}</div>`).join('')
+ : '<div class="empty">No saved reels yet.</div>');
+}
+
+function showHelp(){
+ modal('Help & Emergency',`
+  <div class="help-card">
+   <b>NV Travelss Helpline</b>
+   <a class="primary" style="display:block;text-align:center;text-decoration:none;margin-top:10px"
+    href="tel:8450056438">Call 8450056438</a>
+  </div>
+  <div class="help-card">
+   <b>Police Emergency</b>
+   <a class="primary" style="display:block;text-align:center;text-decoration:none;background:#d62828;margin-top:10px"
+    href="tel:112">Call 112</a>
+  </div>
+ `);
+}
+
+</script>
+</body>
+</html>
