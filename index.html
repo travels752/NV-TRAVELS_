@@ -26,7 +26,7 @@ header{height:68px;background:#fff;display:flex;align-items:center;justify-conte
 
 main{padding:14px}
 
-/* HERO SECTION - EXACT MOUNTAIN IMAGE & LAYOUT */
+/* HERO SECTION */
 .hero{
   padding:22px 16px;
   border-radius:26px;
@@ -75,7 +75,7 @@ main{padding:14px}
 .heading h2{font-size:16px;font-weight:800;color:#10264b;display:flex;align-items:center;gap:6px}
 .heading span{font-size:11px;color:#1769e8;font-weight:800;cursor:pointer}
 
-/* MAIN GRID CARDS - EXACT COLOR MATCH WITH IMAGE */
+/* MAIN GRID CARDS */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .service-card{
   border:none;
@@ -100,23 +100,18 @@ main{padding:14px}
 .card-desc{font-size:10.5px;color:#5c6b73;line-height:1.3;margin-bottom:10px;font-weight:500}
 .card-img{width:100%;height:90px;object-fit:cover;border-radius:14px}
 
-/* 1. RIDE CARD (LIGHT BLUE BACKGROUND) */
 .ride-card{background:linear-gradient(180deg, #eaf3ff 0%, #d8e9ff 100%)}
 .ride-card .symbol-box{background:#1769e8}
 
-/* 2. HOTEL CARD (LIGHT PEACH/ORANGE BACKGROUND) */
 .hotel-card{background:linear-gradient(180deg, #fff0e5 0%, #ffe3d1 100%)}
 .hotel-card .symbol-box{background:#e98942}
 
-/* 3. PACKAGES CARD (LIGHT MINT GREEN BACKGROUND) */
 .package-card{background:linear-gradient(180deg, #e6f8f3 0%, #d2f3ea 100%)}
 .package-card .symbol-box{background:#0b9f65}
 
-/* 4. TICKETS CARD (LIGHT PURPLE BACKGROUND) */
 .ticket-card{background:linear-gradient(180deg, #f3eaff 0%, #e6d8ff 100%)}
 .ticket-card .symbol-box{background:#7c3aed}
 
-/* TICKET SUB BLOCKS (SOLID BLUE, PURPLE, GREEN) */
 .ticket-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:4px;margin-top:4px}
 .t-block{border-radius:12px;padding:8px 2px;text-align:center;color:#fff}
 .t-block.bus{background:linear-gradient(180deg,#1769e8,#1056c6)}
@@ -126,7 +121,7 @@ main{padding:14px}
 .t-block b{font-size:9.5px;display:block;font-weight:800}
 .t-block small{font-size:8px;opacity:0.9;display:block}
 
-/* POPULAR DESTINATIONS */
+/* DESTINATIONS */
 .destinations{display:grid;grid-template-columns:repeat(4, 1fr);gap:8px}
 .dest-card{height:120px;position:relative;border:0;border-radius:14px;overflow:hidden;background:#dce5f2}
 .dest-card img{width:100%;height:100%;object-fit:cover}
@@ -154,7 +149,7 @@ main{padding:14px}
 .nav-item.active{color:#1769e8}
 .post-icon{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #dfe6f0;color:#1769e8!important;display:grid;place-items:center;font-size:16px!important;box-shadow:0 4px 10px rgba(0,0,0,0.05)}
 
-/* MODALS */
+/* MODALS & CUSTOM CARDS */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(6,21,47,0.7);z-index:50;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
 .modal{width:min(100%,520px);max-height:90vh;overflow-y:auto;background:white;border-radius:24px 24px 0 0;padding:20px 18px 30px}
@@ -164,15 +159,28 @@ main{padding:14px}
 .field{margin-bottom:12px}
 .field label{display:block;font-size:10.5px;font-weight:800;color:#53627a;margin-bottom:6px}
 .field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:12.5px}
-.primary{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(110deg,#1769e8,#0ea5e9);color:white;font-weight:800;font-size:13px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.primary{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(110deg,#1769e8,#0ea5e9);color:white;font-weight:800;font-size:13px;margin-top:5px}
+
 .vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .vehicle{padding:10px;border:1px solid #e0e7f1;border-radius:10px;background:#fff;text-align:left}
 .vehicle.selected{border:2px solid #1769e8;background:#eff6ff}
 .vehicle b{display:block;font-size:11px;color:#10264b}
 .vehicle small{font-size:9.5px;color:#718096}
-.list-button{width:100%;padding:13px 4px;border:0;border-bottom:1px solid #edf1f6;background:white;text-align:left;color:#263a59;font-size:12px;font-weight:700}
-.profile-box{display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:14px;margin-bottom:14px}
-.avatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1769e8,#0ea5e9);color:white;display:grid;place-items:center;font-size:18px}
+
+/* SPECIFIC HOTEL & PACKAGE CARDS IN MODAL */
+.hotel-item,.package-item{background:#fff;border:1px solid #e9eef6;border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,0.03)}
+.hotel-item img,.package-item img{width:100%;height:130px;object-fit:cover}
+.item-body{padding:12px}
+.item-title{font-size:14px;font-weight:800;color:#10264b;display:flex;justify-content:space-between;align-items:center}
+.item-rating{font-size:11px;color:#ff9500;font-weight:700}
+.item-price{font-size:13px;color:#1769e8;font-weight:800;margin-top:4px}
+.item-desc{font-size:11px;color:#64748b;margin:4px 0 10px}
+
+.ticket-tab-row{display:flex;gap:6px;margin-bottom:14px}
+.t-tab{flex:1;padding:10px;border-radius:10px;background:#f0f4f9;border:0;font-size:11px;font-weight:700;color:#475569}
+.t-tab.active{background:#1769e8;color:#fff}
+
 .toast{display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#10294b;color:white;padding:10px 16px;border-radius:20px;font-size:11px;z-index:100;white-space:nowrap}
 </style>
 </head>
@@ -190,7 +198,6 @@ main{padding:14px}
 
 <main id="homePage">
 
-<!-- HERO BANNER -->
 <section class="hero">
  <div style="position:relative; z-index:2; max-width:65%;">
   <h1>Explore The World<br>With NV Travelss</h1>
@@ -211,10 +218,8 @@ main{padding:14px}
  </div>
 </section>
 
-<!-- MAIN 4 CARDS - MATCHING EXACT COLOURS -->
+<!-- MAIN SERVICE CARDS -->
 <section class="grid" style="margin-top:16px;">
- 
- <!-- 1. RIDE CARD (LIGHT BLUE) -->
  <button class="service-card ride-card" onclick="openService('ride')">
   <div class="card-top">
    <div class="symbol-box"><i class="fa-solid fa-car-side"></i></div>
@@ -225,7 +230,6 @@ main{padding:14px}
   <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400" class="card-img" alt="Taxi Car">
  </button>
 
- <!-- 2. HOTEL CARD (PEACH / ORANGE) -->
  <button class="service-card hotel-card" onclick="openService('hotel')">
   <div class="card-top">
    <div class="symbol-box"><i class="fa-solid fa-hotel"></i></div>
@@ -236,7 +240,6 @@ main{padding:14px}
   <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400" class="card-img" alt="Hotel Room">
  </button>
 
- <!-- 3. PACKAGES CARD (MINT GREEN) -->
  <button class="service-card package-card" onclick="openService('package')">
   <div class="card-top">
    <div class="symbol-box"><i class="fa-solid fa-suitcase-rolling"></i></div>
@@ -247,7 +250,6 @@ main{padding:14px}
   <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400" class="card-img" alt="Tour Traveller">
  </button>
 
- <!-- 4. TICKETS CARD (PURPLE WITH SOLID BLUE, PURPLE, GREEN BUTTONS) -->
  <button class="service-card ticket-card" onclick="openService('tickets')">
   <div class="card-top">
    <div class="symbol-box"><i class="fa-solid fa-ticket"></i></div>
@@ -256,15 +258,14 @@ main{padding:14px}
   <div class="card-title">Tickets</div>
   <div class="card-desc">Bus • Train • Flight<br>All in one place</div>
   <div class="ticket-grid">
-   <div class="t-block bus"><i class="fa-solid fa-bus"></i><b>Bus</b><small>बस टिकट</small></div>
-   <div class="t-block train"><i class="fa-solid fa-train"></i><b>Train</b><small>ट्रेन टिकट</small></div>
-   <div class="t-block flight"><i class="fa-solid fa-plane"></i><b>Flight</b><small>हवाई टिकट</small></div>
+   <div class="t-block bus" onclick="event.stopPropagation(); openTicketsTab('bus');"><i class="fa-solid fa-bus"></i><b>Bus</b><small>बस टिकट</small></div>
+   <div class="t-block train" onclick="event.stopPropagation(); openTicketsTab('train');"><i class="fa-solid fa-train"></i><b>Train</b><small>ट्रेन टिकट</small></div>
+   <div class="t-block flight" onclick="event.stopPropagation(); openTicketsTab('flight');"><i class="fa-solid fa-plane"></i><b>Flight</b><small>हवाई टिकट</small></div>
   </div>
  </button>
-
 </section>
 
-<!-- POPULAR DESTINATIONS -->
+<!-- DESTINATIONS -->
 <div class="heading"><h2><i class="fa-solid fa-location-dot" style="color:#1769e8"></i> Popular Destinations</h2><span onclick="openSearch()">View All →</span></div>
 <section class="destinations">
  <button class="dest-card" onclick="openDestination('Manali')">
@@ -281,13 +282,12 @@ main{padding:14px}
  </button>
 </section>
 
-<!-- LATEST REELS -->
+<!-- REELS -->
 <div class="heading"><h2><i class="fa-solid fa-circle-play" style="color:#1769e8"></i> Latest Reels</h2><span onclick="showReels()">View All →</span></div>
 <section class="reels-row">
  <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 1.2K</div></button>
  <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 856</div></button>
  <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 932</div></button>
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 743</div></button>
 </section>
 
 <!-- HELP & EMERGENCY -->
@@ -300,7 +300,6 @@ main{padding:14px}
 
 </main>
 
-<!-- BOTTOM NAVIGATION BAR -->
 <nav class="bottom-nav">
  <button class="nav-item active" onclick="goHome(this)"><i class="fa-solid fa-house"></i>Home</button>
  <button class="nav-item" onclick="showReels(this)"><i class="fa-solid fa-clapperboard"></i>Reels</button>
@@ -322,14 +321,12 @@ main{padding:14px}
 <script>
 const vehicles=[
  ['Bike',10],['Auto',15],['Hatchback',16],['Sedan',18],
- ['SUV',22],['MUV',24],['Premium',30],['6–7 Seater',25],
- ['8–12 Seater',30],['Tempo Traveller',35],['Mini Bus',45],['Bus',60]
+ ['SUV',22],['MUV',24],['Premium',30],['Tempo Traveller',35]
 ];
 
 let selectedVehicle='Sedan';
-let posts=[];
+let activeTicketType='bus';
 
-// Permanent Customer Login System (Auto-fill)
 function getUserProfile(){
  const savedUser = localStorage.getItem('nvUserProfile');
  return savedUser ? JSON.parse(savedUser) : { name: '', phone: '' };
@@ -369,16 +366,21 @@ function goHome(el){
 
 function openService(type){
  if(type==='ride'){rideForm();return}
- if(type==='hotel'){modal('Hotel Booking',bookingForm('hotel'));return}
- if(type==='package'){modal('Tour Packages',bookingForm('package'));return}
- if(type==='tickets'){
-  modal('Tickets Booking',`
-   <div class="field"><label>SELECT TICKET TYPE</label>
-    <select id="ticketType"><option>Bus Ticket</option><option>Train Ticket</option><option>Flight Ticket</option></select>
-   </div>
-   ${commonFields()}
-   <button class="primary" onclick="submitBooking('ticket')">Send Ticket Request</button>`);
- }
+ if(type==='hotel'){hotelForm();return}
+ if(type==='package'){packageForm();return}
+ if(type==='tickets'){openTicketsTab('bus');return}
+}
+
+/* 1. RIDE SERVICE FORM */
+function rideForm(){
+ const user = getUserProfile();
+ modal('Book Your Ride (Taxi)',`
+ <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Where to pick up?"></div>
+ <div class="field"><label>DROP DESTINATION</label><input id="destination" placeholder="Where to drop?"></div>
+ <div class="field"><label>SELECT VEHICLE TYPE</label>${vehicleHTML()}</div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+ <button class="primary" onclick="submitBooking('ride')">Confirm Ride Request</button>`);
 }
 
 function vehicleHTML(){
@@ -386,33 +388,155 @@ function vehicleHTML(){
  <button class="vehicle ${selectedVehicle===v[0]?'selected':''}" onclick="selectVehicle('${v[0]}')">
  <b>${v[0]}</b><small>₹${v[1]} / km</small></button>`).join('')}</div>`;
 }
-
 function selectVehicle(name){selectedVehicle=name;rideForm()}
 
-function rideForm(){
+/* 2. HOTEL SERVICE FORM (HOTEL SPECIFIC) */
+function hotelForm(){
  const user = getUserProfile();
- modal('Book Your Ride',`
- <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Enter pickup location"></div>
- <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Enter destination"></div>
- <div class="field"><label>SELECT VEHICLE</label>${vehicleHTML()}</div>
+ modal('Find Perfect Stay (Hotels)',`
+ <div class="field"><label>SEARCH CITY OR HOTEL</label><input id="hotelLoc" placeholder="e.g. Manali, Goa, Taj Hotel..."></div>
+ <div class="grid-2">
+  <div class="field"><label>CHECK-IN</label><input type="date" id="checkIn"></div>
+  <div class="field"><label>CHECK-OUT</label><input type="date" id="checkOut"></div>
+ </div>
+ <div class="grid-2">
+  <div class="field"><label>ROOMS</label><input type="number" id="hRooms" value="1" min="1"></div>
+  <div class="field"><label>GUESTS</label><input type="number" id="hGuests" value="2" min="1"></div>
+ </div>
+
+ <h4 style="font-size:12px;margin:10px 0 8px;color:#10264b;">Featured Hotels</h4>
+ 
+ <div class="hotel-item">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500" alt="Luxury Hotel">
+  <div class="item-body">
+   <div class="item-title"><span>Grand Luxury Resort</span> <span class="item-rating">★ 4.8</span></div>
+   <div class="item-desc">Free Breakfast • Swimming Pool • Wi-Fi</div>
+   <div class="item-price">₹3,499 / night</div>
+  </div>
+ </div>
+
+ <div class="hotel-item">
+  <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=500" alt="Mountain View Hotel">
+  <div class="item-body">
+   <div class="item-title"><span>Mountain View Heritage</span> <span class="item-rating">★ 4.6</span></div>
+   <div class="item-desc">Valley View • Spa • Restaurant</div>
+   <div class="item-price">₹2,199 / night</div>
+  </div>
+ </div>
+
  <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
  <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
- <button class="primary" onclick="submitBooking('ride')">Request Ride</button>`);
+ <button class="primary" onclick="submitHotelBooking()">Send Hotel Request</button>`);
 }
 
-function commonFields(){
+function submitHotelBooking(){
+ const loc = document.getElementById('hotelLoc').value.trim();
+ const name = document.getElementById('customerName').value.trim();
+ const phone = document.getElementById('customerPhone').value.trim();
+ if(!loc || !name || !/^[0-9]{10}$/.test(phone)){
+  notify('Please enter Hotel location, Name & Mobile number.');
+  return;
+ }
+ saveUserProfile(name, phone);
+ saveBookingToStorage({type:'Hotel Stay', pickup:loc, destination:'Hotel Booking', name, phone, status:'Hotel Request Sent'});
+ closeModal();
+ notify('Hotel request submitted successfully!');
+}
+
+/* 3. PACKAGES SERVICE FORM (PACKAGE SPECIFIC) */
+function packageForm(){
  const user = getUserProfile();
- return `
- <div class="field"><label>FROM</label><input id="pickup" placeholder="Starting location"></div>
- <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Where to go?"></div>
- <div class="field"><label>TRAVEL DATE</label><input id="travelDate" type="date"></div>
- <div class="field"><label>PERSONS</label><input id="persons" type="number" min="1" value="1"></div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>`;
+ modal('Explore Tour Packages',`
+ <div class="field"><label>SEARCH TOUR DESTINATION</label><input placeholder="Search Manali, Goa, Kashmir..."></div>
+ 
+ <div class="package-item">
+  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500" alt="Manali Package">
+  <div class="item-body">
+   <div class="item-title"><span>Manali Snow Special</span> <span class="item-rating">5 Days / 4 Nights</span></div>
+   <div class="item-desc">Hotel + Cab + Meals + Sightseeing Included</div>
+   <div class="item-price">₹7,999 / person</div>
+  </div>
+ </div>
+
+ <div class="package-item">
+  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500" alt="Goa Package">
+  <div class="item-body">
+   <div class="item-title"><span>Goa Beach Cruise Holiday</span> <span class="item-rating">4 Days / 3 Nights</span></div>
+   <div class="item-desc">Resort Stay + Water Sports + Cruise Ticket</div>
+   <div class="item-price">₹6,499 / person</div>
+  </div>
+ </div>
+
+ <div class="field"><label>SELECT PREFERRED PACKAGE</label>
+  <select id="pkgChoice">
+   <option>Manali Snow Special (5D/4N)</option>
+   <option>Goa Beach Cruise Holiday (4D/3N)</option>
+   <option>Kashmir Paradise Tour (6D/5N)</option>
+   <option>Shimla Hill Station (3D/2N)</option>
+  </select>
+ </div>
+ <div class="field"><label>TRAVEL DATE</label><input type="date" id="pkgDate"></div>
+ <div class="field"><label>NUMBER OF PERSONS</label><input type="number" id="pkgPersons" value="2" min="1"></div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+ <button class="primary" onclick="submitPkgBooking()">Inquire Tour Package</button>`);
 }
 
-function bookingForm(type){
- return commonFields()+`<button class="primary" onclick="submitBooking('${type}')">Send Request</button>`;
+function submitPkgBooking(){
+ const pkg = document.getElementById('pkgChoice').value;
+ const name = document.getElementById('customerName').value.trim();
+ const phone = document.getElementById('customerPhone').value.trim();
+ if(!name || !/^[0-9]{10}$/.test(phone)){
+  notify('Please enter your Name & Mobile number.');
+  return;
+ }
+ saveUserProfile(name, phone);
+ saveBookingToStorage({type:'Tour Package', pickup:'Package Inquiry', destination:pkg, name, phone, status:'Package Inquiry Sent'});
+ closeModal();
+ notify('Package Inquiry Sent! We will contact you soon.');
+}
+
+/* 4. TICKETS SERVICE FORM (BUS / TRAIN / FLIGHT SPECIFIC) */
+function openTicketsTab(tType){
+ activeTicketType = tType;
+ const user = getUserProfile();
+ modal('Book Journey Tickets',`
+ <div class="ticket-tab-row">
+  <button class="t-tab ${tType==='bus'?'active':''}" onclick="openTicketsTab('bus')"><i class="fa-solid fa-bus"></i> Bus</button>
+  <button class="t-tab ${tType==='train'?'active':''}" onclick="openTicketsTab('train')"><i class="fa-solid fa-train"></i> Train</button>
+  <button class="t-tab ${tType==='flight'?'active':''}" onclick="openTicketsTab('flight')"><i class="fa-solid fa-plane"></i> Flight</button>
+ </div>
+
+ <div class="field"><label>FROM CITY</label><input id="tFrom" placeholder="Source City"></div>
+ <div class="field"><label>TO DESTINATION CITY</label><input id="tTo" placeholder="Destination City"></div>
+ <div class="grid-2">
+  <div class="field"><label>JOURNEY DATE</label><input type="date" id="tDate"></div>
+  <div class="field"><label>CLASS / SEAT TYPE</label>
+   <select id="tClass">
+    ${tType==='bus'?'<option>Sleeper AC</option><option>Seater AC</option><option>Non-AC Sleeper</option>':''}
+    ${tType==='train'?'<option>3rd AC (3A)</option><option>2nd AC (2A)</option><option>Sleeper (SL)</option><option>1st AC (1A)</option>':''}
+    ${tType==='flight'?'<option>Economy</option><option>Premium Economy</option><option>Business</option>':''}
+   </select>
+  </div>
+ </div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+ <button class="primary" onclick="submitTicketBooking()">Request ${tType.toUpperCase()} Ticket</button>`);
+}
+
+function submitTicketBooking(){
+ const from = document.getElementById('tFrom').value.trim();
+ const to = document.getElementById('tTo').value.trim();
+ const name = document.getElementById('customerName').value.trim();
+ const phone = document.getElementById('customerPhone').value.trim();
+ if(!from || !to || !name || !/^[0-9]{10}$/.test(phone)){
+  notify('Please fill From/To cities, Name & Mobile number.');
+  return;
+ }
+ saveUserProfile(name, phone);
+ saveBookingToStorage({type:activeTicketType.toUpperCase() + ' Ticket', pickup:from, destination:to, name, phone, status:'Ticket Request Sent'});
+ closeModal();
+ notify(activeTicketType.toUpperCase() + ' Ticket booking request sent!');
 }
 
 function submitBooking(type){
@@ -425,31 +549,20 @@ function submitBooking(type){
   notify('Please fill all details & valid 10 digit phone number.');
   return;
  }
-
- // Save profile permanently for future auto-fill
  saveUserProfile(name, phone);
-
- const selected=vehicles.find(v=>v[0]===selectedVehicle);
- const booking={
-  id:Date.now(),type,pickup,destination,name,phone,
-  vehicle:type==='ride'?selectedVehicle:'',
-  rate:type==='ride'?selected[1]:'',
-  date:document.getElementById('travelDate')?.value||'',
-  persons:document.getElementById('persons')?.value||'1',
-  status:'Request saved on this device'
- };
-
- const list=JSON.parse(localStorage.getItem('nvBookings')||'[]');
- list.unshift(booking);
- localStorage.setItem('nvBookings',JSON.stringify(list));
+ saveBookingToStorage({type:'Ride Taxi', pickup, destination, name, phone, vehicle:selectedVehicle, status:'Ride Requested'});
  closeModal();
- notify('Request saved! Call 9098533390 for confirmation.');
+ notify('Ride Request Saved! Calling support 9098533390.');
+}
+
+function saveBookingToStorage(bookingObj){
+ const list=JSON.parse(localStorage.getItem('nvBookings')||'[]');
+ list.unshift({id:Date.now(), ...bookingObj});
+ localStorage.setItem('nvBookings',JSON.stringify(list));
 }
 
 function openDestination(place){
- modal(place+' Tour Package',`
- <p style="font-size:12px;color:#718096;margin-bottom:12px">Plan your dream trip to ${place} with NV Travelss.</p>
- ${bookingForm('package')}`);
+ packageForm();
 }
 
 function openPost(el){
@@ -474,13 +587,13 @@ function publishPost(){
 function showReels(el){
  if(el)setNav(el);
  const html=posts.map((p,i)=>`
- <article class="reel-post">
- ${p.type==='video'?`<video src="${p.url}" controls playsinline></video>`:`<img src="${p.url}">`}
- <div class="reel-caption">${safe(p.caption||'Travel with NV Travelss ✈️')}</div>
+ <article style="border:1px solid #eee;border-radius:12px;overflow:hidden;margin-bottom:12px;">
+ ${p.type==='video'?`<video src="${p.url}" controls playsinline style="width:100%;max-height:300px;object-fit:cover;"></video>`:`<img src="${p.url}" style="width:100%;max-height:300px;object-fit:cover;">`}
+ <div style="padding:10px;font-size:12px;">${safe(p.caption||'Travel with NV Travelss ✈️')}</div>
  </article>`).join('');
 
  modal('NV Travelss Reels',`
- ${html||'<div class="empty">No reels uploaded yet.</div>'}
+ ${html||'<div style="text-align:center;padding:20px;font-size:12px;color:#888;">No reels uploaded yet.</div>'}
  <button class="primary" onclick="openPost()">+ Upload Reel / Post</button>`);
 }
 
@@ -490,32 +603,24 @@ function safe(text){
 
 function openSearch(el){
  if(el)setNav(el);
- modal('Search NV Travelss',`
- <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages..." oninput="searchItems()"></div>
+ modal('Search Services',`
+ <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages, tickets..." oninput="searchItems()"></div>
  <div id="searchResults">
- <button class="list-button" onclick="openDestination('Manali')">Manali Tour</button>
- <button class="list-button" onclick="openDestination('Goa')">Goa Beach Trip</button>
- <button class="list-button" onclick="openDestination('Kashmir')">Kashmir Valley</button>
- <button class="list-button" onclick="openDestination('Shimla')">Shimla Hills</button>
+ <button class="list-button" onclick="hotelForm()">Search Hotels</button>
+ <button class="list-button" onclick="packageForm()">Tour Packages</button>
+ <button class="list-button" onclick="openTicketsTab('bus')">Bus / Train / Flight Tickets</button>
  </div>`);
 }
 
 function searchItems(){
  const q=document.getElementById('searchInput').value.toLowerCase();
- const items=[
-  {name:'Ride Taxi',type:'ride'},
-  {name:'Hotel Booking',type:'hotel'},
-  {name:'Tour Package',type:'package'},
-  {name:'Bus Ticket',type:'tickets'},
-  {name:'Train Ticket',type:'tickets'},
-  {name:'Flight Ticket',type:'tickets'},
-  {name:'Manali Package',type:'package'},
-  {name:'Goa Trip',type:'package'}
- ];
- const res=items.filter(i=>i.name.toLowerCase().includes(q));
  const box=document.getElementById('searchResults');
- if(!res.length){box.innerHTML='<div class="empty">No matching results found.</div>';return;}
- box.innerHTML=res.map(i=>`<button class="list-button" onclick="openService('${i.type}')"><i class="fa-solid fa-location-arrow"></i> ${i.name}</button>`).join('');
+ box.innerHTML=`
+  <button class="list-button" onclick="rideForm()"><i class="fa-solid fa-car"></i> Ride Taxi</button>
+  <button class="list-button" onclick="hotelForm()"><i class="fa-solid fa-hotel"></i> Hotels</button>
+  <button class="list-button" onclick="packageForm()"><i class="fa-solid fa-suitcase"></i> Tour Packages</button>
+  <button class="list-button" onclick="openTicketsTab('bus')"><i class="fa-solid fa-ticket"></i> Tickets</button>
+ `;
 }
 
 function openProfile(el){
@@ -523,20 +628,34 @@ function openProfile(el){
  const user=getUserProfile();
  const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
 
+ const bHtml=bookings.length?bookings.map(b=>`
+  <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #edf2f7;margin-bottom:8px;font-size:12px;">
+   <div style="display:flex;justify-content:space-between;font-weight:700;color:#1a202c;">
+    <span>${b.type}</span><span style="color:#1769e8;">${b.status}</span>
+   </div>
+   <div style="color:#4a5568;margin-top:4px;">${b.pickup} ➔ ${b.destination}</div>
+  </div>
+ `).join(''):'<div style="text-align:center;padding:15px;color:#888;font-size:11px;">No active requests yet.</div>';
+
  modal('My Account & Profile',`
-  <div class="profile-box">
-   <div class="avatar"><i class="fa-solid fa-user"></i></div>
+  <div style="display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:14px;margin-bottom:14px;">
+   <div style="width:40px;height:40px;border-radius:50%;background:#1769e8;color:#fff;display:grid;place-items:center;"><i class="fa-solid fa-user"></i></div>
    <div>
-    <b>${safe(user.name || 'NV Travelss User')}</b>
-    <small>${safe(user.phone ? '+91 ' + user.phone : 'Permanent profile not set yet')}</small>
+    <b>${safe(user.name || 'NV Travelss User')}</b><br>
+    <small style="color:#718096">${safe(user.phone ? '+91 ' + user.phone : 'No saved phone')}</small>
    </div>
   </div>
 
   <div style="background:#fff;padding:14px;border-radius:14px;border:1px solid #e9eef6;margin-bottom:15px;">
-    <h4 style="font-size:12px;margin-bottom:10px;color:#2d3748;">Permanent Customer Details (Auto-fill)</h4>
+    <h4 style="font-size:12px;margin-bottom:10px;color:#2d3748;">Permanent Profile (Auto-fill)</h4>
     <div class="field"><label>YOUR NAME</label><input id="profName" value="${safe(user.name)}" placeholder="Enter your full name"></div>
     <div class="field"><label>MOBILE NUMBER</label><input id="profPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
     <button class="primary" style="padding:10px;font-size:12px;" onclick="updateProfileFromModal()">Save Details Permanently</button>
+  </div>
+
+  <div>
+   <h4 style="font-size:13px;margin-bottom:8px;color:#2d3748;">My Requests (${bookings.length})</h4>
+   ${bHtml}
   </div>
  `);
 }
