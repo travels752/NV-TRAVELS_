@@ -11,79 +11,169 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#07152f;color:#142441}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#eef3f9;color:#142441}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .app{max-width:520px;min-height:100vh;margin:auto;background:#f7f9fd;position:relative;padding-bottom:90px;overflow:hidden}
+
+/* HEADER */
 header{height:68px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:10;border-bottom:1px solid #edf0f5}
-.logo{font-size:17px;font-weight:900;color:#10264b}
-.logo small{display:block;font-size:9px;letter-spacing:1px;color:#8190a6}
-.icon{border:0;background:#f0f5fc;border-radius:12px;padding:12px;color:#1769e8;margin-left:5px}
-main{padding:15px}
-.hero{padding:24px 20px;border-radius:24px;color:#fff;background:linear-gradient(120deg,#071b40,#1259b2,#10a9c2);min-height:210px;position:relative;overflow:hidden;box-shadow:0 12px 28px #1259b233}
-.hero h1{font-size:27px;line-height:1.2;margin:12px 0}
-.hero p{font-size:12px;color:#e3f1ff;line-height:1.7}
-.hero .plane{position:absolute;right:20px;bottom:24px;font-size:60px;opacity:.8}
-.eyebrow{font-size:10px;letter-spacing:2px;color:#8ceeff;font-weight:800}
-.heading{display:flex;justify-content:space-between;align-items:center;margin:23px 2px 13px}
-.heading h2{font-size:16px;font-weight:800}
-.heading span{font-size:10px;color:#1769e8;font-weight:800;cursor:pointer}
+.logo{font-size:18px;font-weight:900;color:#0b2545;letter-spacing:-0.3px}
+.logo span{color:#00a3ff}
+.logo small{display:block;font-size:9.5px;letter-spacing:1px;color:#8190a6;font-weight:700}
+.header-icons{display:flex;gap:10px}
+.icon-btn{border:0;background:#f0f5fc;border-radius:50%;width:38px;height:38px;color:#1769e8;display:grid;place-items:center;font-size:15px}
+
+main{padding:14px}
+
+/* HERO SECTION - EXACT MOUNTAIN IMAGE & LAYOUT */
+.hero{
+  padding:22px 16px;
+  border-radius:26px;
+  color:#fff;
+  background: linear-gradient(180deg, rgba(7,27,64,0.75) 0%, rgba(18,89,178,0.4) 100%),
+              url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800') center/cover no-repeat;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(18,89,178,0.2);
+}
+.hero h1{font-size:25px;line-height:1.2;margin-bottom:6px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.4)}
+.hero p{font-size:12px;color:#e3f1ff;margin-bottom:16px;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+
+.search-box{
+  background:#fff;
+  border-radius:30px;
+  padding:6px 6px 6px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  margin-bottom:14px;
+}
+.search-box i.pin{color:#718096;font-size:14px;margin-right:8px}
+.search-box input{border:0;outline:0;font-size:12px;color:#333;width:100%;background:transparent}
+.search-btn{background:#0062ff;color:#fff;border:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px}
+
+.tags-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.tags-row::-webkit-scrollbar{display:none}
+.tag{
+  background:rgba(255,255,255,0.22);
+  border:1px solid rgba(255,255,255,0.35);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:10px;
+  color:#fff;
+  font-weight:700;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  backdrop-filter:blur(6px);
+}
+
+.heading{display:flex;justify-content:space-between;align-items:center;margin:20px 2px 12px}
+.heading h2{font-size:16px;font-weight:800;color:#10264b;display:flex;align-items:center;gap:6px}
+.heading span{font-size:11px;color:#1769e8;font-weight:800;cursor:pointer}
+
+/* MAIN GRID CARDS - EXACT COLOR MATCH WITH IMAGE */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.service{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;text-align:left;min-height:112px;box-shadow:0 5px 15px #18365b0a;position:relative}
-.service .symbol{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin-bottom:10px;font-size:19px}
-.service h3{font-size:13px}.service p{font-size:10px;color:#8592a5;margin-top:5px}
-.ride .symbol{background:#e8f1ff;color:#1769e8}
-.hotel .symbol{background:#fff0e5;color:#e98942}
-.package .symbol{background:#f0eaff;color:#8555dc}
-.ticket .symbol{background:#e2faf6;color:#0b9f91}
-.ticket-tags{display:flex;gap:5px;margin-top:8px}
-.ticket-tags span{font-size:9px;background:#eef5ff;color:#42618b;padding:5px 7px;border-radius:20px;font-weight:800}
-.destinations{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.destination{height:125px;position:relative;border:0;border-radius:16px;overflow:hidden;background:#dce5f2}
-.destination img{width:100%;height:100%;object-fit:cover}
-.destination:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#07152fbb)}
-.destination b{position:absolute;bottom:12px;left:12px;color:#fff;z-index:1}
-.reels-row{display:flex;gap:10px;overflow:auto}
-.reel-thumb{min-width:145px;height:185px;border:0;border-radius:16px;overflow:hidden;position:relative;background:#dce5f2}
+.service-card{
+  border:none;
+  border-radius:22px;
+  padding:14px;
+  text-align:left;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 6px 16px rgba(0,0,0,0.03);
+  transition:transform 0.15s ease;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.service-card:active{transform:scale(0.98)}
+
+.card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.symbol-box{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:#fff}
+.arrow-circle{width:28px;height:28px;background:rgba(255,255,255,0.8);border-radius:50%;display:grid;place-items:center;color:#333;font-size:11px}
+
+.card-title{font-size:16px;font-weight:800;color:#10264b;margin-bottom:2px}
+.card-desc{font-size:10.5px;color:#5c6b73;line-height:1.3;margin-bottom:10px;font-weight:500}
+.card-img{width:100%;height:90px;object-fit:cover;border-radius:14px}
+
+/* 1. RIDE CARD (LIGHT BLUE BACKGROUND) */
+.ride-card{background:linear-gradient(180deg, #eaf3ff 0%, #d8e9ff 100%)}
+.ride-card .symbol-box{background:#1769e8}
+
+/* 2. HOTEL CARD (LIGHT PEACH/ORANGE BACKGROUND) */
+.hotel-card{background:linear-gradient(180deg, #fff0e5 0%, #ffe3d1 100%)}
+.hotel-card .symbol-box{background:#e98942}
+
+/* 3. PACKAGES CARD (LIGHT MINT GREEN BACKGROUND) */
+.package-card{background:linear-gradient(180deg, #e6f8f3 0%, #d2f3ea 100%)}
+.package-card .symbol-box{background:#0b9f65}
+
+/* 4. TICKETS CARD (LIGHT PURPLE BACKGROUND) */
+.ticket-card{background:linear-gradient(180deg, #f3eaff 0%, #e6d8ff 100%)}
+.ticket-card .symbol-box{background:#7c3aed}
+
+/* TICKET SUB BLOCKS (SOLID BLUE, PURPLE, GREEN) */
+.ticket-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:4px;margin-top:4px}
+.t-block{border-radius:12px;padding:8px 2px;text-align:center;color:#fff}
+.t-block.bus{background:linear-gradient(180deg,#1769e8,#1056c6)}
+.t-block.train{background:linear-gradient(180deg,#7c3aed,#6528d1)}
+.t-block.flight{background:linear-gradient(180deg,#0b9f65,#088252)}
+.t-block i{font-size:16px;display:block;margin-bottom:3px}
+.t-block b{font-size:9.5px;display:block;font-weight:800}
+.t-block small{font-size:8px;opacity:0.9;display:block}
+
+/* POPULAR DESTINATIONS */
+.destinations{display:grid;grid-template-columns:repeat(4, 1fr);gap:8px}
+.dest-card{height:120px;position:relative;border:0;border-radius:14px;overflow:hidden;background:#dce5f2}
+.dest-card img{width:100%;height:100%;object-fit:cover}
+.dest-card:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(7,21,47,0.85))}
+.dest-card b{position:absolute;bottom:8px;left:8px;color:#fff;font-size:11px;z-index:1;display:flex;align-items:center;gap:3px}
+
+/* REELS */
+.reels-row{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
+.reels-row::-webkit-scrollbar{display:none}
+.reel-thumb{min-width:125px;height:170px;border:0;border-radius:16px;overflow:hidden;position:relative;flex-shrink:0}
 .reel-thumb img{width:100%;height:100%;object-fit:cover}
-.reel-thumb b{position:absolute;bottom:12px;left:10px;color:white;z-index:2}
-.help-card{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;margin-top:22px}
-.help-card h3{font-size:14px;margin-bottom:10px}
-.help-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid #edf1f6;font-size:12px}
-.help-row a{color:#1769e8;font-weight:800;text-decoration:none}
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:72px;background:white;border-top:1px solid #e9eef6;display:flex;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 20px #10294b0b}
-.nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:9px;font-weight:700;min-width:54px}
+.reel-thumb:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,0.8))}
+.reel-likes{position:absolute;bottom:8px;left:8px;color:white;font-size:10px;font-weight:700;z-index:2;display:flex;align-items:center;gap:4px}
+
+/* HELP CARD */
+.help-card{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;margin-top:20px}
+.help-card h3{font-size:13px;margin-bottom:8px;color:#10264b;display:flex;align-items:center;gap:6px}
+.help-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #edf1f6;font-size:11.5px;color:#4a5568}
+.help-row a{color:#1769e8;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:5px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:70px;background:white;border-top:1px solid #edf0f5;display:flex;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 20px rgba(16,41,75,0.06)}
+.nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9.5px;font-weight:700;min-width:54px}
 .nav-item i{font-size:18px}
 .nav-item.active{color:#1769e8}
-.post-icon{width:42px;height:40px;border-radius:13px;background:linear-gradient(135deg,#1769e8,#20bfd8);color:white!important;display:grid;place-items:center;font-size:18px!important}
-.modal-bg{display:none;position:fixed;inset:0;background:#06152f99;z-index:50;align-items:flex-end;justify-content:center}
+.post-icon{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #dfe6f0;color:#1769e8!important;display:grid;place-items:center;font-size:16px!important;box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+
+/* MODALS */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(6,21,47,0.7);z-index:50;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
-.modal{width:min(100%,520px);max-height:90vh;overflow:auto;background:white;border-radius:24px 24px 0 0;padding:20px 17px 30px}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
-.modal-head h2{font-size:18px}
-.close{width:35px;height:35px;border:0;border-radius:11px;background:#f0f3f8;color:#42536e}
-.field{margin-bottom:13px}
-.field label{display:block;font-size:11px;font-weight:800;color:#53627a;margin-bottom:7px}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:13px}
-.field textarea{min-height:80px}
-.primary{width:100%;border:0;border-radius:13px;padding:14px;background:linear-gradient(110deg,#1769e8,#13b5d1);color:white;font-weight:800;font-size:13px}
+.modal{width:min(100%,520px);max-height:90vh;overflow-y:auto;background:white;border-radius:24px 24px 0 0;padding:20px 18px 30px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.modal-head h2{font-size:17px;color:#10264b;font-weight:800}
+.close{width:34px;height:34px;border:0;border-radius:10px;background:#f0f3f8;color:#42536e;display:grid;place-items:center}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:10.5px;font-weight:800;color:#53627a;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:12.5px}
+.primary{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(110deg,#1769e8,#0ea5e9);color:white;font-weight:800;font-size:13px}
 .vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.vehicle{padding:11px;border:1px solid #e0e7f1;border-radius:12px;background:#fff;text-align:left}
-.vehicle.selected{border:2px solid #1769e8;background:#eff6ff;padding:10px}
-.vehicle b{display:block;font-size:11px}
-.vehicle small{font-size:10px;color:#718096}
-.list-button{width:100%;padding:14px 4px;border:0;border-bottom:1px solid #edf1f6;background:white;text-align:left;color:#263a59;font-size:12px;font-weight:700}
-.list-button i{width:25px;color:#1769e8}
-.profile-box{display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:15px;margin-bottom:12px}
-.avatar{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#1769e8,#18bfd6);color:white;display:grid;place-items:center}
-.profile-box b{font-size:13px}.profile-box small{display:block;color:#8793a6;font-size:10px}
-.reel-post{border:1px solid #e9eef6;border-radius:15px;overflow:hidden;margin-bottom:14px}
-.reel-post img,.reel-post video{width:100%;max-height:390px;object-fit:cover;display:block;background:#07152f}
-.reel-caption{padding:10px 12px;font-size:12px}
-.reel-actions{display:flex;justify-content:space-around;padding:10px}
-.reel-actions button{border:0;background:none;color:#53627a;font-size:11px}
-.empty{text-align:center;padding:25px 10px;color:#8592a5;font-size:12px}
-.toast{display:none;position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#10294b;color:white;padding:11px 16px;border-radius:25px;font-size:11px;z-index:100;white-space:nowrap}
+.vehicle{padding:10px;border:1px solid #e0e7f1;border-radius:10px;background:#fff;text-align:left}
+.vehicle.selected{border:2px solid #1769e8;background:#eff6ff}
+.vehicle b{display:block;font-size:11px;color:#10264b}
+.vehicle small{font-size:9.5px;color:#718096}
+.list-button{width:100%;padding:13px 4px;border:0;border-bottom:1px solid #edf1f6;background:white;text-align:left;color:#263a59;font-size:12px;font-weight:700}
+.profile-box{display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:14px;margin-bottom:14px}
+.avatar{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#1769e8,#0ea5e9);color:white;display:grid;place-items:center;font-size:18px}
+.toast{display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#10294b;color:white;padding:10px 16px;border-radius:20px;font-size:11px;z-index:100;white-space:nowrap}
 </style>
 </head>
 
@@ -91,72 +181,116 @@ main{padding:15px}
 <div class="app">
 
 <header>
- <div class="logo">NV TRAVELSS<small>TRAVEL • RIDE • HOTEL • PACKAGES</small></div>
- <div>
-  <button class="icon" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
-  <button class="icon" onclick="openProfile()"><i class="fa-regular fa-user"></i></button>
+ <div class="logo">NV <span>TRAVELSS</span><small>Travel • Ride • Hotel • Packages • Tickets</small></div>
+ <div class="header-icons">
+  <button class="icon-btn" onclick="openSearch()"><i class="fa-solid fa-bell"></i></button>
+  <button class="icon-btn" onclick="openProfile()"><i class="fa-solid fa-user"></i></button>
  </div>
 </header>
 
 <main id="homePage">
 
+<!-- HERO BANNER -->
 <section class="hero">
- <div class="eyebrow">WELCOME TO NV TRAVELSS</div>
- <h1>Explore The World<br>With NV Travelss</h1>
- <p>Your journey, our responsibility 💙<br>आपका सफर, हमारी ज़िम्मेदारी ❤️</p>
- <i class="fa-solid fa-plane plane"></i>
+ <div style="position:relative; z-index:2; max-width:65%;">
+  <h1>Explore The World<br>With NV Travelss</h1>
+  <p>Your journey, our responsibility 💙</p>
+ </div>
+ 
+ <div class="search-box" onclick="openSearch()">
+  <i class="fa-solid fa-location-dot pin"></i>
+  <input placeholder="Where do you want to go?" readonly>
+  <button class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
+ </div>
+
+ <div class="tags-row">
+  <div class="tag"><i class="fa-solid fa-mountain"></i> Mountains</div>
+  <div class="tag"><i class="fa-solid fa-umbrella-beach"></i> Beaches</div>
+  <div class="tag"><i class="fa-solid fa-city"></i> City Tours</div>
+  <div class="tag"><i class="fa-solid fa-compass"></i> Adventure</div>
+ </div>
 </section>
 
-<div class="heading"><h2>Where do you want to go?</h2><span>EXPLORE ALL</span></div>
-
-<section class="grid">
- <button class="service ride" onclick="openService('ride')">
-  <div class="symbol"><i class="fa-solid fa-car-side"></i></div>
-  <h3>Ride</h3><p>Book your ride easily</p>
+<!-- MAIN 4 CARDS - MATCHING EXACT COLOURS -->
+<section class="grid" style="margin-top:16px;">
+ 
+ <!-- 1. RIDE CARD (LIGHT BLUE) -->
+ <button class="service-card ride-card" onclick="openService('ride')">
+  <div class="card-top">
+   <div class="symbol-box"><i class="fa-solid fa-car-side"></i></div>
+   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+  </div>
+  <div class="card-title">Ride</div>
+  <div class="card-desc">Book your taxi<br>in seconds</div>
+  <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400" class="card-img" alt="Taxi Car">
  </button>
 
- <button class="service hotel" onclick="openService('hotel')">
-  <div class="symbol"><i class="fa-solid fa-hotel"></i></div>
-  <h3>Hotel</h3><p>Find your perfect stay</p>
+ <!-- 2. HOTEL CARD (PEACH / ORANGE) -->
+ <button class="service-card hotel-card" onclick="openService('hotel')">
+  <div class="card-top">
+   <div class="symbol-box"><i class="fa-solid fa-hotel"></i></div>
+   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+  </div>
+  <div class="card-title">Hotel</div>
+  <div class="card-desc">Comfortable stays<br>for your journey</div>
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400" class="card-img" alt="Hotel Room">
  </button>
 
- <button class="service package" onclick="openService('package')">
-  <div class="symbol"><i class="fa-solid fa-suitcase-rolling"></i></div>
-  <h3>Packages</h3><p>Explore tour packages</p>
+ <!-- 3. PACKAGES CARD (MINT GREEN) -->
+ <button class="service-card package-card" onclick="openService('package')">
+  <div class="card-top">
+   <div class="symbol-box"><i class="fa-solid fa-suitcase-rolling"></i></div>
+   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+  </div>
+  <div class="card-title">Packages</div>
+  <div class="card-desc">Discover amazing<br>tour packages</div>
+  <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400" class="card-img" alt="Tour Traveller">
  </button>
 
- <button class="service ticket" onclick="openService('tickets')">
-  <div class="symbol"><i class="fa-solid fa-ticket"></i></div>
-  <h3>Tickets</h3><p>Choose your journey</p>
-  <div class="ticket-tags"><span>Bus</span><span>Train</span><span>Flight</span></div>
+ <!-- 4. TICKETS CARD (PURPLE WITH SOLID BLUE, PURPLE, GREEN BUTTONS) -->
+ <button class="service-card ticket-card" onclick="openService('tickets')">
+  <div class="card-top">
+   <div class="symbol-box"><i class="fa-solid fa-ticket"></i></div>
+   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+  </div>
+  <div class="card-title">Tickets</div>
+  <div class="card-desc">Bus • Train • Flight<br>All in one place</div>
+  <div class="ticket-grid">
+   <div class="t-block bus"><i class="fa-solid fa-bus"></i><b>Bus</b><small>बस टिकट</small></div>
+   <div class="t-block train"><i class="fa-solid fa-train"></i><b>Train</b><small>ट्रेन टिकट</small></div>
+   <div class="t-block flight"><i class="fa-solid fa-plane"></i><b>Flight</b><small>हवाई टिकट</small></div>
+  </div>
  </button>
+
 </section>
 
-<div class="heading"><h2>Popular Destinations</h2><span>VIEW ALL</span></div>
-
+<!-- POPULAR DESTINATIONS -->
+<div class="heading"><h2><i class="fa-solid fa-location-dot" style="color:#1769e8"></i> Popular Destinations</h2><span onclick="openSearch()">View All →</span></div>
 <section class="destinations">
- <button class="destination" onclick="openDestination('Manali')">
-  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600" alt="Manali"><b>Manali</b>
+ <button class="dest-card" onclick="openDestination('Manali')">
+  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400" alt="Manali"><b><i class="fa-solid fa-location-dot"></i> Manali</b>
  </button>
- <button class="destination" onclick="openDestination('Goa')">
-  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600" alt="Goa"><b>Goa</b>
+ <button class="dest-card" onclick="openDestination('Goa')">
+  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400" alt="Goa"><b><i class="fa-solid fa-location-dot"></i> Goa</b>
  </button>
- <button class="destination" onclick="openDestination('Kashmir')">
-  <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=600" alt="Kashmir"><b>Kashmir</b>
+ <button class="dest-card" onclick="openDestination('Kashmir')">
+  <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=400" alt="Kashmir"><b><i class="fa-solid fa-location-dot"></i> Kashmir</b>
  </button>
- <button class="destination" onclick="openDestination('Shimla')">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600" alt="Shimla"><b>Shimla</b>
+ <button class="dest-card" onclick="openDestination('Shimla')">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400" alt="Shimla"><b><i class="fa-solid fa-location-dot"></i> Shimla</b>
  </button>
 </section>
 
-<div class="heading"><h2>Latest Reels</h2><span onclick="showReels()">SEE ALL</span></div>
-
+<!-- LATEST REELS -->
+<div class="heading"><h2><i class="fa-solid fa-circle-play" style="color:#1769e8"></i> Latest Reels</h2><span onclick="showReels()">View All →</span></div>
 <section class="reels-row">
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="Travel"><b>Travel Moments</b></button>
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=500" alt="Nature"><b>Explore Nature</b></button>
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Mountains"><b>New Places</b></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 1.2K</div></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 856</div></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 932</div></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 743</div></button>
 </section>
 
+<!-- HELP & EMERGENCY -->
 <section class="help-card">
  <h3><i class="fa-solid fa-headset" style="color:#1769e8"></i> Help & Emergency</h3>
  <div class="help-row"><span>NV Travelss Helpline</span><a href="tel:8450056438">8450056438 <i class="fa-solid fa-phone"></i></a></div>
@@ -166,13 +300,15 @@ main{padding:15px}
 
 </main>
 
+<!-- BOTTOM NAVIGATION BAR -->
 <nav class="bottom-nav">
  <button class="nav-item active" onclick="goHome(this)"><i class="fa-solid fa-house"></i>Home</button>
  <button class="nav-item" onclick="showReels(this)"><i class="fa-solid fa-clapperboard"></i>Reels</button>
  <button class="nav-item" onclick="openPost(this)"><i class="fa-solid fa-plus post-icon"></i>Post</button>
  <button class="nav-item" onclick="openSearch(this)"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
- <button class="nav-item" onclick="openProfile(this)"><i class="fa-regular fa-user"></i>Profile</button>
+ <button class="nav-item" onclick="openProfile(this)"><i class="fa-solid fa-user"></i>Profile</button>
 </nav>
+
 </div>
 
 <div class="modal-bg" id="modalBg" onclick="outsideClose(event)">
@@ -192,6 +328,18 @@ const vehicles=[
 
 let selectedVehicle='Sedan';
 let posts=[];
+
+// Permanent Customer Login System (Auto-fill)
+function getUserProfile(){
+ const savedUser = localStorage.getItem('nvUserProfile');
+ return savedUser ? JSON.parse(savedUser) : { name: '', phone: '' };
+}
+
+function saveUserProfile(name, phone){
+ if(name && phone){
+   localStorage.setItem('nvUserProfile', JSON.stringify({ name, phone }));
+ }
+}
 
 function notify(message){
  const box=document.getElementById('toast');
@@ -224,8 +372,8 @@ function openService(type){
  if(type==='hotel'){modal('Hotel Booking',bookingForm('hotel'));return}
  if(type==='package'){modal('Tour Packages',bookingForm('package'));return}
  if(type==='tickets'){
-  modal('Tickets',`
-   <div class="field"><label>SELECT TICKET</label>
+  modal('Tickets Booking',`
+   <div class="field"><label>SELECT TICKET TYPE</label>
     <select id="ticketType"><option>Bus Ticket</option><option>Train Ticket</option><option>Flight Ticket</option></select>
    </div>
    ${commonFields()}
@@ -242,24 +390,27 @@ function vehicleHTML(){
 function selectVehicle(name){selectedVehicle=name;rideForm()}
 
 function rideForm(){
+ const user = getUserProfile();
  modal('Book Your Ride',`
  <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Enter pickup location"></div>
  <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Enter destination"></div>
- <div class="field"><label>SELECT YOUR VEHICLE</label>${vehicleHTML()}</div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" placeholder="Enter your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+ <div class="field"><label>SELECT VEHICLE</label>${vehicleHTML()}</div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
  <button class="primary" onclick="submitBooking('ride')">Request Ride</button>`);
 }
 
 function commonFields(){
+ const user = getUserProfile();
  return `
  <div class="field"><label>FROM</label><input id="pickup" placeholder="Starting location"></div>
  <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Where to go?"></div>
  <div class="field"><label>TRAVEL DATE</label><input id="travelDate" type="date"></div>
  <div class="field"><label>PERSONS</label><input id="persons" type="number" min="1" value="1"></div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" placeholder="Your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>`;
+ <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>`;
 }
+
 function bookingForm(type){
  return commonFields()+`<button class="primary" onclick="submitBooking('${type}')">Send Request</button>`;
 }
@@ -271,9 +422,12 @@ function submitBooking(type){
  const phone=document.getElementById('customerPhone')?.value.trim();
 
  if(!pickup||!destination||!name||!/^[0-9]{10}$/.test(phone||'')){
-  notify('Please fill all details and enter a valid 10 digit number.');
+  notify('Please fill all details & valid 10 digit phone number.');
   return;
  }
+
+ // Save profile permanently for future auto-fill
+ saveUserProfile(name, phone);
 
  const selected=vehicles.find(v=>v[0]===selectedVehicle);
  const booking={
@@ -289,12 +443,12 @@ function submitBooking(type){
  list.unshift(booking);
  localStorage.setItem('nvBookings',JSON.stringify(list));
  closeModal();
- notify('Request saved. Call 9098533390 for confirmation.');
+ notify('Request saved! Call 9098533390 for confirmation.');
 }
 
 function openDestination(place){
- modal(place+' Tour',`
- <p style="font-size:12px;color:#718096;margin-bottom:15px">Plan your ${place} trip with NV Travelss.</p>
+ modal(place+' Tour Package',`
+ <p style="font-size:12px;color:#718096;margin-bottom:12px">Plan your dream trip to ${place} with NV Travelss.</p>
  ${bookingForm('package')}`);
 }
 
@@ -303,188 +457,98 @@ function openPost(el){
  modal('Create Post / Reel',`
  <div class="field"><label>SELECT PHOTO OR VIDEO</label><input id="postFile" type="file" accept="image/*,video/*"></div>
  <div class="field"><label>CAPTION</label><textarea id="postCaption" placeholder="Share your travel experience..."></textarea></div>
- <button class="primary" onclick="publishPost()">Publish Post</button>
- <p style="font-size:10px;color:#8190a6;margin-top:10px">Posts are visible on this device only until online storage is connected.</p>`);
+ <button class="primary" onclick="publishPost()">Publish Post</button>`);
 }
 
 function publishPost(){
  const file=document.getElementById('postFile').files[0];
  const caption=document.getElementById('postCaption').value.trim();
- if(!file){notify('Please select a photo or video.');return}
+ if(!file){notify('Please select photo or video.');return}
  const url=URL.createObjectURL(file);
- posts.unshift({
-  url,type:file.type.startsWith('video')?'video':'image',
-  caption,likes:0,comments:[]
- });
+ posts.unshift({url,type:file.type.startsWith('video')?'video':'image',caption,likes:0,comments:[]});
  closeModal();
  showReels();
- notify('Post added on this device.');
+ notify('Post added successfully.');
 }
 
 function showReels(el){
  if(el)setNav(el);
  const html=posts.map((p,i)=>`
  <article class="reel-post">
- ${p.type==='video'?`<video src="${p.url}" controls playsinline></video>`:`<img src="${p.url}" alt="Travel post">`}
+ ${p.type==='video'?`<video src="${p.url}" controls playsinline></video>`:`<img src="${p.url}">`}
  <div class="reel-caption">${safe(p.caption||'Travel with NV Travelss ✈️')}</div>
- <div class="reel-actions">
- <button onclick="likePost(${i},this)"><i class="fa-regular fa-heart"></i> Like</button>
- <button onclick="commentPost(${i})"><i class="fa-regular fa-comment"></i> Comment</button>
- <button onclick="sharePost(${i})"><i class="fa-solid fa-share"></i> Share</button>
- <button onclick="savePost(${i})"><i class="fa-regular fa-bookmark"></i> Save</button>
- </div></article>`).join('');
+ </article>`).join('');
 
  modal('NV Travelss Reels',`
- ${html||'<div class="empty">No uploaded reels yet. Tap below to upload your first travel reel.</div>'}
+ ${html||'<div class="empty">No reels uploaded yet.</div>'}
  <button class="primary" onclick="openPost()">+ Upload Reel / Post</button>`);
 }
 
 function safe(text){
- return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function likePost(i,button){
- posts[i].likes++;
- button.innerHTML='<i class="fa-solid fa-heart" style="color:red"></i> Liked';
-}
-function commentPost(i){
- modal('Comment',`
- <div class="field"><label>WRITE COMMENT</label><textarea id="commentText" placeholder="Write a comment..."></textarea></div>
- <button class="primary" onclick="saveComment(${i})">Post Comment</button>`);
-}
-function saveComment(i){
- const text=document.getElementById('commentText').value.trim();
- if(!text){notify('Write a comment first.');return}
- posts[i].comments.push(text);
- closeModal();
- notify('Comment added on this device.');
-}
-function sharePost(i){
- const text=posts[i].caption||'Travel with NV Travelss';
- if(navigator.share){navigator.share({title:'NV Travelss',text}).catch(()=>{})}
- else{notify('Sharing is not supported on this device.')}
-}
-function savePost(i){
- const saved=JSON.parse(localStorage.getItem('nvSaved')||'[]');
- saved.push(posts[i].caption||'NV Travelss Reel');
- localStorage.setItem('nvSaved',JSON.stringify(saved));
- notify('Reel saved on this device.');
+ return String(text||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
 function openSearch(el){
  if(el)setNav(el);
  modal('Search NV Travelss',`
- <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages, tickets..." oninput="searchItems()"></div>
+ <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages..." oninput="searchItems()"></div>
  <div id="searchResults">
- <button class="list-button" onclick="openDestination('Manali')">Manali</button>
- <button class="list-button" onclick="openDestination('Goa')">Goa</button>
- <button class="list-button" onclick="openDestination('Kashmir')">Kashmir</button>
- <button class="list-button" onclick="openDestination('Shimla')">Shimla</button>
+ <button class="list-button" onclick="openDestination('Manali')">Manali Tour</button>
+ <button class="list-button" onclick="openDestination('Goa')">Goa Beach Trip</button>
+ <button class="list-button" onclick="openDestination('Kashmir')">Kashmir Valley</button>
+ <button class="list-button" onclick="openDestination('Shimla')">Shimla Hills</button>
  </div>`);
 }
 
 function searchItems(){
  const q=document.getElementById('searchInput').value.toLowerCase();
-
  const items=[
-  {name:'Ride',type:'ride'},
-  {name:'Hotel',type:'hotel'},
-  {name:'Packages',type:'package'},
+  {name:'Ride Taxi',type:'ride'},
+  {name:'Hotel Booking',type:'hotel'},
+  {name:'Tour Package',type:'package'},
   {name:'Bus Ticket',type:'tickets'},
   {name:'Train Ticket',type:'tickets'},
   {name:'Flight Ticket',type:'tickets'},
-  {name:'Manali',place:'Manali'},
-  {name:'Goa',place:'Goa'},
-  {name:'Kashmir',place:'Kashmir'},
-  {name:'Shimla',place:'Shimla'}
+  {name:'Manali Package',type:'package'},
+  {name:'Goa Trip',type:'package'}
  ];
-
- const found=items.filter(x=>x.name.toLowerCase().includes(q));
-
- document.getElementById('searchResults').innerHTML=
- found.length
- ? found.map(x=>`
-   <button class="list-button" onclick="${
-    x.place
-    ? `openDestination('${x.place}')`
-    : `openService('${x.type}')`
-   }">${safe(x.name)}</button>
-  `).join('')
- : '<div class="empty">No results found</div>';
+ const res=items.filter(i=>i.name.toLowerCase().includes(q));
+ const box=document.getElementById('searchResults');
+ if(!res.length){box.innerHTML='<div class="empty">No matching results found.</div>';return;}
+ box.innerHTML=res.map(i=>`<button class="list-button" onclick="openService('${i.type}')"><i class="fa-solid fa-location-arrow"></i> ${i.name}</button>`).join('');
 }
 
 function openProfile(el){
  if(el)setNav(el);
-
+ const user=getUserProfile();
  const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
 
- modal('My Profile',`
+ modal('My Account & Profile',`
   <div class="profile-box">
    <div class="avatar"><i class="fa-solid fa-user"></i></div>
-   <div><b>NV Travelss Customer</b>
-   <small>Your travel account</small></div>
+   <div>
+    <b>${safe(user.name || 'NV Travelss User')}</b>
+    <small>${safe(user.phone ? '+91 ' + user.phone : 'Permanent profile not set yet')}</small>
+   </div>
   </div>
 
-  <button class="list-button" onclick="showMyBookings()">
-   <i class="fa-solid fa-ticket"></i> My Bookings (${bookings.length})
-  </button>
-
-  <button class="list-button" onclick="showSavedItems()">
-   <i class="fa-solid fa-bookmark"></i> Saved Reels
-  </button>
-
-  <button class="list-button" onclick="showHelp()">
-   <i class="fa-solid fa-headset"></i> Help & Emergency
-  </button>
- `);
-}
-
-function showMyBookings(){
- const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
-
- const html=bookings.map(b=>`
-  <div class="help-card">
-   <b>${safe(b.type==='ride'?'Ride Booking':
-   b.type==='hotel'?'Hotel Booking':
-   b.type==='package'?'Tour Package':
-   (document.getElementById('ticketType')?.value||'Ticket Booking'))}</b>
-   <p style="font-size:12px;margin-top:8px">
-    ${safe(b.pickup)} → ${safe(b.destination)}
-   </p>
-   <p style="font-size:11px;margin-top:5px">
-    Name: ${safe(b.name)}<br>
-    Vehicle: ${safe(b.vehicle||'Not applicable')}<br>
-    Status: ${safe(b.status)}
-   </p>
-  </div>
- `).join('');
-
- modal('My Bookings',html||'<div class="empty">No bookings yet.</div>');
-}
-
-function showSavedItems(){
- const saved=JSON.parse(localStorage.getItem('nvSaved')||'[]');
-
- modal('Saved Reels',
- saved.length
- ? saved.map(x=>`<div class="list-button">${safe(x)}</div>`).join('')
- : '<div class="empty">No saved reels yet.</div>');
-}
-
-function showHelp(){
- modal('Help & Emergency',`
-  <div class="help-card">
-   <b>NV Travelss Helpline</b>
-   <a class="primary" style="display:block;text-align:center;text-decoration:none;margin-top:10px"
-    href="tel:8450056438">Call 8450056438</a>
-  </div>
-  <div class="help-card">
-   <b>Police Emergency</b>
-   <a class="primary" style="display:block;text-align:center;text-decoration:none;background:#d62828;margin-top:10px"
-    href="tel:112">Call 112</a>
+  <div style="background:#fff;padding:14px;border-radius:14px;border:1px solid #e9eef6;margin-bottom:15px;">
+    <h4 style="font-size:12px;margin-bottom:10px;color:#2d3748;">Permanent Customer Details (Auto-fill)</h4>
+    <div class="field"><label>YOUR NAME</label><input id="profName" value="${safe(user.name)}" placeholder="Enter your full name"></div>
+    <div class="field"><label>MOBILE NUMBER</label><input id="profPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+    <button class="primary" style="padding:10px;font-size:12px;" onclick="updateProfileFromModal()">Save Details Permanently</button>
   </div>
  `);
 }
 
+function updateProfileFromModal(){
+ const name=document.getElementById('profName')?.value.trim();
+ const phone=document.getElementById('profPhone')?.value.trim();
+ if(!name||!/^[0-9]{10}$/.test(phone||'')){notify('Enter valid name and 10 digit mobile.');return;}
+ saveUserProfile(name, phone);
+ notify('Profile saved permanently!');
+ openProfile();
+}
 </script>
 </body>
 </html>
