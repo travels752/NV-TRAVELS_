@@ -3,422 +3,384 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07152f">
 <title>NV TRAVELSS</title>
 
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
-body {
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background-color:#0b132b;
-  color:#1a1a1a;
-}
-.no-scrollbar::-webkit-scrollbar {display:none;}
-.no-scrollbar {
-  -ms-overflow-style:none;
-  scrollbar-width:none;
-}
-
-/* 3D Depth Utilities */
-.perspective-container {perspective:1000px;}
-.card-3d {
-  transform-style:preserve-3d;
-  transition:all .3s cubic-bezier(.25,.8,.25,1);
-  box-shadow:0 10px 20px -5px rgba(0,0,0,.15),
-  0 6px 6px -5px rgba(0,0,0,.08),
-  inset 0 2px 4px rgba(255,255,255,.6);
-}
-.card-3d:hover,.card-3d:active {
-  transform:translateY(-6px) rotateX(4deg) rotateY(-2deg) scale(1.02);
-  box-shadow:0 20px 25px -5px rgba(0,0,0,.2),
-  0 10px 10px -5px rgba(0,0,0,.1),
-  inset 0 2px 4px rgba(255,255,255,.8);
-}
-.badge-3d {
-  transform-style:preserve-3d;
-  transition:all .2s ease;
-  box-shadow:0 4px 6px -1px rgba(0,0,0,.2),
-  inset 0 1px 2px rgba(255,255,255,.4);
-}
-.badge-3d:hover,.badge-3d:active {
-  transform:translateZ(12px) scale(1.05);
-  box-shadow:0 8px 12px -2px rgba(0,0,0,.3);
-}
-.img-3d {
-  transform:translateZ(20px);
-  filter:drop-shadow(0 10px 8px rgba(0,0,0,.2));
-}
-
-/* Separate service window - Home Page styles remain untouched */
-#nv-service-window {
-  position:fixed;
-  inset:0;
-  z-index:999999;
-  display:none;
-  overflow-y:auto;
-  background:#0b132b;
-  padding:18px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-}
-.nv-panel {
-  max-width:460px;
-  margin:15px auto;
-  padding:22px;
-  background:white;
-  border-radius:22px;
-  color:#172b4d;
-}
-.nv-panel label {
-  display:block;
-  margin:13px 0 6px;
-  font-size:13px;
-  font-weight:700;
-}
-.nv-panel input,.nv-panel select,.nv-panel textarea {
-  width:100%;
-  padding:13px;
-  border:1px solid #dce3ed;
-  border-radius:11px;
-  background:#f9fbfd;
-  box-sizing:border-box;
-  color:#172b4d;
-}
-.nv-action {
-  width:100%;
-  padding:14px;
-  margin-top:18px;
-  border:0;
-  border-radius:12px;
-  background:#0759d8;
-  color:white;
-  font-weight:800;
-}
-.nv-close {
-  width:36px;
-  height:36px;
-  border:0;
-  border-radius:50%;
-  background:#0b132b;
-  color:white;
-  font-size:22px;
-}
-.nv-reel {
-  width:100%;
-  border-radius:14px;
-  margin-top:12px;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#07152f;color:#142441}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:520px;min-height:100vh;margin:auto;background:#f7f9fd;position:relative;padding-bottom:90px;overflow:hidden}
+header{height:68px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:10;border-bottom:1px solid #edf0f5}
+.logo{font-size:17px;font-weight:900;color:#10264b}
+.logo small{display:block;font-size:9px;letter-spacing:1px;color:#8190a6}
+.icon{border:0;background:#f0f5fc;border-radius:12px;padding:12px;color:#1769e8;margin-left:5px}
+main{padding:15px}
+.hero{padding:24px 20px;border-radius:24px;color:#fff;background:linear-gradient(120deg,#071b40,#1259b2,#10a9c2);min-height:210px;position:relative;overflow:hidden;box-shadow:0 12px 28px #1259b233}
+.hero h1{font-size:27px;line-height:1.2;margin:12px 0}
+.hero p{font-size:12px;color:#e3f1ff;line-height:1.7}
+.hero .plane{position:absolute;right:20px;bottom:24px;font-size:60px;opacity:.8}
+.eyebrow{font-size:10px;letter-spacing:2px;color:#8ceeff;font-weight:800}
+.heading{display:flex;justify-content:space-between;align-items:center;margin:23px 2px 13px}
+.heading h2{font-size:16px;font-weight:800}
+.heading span{font-size:10px;color:#1769e8;font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.service{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;text-align:left;min-height:112px;box-shadow:0 5px 15px #18365b0a;position:relative}
+.service .symbol{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;margin-bottom:10px;font-size:19px}
+.service h3{font-size:13px}.service p{font-size:10px;color:#8592a5;margin-top:5px}
+.ride .symbol{background:#e8f1ff;color:#1769e8}
+.hotel .symbol{background:#fff0e5;color:#e98942}
+.package .symbol{background:#f0eaff;color:#8555dc}
+.ticket .symbol{background:#e2faf6;color:#0b9f91}
+.ticket-tags{display:flex;gap:5px;margin-top:8px}
+.ticket-tags span{font-size:9px;background:#eef5ff;color:#42618b;padding:5px 7px;border-radius:20px;font-weight:800}
+.destinations{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.destination{height:125px;position:relative;border:0;border-radius:16px;overflow:hidden;background:#dce5f2}
+.destination img{width:100%;height:100%;object-fit:cover}
+.destination:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,#07152fbb)}
+.destination b{position:absolute;bottom:12px;left:12px;color:#fff;z-index:1}
+.reels-row{display:flex;gap:10px;overflow:auto}
+.reel-thumb{min-width:145px;height:185px;border:0;border-radius:16px;overflow:hidden;position:relative;background:#dce5f2}
+.reel-thumb img{width:100%;height:100%;object-fit:cover}
+.reel-thumb b{position:absolute;bottom:12px;left:10px;color:white;z-index:2}
+.help-card{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;margin-top:22px}
+.help-card h3{font-size:14px;margin-bottom:10px}
+.help-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid #edf1f6;font-size:12px}
+.help-row a{color:#1769e8;font-weight:800;text-decoration:none}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:72px;background:white;border-top:1px solid #e9eef6;display:flex;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -6px 20px #10294b0b}
+.nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:9px;font-weight:700;min-width:54px}
+.nav-item i{font-size:18px}
+.nav-item.active{color:#1769e8}
+.post-icon{width:42px;height:40px;border-radius:13px;background:linear-gradient(135deg,#1769e8,#20bfd8);color:white!important;display:grid;place-items:center;font-size:18px!important}
+.modal-bg{display:none;position:fixed;inset:0;background:#06152f99;z-index:50;align-items:flex-end;justify-content:center}
+.modal-bg.show{display:flex}
+.modal{width:min(100%,520px);max-height:90vh;overflow:auto;background:white;border-radius:24px 24px 0 0;padding:20px 17px 30px}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}
+.modal-head h2{font-size:18px}
+.close{width:35px;height:35px;border:0;border-radius:11px;background:#f0f3f8;color:#42536e}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:11px;font-weight:800;color:#53627a;margin-bottom:7px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:13px}
+.field textarea{min-height:80px}
+.primary{width:100%;border:0;border-radius:13px;padding:14px;background:linear-gradient(110deg,#1769e8,#13b5d1);color:white;font-weight:800;font-size:13px}
+.vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vehicle{padding:11px;border:1px solid #e0e7f1;border-radius:12px;background:#fff;text-align:left}
+.vehicle.selected{border:2px solid #1769e8;background:#eff6ff;padding:10px}
+.vehicle b{display:block;font-size:11px}
+.vehicle small{font-size:10px;color:#718096}
+.list-button{width:100%;padding:14px 4px;border:0;border-bottom:1px solid #edf1f6;background:white;text-align:left;color:#263a59;font-size:12px;font-weight:700}
+.list-button i{width:25px;color:#1769e8}
+.profile-box{display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:15px;margin-bottom:12px}
+.avatar{width:45px;height:45px;border-radius:14px;background:linear-gradient(135deg,#1769e8,#18bfd6);color:white;display:grid;place-items:center}
+.profile-box b{font-size:13px}.profile-box small{display:block;color:#8793a6;font-size:10px}
+.reel-post{border:1px solid #e9eef6;border-radius:15px;overflow:hidden;margin-bottom:14px}
+.reel-post img,.reel-post video{width:100%;max-height:390px;object-fit:cover;display:block;background:#07152f}
+.reel-caption{padding:10px 12px;font-size:12px}
+.reel-actions{display:flex;justify-content:space-around;padding:10px}
+.reel-actions button{border:0;background:none;color:#53627a;font-size:11px}
+.empty{text-align:center;padding:25px 10px;color:#8592a5;font-size:12px}
+.toast{display:none;position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#10294b;color:white;padding:11px 16px;border-radius:25px;font-size:11px;z-index:100;white-space:nowrap}
 </style>
 </head>
 
-<body class="flex justify-center items-center min-h-screen p-0 sm:p-4 bg-slate-900">
+<body>
+<div class="app">
 
-<div class="w-full max-w-md bg-white min-h-screen sm:min-h-[850px] sm:h-[850px] sm:rounded-[40px] shadow-2xl overflow-hidden flex flex-col relative border border-gray-100">
-
-<div class="flex-1 overflow-y-auto no-scrollbar pb-24">
-
-<!-- HERO -->
-<div class="relative h-[270px] w-full">
-<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Mountain Header" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black/80"></div>
-
-<header class="px-5 pt-5 pb-3 flex justify-between items-center absolute top-0 w-full z-20">
-<div class="flex items-center space-x-2.5">
-<div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-cyan-400 flex items-center justify-center text-white shadow-lg shadow-blue-500/40">
-<i class="fa-solid fa-paper-plane text-lg transform -rotate-12"></i>
-</div>
-<div>
-<h1 class="text-xl font-extrabold tracking-wider text-white flex items-center">
-NV TRAVEL<span class="text-cyan-400">S</span><span>S</span>
-</h1>
-<p class="text-[10px] text-white/90 font-medium tracking-wide">Travel • Ride • Hotel • Packages • Tickets</p>
-</div>
-</div>
-<div class="flex items-center space-x-3 text-white">
-<button onclick="choose('Notifications')" class="relative w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-<i class="fa-solid fa-bell text-sm"></i>
-<span class="w-2.5 h-2.5 bg-red-500 border-2 border-slate-900 rounded-full absolute top-1 right-1"></span>
-</button>
-<button onclick="choose('Profile')" class="w-9 h-9 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/20">
-<i class="fa-solid fa-user text-sm"></i>
-</button>
-</div>
+<header>
+ <div class="logo">NV TRAVELSS<small>TRAVEL • RIDE • HOTEL • PACKAGES</small></div>
+ <div>
+  <button class="icon" onclick="openSearch()"><i class="fa-solid fa-magnifying-glass"></i></button>
+  <button class="icon" onclick="openProfile()"><i class="fa-regular fa-user"></i></button>
+ </div>
 </header>
 
-<div class="absolute bottom-10 px-5 z-20 text-white w-full">
-<h2 class="text-[26px] font-extrabold text-white leading-tight drop-shadow-md">
-Explore The World <br>With <span class="text-[#4facfe]">NV Travelss</span>
-</h2>
-<p class="text-xs text-white/90 mt-1 font-medium">Your journey, our responsibility 💙</p>
-</div>
-<div class="absolute bottom-0 w-full h-6 bg-white rounded-t-[30px] z-10"></div>
+<main id="homePage">
+
+<section class="hero">
+ <div class="eyebrow">WELCOME TO NV TRAVELSS</div>
+ <h1>Explore The World<br>With NV Travelss</h1>
+ <p>Your journey, our responsibility 💙<br>आपका सफर, हमारी ज़िम्मेदारी ❤️</p>
+ <i class="fa-solid fa-plane plane"></i>
+</section>
+
+<div class="heading"><h2>Where do you want to go?</h2><span>EXPLORE ALL</span></div>
+
+<section class="grid">
+ <button class="service ride" onclick="openService('ride')">
+  <div class="symbol"><i class="fa-solid fa-car-side"></i></div>
+  <h3>Ride</h3><p>Book your ride easily</p>
+ </button>
+
+ <button class="service hotel" onclick="openService('hotel')">
+  <div class="symbol"><i class="fa-solid fa-hotel"></i></div>
+  <h3>Hotel</h3><p>Find your perfect stay</p>
+ </button>
+
+ <button class="service package" onclick="openService('package')">
+  <div class="symbol"><i class="fa-solid fa-suitcase-rolling"></i></div>
+  <h3>Packages</h3><p>Explore tour packages</p>
+ </button>
+
+ <button class="service ticket" onclick="openService('tickets')">
+  <div class="symbol"><i class="fa-solid fa-ticket"></i></div>
+  <h3>Tickets</h3><p>Choose your journey</p>
+  <div class="ticket-tags"><span>Bus</span><span>Train</span><span>Flight</span></div>
+ </button>
+</section>
+
+<div class="heading"><h2>Popular Destinations</h2><span>VIEW ALL</span></div>
+
+<section class="destinations">
+ <button class="destination" onclick="openDestination('Manali')">
+  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=600" alt="Manali"><b>Manali</b>
+ </button>
+ <button class="destination" onclick="openDestination('Goa')">
+  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=600" alt="Goa"><b>Goa</b>
+ </button>
+ <button class="destination" onclick="openDestination('Kashmir')">
+  <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=600" alt="Kashmir"><b>Kashmir</b>
+ </button>
+ <button class="destination" onclick="openDestination('Shimla')">
+  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=600" alt="Shimla"><b>Shimla</b>
+ </button>
+</section>
+
+<div class="heading"><h2>Latest Reels</h2><span onclick="showReels()">SEE ALL</span></div>
+
+<section class="reels-row">
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=500" alt="Travel"><b>Travel Moments</b></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=500" alt="Nature"><b>Explore Nature</b></button>
+ <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=500" alt="Mountains"><b>New Places</b></button>
+</section>
+
+<section class="help-card">
+ <h3><i class="fa-solid fa-headset" style="color:#1769e8"></i> Help & Emergency</h3>
+ <div class="help-row"><span>NV Travelss Helpline</span><a href="tel:8450056438">8450056438 <i class="fa-solid fa-phone"></i></a></div>
+ <div class="help-row"><span>Police Emergency</span><a href="tel:112">112 <i class="fa-solid fa-phone"></i></a></div>
+ <div class="help-row"><span>Booking Support</span><a href="tel:9098533390">9098533390 <i class="fa-solid fa-phone"></i></a></div>
+</section>
+
+</main>
+
+<nav class="bottom-nav">
+ <button class="nav-item active" onclick="goHome(this)"><i class="fa-solid fa-house"></i>Home</button>
+ <button class="nav-item" onclick="showReels(this)"><i class="fa-solid fa-clapperboard"></i>Reels</button>
+ <button class="nav-item" onclick="openPost(this)"><i class="fa-solid fa-plus post-icon"></i>Post</button>
+ <button class="nav-item" onclick="openSearch(this)"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+ <button class="nav-item" onclick="openProfile(this)"><i class="fa-regular fa-user"></i>Profile</button>
+</nav>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="px-4 relative z-10 -mt-2 perspective-container">
-
-<!-- SEARCH -->
-<div class="bg-white rounded-full shadow-xl shadow-gray-200/60 p-1.5 flex items-center border border-gray-100 mb-4 h-14">
-<div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-base ml-1">
-<i class="fa-solid fa-location-dot"></i>
+<div class="modal-bg" id="modalBg" onclick="outsideClose(event)">
+ <div class="modal">
+  <div class="modal-head"><h2 id="modalTitle">NV Travelss</h2><button class="close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div id="modalContent"></div>
+ </div>
 </div>
-<input id="homeSearch" type="text" placeholder="Where do you want to go?" class="flex-1 bg-transparent border-none outline-none px-3 text-xs font-semibold text-gray-800 placeholder-gray-400">
-<button onclick="choose('Search')" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white shadow-md shadow-blue-300">
-<i class="fa-solid fa-arrow-right text-sm"></i>
-</button>
-</div>
-
-<!-- FILTERS -->
-<div class="flex space-x-2 overflow-x-auto no-scrollbar pb-3 mb-2">
-<button onclick="choose('Mountains')" class="bg-slate-800 text-white px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap shadow-md">
-<i class="fa-solid fa-mountain text-xs"></i><span>Mountains</span>
-</button>
-<button onclick="choose('Beaches')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
-<i class="fa-solid fa-umbrella-beach text-xs text-blue-500"></i><span>Beaches</span>
-</button>
-<button onclick="choose('City Tours')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
-<i class="fa-solid fa-city text-xs text-blue-500"></i><span>City Tours</span>
-</button>
-<button onclick="choose('Adventure')" class="bg-white text-gray-600 px-4 py-2 rounded-2xl text-xs font-semibold flex items-center space-x-1.5 whitespace-nowrap border border-gray-100 shadow-sm">
-<i class="fa-solid fa-compass text-xs text-blue-500"></i><span>Adventure</span>
-</button>
-</div>
-
-<!-- 3D CATEGORY CARDS -->
-<div class="grid grid-cols-2 gap-3.5 mb-5">
-
-<div onclick="choose('Ride')" class="card-3d bg-gradient-to-br from-blue-100 via-blue-50 to-blue-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-blue-200/80">
-<div class="z-10">
-<h3 class="font-extrabold text-xl text-slate-900 leading-tight">Ride</h3>
-<p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Book your taxi<br>in seconds</p>
-</div>
-<div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-blue-600 shadow-sm absolute top-4 right-4 z-10">
-<i class="fa-solid fa-chevron-right text-xs"></i>
-</div>
-<div class="absolute -right-4 -bottom-2 w-32 h-20 z-0 img-3d">
-<img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=400&q=80" alt="Car" class="w-full h-full object-cover">
-</div>
-</div>
-
-<div onclick="choose('Hotel')" class="card-3d bg-gradient-to-br from-orange-100 via-orange-50 to-amber-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-amber-200/80">
-<div class="z-10">
-<h3 class="font-extrabold text-xl text-slate-900 leading-tight">Hotel</h3>
-<p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Comfortable stays<br>for your journey</p>
-</div>
-<div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-amber-600 shadow-sm absolute top-4 right-4 z-10">
-<i class="fa-solid fa-chevron-right text-xs"></i>
-</div>
-<div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
-<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=400&q=80" alt="Hotel" class="w-full h-full object-cover">
-</div>
-</div>
-
-<div onclick="choose('Packages')" class="card-3d bg-gradient-to-br from-emerald-100 via-emerald-50 to-teal-200 rounded-3xl p-4 relative overflow-hidden h-[180px] flex flex-col justify-between cursor-pointer border border-emerald-200/80">
-<div class="z-10">
-<h3 class="font-extrabold text-xl text-slate-900 leading-tight">Packages</h3>
-<p class="text-[11px] text-slate-600 mt-0.5 font-semibold leading-tight">Discover amazing<br>tour packages</p>
-</div>
-<div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-sm absolute top-4 right-4 z-10">
-<i class="fa-solid fa-chevron-right text-xs"></i>
-</div>
-<div class="absolute -right-4 -bottom-2 w-36 h-22 z-0 img-3d">
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Packages" class="w-full h-full object-cover">
-</div>
-</div>
-
-<div onclick="choose('Tickets')" class="card-3d bg-gradient-to-br from-purple-100 via-indigo-50 to-purple-200 rounded-3xl p-4 relative overflow-hidden h-[210px] flex flex-col justify-between cursor-pointer border border-purple-200/80">
-<div>
-<div class="flex items-center justify-between">
-<h3 class="font-extrabold text-xl text-slate-900 leading-tight">Tickets</h3>
-<div class="w-8 h-8 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm">
-<i class="fa-solid fa-chevron-right text-xs"></i>
-</div>
-</div>
-<p class="text-[11px] text-purple-900 font-semibold mt-1">Bus • Train • Flight<br>All in one place</p>
-</div>
-<div class="grid grid-cols-3 gap-1.5 z-10 mt-auto">
-<div onclick="event.stopPropagation();choose('Bus Ticket')" class="badge-3d bg-gradient-to-tr from-blue-700 to-blue-500 text-white rounded-xl p-2 text-center">
-<i class="fa-solid fa-bus text-xs mb-0.5 block"></i>
-<p class="text-[10px] font-extrabold leading-none">Bus</p>
-<p class="text-[8px] font-medium text-blue-100 mt-0.5">बस टिकट</p>
-</div>
-<div onclick="event.stopPropagation();choose('Train Ticket')" class="badge-3d bg-gradient-to-tr from-indigo-700 to-indigo-500 text-white rounded-xl p-2 text-center">
-<i class="fa-solid fa-train text-xs mb-0.5 block"></i>
-<p class="text-[10px] font-extrabold leading-none">Train</p>
-<p class="text-[8px] font-medium text-indigo-100 mt-0.5">ट्रेन टिकट</p>
-</div>
-<div onclick="event.stopPropagation();choose('Flight Ticket')" class="badge-3d bg-gradient-to-tr from-teal-700 to-teal-500 text-white rounded-xl p-2 text-center">
-<i class="fa-solid fa-plane text-xs mb-0.5 block"></i>
-<p class="text-[10px] font-extrabold leading-none">Flight</p>
-<p class="text-[8px] font-medium text-teal-100 mt-0.5">हवाई टिकट</p>
-</div>
-</div>
-</div>
-</div>
-
-<!-- DESTINATIONS -->
-<div class="mb-5">
-<div class="flex justify-between items-center mb-2.5">
-<h3 class="font-bold text-base text-gray-900 flex items-center">
-<i class="fa-solid fa-circle text-blue-600 text-xs mr-2"></i>Popular Destinations
-</h3>
-<button onclick="choose('View All Destinations')" class="text-xs font-bold text-blue-600">View All <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-</div>
-
-<div class="flex space-x-2.5 overflow-x-auto no-scrollbar pb-1">
-
-<div onclick="choose('Manali')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=400&q=80" alt="Manali" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute bottom-2 left-2 flex items-center text-white"><i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i><span class="font-bold text-xs">Manali</span></div>
-</div>
-
-<div onclick="choose('Goa')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Goa" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute bottom-2 left-2 flex items-center text-white"><i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i><span class="font-bold text-xs">Goa</span></div>
-</div>
-
-<div onclick="choose('Kashmir')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=400&q=80" alt="Kashmir" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute bottom-2 left-2 flex items-center text-white"><i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i><span class="font-bold text-xs">Kashmir</span></div>
-</div>
-
-<div onclick="choose('Shimla')" class="w-28 h-36 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=400&q=80" alt="Shimla" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute bottom-2 left-2 flex items-center text-white"><i class="fa-solid fa-location-dot text-[10px] text-blue-400 mr-1"></i><span class="font-bold text-xs">Shimla</span></div>
-</div>
-
-</div>
-</div>
-
-<!-- LATEST REELS -->
-<div class="mb-4">
-<div class="flex justify-between items-center mb-2.5">
-<h3 class="font-bold text-base text-gray-900 flex items-center">
-<i class="fa-solid fa-circle text-blue-600 text-xs mr-2"></i>Latest Reels
-</h3>
-<button onclick="choose('View All Reels')" class="text-xs font-bold text-blue-600">View All <i class="fa-solid fa-chevron-right text-[10px]"></i></button>
-</div>
-
-<div class="flex space-x-2.5 overflow-x-auto no-scrollbar pb-1">
-
-<div onclick="choose('Reel 1')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=400&q=80" alt="Reel 1" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white"><i class="fa-solid fa-play text-[8px]"></i></div>
-<div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white"><i class="fa-solid fa-heart text-red-500 text-[10px]"></i><span class="font-bold text-[10px]">1.2K</span></div>
-</div>
-
-<div onclick="choose('Reel 2')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Reel 2" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white"><i class="fa-solid fa-play text-[8px]"></i></div>
-<div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white"><i class="fa-solid fa-heart text-red-500 text-[10px]"></i><span class="font-bold text-[10px]">856</span></div>
-</div>
-
-<div onclick="choose('Reel 3')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="Reel 3" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white"><i class="fa-solid fa-play text-[8px]"></i></div>
-<div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white"><i class="fa-solid fa-heart text-red-500 text-[10px]"></i><span class="font-bold text-[10px]">932</span></div>
-</div>
-
-<div onclick="choose('Reel 4')" class="w-24 h-32 rounded-2xl overflow-hidden relative flex-shrink-0 cursor-pointer shadow-sm border border-gray-100">
-<img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=400&q=80" alt="Reel 4" class="w-full h-full object-cover">
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-<div class="absolute top-1.5 left-1.5 w-5 h-5 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white"><i class="fa-solid fa-play text-[8px]"></i></div>
-<div class="absolute bottom-2 left-2 flex items-center space-x-1 text-white"><i class="fa-solid fa-heart text-red-500 text-[10px]"></i><span class="font-bold text-[10px]">1.5K</span></div>
-</div>
-
-</div>
-</div>
-
-</div>
-</div>
-
-<!-- SERVICE WINDOW -->
-<div id="nv-service-window">
-  <div class="nv-panel">
-    <div class="flex justify-between items-center mb-5">
-      <h2 id="nv-window-title" class="text-xl font-extrabold">NV TRAVELSS</h2>
-      <button class="nv-close" onclick="closeNVWindow()">×</button>
-    </div>
-    <div id="nv-window-content"></div>
-  </div>
-</div>
+<div class="toast" id="toast"></div>
 
 <script>
-(function () {
-"use strict";
+const vehicles=[
+ ['Bike',10],['Auto',15],['Hatchback',16],['Sedan',18],
+ ['SUV',22],['MUV',24],['Premium',30],['6–7 Seater',25],
+ ['8–12 Seater',30],['Tempo Traveller',35],['Mini Bus',45],['Bus',60]
+];
 
-const serviceWindow = document.getElementById("nv-service-window");
-const windowTitle = document.getElementById("nv-window-title");
-const windowContent = document.getElementById("nv-window-content");
+let selectedVehicle='Sedan';
+let posts=[];
 
-const fields = {
-  ride: {
-    title:"Ride Booking",
-    items:[
-      ["Pickup Location","text"],
-      ["Destination","text"],
-      ["Travel Date","date"],
-      ["Travel Time","time"],
-      ["Vehicle","select",["Bike","Auto","Hatchback","Sedan","SUV","MUV","Premium","6-7 Seater","8-12 Seater","Tempo Traveller","Mini Bus","Bus"]]
-    ]
-  },
-  hotel:{
-    title:"Hotel Booking",
-    items:[
-      ["City / Location","text"],
-      ["Check-in Date","date"],
-      ["Check-out Date","date"],
-      ["Guests","number"]
-    ]
-  },
-  packages:{
-    title:"Tour Packages",
-    items:[
-      ["Destination","text"],
-      ["Number of Days","number"],
-      ["Travel Date","date"],
-      ["Travelers","number"]
-    ]
-  },
-  bus:{
-    title:"Bus Ticket Request",
-    items:[
-      ["From","text"],["To","text"],
-      ["Journey Date","date"],["Passengers","number"]
-    ]
-  },
-  train:{
-    title:"Train Ticket Request",
-    items:[
-      ["From Station","text"],["To Station","text"],
-      ["Journey Date","date"],["Passengers","number"]
-    ]
-  },
-  flight:{
-    title:"Flight Ticket Request",
-    items:[
-      ["From City / Airport","text"],["To City / Airport","text"],
-      ["Departure Date","date"],["Passengers","number"]
-    ]
-  }
-};
-
-function showWindow(title, html) {
-  windowTitle.textContent = title;
-  windowContent.innerHTML = html;
-  serviceWindow.style.display = "block";
-  serviceWindow.scrollTop = 0;
+function notify(message){
+ const box=document.getElementById('toast');
+ box.textContent=message;
+ box.style.display='block';
+ clearTimeout(window.toastTimer);
+ window.toastTimer=setTimeout(()=>box.style.display='none',2500);
 }
 
-window.closeNVWindow = function () {
-  serviceWindow.style.display = "none";
-  windowContent.innerHTM
+function modal(title,content){
+ document.getElementById('modalTitle').textContent=title;
+ document.getElementById('modalContent').innerHTML=content;
+ document.getElementById('modalBg').classList.add('show');
+}
+function closeModal(){document.getElementById('modalBg').classList.remove('show')}
+function outsideClose(e){if(e.target.id==='modalBg')closeModal()}
+
+function setNav(el){
+ document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+ if(el)el.classList.add('active');
+}
+function goHome(el){
+ setNav(el);
+ closeModal();
+ document.getElementById('homePage').style.display='block';
+}
+
+function openService(type){
+ if(type==='ride'){rideForm();return}
+ if(type==='hotel'){modal('Hotel Booking',bookingForm('hotel'));return}
+ if(type==='package'){modal('Tour Packages',bookingForm('package'));return}
+ if(type==='tickets'){
+  modal('Tickets',`
+   <div class="field"><label>SELECT TICKET</label>
+    <select id="ticketType"><option>Bus Ticket</option><option>Train Ticket</option><option>Flight Ticket</option></select>
+   </div>
+   ${commonFields()}
+   <button class="primary" onclick="submitBooking('ticket')">Send Ticket Request</button>`);
+ }
+}
+
+function vehicleHTML(){
+ return `<div class="vehicle-grid">${vehicles.map(v=>`
+ <button class="vehicle ${selectedVehicle===v[0]?'selected':''}" onclick="selectVehicle('${v[0]}')">
+ <b>${v[0]}</b><small>₹${v[1]} / km</small></button>`).join('')}</div>`;
+}
+
+function selectVehicle(name){selectedVehicle=name;rideForm()}
+
+function rideForm(){
+ modal('Book Your Ride',`
+ <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Enter pickup location"></div>
+ <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Enter destination"></div>
+ <div class="field"><label>SELECT YOUR VEHICLE</label>${vehicleHTML()}</div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" placeholder="Enter your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
+ <button class="primary" onclick="submitBooking('ride')">Request Ride</button>`);
+}
+
+function commonFields(){
+ return `
+ <div class="field"><label>FROM</label><input id="pickup" placeholder="Starting location"></div>
+ <div class="field"><label>DESTINATION</label><input id="destination" placeholder="Where to go?"></div>
+ <div class="field"><label>TRAVEL DATE</label><input id="travelDate" type="date"></div>
+ <div class="field"><label>PERSONS</label><input id="persons" type="number" min="1" value="1"></div>
+ <div class="field"><label>YOUR NAME</label><input id="customerName" placeholder="Your name"></div>
+ <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>`;
+}
+function bookingForm(type){
+ return commonFields()+`<button class="primary" onclick="submitBooking('${type}')">Send Request</button>`;
+}
+
+function submitBooking(type){
+ const pickup=document.getElementById('pickup')?.value.trim();
+ const destination=document.getElementById('destination')?.value.trim();
+ const name=document.getElementById('customerName')?.value.trim();
+ const phone=document.getElementById('customerPhone')?.value.trim();
+
+ if(!pickup||!destination||!name||!/^[0-9]{10}$/.test(phone||'')){
+  notify('Please fill all details and enter a valid 10 digit number.');
+  return;
+ }
+
+ const selected=vehicles.find(v=>v[0]===selectedVehicle);
+ const booking={
+  id:Date.now(),type,pickup,destination,name,phone,
+  vehicle:type==='ride'?selectedVehicle:'',
+  rate:type==='ride'?selected[1]:'',
+  date:document.getElementById('travelDate')?.value||'',
+  persons:document.getElementById('persons')?.value||'1',
+  status:'Request saved on this device'
+ };
+
+ const list=JSON.parse(localStorage.getItem('nvBookings')||'[]');
+ list.unshift(booking);
+ localStorage.setItem('nvBookings',JSON.stringify(list));
+ closeModal();
+ notify('Request saved. Call 9098533390 for confirmation.');
+}
+
+function openDestination(place){
+ modal(place+' Tour',`
+ <p style="font-size:12px;color:#718096;margin-bottom:15px">Plan your ${place} trip with NV Travelss.</p>
+ ${bookingForm('package')}`);
+}
+
+function openPost(el){
+ if(el)setNav(el);
+ modal('Create Post / Reel',`
+ <div class="field"><label>SELECT PHOTO OR VIDEO</label><input id="postFile" type="file" accept="image/*,video/*"></div>
+ <div class="field"><label>CAPTION</label><textarea id="postCaption" placeholder="Share your travel experience..."></textarea></div>
+ <button class="primary" onclick="publishPost()">Publish Post</button>
+ <p style="font-size:10px;color:#8190a6;margin-top:10px">Posts are visible on this device only until online storage is connected.</p>`);
+}
+
+function publishPost(){
+ const file=document.getElementById('postFile').files[0];
+ const caption=document.getElementById('postCaption').value.trim();
+ if(!file){notify('Please select a photo or video.');return}
+ const url=URL.createObjectURL(file);
+ posts.unshift({
+  url,type:file.type.startsWith('video')?'video':'image',
+  caption,likes:0,comments:[]
+ });
+ closeModal();
+ showReels();
+ notify('Post added on this device.');
+}
+
+function showReels(el){
+ if(el)setNav(el);
+ const html=posts.map((p,i)=>`
+ <article class="reel-post">
+ ${p.type==='video'?`<video src="${p.url}" controls playsinline></video>`:`<img src="${p.url}" alt="Travel post">`}
+ <div class="reel-caption">${safe(p.caption||'Travel with NV Travelss ✈️')}</div>
+ <div class="reel-actions">
+ <button onclick="likePost(${i},this)"><i class="fa-regular fa-heart"></i> Like</button>
+ <button onclick="commentPost(${i})"><i class="fa-regular fa-comment"></i> Comment</button>
+ <button onclick="sharePost(${i})"><i class="fa-solid fa-share"></i> Share</button>
+ <button onclick="savePost(${i})"><i class="fa-regular fa-bookmark"></i> Save</button>
+ </div></article>`).join('');
+
+ modal('NV Travelss Reels',`
+ ${html||'<div class="empty">No uploaded reels yet. Tap below to upload your first travel reel.</div>'}
+ <button class="primary" onclick="openPost()">+ Upload Reel / Post</button>`);
+}
+
+function safe(text){
+ return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function likePost(i,button){
+ posts[i].likes++;
+ button.innerHTML='<i class="fa-solid fa-heart" style="color:red"></i> Liked';
+}
+function commentPost(i){
+ modal('Comment',`
+ <div class="field"><label>WRITE COMMENT</label><textarea id="commentText" placeholder="Write a comment..."></textarea></div>
+ <button class="primary" onclick="saveComment(${i})">Post Comment</button>`);
+}
+function saveComment(i){
+ const text=document.getElementById('commentText').value.trim();
+ if(!text){notify('Write a comment first.');return}
+ posts[i].comments.push(text);
+ closeModal();
+ notify('Comment added on this device.');
+}
+function sharePost(i){
+ const text=posts[i].caption||'Travel with NV Travelss';
+ if(navigator.share){navigator.share({title:'NV Travelss',text}).catch(()=>{})}
+ else{notify('Sharing is not supported on this device.')}
+}
+function savePost(i){
+ const saved=JSON.parse(localStorage.getItem('nvSaved')||'[]');
+ saved.push(posts[i].caption||'NV Travelss Reel');
+ localStorage.setItem('nvSaved',JSON.stringify(saved));
+ notify('Reel saved on this device.');
+}
+
+function openSearch(el){
+ if(el)setNav(el);
+ modal('Search NV Travelss',`
+ <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages, tickets..." oninput="searchItems()"></div>
+ <div id="searchResults">
+ <button class="list-button" onclick="openDestination('Manali')">Manali</button>
+ <button class="list-button" onclick="openDestination('Goa')">Goa</button>
+ <button class="list-button" onclick="openDestination('Kashmir')">Kashmir</button>
+ <button class="list-button" onclick="openDestination('Shimla')">Shimla</button>
+ </div>`);
+}
+function searchItems(){
+ const q=document.getElementById('searchInput').value.toLowerCase();
+ const items=['Ride','Hotel','Packages','Bus Tick
