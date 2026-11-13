@@ -8,7 +8,20 @@
   "use strict";
 
   const STORE = "nv_travelss_booking_requests";
-
+const NV_VEHICLE_DATA = [
+  {name:"Bike",rate:10,image:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500"},
+  {name:"Auto",rate:15,image:"https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=500"},
+  {name:"Hatchback",rate:16,image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500"},
+  {name:"Sedan",rate:18,image:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500"},
+  {name:"SUV",rate:22,image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500"},
+  {name:"MUV",rate:24,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"},
+  {name:"Premium",rate:30,image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500"},
+  {name:"6-7 Seater",rate:25,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"},
+  {name:"8-12 Seater",rate:30,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
+  {name:"Tempo Traveller",rate:35,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
+  {name:"Mini Bus",rate:45,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
+  {name:"Bus",rate:60,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"}
+];
   const bookingOptions = {
     ride: {
       title: "Book Your Ride",
