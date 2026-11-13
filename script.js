@@ -162,101 +162,192 @@
     return page;
   }
 
-  function openBooking(type) {
-    const config = bookingOptions[type];
-    if (!config) return;
+   
+function openBooking(type) {
+  const config = bookingOptions[type];
+  if (!config) return;
 
-    let fields = "";
+  let fields = "";
 
-    config.fields.forEach(function (field, index) {
-      const label = field[0];
-      const inputType = field[1];
-      const id = "nv-book-field-" + index;
+  config.fields.forEach(function(field, index) {
+    const label = field[0];
+    const inputType = field[1];
+    const id = "nv-book-field-" + index;
+
+    fields += `
+      <label style="display:block;margin:13px 0 6px;
+        color:#26324b;font-size:14px;font-weight:700">
+        ${escapeHTML(label)}
+      </label>
+    `;
+
+    if (type === "ride" && label === "Vehicle") {
+      fields += `
+        <input type="hidden" id="${id}" required>
+
+        <div style="
+          display:grid;
+          grid-template-columns:repeat(2,minmax(0,1fr));
+          gap:12px;
+        ">
+          ${NV_VEHICLE_DATA.map(function(v) {
+            return `
+              <button type="button"
+                class="nv-new-vehicle"
+                data-vehicle="${escapeHTML(v.name)}"
+                style="
+                  padding:8px;
+                  border:2px solid #dbe3ef;
+                  border-radius:14px;
+                  background:white;
+                  text-align:center;
+                  color:#0b132b;
+                  overflow:hidden;
+                ">
+                <img src="${escapeHTML(v.image)}"
+                  alt="${escapeHTML(v.name)}"
+                  loading="lazy"
+                  style="width:100%;height:95px;
+                  object-fit:cover;border-radius:9px"
+                  onerror="this.style.display='none'">
+
+                <div style="font-weight:800;margin-top:8px">
+                  ${escapeHTML(v.name)}
+                </div>
+
+                <div style="color:#16a34a;
+                  font-size:13px;font-weight:700;margin-top:4px">
+                  ₹${v.rate}/km
+                </div>
+              </button>
+            `;
+          }).join("")}
+        </div>
+      `;
+    } else if (inputType === "select") {
+      fields += `
+        <select id="${id}" required style="
+          width:100%;padding:13px;border:1px solid #d6dce8;
+          border-radius:10px;background:white;box-sizing:border-box">
+          <option value="">Select Vehicle</option>
+          ${field[2].map(option =>
+            `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`
+          ).join("")}
+        </select>
+      `;
+    } else {
+      const required = label.toLowerCase().includes("optional")
+        ? "" : "required";
 
       fields += `
-        <label for="${id}" style="
-          display:block;margin:13px 0 6px;
-          color:#26324b;font-size:14px;font-weight:700;
-        ">${escapeHTML(label)}</label>
+        <input id="${id}" type="${inputType}" ${required}
+          ${inputType === "number" ? 'min="1"' : ""}
+          placeholder="${escapeHTML(label)}"
+          style="width:100%;padding:13px;
+          border:1px solid #d6dce8;border-radius:10px;
+          box-sizing:border-box">
       `;
+    }
+  });
 
-      if (inputType === "select") {
-        fields += `
-          <select id="${id}" required style="
-            width:100%;padding:13px;border:1px solid #d6dce8;
-            border-radius:10px;background:white;box-sizing:border-box;
-          ">
-            <option value="">Select Vehicle</option>
-            ${field[2].map(option =>
-              `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`
-            ).join("")}
-          </select>
-        `;
-      } else {
-        const required = label.toLowerCase().includes("optional")
-          ? ""
-          : "required";
+  const page = openPage(config.title, `
+    <form id="nv-booking-form">
+      ${fields}
 
-        fields += `
-          <input id="${id}" type="${inputType}" ${required}
-            ${inputType === "number" ? 'min="1"' : ""}
-            placeholder="${escapeHTML(label)}"
-            style="
-              width:100%;padding:13px;border:1px solid #d6dce8;
-              border-radius:10px;box-sizing:border-box;
-            ">
-        `;
-      }
-    });
+      <button type="submit" style="
+        width:100%;padding:15px;margin-top:22px;
+        border:0;border-radius:12px;background:#0b132b;
+        color:white;font-size:16px;font-weight:800">
+        Submit Request
+      </button>
+    </form>
 
-    const page = openPage(config.title, `
-      <form id="nv-booking-form">
-        ${fields}
-        <button type="submit" style="
-          width:100%;padding:15px;margin-top:22px;
-          border:0;border-radius:12px;background:#0b132b;
-          color:white;font-size:16px;font-weight:800;
-        ">Submit Request</button>
-      </form>
-      <p style="font-size:12px;line-height:1.5;color:#64748b">
-        Request इस डिवाइस में सेव होगी। यह अभी कन्फर्म बुकिंग या टिकट नहीं है।
-      </p>
-    `);
+    <p style="font-size:12px;color:#64748b">
+      यह अभी Request है, Confirmed Booking या Ticket नहीं।
+    </p>
+  `);
 
-    page.querySelector("#nv-booking-form").onsubmit = function (event) {
-      event.preventDefault();
-
-      const data = { service: type };
-
-      config.fields.forEach(function (field, index) {
-        data[field[0]] =
-          page.querySelector("#nv-book-field-" + index).value.trim();
+  // Vehicle selection
+  page.querySelectorAll(".nv-new-vehicle").forEach(function(card) {
+    card.onclick = function() {
+      page.querySelectorAll(".nv-new-vehicle").forEach(function(item) {
+        item.style.borderColor = "#dbe3ef";
+        item.style.background = "white";
       });
 
-      saveRequest(data);
+      card.style.borderColor = "#16a34a";
+      card.style.background = "#ecfdf5";
 
-      const successPage = openPage("Request Saved", `
-        <div style="text-align:center;padding:20px 5px">
-          <div style="font-size:48px;color:#16a34a">✓</div>
-          <h3 style="color:#0b132b;font-size:21px">
-            Request Saved Successfully
-          </h3>
-          <p style="color:#64748b;line-height:1.6">
-            तुम्हारी रिक्वेस्ट इस डिवाइस में सेव हो गई है।
-            अभी बुकिंग कन्फर्म नहीं हुई है।
-          </p>
-          <button type="button" id="nv-success-done" style="
-            padding:13px 30px;background:#0b132b;color:white;
-            border:0;border-radius:10px;font-weight:700;
-          ">Done</button>
-        </div>
-      `);
+      page.querySelector("#nv-book-field-" +
+        config.fields.findIndex(f => f[0] === "Vehicle")
+      ).value = card.dataset.vehicle;
 
-      successPage.querySelector("#nv-success-done").onclick = closePage;
+      localStorage.setItem("nvSelectedVehicle", card.dataset.vehicle);
     };
-  }
+  });
 
-  function openTickets() {
+  page.querySelector("#nv-booking-form").onsubmit = function(event) {
+    event.preventDefault();
+
+    const data = {service:type};
+
+    for (let index = 0; index < config.fields.length; index++) {
+      const field = config.fields[index];
+      const input = page.querySelector("#nv-book-field-" + index);
+
+      if (!input || !input.value.trim()) {
+        alert(field[0] + " चुनें या भरें।");
+        return;
+      }
+
+      data[field[0]] = input.value.trim();
+    }
+
+    if (type === "ride") {
+      const selected = NV_VEHICLE_DATA.find(
+        v => v.name === data.Vehicle
+      );
+
+      if (!selected) {
+        alert("कृपया गाड़ी की फोटो देखकर गाड़ी चुनें।");
+        return;
+      }
+
+      data["Vehicle Rate"] = "₹" + selected.rate + "/km";
+    }
+
+    saveRequest(data);
+
+    const successPage = openPage("Request Saved", `
+      <div style="text-align:center;padding:20px 5px">
+        <div style="font-size:48px;color:#16a34a">✓</div>
+
+        <h3 style="color:#0b132b">
+          Request Saved Successfully
+        </h3>
+
+        ${type === "ride" ? `
+          <h3>${escapeHTML(data.Vehicle)}</h3>
+          <p>${escapeHTML(data["Vehicle Rate"])}</p>
+        ` : ""}
+
+        <p style="color:#64748b">
+          तुम्हारी रिक्वेस्ट इस डिवाइस में सेव हो गई है।
+          अभी बुकिंग कन्फर्म नहीं हुई है।
+        </p>
+
+        <button type="button" id="nv-success-done"
+          style="padding:13px 30px;background:#0b132b;
+          color:white;border:0;border-radius:10px">
+          Done
+        </button>
+      </div>
+    `);
+
+    successPage.querySelector("#nv-success-done").onclick = closePage;
+  };
+}
+   
     const page = openPage("Choose Ticket", `
       <div style="display:grid;gap:12px">
         <button data-ticket="bus" class="nv-ticket-choice">🚌 Bus Ticket</button>
