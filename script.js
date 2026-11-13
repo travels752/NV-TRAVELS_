@@ -477,3 +477,106 @@ window.nvSelectVehicle = function(card, vehicle) {
   document.getElementById('nvSelectedVehicle').value = vehicle;
   localStorage.setItem('nvSelectedVehicle', vehicle);
 };
+
+/* ==========================================
+   NV TRAVELSS - DRIVER COMMISSION SYSTEM
+   ALL VEHICLES - 15%
+========================================== */
+
+(function () {
+  "use strict";
+
+  const NV_COMMISSION_RATE = 15;
+
+  const NV_VEHICLES = [
+    "Bike",
+    "Auto",
+    "Hatchback",
+    "Sedan",
+    "SUV",
+    "MUV",
+    "Premium",
+    "6-7 Seater",
+    "8-12 Seater",
+    "Tempo Traveller",
+    "Mini Bus",
+    "Bus"
+  ];
+
+  // Commission calculation
+  window.nvCalculateCommission = function (fare) {
+    fare = Number(fare);
+
+    if (!Number.isFinite(fare) || fare < 0) {
+      return null;
+    }
+
+    const commission = Math.round(fare * NV_COMMISSION_RATE) / 100;
+    const driverEarning = Math.round((fare - commission) * 100) / 100;
+
+    return {
+      fare: fare,
+      commissionRate: NV_COMMISSION_RATE,
+      commission: commission,
+      driverEarning: driverEarning
+    };
+  };
+
+  // Save ride commission details
+  window.nvSaveRideCommission = function (ride) {
+    if (!ride || !ride.vehicle) {
+      return { success: false, message: "Vehicle missing" };
+    }
+
+    if (!NV_VEHICLES.includes(ride.vehicle)) {
+      return { success: false, message: "Invalid vehicle" };
+    }
+
+    const result = window.nvCalculateCommission(ride.fare);
+
+    if (!result) {
+      return { success: false, message: "Invalid fare" };
+    }
+
+    const record = {
+      id: "NV-COM-" + Date.now(),
+      vehicle: ride.vehicle,
+      fare: result.fare,
+      commissionRate: 15,
+      commission: result.commission,
+      driverEarning: result.driverEarning,
+      createdAt: new Date().toISOString(),
+      status: "Calculated"
+    };
+
+    const records = JSON.parse(
+      localStorage.getItem("nv_driver_commissions") || "[]"
+    );
+
+    records.push(record);
+
+    localStorage.setItem(
+      "nv_driver_commissions",
+      JSON.stringify(records)
+    );
+
+    return {
+      success: true,
+      data: record
+    };
+  };
+
+  // Get saved commission records
+  window.nvGetCommissionRecords = function () {
+    try {
+      return JSON.parse(
+        localStorage.getItem("nv_driver_commissions") || "[]"
+      );
+    } catch (error) {
+      return [];
+    }
+  };
+
+  console.log("NV TRAVELSS: 15% commission system loaded.");
+
+})();
