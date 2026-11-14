@@ -1,40 +1,41 @@
 
 /* ==========================================
-   NV TRAVELSS - COMPLETE BUTTON FUNCTIONALITY
-   Home Page design remains untouched.
+   NV TRAVELSS - COMPLETE SCRIPT
+   CITY + OUTSTATION ECONOMY RATES
+   12 VEHICLES + 15% DRIVER COMMISSION
 ========================================== */
 
 (function () {
   "use strict";
 
   const STORE = "nv_travelss_booking_requests";
-const NV_VEHICLE_DATA = [
-  {name:"Bike",rate:10,image:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500"},
-  {name:"Auto",rate:15,image:"https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=500"},
-  {name:"Hatchback",rate:16,image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500"},
-  {name:"Sedan",rate:18,image:"https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500"},
-  {name:"SUV",rate:22,image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500"},
-  {name:"MUV",rate:24,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"},
-  {name:"Premium",rate:30,image:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500"},
-  {name:"6-7 Seater",rate:25,image:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"},
-  {name:"8-12 Seater",rate:30,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
-  {name:"Tempo Traveller",rate:35,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
-  {name:"Mini Bus",rate:45,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"},
-  {name:"Bus",rate:60,image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500"}
-];
+  const COMMISSION_STORE = "nv_driver_commissions";
+
+  const VEHICLES = [
+    { name: "Bike", city: 11, economy: 8, image: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500" },
+    { name: "Auto", city: 15, economy: 11, image: "https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=500" },
+    { name: "Hatchback", city: 16, economy: 12, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500" },
+    { name: "Sedan", city: 19, economy: 14, image: "https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500" },
+    { name: "SUV", city: 24, economy: 18, image: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500" },
+    { name: "MUV", city: 26, economy: 20, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500" },
+    { name: "Premium", city: 32, economy: 24, image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500" },
+    { name: "6-7 Seater", city: 27, economy: 21, image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500" },
+    { name: "8-12 Seater", city: 32, economy: 24, image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500" },
+    { name: "Tempo Traveller", city: 37, economy: 28, image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500" },
+    { name: "Mini Bus", city: 47, economy: 38, image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500" },
+    { name: "Bus", city: 60, economy: 50, image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500" }
+  ];
+
   const bookingOptions = {
     ride: {
       title: "Book Your Ride",
       fields: [
         ["Pickup Location", "text"],
         ["Destination", "text"],
+        ["Travel Type", "select", ["City Ride", "Outstation Economy"]],
         ["Travel Date", "date"],
         ["Travel Time", "time"],
-        ["Vehicle", "select", [
-          "Bike", "Auto", "Hatchback", "Sedan", "SUV", "MUV",
-          "Premium", "6-7 Seater", "8-12 Seater",
-          "Tempo Traveller", "Mini Bus", "Bus"
-        ]]
+        ["Vehicle", "vehicle"]
       ]
     },
     hotel: {
@@ -85,16 +86,14 @@ const NV_VEHICLE_DATA = [
     }
   };
 
+  let selectedVehicle = "";
+  let selectedRateType = "City Ride";
+
   function escapeHTML(value) {
-    return String(value ?? "").replace(/[&<>"']/g, function (char) {
-      return {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;"
-      }[char];
-    });
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+      "&": "&amp;", "<": "&lt;", ">": "&gt;",
+      '"': "&quot;", "'": "&#39;"
+    }[char]));
   }
 
   function getSavedRequests() {
@@ -107,14 +106,12 @@ const NV_VEHICLE_DATA = [
 
   function saveRequest(request) {
     const requests = getSavedRequests();
-
     requests.push({
       id: "NV-" + Date.now(),
       createdAt: new Date().toISOString(),
       status: "Request Saved",
       ...request
     });
-
     localStorage.setItem(STORE, JSON.stringify(requests));
   }
 
@@ -127,240 +124,199 @@ const NV_VEHICLE_DATA = [
 
     const page = document.createElement("div");
     page.id = "nv-function-page";
-
-    page.style.cssText = [
-      "position:fixed",
-      "inset:0",
-      "z-index:999999",
-      "overflow-y:auto",
-      "background:#0b132b",
-      "padding:16px",
-      "font-family:Arial,sans-serif"
-    ].join(";");
+    page.style.cssText =
+      "position:fixed;inset:0;z-index:999999;overflow-y:auto;" +
+      "background:#0b132b;padding:16px;font-family:Arial,sans-serif;";
 
     page.innerHTML = `
-      <div style="
-        max-width:460px;
-        min-height:250px;
-        margin:20px auto;
-        padding:20px;
-        background:white;
-        border-radius:20px;
-        box-sizing:border-box;
-      ">
-        <div style="
-          display:flex;
-          justify-content:space-between;
-          align-items:center;
-          gap:12px;
-          margin-bottom:20px;
-        ">
+      <div style="max-width:460px;min-height:250px;margin:20px auto;
+        padding:20px;background:white;border-radius:20px;box-sizing:border-box">
+        <div style="display:flex;justify-content:space-between;
+          align-items:center;gap:12px;margin-bottom:20px">
           <h2 style="margin:0;color:#0b132b;font-size:21px;font-weight:800">
             ${escapeHTML(title)}
           </h2>
           <button type="button" id="nv-function-close"
-            aria-label="Close"
-            style="
-              width:38px;height:38px;border:0;border-radius:50%;
-              background:#0b132b;color:white;font-size:24px;
-            ">×</button>
+            style="width:38px;height:38px;border:0;border-radius:50%;
+            background:#0b132b;color:white;font-size:24px">×</button>
         </div>
         ${content}
-      </div>
-    `;
+      </div>`;
 
     document.body.appendChild(page);
     page.querySelector("#nv-function-close").onclick = closePage;
-
     return page;
   }
 
-   
-function openBooking(type) {
-  const config = bookingOptions[type];
-  if (!config) return;
+  function getVehicleRate(vehicle, type) {
+    const item = VEHICLES.find(v => v.name === vehicle);
+    if (!item) return 0;
+    return type === "Outstation Economy" ? item.economy : item.city;
+  }
 
-  let fields = "";
+  function vehicleCards() {
+    return `
+      <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+        ${VEHICLES.map(v => {
+          const rate = getVehicleRate(v.name, selectedRateType);
+          return `
+            <button type="button" class="nv-new-vehicle"
+              data-vehicle="${escapeHTML(v.name)}"
+              style="padding:8px;border:2px solid #dbe3ef;
+              border-radius:14px;background:white;text-align:center;color:#0b132b">
+              <img src="${escapeHTML(v.image)}" alt="${escapeHTML(v.name)}"
+                loading="lazy" style="width:100%;height:95px;object-fit:cover;border-radius:9px"
+                onerror="this.style.display='none'">
+              <div style="font-weight:800;margin-top:8px">${escapeHTML(v.name)}</div>
+              <div style="color:#16a34a;font-size:13px;font-weight:700;margin-top:4px">
+                ₹${rate}/km
+              </div>
+            </button>`;
+        }).join("")}
+      </div>`;
+  }
 
-  config.fields.forEach(function(field, index) {
-    const label = field[0];
-    const inputType = field[1];
-    const id = "nv-book-field-" + index;
+  function openBooking(type) {
+    const config = bookingOptions[type];
+    if (!config) return;
 
-    fields += `
-      <label style="display:block;margin:13px 0 6px;
-        color:#26324b;font-size:14px;font-weight:700">
-        ${escapeHTML(label)}
-      </label>
-    `;
-
-    if (type === "ride" && label === "Vehicle") {
-      fields += `
-        <input type="hidden" id="${id}" required>
-
-        <div style="
-          display:grid;
-          grid-template-columns:repeat(2,minmax(0,1fr));
-          gap:12px;
-        ">
-          ${NV_VEHICLE_DATA.map(function(v) {
-            return `
-              <button type="button"
-                class="nv-new-vehicle"
-                data-vehicle="${escapeHTML(v.name)}"
-                style="
-                  padding:8px;
-                  border:2px solid #dbe3ef;
-                  border-radius:14px;
-                  background:white;
-                  text-align:center;
-                  color:#0b132b;
-                  overflow:hidden;
-                ">
-                <img src="${escapeHTML(v.image)}"
-                  alt="${escapeHTML(v.name)}"
-                  loading="lazy"
-                  style="width:100%;height:95px;
-                  object-fit:cover;border-radius:9px"
-                  onerror="this.style.display='none'">
-
-                <div style="font-weight:800;margin-top:8px">
-                  ${escapeHTML(v.name)}
-                </div>
-
-                <div style="color:#16a34a;
-                  font-size:13px;font-weight:700;margin-top:4px">
-                  ₹${v.rate}/km
-                </div>
-              </button>
-            `;
-          }).join("")}
-        </div>
-      `;
-    } else if (inputType === "select") {
-      fields += `
-        <select id="${id}" required style="
-          width:100%;padding:13px;border:1px solid #d6dce8;
-          border-radius:10px;background:white;box-sizing:border-box">
-          <option value="">Select Vehicle</option>
-          ${field[2].map(option =>
-            `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`
-          ).join("")}
-        </select>
-      `;
-    } else {
-      const required = label.toLowerCase().includes("optional")
-        ? "" : "required";
-
-      fields += `
-        <input id="${id}" type="${inputType}" ${required}
-          ${inputType === "number" ? 'min="1"' : ""}
-          placeholder="${escapeHTML(label)}"
-          style="width:100%;padding:13px;
-          border:1px solid #d6dce8;border-radius:10px;
-          box-sizing:border-box">
-      `;
+    if (type === "ride") {
+      selectedVehicle = "";
+      selectedRateType = "City Ride";
     }
-  });
 
-  const page = openPage(config.title, `
-    <form id="nv-booking-form">
-      ${fields}
+    let fields = "";
 
-      <button type="submit" style="
-        width:100%;padding:15px;margin-top:22px;
-        border:0;border-radius:12px;background:#0b132b;
-        color:white;font-size:16px;font-weight:800">
-        Submit Request
-      </button>
-    </form>
+    config.fields.forEach((field, index) => {
+      const label = field[0];
+      const inputType = field[1];
+      const id = "nv-book-field-" + index;
 
-    <p style="font-size:12px;color:#64748b">
-      यह अभी Request है, Confirmed Booking या Ticket नहीं।
-    </p>
-  `);
+      fields += `<label style="display:block;margin:13px 0 6px;color:#26324b;
+        font-size:14px;font-weight:700">${escapeHTML(label)}</label>`;
 
-  // Vehicle selection
-  page.querySelectorAll(".nv-new-vehicle").forEach(function(card) {
-    card.onclick = function() {
-      page.querySelectorAll(".nv-new-vehicle").forEach(function(item) {
-        item.style.borderColor = "#dbe3ef";
-        item.style.background = "white";
-      });
-
-      card.style.borderColor = "#16a34a";
-      card.style.background = "#ecfdf5";
-
-      page.querySelector("#nv-book-field-" +
-        config.fields.findIndex(f => f[0] === "Vehicle")
-      ).value = card.dataset.vehicle;
-
-      localStorage.setItem("nvSelectedVehicle", card.dataset.vehicle);
-    };
-  });
-
-  page.querySelector("#nv-booking-form").onsubmit = function(event) {
-    event.preventDefault();
-
-    const data = {service:type};
-
-    for (let index = 0; index < config.fields.length; index++) {
-      const field = config.fields[index];
-      const input = page.querySelector("#nv-book-field-" + index);
-
-      if (!input || !input.value.trim()) {
-        alert(field[0] + " चुनें या भरें।");
-        return;
+      if (inputType === "vehicle") {
+        fields += `
+          <input type="hidden" id="${id}">
+          <div id="nv-vehicle-list">${vehicleCards()}</div>`;
+      } else if (inputType === "select") {
+        fields += `
+          <select id="${id}" required style="width:100%;padding:13px;
+            border:1px solid #d6dce8;border-radius:10px;background:white;box-sizing:border-box">
+            <option value="">Select ${escapeHTML(label)}</option>
+            ${field[2].map(option =>
+              `<option value="${escapeHTML(option)}">${escapeHTML(option)}</option>`
+            ).join("")}
+          </select>`;
+      } else {
+        const required = label.toLowerCase().includes("optional") ? "" : "required";
+        fields += `
+          <input id="${id}" type="${inputType}" ${required}
+            ${inputType === "number" ? 'min="1"' : ""}
+            placeholder="${escapeHTML(label)}"
+            style="width:100%;padding:13px;border:1px solid #d6dce8;
+            border-radius:10px;box-sizing:border-box">`;
       }
+    });
 
-      data[field[0]] = input.value.trim();
+    const page = openPage(config.title, `
+      <form id="nv-booking-form">
+        ${fields}
+        <div id="nv-selected-rate" style="margin-top:14px;color:#16a34a;font-weight:800"></div>
+        <button type="submit" style="width:100%;padding:15px;margin-top:22px;
+          border:0;border-radius:12px;background:#0b132b;color:white;
+          font-size:16px;font-weight:800">Submit Request</button>
+      </form>
+      <p style="font-size:12px;color:#64748b">
+        यह Request है, Confirmed Booking या Ticket नहीं।
+      </p>`);
+
+    function bindVehicleCards() {
+      page.querySelectorAll(".nv-new-vehicle").forEach(card => {
+        card.onclick = function () {
+          selectedVehicle = card.dataset.vehicle;
+          page.querySelector("#nv-book-field-5").value = selectedVehicle;
+
+          page.querySelectorAll(".nv-new-vehicle").forEach(item => {
+            item.style.borderColor = "#dbe3ef";
+            item.style.background = "white";
+          });
+
+          card.style.borderColor = "#16a34a";
+          card.style.background = "#ecfdf5";
+
+          const rate = getVehicleRate(selectedVehicle, selectedRateType);
+          page.querySelector("#nv-selected-rate").textContent =
+            selectedVehicle + " — ₹" + rate + "/km";
+        };
+      });
     }
 
     if (type === "ride") {
-      const selected = NV_VEHICLE_DATA.find(
-        v => v.name === data.Vehicle
-      );
+      const rateSelect = page.querySelector("#nv-book-field-2");
 
-      if (!selected) {
-        alert("कृपया गाड़ी की फोटो देखकर गाड़ी चुनें।");
-        return;
-      }
+      rateSelect.onchange = function () {
+        selectedRateType = rateSelect.value;
+        selectedVehicle = "";
+        page.querySelector("#nv-book-field-5").value = "";
+        page.querySelector("#nv-vehicle-list").innerHTML = vehicleCards();
+        page.querySelector("#nv-selected-rate").textContent = "";
+        bindVehicleCards();
+      };
 
-      data["Vehicle Rate"] = "₹" + selected.rate + "/km";
+      bindVehicleCards();
     }
 
-    saveRequest(data);
+    page.querySelector("#nv-booking-form").onsubmit = function (event) {
+      event.preventDefault();
+      const data = { service: type };
 
-    const successPage = openPage("Request Saved", `
-      <div style="text-align:center;padding:20px 5px">
-        <div style="font-size:48px;color:#16a34a">✓</div>
+      for (let index = 0; index < config.fields.length; index++) {
+        const field = config.fields[index];
+        const input = page.querySelector("#nv-book-field-" + index);
 
-        <h3 style="color:#0b132b">
-          Request Saved Successfully
-        </h3>
+        if (!input || !input.value.trim()) {
+          alert(field[0] + " भरें या चुनें।");
+          return;
+        }
 
-        ${type === "ride" ? `
-          <h3>${escapeHTML(data.Vehicle)}</h3>
-          <p>${escapeHTML(data["Vehicle Rate"])}</p>
-        ` : ""}
+        data[field[0]] = input.value.trim();
+      }
 
-        <p style="color:#64748b">
-          तुम्हारी रिक्वेस्ट इस डिवाइस में सेव हो गई है।
-          अभी बुकिंग कन्फर्म नहीं हुई है।
-        </p>
+      if (type === "ride") {
+        const rate = getVehicleRate(data.Vehicle, data["Travel Type"]);
+        if (!rate) {
+          alert("कृपया गाड़ी चुनें।");
+          return;
+        }
 
-        <button type="button" id="nv-success-done"
-          style="padding:13px 30px;background:#0b132b;
-          color:white;border:0;border-radius:10px">
-          Done
-        </button>
-      </div>
-    `);
+        data["Vehicle Rate"] = "₹" + rate + "/km";
+        data["Distance Rule"] = data["Travel Type"] === "City Ride"
+          ? "Round Trip / 2-Way" : "One Way";
+      }
 
-    successPage.querySelector("#nv-success-done").onclick = closePage;
-  };
-}
-   
+      saveRequest(data);
+
+      const successPage = openPage("Request Saved", `
+        <div style="text-align:center;padding:20px 5px">
+          <div style="font-size:48px;color:#16a34a">✓</div>
+          <h3 style="color:#0b132b">Request Saved Successfully</h3>
+          ${type === "ride" ? `
+            <h3>${escapeHTML(data.Vehicle)}</h3>
+            <p>${escapeHTML(data["Vehicle Rate"])}</p>
+            <p>${escapeHTML(data["Travel Type"])}</p>` : ""}
+          <p style="color:#64748b">तुम्हारी Request इस डिवाइस में सेव हो गई है।
+            अभी Booking Confirm नहीं हुई है।</p>
+          <button type="button" id="nv-success-done"
+            style="padding:13px 30px;background:#0b132b;color:white;
+            border:0;border-radius:10px">Done</button>
+        </div>`);
+
+      successPage.querySelector("#nv-success-done").onclick = closePage;
+    };
+  }
+
+  function openTickets() {
     const page = openPage("Choose Ticket", `
       <div style="display:grid;gap:12px">
         <button data-ticket="bus" class="nv-ticket-choice">🚌 Bus Ticket</button>
@@ -373,27 +329,18 @@ function openBooking(type) {
           border-radius:12px;background:#f1f5f9;color:#0b132b;
           font-size:16px;font-weight:800;
         }
-      </style>
-    `);
+      </style>`);
 
-    page.querySelectorAll("[data-ticket]").forEach(function (button) {
-      button.onclick = function () {
-        openBooking(button.dataset.ticket);
-      };
+    page.querySelectorAll("[data-ticket]").forEach(button => {
+      button.onclick = () => openBooking(button.dataset.ticket);
     });
   }
 
   function showMessage(title, message) {
     const page = openPage(title, `
-      <p style="color:#475569;line-height:1.7">
-        ${escapeHTML(message)}
-      </p>
-      <button id="nv-message-close" style="
-        margin-top:18px;padding:13px 25px;
-        background:#0b132b;color:white;border:0;border-radius:10px;
-      ">Close</button>
-    `);
-
+      <p style="color:#475569;line-height:1.7">${escapeHTML(message)}</p>
+      <button id="nv-message-close" style="margin-top:18px;padding:13px 25px;
+        background:#0b132b;color:white;border:0;border-radius:10px">Close</button>`);
     page.querySelector("#nv-message-close").onclick = closePage;
   }
 
@@ -401,34 +348,22 @@ function openBooking(type) {
     const name = localStorage.getItem("nvUserName") || "Guest";
     const phone = localStorage.getItem("nvUserPhone") || "Not added";
     const role = localStorage.getItem("nvUserRole") || "Customer";
-
-    showMessage(
-      "My Profile",
-      "Name: " + name + " | Mobile: " + phone + " | Account: " + role
-    );
-  }
-
-  function showNotifications() {
-    showMessage("Notifications", "अभी कोई नई notification उपलब्ध नहीं है।");
+    showMessage("My Profile", "Name: " + name + " | Mobile: " + phone + " | Account: " + role);
   }
 
   function showSearch() {
     const page = openPage("Search", `
-      <input id="nv-search-text" type="search"
-        placeholder="Search here..."
-        style="
-          width:100%;padding:14px;border:1px solid #d6dce8;
-          border-radius:10px;box-sizing:border-box;
-        ">
-      <button id="nv-search-button" style="
-        width:100%;padding:14px;margin-top:12px;
-        border:0;border-radius:10px;background:#0b132b;color:white;
-      ">Search</button>
-      <div id="nv-search-output" style="margin-top:15px;color:#475569"></div>
-    `);
+      <input id="nv-search-text" type="search" placeholder="Search here..."
+        style="width:100%;padding:14px;border:1px solid #d6dce8;
+        border-radius:10px;box-sizing:border-box">
+      <button id="nv-search-button" style="width:100%;padding:14px;
+        margin-top:12px;border:0;border-radius:10px;background:#0b132b;color:white">
+        Search
+      </button>
+      <div id="nv-search-output" style="margin-top:15px;color:#475569"></div>`);
 
     page.querySelector("#nv-search-button").onclick = function () {
-      const query = page.querySelector("#nv-search-text").value.trim();
+      const query = page.querySelector("#nv-search-text").value.trim().toLowerCase();
       const output = page.querySelector("#nv-search-output");
 
       if (!query) {
@@ -436,13 +371,10 @@ function openBooking(type) {
         return;
       }
 
-      const matches = Object.keys(bookingOptions).filter(function (key) {
-        return key.includes(query.toLowerCase());
-      });
-
+      const matches = Object.keys(bookingOptions).filter(key => key.includes(query));
       output.textContent = matches.length
         ? "Available options: " + matches.join(", ")
-        : "इस शब्द के लिए कोई matching booking option नहीं मिला।";
+        : "कोई matching booking option नहीं मिला।";
     };
   }
 
@@ -454,41 +386,35 @@ function openBooking(type) {
       return;
     }
 
-    const rows = requests.map(function (request) {
-      return `
-        <div style="
-          padding:12px;margin:10px 0;background:#f1f5f9;
-          border-radius:10px;color:#26324b;
-        ">
-          <b>${escapeHTML(request.service)}</b><br>
-          <small>${escapeHTML(request.id)}</small><br>
-          <small>${escapeHTML(request.status)}</small>
-        </div>
-      `;
-    }).join("");
+    const rows = requests.map(request => `
+      <div style="padding:12px;margin:10px 0;background:#f1f5f9;
+        border-radius:10px;color:#26324b">
+        <b>${escapeHTML(request.service)}</b><br>
+        <small>${escapeHTML(request.id)}</small><br>
+        <small>${escapeHTML(request.status)}</small>
+      </div>`).join("");
 
     openPage("My Requests", rows);
   }
 
   function normalize(value) {
-    return String(value || "").trim().toLowerCase()
-      .replace(/\s+/g, " ");
+    return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
   }
 
   const aliases = {
-    "ride": "ride",
-    "hotel": "hotel",
-    "packages": "packages",
-    "package": "packages",
-    "tickets": "tickets",
-    "ticket": "tickets",
-    "bus": "bus",
+    ride: "ride",
+    hotel: "hotel",
+    packages: "packages",
+    package: "packages",
+    tickets: "tickets",
+    ticket: "tickets",
+    bus: "bus",
     "bus ticket": "bus",
     "bus tickets": "bus",
-    "train": "train",
+    train: "train",
     "train ticket": "train",
     "train tickets": "train",
-    "flight": "flight",
+    flight: "flight",
     "flight ticket": "flight",
     "flight tickets": "flight"
   };
@@ -512,273 +438,113 @@ function openBooking(type) {
       case "tickets":
         openTickets();
         break;
-
       case "profile":
         showProfile();
         break;
-
       case "notifications":
-        showNotifications();
+        showMessage("Notifications", "अभी कोई नई notification उपलब्ध नहीं है।");
         break;
-
       case "search":
         showSearch();
         break;
-
       case "reels":
       case "view all reels":
-        showMessage(
-          "Latest Reels",
-          "Reels का पूरा वीडियो अपलोड और like/comment सिस्टम चालू करने के लिए database और storage जोड़ना होगा।"
-        );
+        showMessage("Latest Reels",
+          "Reels upload और like/comment के लिए database और storage जोड़ना होगा।");
         break;
-
       case "view all destinations":
-        showMessage(
-          "Popular Destinations",
-          "Manali, Goa, Kashmir और Shimla के विकल्प Home Page पर उपलब्ध हैं।"
-        );
+        showMessage("Popular Destinations",
+          "Manali, Goa, Kashmir और Shimla Home Page पर उपलब्ध हैं।");
         break;
-
-      case "mountains":
-      case "beaches":
-      case "city tours":
-      case "adventure":
-        showMessage("Explore " + option, "Selected category: " + option);
-        break;
-
       case "my requests":
       case "history":
         showSavedRequests();
         break;
-
       default:
-        showMessage(
-          option || "NV Travelss",
-          "यह विकल्प चुना गया है। इसका पूरा ऑनलाइन सिस्टम जोड़ना अभी बाकी है।"
-        );
+        showMessage(option || "NV Travelss",
+          "यह विकल्प चुना गया है। इसका पूरा ऑनलाइन सिस्टम जोड़ना बाकी है।");
     }
   };
 
   window.closeNVPage = closePage;
+  window.nvVehicleRates = VEHICLES;
+  window.nvGetVehicleRate = getVehicleRate;
 
-  document.addEventListener("keydown", function (event) {
+  document.addEventListener("keydown", event => {
     if (event.key === "Escape") closePage();
   });
 
 })();
 
-/* NV TRAVELSS VEHICLE SELECTION */
-
-window.nvSelectVehicle = function(card, vehicle) {
-  document.querySelectorAll('.nv-vehicle-card')
-    .forEach(function(item) {
-      item.classList.remove('selected');
-    });
-
-  card.classList.add('selected');
-
-  document.getElementById('nvSelectedVehicle').value = vehicle;
-  localStorage.setItem('nvSelectedVehicle', vehicle);
-};
-
 /* ==========================================
-   NV TRAVELSS - DRIVER COMMISSION SYSTEM
+   NV TRAVELSS - DRIVER COMMISSION
    ALL VEHICLES - 15%
 ========================================== */
 
 (function () {
   "use strict";
 
-  const NV_COMMISSION_RATE = 15;
+  const RATE = 15;
+  const STORE = "nv_driver_commissions";
 
-  const NV_VEHICLES = [
-    "Bike",
-    "Auto",
-    "Hatchback",
-    "Sedan",
-    "SUV",
-    "MUV",
-    "Premium",
-    "6-7 Seater",
-    "8-12 Seater",
-    "Tempo Traveller",
-    "Mini Bus",
-    "Bus"
+  const VEHICLES = [
+    "Bike", "Auto", "Hatchback", "Sedan", "SUV", "MUV",
+    "Premium", "6-7 Seater", "8-12 Seater",
+    "Tempo Traveller", "Mini Bus", "Bus"
   ];
 
-  // Commission calculation
   window.nvCalculateCommission = function (fare) {
     fare = Number(fare);
+    if (!Number.isFinite(fare) || fare < 0) return null;
 
-    if (!Number.isFinite(fare) || fare < 0) {
-      return null;
-    }
-
-    const commission = Math.round(fare * NV_COMMISSION_RATE) / 100;
+    const commission = Math.round(fare * RATE) / 100;
     const driverEarning = Math.round((fare - commission) * 100) / 100;
 
     return {
-      fare: fare,
-      commissionRate: NV_COMMISSION_RATE,
-      commission: commission,
-      driverEarning: driverEarning
+      fare,
+      commissionRate: RATE,
+      commission,
+      driverEarning
     };
   };
 
-  // Save ride commission details
   window.nvSaveRideCommission = function (ride) {
-    if (!ride || !ride.vehicle) {
-      return { success: false, message: "Vehicle missing" };
-    }
-
-    if (!NV_VEHICLES.includes(ride.vehicle)) {
+    if (!ride || !VEHICLES.includes(ride.vehicle)) {
       return { success: false, message: "Invalid vehicle" };
     }
 
     const result = window.nvCalculateCommission(ride.fare);
+    if (!result) return { success: false, message: "Invalid fare" };
 
-    if (!result) {
-      return { success: false, message: "Invalid fare" };
-    }
-
-    const record = {
-      id: "NV-COM-" + Date.now(),
-      vehicle: ride.vehicle,
-      fare: result.fare,
-      commissionRate: 15,
-      commission: result.commission,
-      driverEarning: result.driverEarning,
-      createdAt: new Date().toISOString(),
-      status: "Calculated"
-    };
-
-    const records = JSON.parse(
-      localStorage.getItem("nv_driver_commissions") || "[]"
-    );
-
-    records.push(record);
-
-    localStorage.setItem(
-      "nv_driver_commissions",
-      JSON.stringify(records)
-    );
-
-    return {
-      success: true,
-      data: record
-    };
-  };
-
-  // Get saved commission records
-  window.nvGetCommissionRecords = function () {
+    let records = [];
     try {
-      return JSON.parse(
-        localStorage.getItem("nv_driver_commissions") || "[]"
-      );
+      records = JSON.parse(localStorage.getItem(STORE) || "[]");
+      if (!Array.isArray(records)) records = [];
     } catch (error) {
-      return [];
-    }
-  };
-
-  console.log("NV TRAVELSS: 15% commission system loaded.");
-
-})();
-
-/* ==========================================
-   NV TRAVELSS - DRIVER COMMISSION SYSTEM
-   ALL VEHICLES - 15%
-========================================== */
-
-(function () {
-  "use strict";
-
-  const NV_COMMISSION_RATE = 15;
-
-  const NV_VEHICLES = [
-    "Bike",
-    "Auto",
-    "Hatchback",
-    "Sedan",
-    "SUV",
-    "MUV",
-    "Premium",
-    "6-7 Seater",
-    "8-12 Seater",
-    "Tempo Traveller",
-    "Mini Bus",
-    "Bus"
-  ];
-
-  // Commission calculation
-  window.nvCalculateCommission = function (fare) {
-    fare = Number(fare);
-
-    if (!Number.isFinite(fare) || fare < 0) {
-      return null;
-    }
-
-    const commission = Math.round(fare * NV_COMMISSION_RATE) / 100;
-    const driverEarning = Math.round((fare - commission) * 100) / 100;
-
-    return {
-      fare: fare,
-      commissionRate: NV_COMMISSION_RATE,
-      commission: commission,
-      driverEarning: driverEarning
-    };
-  };
-
-  // Save ride commission details
-  window.nvSaveRideCommission = function (ride) {
-    if (!ride || !ride.vehicle) {
-      return { success: false, message: "Vehicle missing" };
-    }
-
-    if (!NV_VEHICLES.includes(ride.vehicle)) {
-      return { success: false, message: "Invalid vehicle" };
-    }
-
-    const result = window.nvCalculateCommission(ride.fare);
-
-    if (!result) {
-      return { success: false, message: "Invalid fare" };
+      records = [];
     }
 
     const record = {
       id: "NV-COM-" + Date.now(),
       vehicle: ride.vehicle,
       fare: result.fare,
-      commissionRate: 15,
+      commissionRate: RATE,
       commission: result.commission,
       driverEarning: result.driverEarning,
       createdAt: new Date().toISOString(),
       status: "Calculated"
     };
 
-    const records = JSON.parse(
-      localStorage.getItem("nv_driver_commissions") || "[]"
-    );
-
     records.push(record);
+    localStorage.setItem(STORE, JSON.stringify(records));
 
-    localStorage.setItem(
-      "nv_driver_commissions",
-      JSON.stringify(records)
-    );
-
-    return {
-      success: true,
-      data: record
-    };
+    return { success: true, data: record };
   };
 
-  // Get saved commission records
   window.nvGetCommissionRecords = function () {
     try {
-      return JSON.parse(
-        localStorage.getItem("nv_driver_commissions") || "[]"
-      );
+      const records = JSON.parse(localStorage.getItem(STORE) || "[]");
+      return Array.isArray(records) ? records : [];
     } catch (error) {
       return [];
     }
