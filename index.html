@@ -106,6 +106,24 @@ main{padding:14px}
 .help-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #edf1f6;font-size:11px;color:#4a5568}
 .help-row a{color:#1769e8;font-weight:800;text-decoration:none}
 
+/* INSTAGRAM STYLE FEED POSTS */
+.insta-post{background:white;border-radius:20px;margin-bottom:16px;overflow:hidden;box-shadow:0 6px 18px #00000008;border:1px solid #edf0f5}
+.insta-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px}
+.insta-user b{display:block;font-size:13px;color:#10264b}
+.insta-user small{font-size:10px;color:#718096}
+.insta-price{font-size:13px;font-weight:800;color:#0b9f65}
+.insta-img{width:100%;height:220px;object-fit:cover}
+.insta-actions{padding:12px 14px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f2f5fa}
+.insta-buttons{display:flex;gap:14px;align-items:center}
+.insta-btn{background:none;border:0;font-size:14px;font-weight:700;color:#10264b;display:flex;align-items:center;gap:4px}
+.insta-btn i{font-size:16px}
+.insta-btn.liked{color:#e74c3c}
+.book-now-btn{background:#1769e8;color:white;border:0;padding:8px 16px;border-radius:10px;font-size:11px;font-weight:800}
+
+/* TICKET CLEAN CARD */
+.ticket-row-card{background:white;border-radius:16px;padding:14px;margin-bottom:12px;border-left:4px solid #7c3aed;box-shadow:0 4px 12px #00000006}
+.ticket-timing{background:#f8faff;padding:10px;border-radius:10px;margin:10px 0;display:flex;justify-content:space-between;align-items:center;font-size:11px}
+
 /* PROVIDER DASHBOARD */
 .provider-banner{background:linear-gradient(135deg,#071b40,#1769e8);padding:23px;border-radius:23px;color:white}
 .provider-banner h2{font-size:22px}
@@ -135,9 +153,6 @@ main{padding:14px}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
 .modal-head h2{font-size:17px;color:#10264b}
 .close{width:34px;height:34px;border:0;border-radius:10px;background:#f0f3f8;color:#42536e}
-.ticket-tab-row{display:flex;gap:6px;margin-bottom:14px}
-.t-tab{flex:1;padding:10px;border-radius:10px;background:#f0f4f9;border:0;font-size:11px;font-weight:700;color:#475569}
-.t-tab.active{background:#1769e8;color:white}
 .bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:70px;background:white;border-top:1px solid #edf0f5;display:none;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 20px #10294b0f}
 .nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;font-weight:700;min-width:48px}
 .nav-item i{font-size:18px}
@@ -239,28 +254,28 @@ main{padding:14px}
   </section>
 
   <section class="grid" style="margin-top:16px">
-   <button class="service-card ride-card" onclick="rideForm()">
+   <button class="service-card ride-card" onclick="openSection('rides')">
     <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-car-side"></i></div><div class="arrow-circle">›</div></div>
-    <div class="card-title">Ride</div>
-    <div class="card-desc">Book your taxi in seconds</div>
-    <img class="card-img" src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400">
+    <div class="card-title">Ride / Cabs</div>
+    <div class="card-desc">Real vehicle photos & taxi booking</div>
+    <img class="card-img" src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400">
    </button>
-   <button class="service-card hotel-card" onclick="hotelForm()">
+   <button class="service-card hotel-card" onclick="openSection('hotels')">
     <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-hotel"></i></div><div class="arrow-circle">›</div></div>
-    <div class="card-title">Hotel</div>
-    <div class="card-desc">Comfortable stays for your journey</div>
+    <div class="card-title">Hotels</div>
+    <div class="card-desc">Instagram feed & direct booking</div>
     <img class="card-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400">
    </button>
-   <button class="service-card package-card" onclick="packageForm()">
+   <button class="service-card package-card" onclick="openSection('packages')">
     <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-suitcase-rolling"></i></div><div class="arrow-circle">›</div></div>
     <div class="card-title">Packages</div>
-    <div class="card-desc">Discover amazing tour packages</div>
+    <div class="card-desc">Tour packages with like & booking</div>
     <img class="card-img" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400">
    </button>
-   <button class="service-card ticket-card" onclick="ticketsForm('bus')">
+   <button class="service-card ticket-card" onclick="openSection('tickets')">
     <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-ticket"></i></div><div class="arrow-circle">›</div></div>
     <div class="card-title">Tickets</div>
-    <div class="card-desc">Bus • Train • Flight</div>
+    <div class="card-desc">Timings & direct booking</div>
     <div class="ticket-grid">
      <div class="t-block bus"><i class="fa-solid fa-bus"></i>Bus</div>
      <div class="t-block train"><i class="fa-solid fa-train"></i>Train</div>
@@ -275,13 +290,6 @@ main{padding:14px}
    <button class="dest-card" onclick="destination('Goa')"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400"><b>Goa</b></button>
    <button class="dest-card" onclick="destination('Kashmir')"><img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=400"><b>Kashmir</b></button>
    <button class="dest-card" onclick="destination('Shimla')"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400"><b>Shimla</b></button>
-  </section>
-
-  <div class="heading"><h2><i class="fa-solid fa-circle-play"></i> Latest Reels</h2><span onclick="showReels()">View All →</span></div>
-  <section class="reels-row">
-   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"><div class="reel-likes">♥ 1.2K</div></button>
-   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"><div class="reel-likes">♥ 856</div></button>
-   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><div class="reel-likes">♥ 932</div></button>
   </section>
 
   <section class="help-card">
@@ -302,47 +310,30 @@ main{padding:14px}
  <main>
   <div class="provider-banner">
    <h2 id="providerWelcome">Welcome, Provider</h2>
-   <p>अपनी सर्विस मैनेज करें और बुकिंग प्राप्त करें।</p>
+   <p>अपनी सर्विस (होटल, पैकेज, राइड या टिकट) की पोस्ट अपलोड करें।</p>
   </div>
-  <div class="heading"><h2>Your Services</h2></div>
+  <div class="heading"><h2>Provider Actions</h2></div>
   <div class="provider-grid">
-   <button class="provider-option" onclick="providerService('Driver')">
-    <i class="fa-solid fa-car-side"></i>
-    <h3>Driver Service</h3>
-    <p>Ride requests और कमाई</p>
-   </button>
-   <button class="provider-option" onclick="providerService('Hotel Owner')">
-    <i class="fa-solid fa-hotel"></i>
-    <h3>Hotel Service</h3>
-    <p>Hotel और room booking</p>
+   <button class="provider-option" onclick="openPost()">
+    <i class="fa-solid fa-cloud-arrow-up"></i>
+    <h3>Upload Post</h3>
+    <p>होटल, पैकेज या बस की पोस्ट डालें</p>
    </button>
    <button class="provider-option" onclick="providerBookings()">
     <i class="fa-solid fa-clipboard-list"></i>
     <h3>My Bookings</h3>
-    <p>अपनी requests देखें</p>
+    <p>कस्टमर की बुकिंग requests</p>
    </button>
    <button class="provider-option" onclick="providerEarnings()">
     <i class="fa-solid fa-wallet"></i>
     <h3>My Earnings</h3>
-    <p>कमाई और commission</p>
+    <p>कमाई और commission policy</p>
    </button>
    <button class="provider-option" onclick="providerProfile()">
     <i class="fa-solid fa-id-card"></i>
     <h3>My Profile</h3>
     <p>अपनी जानकारी</p>
    </button>
-   <button class="provider-option" onclick="notify('अधिक सुविधाएँ जल्द जोड़ी जाएँगी')">
-    <i class="fa-solid fa-headset"></i>
-    <h3>Help & Support</h3>
-    <p>सहायता प्राप्त करें</p>
-   </button>
-  </div>
-  <div class="provider-info">
-   <b>NV TRAVELSS SERVICE POLICY</b><br>
-   Driver commission: हर ride पर 15%<br>
-   Driver monthly recharge: ₹300<br>
-   Hotel owner commission: 15%<br>
-   Hotel owner monthly pass: ₹1000
   </div>
   <button class="logout" onclick="logout()">LOG OUT <i class="fa-solid fa-right-from-bracket"></i></button>
  </main>
@@ -351,7 +342,7 @@ main{padding:14px}
 <!-- OTHER CONTENT PAGE -->
 <section id="otherPage" class="page">
  <header>
-  <div class="logo">NV <span>TRAVELSS</span><small id="otherSubtitle">YOUR ACCOUNT</small></div>
+  <div class="logo">NV <span>TRAVELSS</span><small id="otherSubtitle">SECTION</small></div>
   <button class="icon-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
  </header>
  <main id="otherContent"></main>
@@ -360,9 +351,9 @@ main{padding:14px}
 <!-- BOTTOM NAV -->
 <nav class="bottom-nav" id="bottomNav">
  <button class="nav-item active" onclick="goHome()"><i class="fa-solid fa-house"></i>Home</button>
- <button class="nav-item" onclick="showReels()"><i class="fa-solid fa-clapperboard"></i>Reels</button>
+ <button class="nav-item" onclick="openSection('hotels')"><i class="fa-solid fa-hotel"></i>Hotels</button>
  <button class="nav-item" onclick="openPost()"><i class="fa-solid fa-plus post-icon"></i>Post</button>
- <button class="nav-item" onclick="showSearch()"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+ <button class="nav-item" onclick="openSection('rides')"><i class="fa-solid fa-car"></i>Rides</button>
  <button class="nav-item" onclick="showProfile()"><i class="fa-solid fa-user"></i>Profile</button>
 </nav>
 </div>
@@ -381,38 +372,41 @@ main{padding:14px}
 <script>
 "use strict";
 
-/* VEHICLES AND RATES */
-const vehicles=[
- ['Bike',10,'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500'],
- ['Auto',15,'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=500'],
- ['Hatchback',16,'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500'],
- ['Sedan',18,'https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500'],
- ['SUV',22,'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=500'],
- ['MUV',24,'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500'],
- ['Premium',30,'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500'],
- ['6-7 Seater',25,'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500'],
- ['8-12 Seater',30,'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500'],
- ['Tempo Traveller',35,'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500'],
- ['Mini Bus',45,'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500'],
- ['Bus',60,'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500']
-];
-
 let currentRole='';
 let currentUser=null;
-let selectedVehicle='Sedan';
-let currentTicket='bus';
 let previousPage='customerPage';
 
-function read(key,fallback){
- try{return JSON.parse(localStorage.getItem(key))??fallback}
- catch(e){return fallback}
+/* DEFAULT DATA STORAGE FOR POSTS & BOOKINGS */
+function getHotels(){
+ return read('nv_hotels_posts',[
+  {id:1, title:'The Grand Palace Hotel', location:'Vijay Nagar, Indore (1.2 km away)', price:'₹2,499 / night', image:'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800', likes:145, liked:false},
+  {id:2, title:'Hotel Royal Residency', location:'Palasia, Indore (2.8 km away)', price:'₹1,899 / night', image:'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=800', likes:98, liked:false}
+]);
 }
-function write(key,value){
- localStorage.setItem(key,JSON.stringify(value));
+function getPackages(){
+ return read('nv_packages_posts',[
+  {id:101, title:'Ujjain Mahakal & Omkareshwar Darshan', location:'Starts from Indore • 2 Days Tour', price:'₹3,500 / person', image:'https://images.unsplash.com/photo-1627894483216-2138af692e32?w=800', likes:210, liked:false},
+  {id:102, title:'Mandu Heritage & Waterfall Day Trip', location:'Mandu, MP • Full Day Tour', price:'₹1,499 / person', image:'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800', likes:175, liked:false}
+]);
 }
-function safe(s){
- return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function getRides(){
+ return read('nv_rides_posts',[
+  {id:201, vehicle:'Sedan (Swift Dzire / Etios)', specs:'4 Seater • AC • Clean & Verified', price:'₹18 / km', image:'https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=800'},
+  {id:202, vehicle:'SUV (Toyota Innova Crysta)', specs:'7 Seater • Dual AC • Premium Comfort', price:'₹24 / km', image:'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=800'},
+  {id:203, vehicle:'Travel Bus / Volvo', specs:'Pushback Seats • AC Sleeper', price:'₹55 / km', image:'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800'}
+]);
 }
+function getTickets(){
+ return read('nv_tickets_posts',[
+  {id:301, operator:'Chartered Bus (AC Volvo)', from:'Indore', to:'Bhopal', departure:'07:30 AM', arrival:'11:15 AM', price:'₹450'},
+  {id:302, operator:'Verma Travels (Sleeper)', from:'Indore', to:'Ujjain', departure:'09:00 AM', arrival:'10:30 AM', price:'₹180'}
+]);
+}
+
+function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch(e){return fallback}}
+function write(key,value){localStorage.setItem(key,JSON.stringify(value))}
+function safe(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
 function notify(message){
  const box=document.getElementById('toast');
  box.textContent=message;
@@ -420,20 +414,22 @@ function notify(message){
  clearTimeout(window.toastTimer);
  window.toastTimer=setTimeout(()=>box.style.display='none',2500);
 }
+
 function showPage(id){
  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
  document.getElementById(id).classList.add('active');
- document.getElementById('bottomNav').style.display=
- (id==='customerPage')?'flex':'none';
+ document.getElementById('bottomNav').style.display=(id==='customerPage')?'flex':'none';
  window.scrollTo(0,0);
 }
+
 function chooseRole(role){
  currentRole=role;
  document.getElementById('loginTitle').textContent=role==='customer'?'Customer Login':'Service Provider Login';
- document.getElementById('loginSubtitle').textContent=role==='customer'?'Customer account बनाने के लिए जानकारी भरें':'Driver या Hotel Owner चुनें';
+ document.getElementById('loginSubtitle').textContent=role==='customer'?'अपनी जानकारी भरें':'अपनी सर्विस पार्टनर आईडी से लॉगिन करें';
  document.getElementById('providerTypeField').style.display=role==='provider'?'block':'none';
  showPage('loginPage');
 }
+
 function loginUser(){
  const name=document.getElementById('loginName').value.trim();
  const phone=document.getElementById('loginPhone').value.trim();
@@ -444,6 +440,7 @@ function loginUser(){
  write('nvUserProfile',currentUser);
  openDashboard();
 }
+
 function openDashboard(){
  if(!currentUser)return;
  if(currentUser.role==='provider'){
@@ -453,6 +450,7 @@ function openDashboard(){
   showPage('customerPage');
  }
 }
+
 function logout(){
  localStorage.removeItem('nvUserProfile');
  currentUser=null;
@@ -460,17 +458,14 @@ function logout(){
  showPage('rolePage');
  notify('आप लॉग आउट हो गए हैं');
 }
+
 function goHome(){
  if(currentUser?.role==='provider'){showPage('providerPage');return}
  showPage('customerPage');
- setNav(0);
 }
-function setNav(index){
- document.querySelectorAll('.nav-item').forEach((b,i)=>b.classList.toggle('active',i===index));
-}
-function goBack(){
- showPage(previousPage);
-}
+
+function goBack(){showPage(previousPage);}
+
 function modal(title,html){
  document.getElementById('modalTitle').textContent=title;
  document.getElementById('modalContent').innerHTML=html;
@@ -479,185 +474,257 @@ function modal(title,html){
 function closeModal(){document.getElementById('modalBg').classList.remove('show')}
 function outsideClose(e){if(e.target.id==='modalBg')closeModal()}
 
-/* VEHICLE SELECTOR */
-function vehicleHTML(){
- return '<div class="vehicle-grid">'+vehicles.map(v=>`
- <button type="button" class="vehicle ${selectedVehicle===v[0]?'selected':''}" onclick="selectVehicle('${v[0]}')">
-  <img src="${v[2]}" alt="${v[0]}">
-  <b>${v[0]}</b>
-  <small>₹${v[1]} / km</small>
- </button>`).join('')+'</div>';
-}
-function selectVehicle(name){
- selectedVehicle=name;
- const field=document.getElementById('vehicleField');
- if(field)field.innerHTML=vehicleHTML();
-}
-
-/* BOOKING STORAGE */
-function saveBooking(data){
- const bookings=read('nv_travelss_booking_requests',[]);
- data.id='NV'+Date.now();
- data.createdAt=new Date().toLocaleString('en-IN');
- data.status='Pending';
- data.customer=currentUser?.name||'Customer';
- data.phone=currentUser?.phone||'';
- bookings.unshift(data);
- write('nv_travelss_booking_requests',bookings);
- notify('आपकी request सेव हो गई है');
-}
-
-/* RIDE */
-function rideForm(){
- selectedVehicle='Sedan';
- modal('Book Your Ride',`
- <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Pickup location"></div>
- <div class="field"><label>DROP DESTINATION</label><input id="destination" placeholder="Destination"></div>
- <div class="field"><label>SELECT VEHICLE TYPE</label><div id="vehicleField">${vehicleHTML()}</div></div>
- <div class="field"><label>TRAVEL DATE</label><input id="rideDate" type="date"></div>
- <div class="field"><label>YOUR NAME</label><input id="rideName" value="${safe(currentUser?.name)}" placeholder="Your name"></div>
- <button class="primary" onclick="submitRide()">CONFIRM RIDE REQUEST</button>
- `);
-}
-function submitRide(){
- const pickup=document.getElementById('pickup').value.trim();
- const destination=document.getElementById('destination').value.trim();
- if(!pickup||!destination){notify('Pickup और destination भरें');return}
- saveBooking({type:'Ride',pickup,destination,vehicle:selectedVehicle,date:document.getElementById('rideDate').value});
- closeModal();
-}
-
-/* HOTEL */
-function hotelForm(){
- modal('Hotel Booking',`
- <div class="field"><label>DESTINATION</label><input id="hotelCity" placeholder="Where do you need a hotel?"></div>
- <div class="field"><label>CHECK IN</label><input type="date" id="checkIn"></div>
- <div class="field"><label>CHECK OUT</label><input type="date" id="checkOut"></div>
- <div class="field"><label>ROOMS</label><select id="rooms"><option>1 Room</option><option>2 Rooms</option><option>3 Rooms</option><option>4 Rooms</option></select></div>
- <button class="primary" onclick="submitHotel()">SEARCH HOTELS</button>
- `);
-}
-function submitHotel(){
- const city=document.getElementById('hotelCity').value.trim();
- if(!city){notify('Destination लिखें');return}
- saveBooking({type:'Hotel',destination:city,checkIn:document.getElementById('checkIn').value,checkOut:document.getElementById('checkOut').value,rooms:document.getElementById('rooms').value});
- closeModal();
-}
-
-/* PACKAGES */
-function packageForm(){
- modal('Tour Packages',`
- <div class="field"><label>SELECT DESTINATION</label><select id="packageCity"><option>Manali</option><option>Goa</option><option>Kashmir</option><option>Shimla</option><option>Jaipur</option><option>Udaipur</option><option>Kerala</option><option>Other</option></select></div>
- <div class="field"><label>NUMBER OF DAYS</label><select id="packageDays"><option>2 Days</option><option>3 Days</option><option>4 Days</option><option>5 Days</option><option>7 Days</option><option>10 Days</option></select></div>
- <div class="field"><label>TRAVEL DATE</label><input type="date" id="packageDate"></div>
- <div class="field"><label>NUMBER OF PERSONS</label><input type="number" id="packagePeople" min="1" value="2"></div>
- <button class="primary" onclick="submitPackage()">REQUEST PACKAGE</button>
- `);
-}
-function submitPackage(){
- saveBooking({type:'Package',destination:document.getElementById('packageCity').value,days:document.getElementById('packageDays').value,date:document.getElementById('packageDate').value,people:document.getElementById('packagePeople').value});
- closeModal();
-}
-
-/* TICKETS */
-function ticketsForm(type){
- currentTicket=type||'bus';
- renderTickets();
-}
-function renderTickets(){
- const labels={bus:'Bus Ticket',train:'Train Ticket',flight:'Flight Ticket'};
- const icons={bus:'fa-bus',train:'fa-train',flight:'fa-plane'};
- modal('Book '+labels[currentTicket],`
- <div class="ticket-tab-row">
- <button class="t-tab ${currentTicket==='bus'?'active':''}" onclick="switchTicket('bus')">Bus</button>
- <button class="t-tab ${currentTicket==='train'?'active':''}" onclick="switchTicket('train')">Train</button>
- <button class="t-tab ${currentTicket==='flight'?'active':''}" onclick="switchTicket('flight')">Flight</button>
- </div>
- <div style="text-align:center;padding:12px;color:#1769e8;font-size:35px"><i class="fa-solid ${icons[currentTicket]}"></i></div>
- <div class="field"><label>FROM</label><input id="ticketFrom" placeholder="Departure city"></div>
- <div class="field"><label>TO</label><input id="ticketTo" placeholder="Arrival city"></div>
- <div class="field"><label>JOURNEY DATE</label><input id="ticketDate" type="date"></div>
- <div class="field"><label>PASSENGERS</label><input id="ticketPeople" type="number" min="1" value="1"></div>
- <button class="primary" onclick="submitTicket()">CONTINUE</button>
- <p style="font-size:10px;color:#8190a6;margin-top:10px">यह request आपके ऐप में सेव होगी। टिकट जारी करने के लिए वास्तविक booking provider integration जरूरी है।</p>
- `);
-}
-function switchTicket(type){currentTicket=type;renderTickets()}
-function submitTicket(){
- const from=document.getElementById('ticketFrom').value.trim();
- const to=document.getElementById('ticketTo').value.trim();
- if(!from||!to){notify('From और To भरें');return}
- saveBooking({type:currentTicket.toUpperCase()+' Ticket',from,to,date:document.getElementById('ticketDate').value,people:document.getElementById('ticketPeople').value});
- closeModal();
-}
-
-/* DESTINATIONS */
-function destination(name){
- modal(name+' Tour',`
- <div class="content-card">
- <h3>${safe(name)} की यात्रा</h3>
- <p>अपनी यात्रा के लिए Ride, Hotel या Tour Package की request भेजें।</p>
- <button class="action-btn" onclick="closeModal();packageForm()">VIEW TOUR PACKAGES</button>
- <button class="action-btn" onclick="closeModal();rideForm()">BOOK A RIDE</button>
- </div>
- `);
-}
-function searchDestination(){
- const value=document.getElementById('homeSearch').value.trim();
- if(!value){notify('Destination लिखें');return}
- destination(value);
-}
-
-/* CUSTOMER NAVIGATION */
-function setOther(title,html){
+/* OPEN SECTIONS (HOTELS, PACKAGES, RIDES, TICKETS) */
+function openSection(type){
  previousPage='customerPage';
- document.getElementById('otherSubtitle').textContent=title.toUpperCase();
+ let html='';
+ if(type==='hotels'){
+  document.getElementById('otherSubtitle').textContent='HOTELS FEED (NEARBY)';
+  const list=getHotels().sort((a,b)=>b.likes-a.likes);
+  html=list.map(h=>`
+  <div class="insta-post">
+   <div class="insta-head">
+    <div class="insta-user"><b>${safe(h.title)}</b><small>${safe(h.location)}</small></div>
+    <div class="insta-price">${safe(h.price)}</div>
+   </div>
+   <img class="insta-img" src="${h.image}" alt="${safe(h.title)}">
+   <div class="insta-actions">
+    <div class="insta-buttons">
+     <button class="insta-btn ${h.liked?'liked':''}" onclick="toggleLike('hotel',${h.id})">
+      <i class="fa-${h.liked?'solid':'regular'} fa-heart"></i> ${h.likes}
+     </button>
+     <button class="insta-btn" onclick="commentModal('Hotel', '${safe(h.title)}')">
+      <i class="fa-regular fa-comment"></i>
+     </button>
+     <button class="insta-btn" onclick="notify('Post shared successfully!')">
+      <i class="fa-solid fa-share-nodes"></i>
+     </button>
+    </div>
+    <button class="book-now-btn" onclick="bookItem('Hotel', '${safe(h.title)}', '${safe(h.price)}')">Book Now</button>
+   </div>
+  </div>`).join('');
+ }else if(type==='packages'){
+  document.getElementById('otherSubtitle').textContent='TOUR PACKAGES & VEHICLES';
+  const list=getPackages().sort((a,b)=>b.likes-a.likes);
+  html=list.map(p=>`
+  <div class="insta-post">
+   <div class="insta-head">
+    <div class="insta-user"><b>${safe(p.title)}</b><small>${safe(p.location)}</small></div>
+    <div class="insta-price">${safe(p.price)}</div>
+   </div>
+   <img class="insta-img" src="${p.image}" alt="${safe(p.title)}">
+   <div class="insta-actions">
+    <div class="insta-buttons">
+     <button class="insta-btn ${p.liked?'liked':''}" onclick="toggleLike('package',${p.id})">
+      <i class="fa-${p.liked?'solid':'regular'} fa-heart"></i> ${p.likes}
+     </button>
+     <button class="insta-btn" onclick="commentModal('Package', '${safe(p.title)}')">
+      <i class="fa-regular fa-comment"></i>
+     </button>
+     <button class="insta-btn" onclick="notify('Post shared successfully!')">
+      <i class="fa-solid fa-share-nodes"></i>
+     </button>
+    </div>
+    <button class="book-now-btn" onclick="bookItem('Package', '${safe(p.title)}', '${safe(p.price)}')">Book Now</button>
+   </div>
+  </div>`).join('');
+ }else if(type==='rides'){
+  document.getElementById('otherSubtitle').textContent='VERIFIED RIDES & CABS';
+  const list=getRides();
+  html=list.map(r=>`
+  <div class="insta-post">
+   <div class="insta-head">
+    <div class="insta-user"><b>${safe(r.vehicle)}</b><small>${safe(r.specs)}</small></div>
+    <div class="insta-price">${safe(r.price)}</div>
+   </div>
+   <img class="insta-img" src="${r.image}" alt="${safe(r.vehicle)}">
+   <div class="insta-actions">
+    <div style="font-size:11px;color:#718096">Driver Verified • AC Available</div>
+    <button class="book-now-btn" onclick="bookItem('Ride', '${safe(r.vehicle)}', '${safe(r.price)}')">Book Ride</button>
+   </div>
+  </div>`).join('');
+ }else if(type==='tickets'){
+  document.getElementById('otherSubtitle').textContent='BUS & TRAVEL TICKETS';
+  const list=getTickets();
+  html=list.map(t=>`
+  <div class="ticket-row-card">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+    <b>${safe(t.operator)}</b>
+    <span style="font-weight:800;color:#0b9f65">${safe(t.price)}</span>
+   </div>
+   <div class="ticket-timing">
+    <div><b>Departure:</b> ${safe(t.departure)} (${safe(t.from)})</div>
+    <div>➔</div>
+    <div><b>Arrival:</b> ${safe(t.arrival)} (${safe(t.to)})</div>
+   </div>
+   <button class="book-now-btn" style="width:100%;padding:10px" onclick="bookItem('Ticket', '${safe(t.operator)} (${t.from} to ${t.to})', '${safe(t.price)}')">Book Ticket</button>
+  </div>`).join('');
+ }
  document.getElementById('otherContent').innerHTML=html;
  showPage('otherPage');
- setNav(-1);
 }
-function showReels(){
- setOther('Reels',`
- <div class="heading"><h2>Travel Reels</h2></div>
- <div class="content-card"><img style="width:100%;height:230px;object-fit:cover;border-radius:12px" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700"><p>Explore beautiful destinations 🌍</p><button class="action-btn" onclick="notify('Liked!')">♥ Like</button> <button class="action-btn" onclick="notify('Share feature coming soon')">Share</button></div>
- <div class="content-card"><img style="width:100%;height:230px;object-fit:cover;border-radius:12px" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700"><p>Discover new experiences 💙</p><button class="action-btn" onclick="notify('Liked!')">♥ Like</button></div>
- <div class="content-card"><p>यहाँ अभी demo reels दिखाई जा रही हैं। असली वीडियो upload और feed के लिए storage/backend जोड़ना होगा।</p></div>
+
+/* LIKE & SORT LOGIC */
+function toggleLike(type,id){
+ if(type==='hotel'){
+  let list=getHotels();
+  let item=list.find(x=>x.id===id);
+  if(item){
+   item.liked=!item.liked;
+   item.likes+=item.liked?1:-1;
+   write('nv_hotels_posts',list);
+  }
+  openSection('hotels');
+ }else if(type==='package'){
+  let list=getPackages();
+  let item=list.find(x=>x.id===id);
+  if(item){
+   item.liked=!item.liked;
+   item.likes+=item.liked?1:-1;
+   write('nv_packages_posts',list);
+  }
+  openSection('packages');
+ }
+}
+
+/* COMMENTS MODAL */
+function commentModal(type,title){
+ modal('Comments - '+title,`
+ <div class="field"><textarea id="commentBox" placeholder="Write a review or comment..."></textarea></div>
+ <button class="primary" onclick="submitComment()">POST COMMENT</button>
  `);
 }
-function openPost(){
- modal('Create Post',`
- <div class="field"><label>POST CAPTION</label><textarea id="postCaption" rows="3" placeholder="Write something about your journey"></textarea></div>
- <div class="field"><label>PHOTO / VIDEO</label><input id="postFile" type="file" accept="image/*,video/*"></div>
- <button class="primary" onclick="submitPost()">SHARE POST</button>
- `);
-}
-function submitPost(){
- const caption=document.getElementById('postCaption').value.trim();
- const file=document.getElementById('postFile').files[0];
- if(!caption&&!file){notify('Caption या media चुनें');return}
- const posts=read('nv_posts',[]);
- posts.unshift({caption,fileName:file?.name||'',date:new Date().toLocaleString('en-IN')});
- write('nv_posts',posts);
+function submitComment(){
  closeModal();
- notify('Post details सेव हो गईं');
+ notify('Comment added successfully!');
 }
-function showSearch(){
- setOther('Search',`
+
+/* BOOKING MODAL */
+function bookItem(type,title,price){
+ modal('Confirm '+type+' Booking',`
  <div class="content-card">
- <h3>Search Destinations</h3>
- <div class="field"><input id="searchPageInput" placeholder="Search places, hotels, packages..."></div>
- <button class="primary" onclick="searchPage()">SEARCH</button>
+ <h3>${safe(title)}</h3>
+ <p><b>Price:</b> ${safe(price)}</p>
+ <p><b>Customer:</b> ${safe(currentUser?.name||'Guest')}</p>
+ <p><b>Phone:</b> ${safe(currentUser?.phone||'--')}</p>
  </div>
- <div class="content-card"><h3>Popular Searches</h3><p onclick="destination('Manali')">Manali</p><p onclick="destination('Goa')">Goa</p><p onclick="destination('Kashmir')">Kashmir</p></div>
+ <div class="field"><label>TRAVEL DATE</label><input type="date" id="bookDate"></div>
+ <button class="primary" onclick="saveBookingRequest('${type}','${title}','${price}')">CONFIRM & SAVE BOOKING</button>
  `);
 }
-function searchPage(){
- const q=document.getElementById('searchPageInput').value.trim();
- if(!q){notify('Search लिखें');return}
- destination(q);
+
+function saveBookingRequest(type,title,price){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ bookings.unshift({
+  id:'NV'+Date.now(),
+  type,title,price,
+  customer:currentUser?.name||'Customer',
+  phone:currentUser?.phone||'',
+  date:document.getElementById('bookDate')?.value||'Today',
+  status:'Pending',
+  createdAt:new Date().toLocaleString('en-IN')
+ });
+ write('nv_travelss_booking_requests',bookings);
+ closeModal();
+ notify('Booking request submitted successfully!');
 }
+
+/* SERVICE PROVIDER POST UPLOAD */
+function openPost(){
+ modal('Provider Post Upload',`
+ <div class="field"><label>SELECT CATEGORY</label>
+ <select id="postCategory">
+  <option value="hotel">Hotel Listing</option>
+  <option value="package">Tour Package</option>
+  <option value="ride">Ride / Vehicle</option>
+  <option value="ticket">Bus Ticket / Timing</option>
+ </select></div>
+ <div class="field"><label>TITLE / NAME</label><input id="postTitle" placeholder="e.g. Luxury Suite / Volvo Bus"></div>
+ <div class="field"><label>LOCATION / ROUTE</label><input id="postLocation" placeholder="e.g. Indore / Indore to Bhopal"></div>
+ <div class="field"><label>PRICE</label><input id="postPrice" placeholder="e.g. ₹2,000 / night"></div>
+ <div class="field"><label>REAL PHOTO URL</label><input id="postImage" placeholder="Paste real image URL (unsplash etc.)"></div>
+ <button class="primary" onclick="submitProviderPost()">PUBLISH POST LIVE</button>
+ `);
+}
+
+function submitProviderPost(){
+ const cat=document.getElementById('postCategory').value;
+ const title=document.getElementById('postTitle').value.trim();
+ const location=document.getElementById('postLocation').value.trim();
+ const price=document.getElementById('postPrice').value.trim();
+ const image=document.getElementById('postImage').value.trim()||'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800';
+
+ if(!title||!price){notify('Title और Price भरें');return}
+
+ if(cat==='hotel'){
+  let list=getHotels();
+  list.unshift({id:Date.now(),title,location,price,image,likes:0,liked:false});
+  write('nv_hotels_posts',list);
+ }else if(cat==='package'){
+  let list=getPackages();
+  list.unshift({id:Date.now(),title,location,price,image,likes:0,liked:false});
+  write('nv_packages_posts',list);
+ }else if(cat==='ride'){
+  let list=getRides();
+  list.unshift({id:Date.now(),vehicle:title,specs:location||'AC • Verified',price,image});
+  write('nv_rides_posts',list);
+ }else if(cat==='ticket'){
+  let list=getTickets();
+  list.unshift({id:Date.now(),operator:title,from:'Indore',to:location||'Bhopal',departure:'08:00 AM',arrival:'01:00 PM',price});
+  write('nv_tickets_posts',list);
+ }
+
+ closeModal();
+ notify('Post successfully published live!');
+}
+
+function providerBookings(){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ modal('Customer Bookings',bookings.length?bookings.map(b=>`
+ <div class="content-card">
+ <h3>${safe(b.type)} - ${safe(b.title)}</h3>
+ <p><b>Customer:</b> ${safe(b.customer)} (${safe(b.phone)})</p>
+ <p><b>Price:</b> ${safe(b.price)} | <b>Date:</b> ${safe(b.date)}</p>
+ <p><b>Status:</b> ${safe(b.status)}</p>
+ <button class="action-btn" onclick="updateBookingStatus('${b.id}','Accepted')">ACCEPT</button>
+ <button class="action-btn" style="background:#e74c3c" onclick="updateBookingStatus('${b.id}','Rejected')">REJECT</button>
+ </div>`).join(''):'<div class="empty"><i class="fa-solid fa-inbox"></i>No booking requests yet</div>');
+}
+
+function updateBookingStatus(id,status){
+ let bookings=read('nv_travelss_booking_requests',[]);
+ let item=bookings.find(b=>b.id===id);
+ if(item){item.status=status;write('nv_travelss_booking_requests',bookings);}
+ closeModal();
+ notify('Booking status updated to '+status);
+}
+
+function providerEarnings(){
+ modal('My Earnings & Policy',`
+ <div class="content-card">
+ <h3>NV Travelss Rules</h3>
+ <p>• Driver commission: 15% per ride</p>
+ <p>• Driver monthly recharge: ₹300</p>
+ <p>• Hotel owner commission: 15%</p>
+ <p>• Hotel owner monthly pass: ₹1,000</p>
+ </div>
+ `);
+}
+
+function providerProfile(){
+ modal('Provider Profile',`
+ <div class="content-card">
+ <h3>${safe(currentUser?.name)}</h3>
+ <p>Phone: ${safe(currentUser?.phone)}</p>
+ <p>Role: Service Provider (${safe(currentUser?.type)})</p>
+ </div>
+ <button class="logout" onclick="logout()">LOG OUT</button>
+ `);
+}
+
 function showProfile(){
  if(!currentUser)return;
+ previousPage='customerPage';
  setOther('Profile',`
  <div class="content-card">
  <div style="text-align:center;padding:15px">
@@ -671,102 +738,34 @@ function showProfile(){
  <button class="logout" onclick="logout()">LOG OUT</button>
  `);
 }
+
+function setOther(title,html){
+ document.getElementById('otherSubtitle').textContent=title.toUpperCase();
+ document.getElementById('otherContent').innerHTML=html;
+ showPage('otherPage');
+}
+
 function myBookings(){
  const bookings=read('nv_travelss_booking_requests',[]).filter(b=>b.phone===currentUser?.phone);
  setOther('My Bookings',bookings.length?bookings.map(b=>`
  <div class="content-card">
- <h3>${safe(b.type)}</h3>
- <p>${safe(b.pickup||b.from||b.destination||'')}</p>
- <p>Status: ${safe(b.status)}</p>
- <p>${safe(b.createdAt)}</p>
- </div>`).join(''):'<div class="empty"><i class="fa-solid fa-calendar-xmark"></i>No bookings yet</div>');
+ <h3>${safe(b.type)}: ${safe(b.title)}</h3>
+ <p>Price: ${safe(b.price)} | Status: <b>${safe(b.status)}</b></p>
+ <p>Date: ${safe(b.date)}</p>
+ </div>`).join(''):'<div class="empty"><i class="fa-solid fa-calendar-xmark"></i>No bookings found</div>');
 }
 
-/* PROVIDER FEATURES */
-function providerService(type){
- if(type==='Driver'){
-  modal('Driver Service',`
-  <div class="field"><label>VEHICLE TYPE</label><select id="driverVehicle">${vehicles.map(v=>`<option>${v[0]}</option>`).join('')}</select></div>
-  <div class="field"><label>VEHICLE NUMBER</label><input id="driverNumber" placeholder="Vehicle registration number"></div>
-  <div class="field"><label>DRIVING LICENSE NUMBER</label><input id="licenseNumber" placeholder="Driving license number"></div>
-  <button class="primary" onclick="saveProviderService('Driver')">SAVE DRIVER DETAILS</button>
-  `);
- }else{
-  modal('Hotel Owner Service',`
-  <div class="field"><label>HOTEL NAME</label><input id="hotelName" placeholder="Hotel name"></div>
-  <div class="field"><label>HOTEL CITY</label><input id="hotelLocation" placeholder="City"></div>
-  <div class="field"><label>ROOM PRICE</label><input id="hotelPrice" type="number" placeholder="Price per night"></div>
-  <div class="field"><label>CONTACT NUMBER</label><input id="hotelContact" type="tel" placeholder="Contact number"></div>
-  <button class="primary" onclick="saveProviderService('Hotel Owner')">SAVE HOTEL DETAILS</button>
-  `);
- }
-}
-function saveProviderService(type){
- const data={type,provider:currentUser?.name,phone:currentUser?.phone};
- if(type==='Driver'){
-  data.vehicle=document.getElementById('driverVehicle').value;
-  data.vehicleNumber=document.getElementById('driverNumber').value.trim();
-  data.license=document.getElementById('licenseNumber').value.trim();
-  if(!data.vehicleNumber||!data.license){notify('सभी जानकारी भरें');return}
- }else{
-  data.hotelName=document.getElementById('hotelName').value.trim();
-  data.location=document.getElementById('hotelLocation').value.trim();
-  data.price=document.getElementById('hotelPrice').value;
-  data.contact=document.getElementById('hotelContact').value.trim();
-  if(!data.hotelName||!data.location||!data.price){notify('सभी जरूरी जानकारी भरें');return}
- }
- const list=read('nv_provider_services',[]);
- list.push(data);
- write('nv_provider_services',list);
- closeModal();
- notify('आपकी सर्विस की जानकारी सेव हो गई');
-}
-function providerBookings(){
- const bookings=read('nv_travelss_booking_requests',[]);
- modal('Booking Requests',bookings.length?bookings.map(b=>`
- <div class="content-card">
- <h3>${safe(b.type)}</h3>
- <p>${safe(b.pickup||b.from||'')} ${b.destination?' → '+safe(b.destination):''}</p>
- <p>Customer: ${safe(b.customer)}</p>
- <p>Phone: ${safe(b.phone)}</p>
- <p>Status: ${safe(b.status)}</p>
- <button class="action-btn" onclick="updateBooking('${b.id}','Accepted')">ACCEPT</button>
- <button class="action-btn" style="background:#e74c3c" onclick="updateBooking('${b.id}','Rejected')">REJECT</button>
- </div>`).join(''):'<div class="empty"><i class="fa-solid fa-inbox"></i>No booking requests</div>');
-}
-function updateBooking(id,status){
- const bookings=read('nv_travelss_booking_requests',[]);
- const item=bookings.find(b=>b.id===id);
- if(item){item.status=status;write('nv_travelss_booking_requests',bookings)}
- closeModal();
- notify('Booking status updated: '+status);
-}
-function providerEarnings(){
- const bookings=read('nv_travelss_booking_requests',[]);
- modal('My Earnings',`
- <div class="content-card">
- <h3>Commission Policy</h3>
- <p>Driver: 15% commission on every ride.</p>
- <p>Driver monthly recharge: ₹300.</p>
- <p>Hotel owner: 15% commission.</p>
- <p>Hotel monthly pass: ₹1000.</p>
- <p>Completed rides: ${bookings.filter(b=>b.status==='Completed').length}</p>
- </div>
- <p style="font-size:10px;color:#8492a6">यह अभी policy information है। वास्तविक payment और settlement के लिए payment backend जरूरी है।</p>
- `);
-}
-function providerProfile(){
- modal('Provider Profile',`
- <div class="content-card">
- <h3>${safe(currentUser?.name)}</h3>
- <p>Phone: ${safe(currentUser?.phone)}</p>
- <p>Service: ${safe(currentUser?.type)}</p>
- </div>
- <button class="primary" onclick="logout()">LOG OUT</button>
- `);
+function searchDestination(){
+ const q=document.getElementById('homeSearch').value.trim();
+ if(!q){notify('Destination लिखें');return}
+ openSection('hotels');
 }
 
-/* STARTUP */
+function destination(name){
+ openSection('hotels');
+}
+
+/* INITIALIZE APP */
 (function init(){
  const saved=read('nvUserProfile',null);
  if(saved&&saved.name&&saved.phone&&saved.role){
