@@ -1,403 +1,226 @@
-
-/* HOTEL, PACKAGES AND TICKETS - NV TRAVELSS */
-
-/* DEMO LISTINGS
-   Real hotel/train/flight availability requires live provider APIs.
-*/
-
-const serviceListings = {
- hotel: [
-  {
-   name:"Featured Luxury Hotel",
-   type:"Premium Stay",
-   image:"https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",
-   detail:"Comfortable rooms • Demo listing"
-  },
-  {
-   name:"Featured City Hotel",
-   type:"City Stay",
-   image:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800",
-   detail:"City accommodation • Demo listing"
-  },
-  {
-   name:"Featured Resort",
-   type:"Resort",
-   image:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800",
-   detail:"Relaxing stay • Demo listing"
-  }
- ],
- bus: [
-  {
-   name:"AC Sleeper Bus",
-   type:"Sleeper Coach",
-   image:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800",
-   detail:"AC sleeper • Demo option"
-  },
-  {
-   name:"Luxury AC Coach",
-   type:"Luxury Coach",
-   image:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800",
-   detail:"Luxury coach • Demo option"
-  }
- ],
- train: [
-  {
-   name:"Express Train",
-   type:"Express",
-   image:"https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800",
-   detail:"Train option • Demo listing"
-  },
-  {
-   name:"Premium Train",
-   type:"Premium",
-   image:"https://images.unsplash.com/photo-1515169067868-5387ec356754?w=800",
-   detail:"Premium journey • Demo listing"
-  }
- ],
- flight: [
-  {
-   name:"Domestic Flight",
-   type:"Economy",
-   image:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",
-   detail:"Domestic flight • Demo option"
-  },
-  {
-   name:"Premium Flight",
-   type:"Premium",
-   image:"https://images.unsplash.com/photo-1542296332-2e4473faf563?w=800",
-   detail:"Premium journey • Demo option"
-  }
- ],
- package: [
-  {
-   name:"Mountain Tour Package",
-   type:"Adventure Tour",
-   image:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
-   detail:"Mountain holiday • Demo package"
-  },
-  {
-   name:"Beach Holiday Package",
-   type:"Beach Tour",
-   image:"https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",
-   detail:"Beach holiday • Demo package"
-  },
-  {
-   name:"Kashmir Tour Package",
-   type:"Nature Tour",
-   image:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800",
-   detail:"Nature holiday • Demo package"
-  }
- ]
+const appData = {
+    hotels: [
+        { id: 1, name: "NV Grand Palace", city: "Indore", price: "₹2,500/night", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945", likes: 12, comments: ["Great stay!", "Clean rooms"] },
+        { id: 2, name: "Royal View Hotel", city: "Bhopal", price: "₹3,000/night", image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b", likes: 8, comments: ["Awesome hospitality."] },
+        { id: 3, name: "Sunset Resort", city: "Udaipur", price: "₹4,500/night", image: "https://images.unsplash.com/photo-1590490360182-c33d57733427", likes: 25, comments: ["Loved the lake view!"] }
+    ],
+    packages: [
+        { id: 1, name: "Goa Beach Retreat", city: "Goa", price: "₹12,000 / 3 Days", image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2", likes: 40, comments: ["Best package ever."] },
+        { id: 2, name: "Manali Snow Adventure", city: "Manali", price: "₹15,000 / 4 Days", image: "https://images.unsplash.com/photo-1605648916361-9bc12ad6a566", likes: 31, comments: ["Incredible experience!"] }
+    ],
+    tickets: [
+        { id: 1, name: "Express Bus (Indore to Bhopal)", city: "Indore", timing: "08:00 AM - 12:30 PM", price: "₹600", image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957", likes: 15, comments: ["Reached on time."] },
+        { id: 2, name: "Luxury Sleeper (Bhopal to Mumbai)", city: "Bhopal", timing: "09:30 PM - 07:00 AM", price: "₹1,400", image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e", likes: 22, comments: ["Very comfortable bus."] }
+    ]
 };
 
-let listingContext = {type:"", city:"", extra:{}};
+let currentSelectedItem = null;
 
-/* COMMON LISTING CARD */
-function renderServiceListings(type, city, extra={}) {
- const items = serviceListings[type] || [];
- const titles = {
-  hotel:"Recommended Hotels",
-  bus:"Recommended Buses",
-  train:"Recommended Trains",
-  flight:"Recommended Flights",
-  package:"Recommended Tour Packages"
- };
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('login-page').classList.remove('active-page');
+    document.getElementById('home-page').classList.add('active-page');
+    
+    initAppFilters();
+    renderHotels(appData.hotels);
+    renderPackages(appData.packages);
+    renderTickets(appData.tickets);
+});
 
- listingContext = {type, city, extra};
+function switchTab(tabName) {
+    document.getElementById('home-page').style.display = 'none';
+    document.querySelectorAll('.app-section').forEach(sec => sec.classList.remove('active-section'));
 
- const cards = items.map((item,index)=>`
-  <div class="content-card" style="padding:12px">
-   <div style="position:relative">
-    <img
-     src="${item.image}"
-     alt="${safe(item.name)}"
-     style="width:100%;height:175px;object-fit:cover;border-radius:13px"
-     onerror="this.style.display='none'">
-    <span style="display:inline-block;background:#eaf3ff;color:#1769e8;padding:6px 10px;border-radius:20px;font-size:10px;font-weight:800;margin-top:9px">
-     ★ Recommended
-    </span>
-   </div>
-
-   <h3 style="margin-top:10px">${safe(item.name)}</h3>
-   <p>${safe(item.type)} • ${safe(item.detail)}</p>
-   ${city ? `<p><b>Destination:</b> ${safe(city)}</p>` : ""}
-
-   <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px">
-    <button class="action-btn" onclick="likeListing('${type}',${index})">
-     <i class="fa-regular fa-heart"></i> Like
-    </button>
-    <button class="action-btn" onclick="commentListing('${type}',${index})">
-     <i class="fa-regular fa-comment"></i> Comment
-    </button>
-    <button class="action-btn" onclick="shareListing('${type}',${index})">
-     <i class="fa-solid fa-share"></i> Share
-    </button>
-    <button class="action-btn" onclick="bookListing('${type}',${index})">
-     <i class="fa-solid fa-ticket"></i> Book
-    </button>
-   </div>
-  </div>
- `).join("");
-
- const html = `
-  <div class="content-card">
-   <h3>${titles[type]}</h3>
-   <p>${city ? "Destination: "+safe(city) : "Explore available options"}</p>
-   <p style="margin-top:5px;font-size:10px;color:#8492a6">
-    Demo listings. Confirm actual availability before booking.
-   </p>
-  </div>
-  ${cards}
- `;
-
- modal(titles[type],html);
+    if(tabName === 'home') {
+        document.getElementById('home-page').style.display = 'block';
+    } else if(tabName === 'hotels') {
+        document.getElementById('hotels-section').classList.add('active-section');
+    } else if(tabName === 'packages') {
+        document.getElementById('packages-section').classList.add('active-section');
+    } else if(tabName === 'tickets') {
+        document.getElementById('tickets-section').classList.add('active-section');
+    }
 }
 
-/* LIKE */
-function likeListing(type,index) {
- const key = "nv_listing_likes";
- const likes = read(key,{});
- const id = type+"_"+index;
- likes[id] = !likes[id];
- write(key,likes);
- notify(likes[id] ? "आपने Like किया ❤️" : "Like हटाया गया");
+function initAppFilters() {
+    const allCities = [...new Set([
+        ...appData.hotels.map(h => h.city),
+        ...appData.packages.map(p => p.city),
+        ...appData.tickets.map(t => t.city)
+    ])];
+
+    ['hotel-city-filter', 'package-city-filter', 'ticket-city-filter'].forEach(filterId => {
+        const select = document.getElementById(filterId);
+        allCities.forEach(city => {
+            const opt = document.createElement('option');
+            opt.value = city;
+            opt.textContent = city;
+            select.appendChild(opt);
+        });
+    });
 }
 
-/* COMMENT */
-function commentListing(type,index) {
- const item = serviceListings[type]?.[index];
- if(!item) return;
-
- const comment = prompt(item.name+" पर अपना Comment लिखें:");
- if(!comment || !comment.trim()) return;
-
- const all = read("nv_listing_comments",[]);
- all.unshift({
-  type,
-  item:item.name,
-  comment:comment.trim(),
-  customer:currentUser?.name || "Customer",
-  date:new Date().toLocaleString("en-IN")
- });
- write("nv_listing_comments",all);
- notify("Comment सेव हो गया");
+function renderHotels(hotels) {
+    const container = document.getElementById('hotels-container');
+    container.innerHTML = hotels.map(h => `
+        <div class="card">
+            <img src="${h.image}" class="card-img" alt="${h.name}">
+            <div class="card-body">
+                <div class="card-title">${h.name}</div>
+                <div class="card-info"><i class="fas fa-map-marker-alt"></i> City: ${h.city}</div>
+                <div class="card-info">Price: ${h.price}</div>
+                <div class="social-actions">
+                    <button class="social-btn" onclick="handleLike('hotel', ${h.id})"><i class="far fa-thumbs-up"></i> Like (${h.likes})</button>
+                    <button class="social-btn" onclick="toggleCommentBox('hotel-${h.id}')"><i class="far fa-comment"></i> Comment (${h.comments.length})</button>
+                    <button class="social-btn" onclick="shareItem('${h.name}')"><i class="fas fa-share"></i> Share</button>
+                </div>
+                <div id="comment-box-hotel-${h.id}" class="comment-section" style="display:none;">
+                    <div class="comment-list">${h.comments.map(c => `<p style="margin:2px 0; background:#f1f1f1; padding:3px 6px; border-radius:3px;">${c}</p>`).join('')}</div>
+                    <div class="comment-input-box">
+                        <input type="text" id="input-hotel-${h.id}" placeholder="Write comment...">
+                        <button onclick="addComment('hotel', ${h.id})">Post</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn-primary" onclick="openBookingModal('Hotel', '${h.name}')">Book Now</button>
+            </div>
+        </div>
+    `).join('');
 }
 
-/* SHARE */
-function shareListing(type,index) {
- const item = serviceListings[type]?.[index];
- if(!item) return;
-
- const textToShare = "NV TRAVELSS - "+item.name+" ("+item.type+")";
-
- if(navigator.share) {
-  navigator.share({title:item.name,text:textToShare})
-   .catch(()=>notify("Share नहीं हो पाया"));
- } else if(navigator.clipboard) {
-  navigator.clipboard.writeText(textToShare)
-   .then(()=>notify("Share text कॉपी हो गया"))
-   .catch(()=>notify("Share उपलब्ध नहीं है"));
- } else {
-  notify("इस डिवाइस पर Share उपलब्ध नहीं है");
- }
+function renderPackages(packages) {
+    const container = document.getElementById('packages-container');
+    container.innerHTML = packages.map(p => `
+        <div class="card">
+            <img src="${p.image}" class="card-img" alt="${p.name}">
+            <div class="card-body">
+                <div class="card-title">${p.name}</div>
+                <div class="card-info"><i class="fas fa-map-marker-alt"></i> Destination: ${p.city}</div>
+                <div class="card-info">Cost: ${p.price}</div>
+                <div class="social-actions">
+                    <button class="social-btn" onclick="handleLike('package', ${p.id})"><i class="far fa-thumbs-up"></i> Like (${p.likes})</button>
+                    <button class="social-btn" onclick="toggleCommentBox('package-${p.id}')"><i class="far fa-comment"></i> Comment (${p.comments.length})</button>
+                    <button class="social-btn" onclick="shareItem('${p.name}')"><i class="fas fa-share"></i> Share</button>
+                </div>
+                <div id="comment-box-package-${p.id}" class="comment-section" style="display:none;">
+                    <div class="comment-list">${p.comments.map(c => `<p style="margin:2px 0; background:#f1f1f1; padding:3px 6px; border-radius:3px;">${c}</p>`).join('')}</div>
+                    <div class="comment-input-box">
+                        <input type="text" id="input-package-${p.id}" placeholder="Write comment...">
+                        <button onclick="addComment('package', ${p.id})">Post</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn-primary" onclick="openBookingModal('Package', '${p.name}')">Book Now</button>
+            </div>
+        </div>
+    `).join('');
 }
 
-/* BOOK LISTING */
-function bookListing(type,index) {
- const item = serviceListings[type]?.[index];
- if(!item) return;
-
- const data = {
-  type:type.toUpperCase()+" Booking",
-  itemName:item.name,
-  itemType:item.type,
-  destination:listingContext.city || "",
-  ...listingContext.extra
- };
-
- saveBooking(data);
- closeModal();
+function renderTickets(tickets) {
+    const container = document.getElementById('tickets-container');
+    container.innerHTML = tickets.map(t => `
+        <div class="card">
+            <img src="${t.image}" class="card-img" alt="${t.name}">
+            <div class="card-body">
+                <div class="card-title">${t.name}</div>
+                <div class="card-info"><i class="fas fa-map-marker-alt"></i> Route Hub: ${t.city}</div>
+                <div class="timing-badge"><i class="far fa-clock"></i> Timing: ${t.timing}</div>
+                <div class="card-info">Fare: ${t.price}</div>
+                <div class="social-actions">
+                    <button class="social-btn" onclick="handleLike('ticket', ${t.id})"><i class="far fa-thumbs-up"></i> Like (${t.likes})</button>
+                    <button class="social-btn" onclick="toggleCommentBox('ticket-${t.id}')"><i class="far fa-comment"></i> Comment (${t.comments.length})</button>
+                    <button class="social-btn" onclick="shareItem('${t.name}')"><i class="fas fa-share"></i> Share</button>
+                </div>
+                <div id="comment-box-ticket-${t.id}" class="comment-section" style="display:none;">
+                    <div class="comment-list">${t.comments.map(c => `<p style="margin:2px 0; background:#f1f1f1; padding:3px 6px; border-radius:3px;">${c}</p>`).join('')}</div>
+                    <div class="comment-input-box">
+                        <input type="text" id="input-ticket-${t.id}" placeholder="Write comment...">
+                        <button onclick="addComment('ticket', ${t.id})">Post</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn-primary" onclick="openBookingModal('Ticket', '${t.name}')">Book Now</button>
+            </div>
+        </div>
+    `).join('');
 }
 
-/* HOTEL */
-function hotelForm() {
- modal("Hotel Booking",`
-  <div class="field">
-   <label>DESTINATION CITY</label>
-   <input id="hotelCity" placeholder="जैसे Indore, Bhopal, Mumbai">
-  </div>
-  <div class="field">
-   <label>CHECK IN</label>
-   <input type="date" id="checkIn">
-  </div>
-  <div class="field">
-   <label>CHECK OUT</label>
-   <input type="date" id="checkOut">
-  </div>
-  <div class="field">
-   <label>ROOMS</label>
-   <select id="rooms">
-    <option>1 Room</option>
-    <option>2 Rooms</option>
-    <option>3 Rooms</option>
-    <option>4 Rooms</option>
-   </select>
-  </div>
-  <button class="primary" onclick="submitHotel()">SEARCH HOTELS</button>
- `);
+function filterHotels() {
+    const city = document.getElementById('hotel-city-filter').value;
+    const filtered = city === 'all' ? appData.hotels : appData.hotels.filter(h => h.city === city);
+    renderHotels(filtered);
 }
 
-function submitHotel() {
- const city = document.getElementById("hotelCity").value.trim();
- const checkIn = document.getElementById("checkIn").value;
- const checkOut = document.getElementById("checkOut").value;
- const rooms = document.getElementById("rooms").value;
-
- if(!city) {
-  notify("Destination city लिखें");
-  return;
- }
-
- if(checkIn && checkOut && checkOut <= checkIn) {
-  notify("Check-out तारीख सही चुनें");
-  return;
- }
-
- closeModal();
- renderServiceListings("hotel",city,{checkIn,checkOut,rooms});
+function filterPackages() {
+    const city = document.getElementById('package-city-filter').value;
+    const filtered = city === 'all' ? appData.packages : appData.packages.filter(p => p.city === city);
+    renderPackages(filtered);
 }
 
-/* PACKAGES */
-function packageForm() {
- modal("Tour Packages",`
-  <div class="field">
-   <label>SELECT DESTINATION</label>
-   <select id="packageCity">
-    <option>Manali</option>
-    <option>Goa</option>
-    <option>Kashmir</option>
-    <option>Shimla</option>
-    <option>Jaipur</option>
-    <option>Udaipur</option>
-    <option>Kerala</option>
-    <option>Indore</option>
-   </select>
-  </div>
-  <div class="field">
-   <label>NUMBER OF DAYS</label>
-   <select id="packageDays">
-    <option>2 Days</option>
-    <option>3 Days</option>
-    <option>4 Days</option>
-    <option>5 Days</option>
-    <option>7 Days</option>
-    <option>10 Days</option>
-   </select>
-  </div>
-  <div class="field">
-   <label>TRAVEL DATE</label>
-   <input type="date" id="packageDate">
-  </div>
-  <div class="field">
-   <label>NUMBER OF PERSONS</label>
-   <input type="number" id="packagePeople" min="1" value="2">
-  </div>
-  <button class="primary" onclick="submitPackage()">VIEW PACKAGES</button>
- `);
+function filterTickets() {
+    const city = document.getElementById('ticket-city-filter').value;
+    const filtered = city === 'all' ? appData.tickets : appData.tickets.filter(t => t.city === city);
+    renderTickets(filtered);
 }
 
-function submitPackage() {
- const city = document.getElementById("packageCity").value;
- const days = document.getElementById("packageDays").value;
- const date = document.getElementById("packageDate").value;
- const people = document.getElementById("packagePeople").value;
-
- if(!people || Number(people)<1) {
-  notify("Persons की संख्या सही भरें");
-  return;
- }
-
- closeModal();
- renderServiceListings("package",city,{days,date,people});
+function handleLike(type, id) {
+    const list = appData[type + 's'];
+    const item = list.find(x => x.id === id);
+    if(item) {
+        item.likes += 1;
+        if(type === 'hotel') renderHotels(appData.hotels);
+        if(type === 'package') renderPackages(appData.packages);
+        if(type === 'ticket') renderTickets(appData.tickets);
+    }
 }
 
-/* BUS / TRAIN / FLIGHT TICKETS */
-function ticketsForm(type) {
- currentTicket = type || "bus";
- renderTickets();
+function toggleCommentBox(boxId) {
+    const box = document.getElementById('comment-box-' + boxId);
+    box.style.display = box.style.display === 'none' ? 'block' : 'none';
 }
 
-function renderTickets() {
- const labels = {
-  bus:"Bus",
-  train:"Train",
-  flight:"Flight"
- };
-
- modal("Book "+labels[currentTicket],`
-  <div class="ticket-tab-row">
-   <button class="t-tab ${currentTicket==="bus"?"active":""}" onclick="switchTicket('bus')">Bus</button>
-   <button class="t-tab ${currentTicket==="train"?"active":""}" onclick="switchTicket('train')">Train</button>
-   <button class="t-tab ${currentTicket==="flight"?"active":""}" onclick="switchTicket('flight')">Flight</button>
-  </div>
-
-  <div class="field">
-   <label>FROM</label>
-   <input id="ticketFrom" placeholder="Departure city">
-  </div>
-  <div class="field">
-   <label>TO</label>
-   <input id="ticketTo" placeholder="Arrival city">
-  </div>
-  <div class="field">
-   <label>JOURNEY DATE</label>
-   <input type="date" id="ticketDate">
-  </div>
-  <div class="field">
-   <label>PASSENGERS</label>
-   <input type="number" id="ticketPeople" min="1" value="1">
-  </div>
-
-  <button class="primary" onclick="submitTicket()">SEARCH ${labels[currentTicket].toUpperCase()} OPTIONS</button>
-  <p style="font-size:10px;color:#8190a6;margin-top:10px">
-   ये Demo options हैं। वास्तविक टिकट उपलब्धता और टिकट जारी करने के लिए booking provider जरूरी है।
-  </p>
- `);
+function addComment(type, id) {
+    const input = document.getElementById(`input-${type}-${id}`);
+    const text = input.value.trim();
+    if(text) {
+        const list = appData[type + 's'];
+        const item = list.find(x => x.id === id);
+        if(item) {
+            item.comments.push(text);
+            input.value = '';
+            if(type === 'hotel') renderHotels(appData.hotels);
+            if(type === 'package') renderPackages(appData.packages);
+            if(type === 'ticket') renderTickets(appData.tickets);
+            document.getElementById(`comment-box-${type}-${id}`).style.display = 'block';
+        }
+    }
 }
 
-function switchTicket(type) {
- currentTicket = type;
- renderTickets();
+function shareItem(name) {
+    if (navigator.share) {
+        navigator.share({ title: 'NV TRAVELSS', text: `Check out this amazing option: ${name}`, url: window.location.href });
+    } else {
+        alert(`Link copied for: ${name}`);
+    }
 }
 
-function submitTicket() {
- const from = document.getElementById("ticketFrom").value.trim();
- const to = document.getElementById("ticketTo").value.trim();
- const date = document.getElementById("ticketDate").value;
- const people = document.getElementById("ticketPeople").value;
+function openBookingModal(type, name) {
+    currentSelectedItem = { type, name };
+    document.getElementById('modal-title').textContent = `Book ${type}: ${name}`;
+    document.getElementById('booking-modal').style.display = 'block';
+}
 
- if(!from || !to) {
-  notify("From और To भरें");
-  return;
- }
+function closeBookingModal() {
+    document.getElementById('booking-modal').style.display = 'none';
+}
 
- if(from.toLowerCase()===to.toLowerCase()) {
-  notify("From और To अलग-अलग होने चाहिए");
-  return;
- }
-
- if(!people || Number(people)<1) {
-  notify("Passengers की संख्या सही भरें");
-  return;
- }
-
- const type = currentTicket;
- closeModal();
-
- renderServiceListings(type,to,{
-  from,
-  to,
-  date,
-  people
- });
+function submitBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('booker-name').value;
+    alert(`Success! Your ${currentSelectedItem.type} booking for "${currentSelectedItem.name}" is confirmed, ${name}.`);
+    closeBookingModal();
+    document.getElementById('booking-form').reset();
 }
