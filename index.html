@@ -12,23 +12,14 @@
  </main>
 </section>
 
-<!-- REELS PAGE -->
 <section id="reelsPage" class="page">
  <header>
   <button class="icon-btn" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i></button>
   <div class="logo">NV <span>REELS</span></div>
-  <button class="icon-btn" onclick="showProfile()"><i class="fa-solid fa-user"></i></button>
  </header>
- <main>
-  <div class="content-card">
-   <h3>Latest Reels</h3>
-   <p>अपनी पसंदीदा जगहों के वीडियो देखें और शेयर करें।</p>
-  </div>
-  <div id="reelsList"></div>
- </main>
+ <main id="reelsList"></main>
 </section>
 
-<!-- PROFILE PAGE -->
 <section id="profilePage" class="page">
  <header>
   <button class="icon-btn" onclick="goHome()"><i class="fa-solid fa-arrow-left"></i></button>
@@ -40,7 +31,6 @@
  </main>
 </section>
 
-<!-- MODAL -->
 <div class="modal-bg" id="modalBg" onclick="outsideClose(event)">
  <div class="modal">
   <div class="modal-head">
@@ -64,86 +54,82 @@
 <script>
 "use strict";
 
-/* NV TRAVELSS APP */
 const $ = id => document.getElementById(id);
-const STORE_USER = "nv_travelss_user";
-const STORE_BOOKINGS = "nv_travelss_bookings";
-const STORE_LIKES = "nv_travelss_likes";
+const USER_KEY = "nv_travelss_user";
+const BOOK_KEY = "nv_travelss_bookings";
+const LIKE_KEY = "nv_travelss_likes";
 
 let currentRole = "";
-let currentUser = JSON.parse(localStorage.getItem(STORE_USER) || "null");
+let currentUser = JSON.parse(localStorage.getItem(USER_KEY) || "null");
 let selectedVehicle = "Sedan";
-let activeTicketType = "bus";
-let currentContentType = "";
 let toastTimer;
 
 const vehicles = [
  {name:"Bike",rate:10,img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600"},
- {name:"Auto",rate:15,img:"https://images.unsplash.com/photo-1601924928377-4e9b8e7b4c2b?w=600"},
+ {name:"Auto",rate:15,img:"https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=600"},
  {name:"Hatchback",rate:16,img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600"},
  {name:"Sedan",rate:18,img:"https://images.unsplash.com/photo-1590362891991-f776e747a588?w=600"},
  {name:"SUV",rate:22,img:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?w=600"},
  {name:"MUV",rate:24,img:"https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600"},
  {name:"Premium",rate:30,img:"https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600"},
  {name:"6–7 Seater",rate:25,img:"https://images.unsplash.com/photo-1563720223185-11003d516935?w=600"},
- {name:"8–12 Seater",rate:30,img:"https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=600"},
+ {name:"8–12 Seater",rate:30,img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600"},
  {name:"Tempo Traveller",rate:35,img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600"},
  {name:"Mini Bus",rate:45,img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600"},
- {name:"Bus",rate:60,img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=600"}
+ {name:"Bus",rate:60,img:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=600"}
 ];
 
 const listings = {
  hotel:[
-  {name:"Sayaji Hotel Indore",place:"Vijay Nagar, Indore",desc:"प्रीमियम होटल, आरामदायक कमरे और शानदार सुविधाएँ।",img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800",price:"कीमत होटल से पूछें"},
-  {name:"Radisson Blu Hotel Indore",place:"Vijay Nagar, Indore",desc:"लक्जरी स्टे और शानदार सुविधाएँ।",img:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800",price:"कीमत होटल से पूछें"},
-  {name:"Indore Hotel Stay",place:"Indore, Madhya Pradesh",desc:"परिवार और यात्रियों के लिए होटल विकल्प।",img:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800",price:"कीमत होटल से पूछें"}
+  {name:"Sayaji Hotel Indore",place:"Vijay Nagar, Indore",desc:"प्रीमियम होटल और आरामदायक कमरे।",img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?w=900",price:"कीमत होटल से पूछें"},
+  {name:"Radisson Blu Hotel Indore",place:"Vijay Nagar, Indore",desc:"लक्जरी स्टे और आधुनिक सुविधाएँ।",img:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=900",price:"कीमत होटल से पूछें"},
+  {name:"Hotel Stay Indore",place:"Indore, Madhya Pradesh",desc:"परिवार और यात्रियों के लिए होटल विकल्प।",img:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900",price:"कीमत होटल से पूछें"}
  ],
  bus:[
-  {name:"Indore to Bhopal Bus",place:"Indore → Bhopal",desc:"अपनी यात्रा के लिए बस और सीट चुनें।",img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=800",price:"किराया उपलब्धता के अनुसार"},
-  {name:"Indore to Ujjain Bus",place:"Indore → Ujjain",desc:"बस की उपलब्धता और सीट की जानकारी देखें।",img:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800",price:"किराया उपलब्धता के अनुसार"}
+  {name:"Indore to Bhopal Bus",place:"Indore → Bhopal",desc:"बस और सीट की उपलब्धता पूछें।",img:"https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=900",price:"किराया उपलब्धता के अनुसार"},
+  {name:"Indore to Ujjain Bus",place:"Indore → Ujjain",desc:"अपनी यात्रा के लिए बस चुनें।",img:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=900",price:"किराया उपलब्धता के अनुसार"}
  ],
  train:[
-  {name:"Indore Railway Services",place:"Indore Junction",desc:"ट्रेन का समय और सीट उपलब्धता देखकर टिकट बुक करें।",img:"https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800",price:"किराया रेलवे के अनुसार"},
-  {name:"Indore to Bhopal Train",place:"Indore → Bhopal",desc:"यात्रा की तारीख चुनकर ट्रेन खोजें।",img:"https://images.unsplash.com/photo-1532105956626-9569c03602f6?w=800",price:"किराया रेलवे के अनुसार"}
+  {name:"Indore Railway Services",place:"Indore Junction",desc:"ट्रेन का समय और सीट उपलब्धता जाँचें।",img:"https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=900",price:"रेलवे के अनुसार किराया"},
+  {name:"Indore to Bhopal Train",place:"Indore → Bhopal",desc:"यात्रा की तारीख चुनकर ट्रेन खोजें।",img:"https://images.unsplash.com/photo-1532105956626-9569c03602f6?w=900",price:"रेलवे के अनुसार किराया"}
  ],
  flight:[
-  {name:"Flights from Indore",place:"Devi Ahilya Bai Holkar Airport",desc:"अपनी यात्रा की तारीख के अनुसार फ्लाइट खोजें।",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800",price:"किराया उपलब्धता के अनुसार"},
-  {name:"Indore to Delhi Flights",place:"Indore → Delhi",desc:"फ्लाइट का समय और किराया देखें।",img:"https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=800",price:"किराया उपलब्धता के अनुसार"}
+  {name:"Flights from Indore",place:"Indore Airport",desc:"अपनी तारीख के अनुसार फ्लाइट खोजें।",img:"https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900",price:"किराया उपलब्धता के अनुसार"},
+  {name:"Indore to Delhi Flights",place:"Indore → Delhi",desc:"फ्लाइट का समय और किराया देखें।",img:"https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=900",price:"किराया उपलब्धता के अनुसार"}
  ],
  package:[
-  {name:"Manali Tour Package",place:"Manali, Himachal Pradesh",desc:"पहाड़, बर्फ और खूबसूरत वादियों की यात्रा।",img:"https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=800",price:"कीमत जानकारी के लिए संपर्क करें"},
-  {name:"Kashmir Tour Package",place:"Kashmir",desc:"झीलें, पहाड़ और प्राकृतिक खूबसूरती।",img:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=800",price:"कीमत जानकारी के लिए संपर्क करें"},
-  {name:"Goa Tour Package",place:"Goa",desc:"समुद्र तट और शानदार छुट्टियाँ।",img:"https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=800",price:"कीमत जानकारी के लिए संपर्क करें"}
+  {name:"Manali Tour Package",place:"Manali",desc:"पहाड़ों और बर्फ की खूबसूरत यात्रा।",img:"https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=900",price:"कीमत पूछें"},
+  {name:"Kashmir Tour Package",place:"Kashmir",desc:"झीलों और पहाड़ों का यादगार सफर।",img:"https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=900",price:"कीमत पूछें"},
+  {name:"Goa Tour Package",place:"Goa",desc:"समुद्र तट और छुट्टियों का आनंद।",img:"https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=900",price:"कीमत पूछें"}
  ]
 };
 
-function safe(value){
- return String(value ?? "").replace(/[&<>"']/g, c=>({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+function safe(v){
+ return String(v ?? "").replace(/[&<>"']/g,c=>({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
  }[c]));
 }
 
-function showPage(id){
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- const page=$(id);
- if(page) page.classList.add("active");
- const nav=$("bottomNav");
- if(nav) nav.style.display=(id==="customerPage" || id==="reelsPage")?"flex":"none";
- window.scrollTo(0,0);
-}
-
-function notify(message){
+function notify(msg){
  const t=$("toast");
- t.textContent=message;
+ t.textContent=msg;
  t.style.display="block";
  clearTimeout(toastTimer);
  toastTimer=setTimeout(()=>t.style.display="none",2400);
 }
 
+function showPage(id){
+ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+ $(id)?.classList.add("active");
+ $("bottomNav").style.display=
+  (id==="customerPage"||id==="reelsPage")?"flex":"none";
+ window.scrollTo(0,0);
+}
+
 function chooseRole(role){
  currentRole=role;
  $("loginTitle").textContent=role==="customer"?"Customer Login":"Service Provider Login";
- $("loginSubtitle").textContent=role==="customer"?"अपनी जानकारी भरकर आगे बढ़ें":"Driver या Hotel Owner की जानकारी भरें";
+ $("loginSubtitle").textContent="अपनी जानकारी भरकर आगे बढ़ें";
  $("providerTypeField").style.display=role==="provider"?"block":"none";
  showPage("loginPage");
 }
@@ -151,20 +137,20 @@ function chooseRole(role){
 function loginUser(){
  const name=$("loginName").value.trim();
  const phone=$("loginPhone").value.trim();
- if(name.length<2) return notify("अपना पूरा नाम लिखें");
- if(!/^[6-9]\d{9}$/.test(phone)) return notify("सही 10 अंकों का मोबाइल नंबर लिखें");
 
- const user={
+ if(name.length<2)return notify("अपना नाम लिखें");
+ if(!/^[6-9]\d{9}$/.test(phone))return notify("सही मोबाइल नंबर लिखें");
+
+ currentUser={
   name,phone,role:currentRole,
   service:currentRole==="provider"?$("providerType").value:"Customer"
  };
- localStorage.setItem(STORE_USER,JSON.stringify(user));
- currentUser=user;
+ localStorage.setItem(USER_KEY,JSON.stringify(currentUser));
  openUserHome();
 }
 
 function openUserHome(){
- if(!currentUser) return showPage("rolePage");
+ if(!currentUser)return showPage("rolePage");
  if(currentUser.role==="provider"){
   $("providerWelcome").textContent="Welcome, "+currentUser.name;
   showPage("providerPage");
@@ -174,92 +160,135 @@ function openUserHome(){
 }
 
 function logout(){
- localStorage.removeItem(STORE_USER);
+ localStorage.removeItem(USER_KEY);
  currentUser=null;
  currentRole="";
- $("loginName").value="";
- $("loginPhone").value="";
  showPage("rolePage");
 }
 
 function goHome(){
- if(currentUser) openUserHome();
+ if(currentUser)openUserHome();
  else showPage("rolePage");
 }
 
 function getBookings(){
- try{return JSON.parse(localStorage.getItem(STORE_BOOKINGS)||"[]")}
+ try{return JSON.parse(localStorage.getItem(BOOK_KEY)||"[]")}
  catch(e){return []}
 }
-function saveBooking(item){
+
+function saveBooking(data){
  const all=getBookings();
- all.unshift({...item,user:currentUser?.name||"Customer",phone:currentUser?.phone||"",date:new Date().toLocaleString("en-IN")});
- localStorage.setItem(STORE_BOOKINGS,JSON.stringify(all));
+ all.unshift({
+  ...data,
+  user:currentUser?.name||"Customer",
+  phone:currentUser?.phone||"",
+  createdAt:new Date().toLocaleString("en-IN")
+ });
+ localStorage.setItem(BOOK_KEY,JSON.stringify(all));
 }
 
 function rideForm(){
- if(!currentUser) return showPage("rolePage");
- currentContentType="ride";
+ if(!currentUser)return showPage("rolePage");
+
  $("contentTitle").textContent="Book Your Ride";
- $("contentIntro").innerHTML="<h3>अपनी गाड़ी चुनें</h3><p>हर गाड़ी के सामने उसी प्रकार की फोटो और प्रति किलोमीटर किराया दिया गया है।</p>";
+ $("contentIntro").innerHTML="<h3>अपनी गाड़ी चुनें</h3><p>हर वाहन के साथ उसका किराया दिया गया है।</p>";
+
  $("contentList").innerHTML=`
  <div class="content-card">
   <div class="field"><label>PICKUP LOCATION</label><input id="ridePickup" placeholder="Pickup location"></div>
-  <div class="field"><label>DESTINATION</label><input id="rideDestination" placeholder="Where do you want to go?"></div>
-  <div class="field"><label>SELECT VEHICLE</label></div>
-  <div class="vehicle-grid">${vehicles.map(v=>`
-   <button class="vehicle ${v.name===selectedVehicle?"selected":""}" onclick="selectVehicle('${safe(v.name)}')">
-    <img src="${v.img}" alt="${safe(v.name)}" onerror="this.src='https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=600'">
-    <b>${safe(v.name)}</b><small>₹${v.rate}/km</small>
-   </button>`).join("")}</div>
+  <div class="field"><label>DESTINATION</label><input id="rideDestination" placeholder="Destination"></div>
+  <h3>SELECT YOUR VEHICLE</h3>
+  <div class="vehicle-grid">
+   ${vehicles.map(v=>`
+    <button class="vehicle ${selectedVehicle===v.name?"selected":""}" onclick="selectVehicle('${safe(v.name)}')">
+     <img src="${v.img}" alt="${safe(v.name)}">
+     <b>${safe(v.name)}</b>
+     <small>₹${v.rate}/km</small>
+    </button>`).join("")}
+  </div>
   <button class="primary" onclick="submitRide()">FIND RIDE</button>
  </div>`;
  showPage("contentPage");
 }
 
 function selectVehicle(name){
+ const pickup=$("ridePickup")?.value||"";
+ const destination=$("rideDestination")?.value||"";
  selectedVehicle=name;
  rideForm();
+ $("ridePickup").value=pickup;
+ $("rideDestination").value=destination;
 }
 
 function submitRide(){
  const pickup=$("ridePickup").value.trim();
  const destination=$("rideDestination").value.trim();
- if(!pickup||!destination) return notify("Pickup और Destination भरें");
- const vehicle=vehicles.find(v=>v.name===selectedVehicle);
- saveBooking({type:"Ride",title:selectedVehicle,pickup,destination,rate:vehicle.rate,status:"Pending"});
+ if(!pickup||!destination)return notify("Pickup और Destination भरें");
+ const v=vehicles.find(x=>x.name===selectedVehicle);
+ saveBooking({type:"Ride",title:selectedVehicle,pickup,destination,rate:v.rate,status:"Pending"});
  notify("Ride request सेव हो गई");
  goHome();
 }
 
 function openListing(type){
- if(!currentUser) return showPage("rolePage");
- currentContentType=type;
+ if(!currentUser)return showPage("rolePage");
+
  const data=listings[type]||[];
- const titles={hotel:"Hotels",bus:"Bus Tickets",train:"Train Tickets",flight:"Flight Tickets",package:"Tour Packages"};
- const descriptions={
-  hotel:"होटल देखें, पसंद करें और उसी जगह से बुकिंग रिक्वेस्ट भेजें।",
-  bus:"बस के विकल्प देखें और अपनी यात्रा की टिकट रिक्वेस्ट भेजें।",
-  train:"ट्रेन की जानकारी देखें और टिकट खोजें।",
-  flight:"फ्लाइट के विकल्प देखें और टिकट की रिक्वेस्ट भेजें।",
-  package:"अपनी पसंद का टूर पैकेज चुनें और बुकिंग करें।"
+ const titles={
+  hotel:"Hotels",
+  bus:"Bus Tickets",
+  train:"Train Tickets",
+  flight:"Flight Tickets",
+  package:"Tour Packages"
  };
+
+ const descriptions={
+  hotel:"होटल देखें, पसंद करें और बुकिंग रिक्वेस्ट भेजें।",
+  bus:"बस के विकल्प देखें और टिकट बुकिंग रिक्वेस्ट भेजें।",
+  train:"ट्रेन की जानकारी देखें और टिकट रिक्वेस्ट भेजें।",
+  flight:"फ्लाइट के विकल्प देखें और टिकट रिक्वेस्ट भेजें।",
+  package:"अपनी पसंद का टूर पैकेज चुनें।"
+ };
+
  $("contentTitle").textContent=titles[type];
  $("contentIntro").innerHTML=`<h3>${titles[type]}</h3><p>${descriptions[type]}</p>`;
- $("contentList").innerHTML=data.map((item,index)=>`
+
+ let tabs="";
+ if(["bus","train","flight"].includes(type)){
+  tabs=`
+   <div class="ticket-tab-row">
+    <button class="t-tab ${type==="bus"?"active":""}" onclick="ticketsForm('bus')">Bus</button>
+    <button class="t-tab ${type==="train"?"active":""}" onclick="ticketsForm('train')">Train</button>
+    <button class="t-tab ${type==="flight"?"active":""}" onclick="ticketsForm('flight')">Flight</button>
+   </div>`;
+ }
+
+ $("contentList").innerHTML=tabs+data.map((item,index)=>`
   <article class="content-card">
-   <img src="${item.img}" alt="${safe(item.name)}" style="width:100%;height:175px;object-fit:cover;border-radius:13px" onerror="this.style.display='none'">
+   <img src="${item.img}" alt="${safe(item.name)}"
+    style="width:100%;height:180px;object-fit:cover;border-radius:13px"
+    onerror="this.style.display='none'">
    <h3 style="margin-top:12px">${index===0?"★ Recommended • ":""}${safe(item.name)}</h3>
    <p><i class="fa-solid fa-location-dot"></i> ${safe(item.place)}</p>
    <p>${safe(item.desc)}</p>
    <p><b>${safe(item.price)}</b></p>
-   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
-    <button class="action-btn" onclick="toggleLike('${type}-${index}')"><i class="fa-regular fa-heart"></i> <span id="like-${type}-${index}">${isLiked(type,index)?"Liked":"Like"}</span></button>
-    <button class="action-btn" onclick="commentItem('${type}',${index})"><i class="fa-regular fa-comment"></i> Comment</button>
-    <button class="action-btn" onclick="shareItem('${type}',${index})"><i class="fa-solid fa-share"></i> Share</button>
-    <button class="action-btn" onclick="bookItem('${type}',${index})"><i class="fa-solid fa-ticket"></i> ${type==="hotel"?"Book Hotel":type==="package"?"Book Package":"Book Ticket"}</button>
+   <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px">
+    <button class="action-btn" onclick="toggleLike('${type}',${index})">
+     <i class="fa-regular fa-heart"></i> <span id="like-${type}-${index}">${isLiked(type,index)?"Liked":"Like"}</span>
+    </button>
+    <button class="action-btn" onclick="commentItem('${type}',${index})">
+     <i class="fa-regular fa-comment"></i> Comment
+    </button>
+    <button class="action-btn" onclick="shareItem('${type}',${index})">
+     <i class="fa-solid fa-share"></i> Share
+    </button>
+    <button class="action-btn" onclick="bookItem('${type}',${index})">
+     <i class="fa-solid fa-ticket"></i>
+     ${type==="hotel"?"Book Hotel":type==="package"?"Book Package":"Book Ticket"}
+    </button>
    </div>
   </article>`).join("");
+
  showPage("contentPage");
 }
 
@@ -267,35 +296,41 @@ function hotelForm(){openListing("hotel")}
 function packageForm(){openListing("package")}
 function ticketsForm(type){openListing(type||"bus")}
 
-function isLiked(key,index){
- const likes=JSON.parse(localStorage.getItem(STORE_LIKES)||"{}");
- return !!likes[key+"-"+index];
+function isLiked(type,index){
+ const likes=JSON.parse(localStorage.getItem(LIKE_KEY)||"{}");
+ return !!likes[type+"-"+index];
 }
-function toggleLike(key){
- const likes=JSON.parse(localStorage.getItem(STORE_LIKES)||"{}");
+
+function toggleLike(type,index){
+ const likes=JSON.parse(localStorage.getItem(LIKE_KEY)||"{}");
+ const key=type+"-"+index;
  likes[key]=!likes[key];
- localStorage.setItem(STORE_LIKES,JSON.stringify(likes));
+ localStorage.setItem(LIKE_KEY,JSON.stringify(likes));
+ $("like-"+key).textContent=likes[key]?"Liked":"Like";
  notify(likes[key]?"आपने Like किया ❤️":"Like हटाया");
- const parts=key.split("-");
- const id="like-"+parts[0]+"-"+parts[1];
- if($(id)) $(id).textContent=likes[key]?"Liked":"Like";
 }
 
 function commentItem(type,index){
  const item=listings[type][index];
- $("modalTitle").textContent="Comment";
- $("modalBody").innerHTML=`
-  <p style="font-size:12px;margin-bottom:12px">${safe(item.name)} पर अपना कमेंट लिखें।</p>
+ modal("Comment",`
+  <p style="font-size:12px;margin-bottom:12px">${safe(item.name)} पर कमेंट करें।</p>
   <textarea id="commentText" rows="3" placeholder="अपना कमेंट लिखें..." style="width:100%;padding:12px;border:1px solid #dfe6f0;border-radius:12px"></textarea>
-  <button class="primary" onclick="saveComment('${type}',${index})">POST COMMENT</button>`;
- $("modalBg").classList.add("show");
-}
-function saveComment(type,index){
- const text=$("commentText").value.trim();
- if(!text) return notify("कमेंट लिखें");
+  <button class="primary" onclick="saveComment('${type}',${index})">POST COMMENT</button>
+  <div id="oldComments"></div>`);
+
  const key="nv_comments_"+type+"_"+index;
  const comments=JSON.parse(localStorage.getItem(key)||"[]");
- comments.push({name:currentUser?.name||"Guest",text});
+ $("oldComments").innerHTML=comments.map(c=>`
+  <div class="content-card"><b>${safe(c.name)}</b><p>${safe(c.text)}</p></div>
+ `).join("");
+}
+
+function saveComment(type,index){
+ const text=$("commentText").value.trim();
+ if(!text)return notify("कमेंट लिखें");
+ const key="nv_comments_"+type+"_"+index;
+ const comments=JSON.parse(localStorage.getItem(key)||"[]");
+ comments.push({name:currentUser?.name||"User",text});
  localStorage.setItem(key,JSON.stringify(comments));
  closeModal();
  notify("Comment सेव हो गया");
@@ -304,35 +339,44 @@ function saveComment(type,index){
 async function shareItem(type,index){
  const item=listings[type][index];
  const text=item.name+" - NV TRAVELSS";
- if(navigator.share){
-  try{await navigator.share({title:item.name,text})}
-  catch(e){}
- }else{
-  try{await navigator.clipboard.writeText(text);notify("Share text कॉपी हो गया")}
-  catch(e){notify(text)}
+ try{
+  if(navigator.share)await navigator.share({title:item.name,text});
+  else{
+   await navigator.clipboard.writeText(text);
+   notify("Share text कॉपी हो गया");
+  }
+ }catch(e){
+  notify("Share नहीं हो पाया");
  }
 }
 
 function bookItem(type,index){
  const item=listings[type][index];
- $("modalTitle").textContent="Booking Request";
- $("modalBody").innerHTML=`
+ modal("Booking Request",`
   <h3>${safe(item.name)}</h3>
-  <p style="font-size:11px;color:#64748b;margin:8px 0 15px">${safe(item.place)}</p>
-  <div class="field"><label>YOUR NAME</label><input id="bookingName" value="${safe(currentUser?.name||"")}" placeholder="Your name"></div>
-  <div class="field"><label>MOBILE NUMBER</label><input id="bookingPhone" value="${safe(currentUser?.phone||"")}" maxlength="10" placeholder="10 digit mobile"></div>
+  <p>${safe(item.place)}</p>
+  <div class="field"><label>YOUR NAME</label><input id="bookingName" value="${safe(currentUser?.name||"")}"></div>
+  <div class="field"><label>MOBILE NUMBER</label><input id="bookingPhone" value="${safe(currentUser?.phone||"")}" maxlength="10"></div>
   <div class="field"><label>TRAVEL / CHECK-IN DATE</label><input id="bookingDate" type="date"></div>
   <div class="field"><label>NUMBER OF PEOPLE / ROOMS</label><input id="bookingCount" type="number" min="1" value="1"></div>
-  <button class="primary" onclick="confirmListingBooking('${type}',${index})">SEND BOOKING REQUEST</button>`;
- $("modalBg").classList.add("show");
+  <button class="primary" onclick="confirmBooking('${type}',${index})">SEND BOOKING REQUEST</button>`);
 }
-function confirmListingBooking(type,index){
+
+function confirmBooking(type,index){
  const name=$("bookingName").value.trim();
  const phone=$("bookingPhone").value.trim();
  const date=$("bookingDate").value;
  const count=$("bookingCount").value;
- if(!name||!/^[6-9]\d{9}$/.test(phone)||!date) return notify("सभी जानकारी सही भरें");
- saveBooking({type:type.toUpperCase(),title:listings[type][index].name,date,count,status:"Booking Request"});
+
+ if(!name||!/^[6-9]\d{9}$/.test(phone)||!date||Number(count)<1)
+  return notify("सभी जानकारी सही भरें");
+
+ saveBooking({
+  type:type.toUpperCase(),
+  title:listings[type][index].name,
+  date,count,status:"Booking Request"
+ });
+
  closeModal();
  notify("Booking request सेव हो गई");
 }
@@ -358,19 +402,19 @@ function showProfile(){
 
 function showSearch(){
  modal("Search NV TRAVELSS",`
-  <div class="field"><label>SEARCH DESTINATION OR SERVICE</label><input id="quickSearch" placeholder="Hotel, Manali, Bus..."></div>
+  <div class="field"><label>SEARCH SERVICE</label><input id="quickSearch" placeholder="Hotel, Bus, Train, Flight..."></div>
   <button class="primary" onclick="runQuickSearch()">SEARCH</button>`);
 }
 function runQuickSearch(){
  const q=$("quickSearch").value.trim().toLowerCase();
  closeModal();
- if(!q)return notify("कुछ लिखकर खोजें");
  if(q.includes("hotel"))return hotelForm();
  if(q.includes("bus"))return ticketsForm("bus");
  if(q.includes("train"))return ticketsForm("train");
  if(q.includes("flight"))return ticketsForm("flight");
  if(q.includes("package"))return packageForm();
- modal("Search Result",`<p>“${safe(q)}” के लिए खोजें। अधिक जानकारी के लिए सही विकल्प चुनें।</p>`);
+ if(q.includes("ride"))return rideForm();
+ notify("इस विकल्प के लिए सही नाम लिखें");
 }
 
 function searchDestination(){
@@ -378,30 +422,38 @@ function searchDestination(){
  if(!q)return notify("अपनी जगह लिखें");
  destination(q);
 }
+
 function destination(name){
  modal(name,`
   <h3>${safe(name)} यात्रा</h3>
-  <p style="font-size:12px;color:#64748b;margin-top:8px">इस जगह के लिए होटल, पैकेज और यात्रा विकल्प देखें।</p>
+  <p>इस जगह के लिए होटल और पैकेज देखें।</p>
   <button class="primary" onclick="closeModal();packageForm()">VIEW TOUR PACKAGES</button>
   <button class="primary" onclick="closeModal();hotelForm()">VIEW HOTELS</button>`);
 }
 
 function showReels(){
  $("reelsList").innerHTML=`
-  <div class="content-card"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800" style="width:100%;height:220px;object-fit:cover;border-radius:14px"><h3>Explore beautiful places</h3><p>Like • Comment • Share</p></div>
-  <div class="content-card"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800" style="width:100%;height:220px;object-fit:cover;border-radius:14px"><h3>Travel memories</h3><p>Like • Comment • Share</p></div>`;
+  <div class="content-card">
+   <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800" style="width:100%;height:220px;object-fit:cover;border-radius:14px">
+   <h3>Explore beautiful places</h3>
+  </div>
+  <div class="content-card">
+   <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800" style="width:100%;height:220px;object-fit:cover;border-radius:14px">
+   <h3>Travel memories</h3>
+  </div>`;
  showPage("reelsPage");
 }
+
 function createPost(){
  modal("Create Post",`
-  <div class="field"><label>WRITE YOUR POST</label><textarea id="postText" rows="4" placeholder="अपना अनुभव साझा करें..."></textarea></div>
+  <div class="field"><label>WRITE YOUR POST</label><textarea id="postText" rows="4" placeholder="अपना अनुभव साझा करें"></textarea></div>
   <button class="primary" onclick="savePost()">POST</button>`);
 }
 function savePost(){
  const text=$("postText").value.trim();
  if(!text)return notify("कुछ लिखें");
  const posts=JSON.parse(localStorage.getItem("nv_travelss_posts")||"[]");
- posts.unshift({text,user:currentUser?.name||"User",date:new Date().toLocaleString("en-IN")});
+ posts.unshift({text,user:currentUser?.name||"User"});
  localStorage.setItem("nv_travelss_posts",JSON.stringify(posts));
  closeModal();
  notify("आपकी Post सेव हो गई");
@@ -411,15 +463,16 @@ function providerService(type){
  if(type==="Driver"){
   modal("Driver Service",`
    <h3>Driver Panel</h3>
-   <p>Ride requests और अपनी गाड़ी की जानकारी मैनेज करें।</p>
-   <div class="field"><label>VEHICLE TYPE</label><select id="driverVehicle">${vehicles.map(v=>`<option>${safe(v.name)}</option>`).join("")}</select></div>
+   <div class="field"><label>VEHICLE TYPE</label>
+    <select id="driverVehicle">${vehicles.map(v=>`<option>${safe(v.name)}</option>`).join("")}</select>
+   </div>
    <div class="field"><label>VEHICLE NUMBER</label><input id="driverNumber" placeholder="Vehicle number"></div>
    <button class="primary" onclick="saveDriverInfo()">SAVE DRIVER DETAILS</button>`);
  }else{
   modal("Hotel Owner Service",`
    <h3>अपनी होटल की जानकारी जोड़ें</h3>
-   <div class="field"><label>HOTEL NAME</label><input id="providerHotelName" placeholder="Hotel name"></div>
-   <div class="field"><label>HOTEL ADDRESS</label><input id="providerHotelAddress" placeholder="Hotel address"></div>
+   <div class="field"><label>HOTEL NAME</label><input id="providerHotelName"></div>
+   <div class="field"><label>HOTEL ADDRESS</label><input id="providerHotelAddress"></div>
    <button class="primary" onclick="saveHotelInfo()">SAVE HOTEL DETAILS</button>`);
  }
 }
@@ -438,10 +491,10 @@ function saveHotelInfo(){
  closeModal();notify("Hotel details सेव हो गई");
 }
 function providerBookings(){
- const all=getBookings();
- const mine=all.filter(b=>b.phone===currentUser?.phone);
- modal("My Bookings",mine.length?mine.map(b=>`
-  <div class="content-card"><h3>${safe(b.title)}</h3><p>${safe(b.type)} • ${safe(b.date||"")}</p><p>Status: ${safe(b.status)}</p></div>`).join(""):"<div class='empty'>अभी कोई Booking नहीं है।</div>");
+ const all=getBookings().filter(b=>b.phone===currentUser?.phone);
+ modal("My Bookings",all.length?all.map(b=>`
+  <div class="content-card"><h3>${safe(b.title)}</h3><p>${safe(b.type)} • ${safe(b.createdAt)}</p><p>Status: ${safe(b.status)}</p></div>
+ `).join(""):"<div class='empty'>अभी कोई Booking नहीं है।</div>");
 }
 function providerEarnings(){
  modal("My Earnings",`
@@ -449,12 +502,12 @@ function providerEarnings(){
   <p>Driver Monthly Recharge: ₹300</p>
   <p>Hotel Owner Commission: 15%</p>
   <p>Hotel Owner Monthly Pass: ₹1000</p>
-  <p style="margin-top:12px">कमाई और भुगतान की वास्तविक जानकारी सर्वर/एडमिन सिस्टम जुड़ने के बाद दिखाई जाएगी।</p>`);
+  <p>वास्तविक कमाई सर्वर और भुगतान सिस्टम जुड़ने पर दिखाई जाएगी।</p>`);
 }
 function providerProfile(){showProfile()}
 
 window.addEventListener("load",()=>{
- if(currentUser) openUserHome();
+ if(currentUser)openUserHome();
  else showPage("rolePage");
 });
 </script>
