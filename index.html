@@ -1,11 +1,11 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#07152f">
 <title>NV TRAVELSS</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -15,311 +15,375 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#eef3f9;color:#142441
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 .app{max-width:520px;min-height:100vh;margin:auto;background:#f7f9fd;position:relative;padding-bottom:90px;overflow:hidden}
-
-/* HEADER */
+.page{display:none}
+.page.active{display:block}
 header{height:68px;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:10;border-bottom:1px solid #edf0f5}
-.logo{font-size:18px;font-weight:900;color:#0b2545;letter-spacing:-0.3px}
+.logo{font-size:18px;font-weight:900;color:#0b2545}
 .logo span{color:#00a3ff}
-.logo small{display:block;font-size:9.5px;letter-spacing:1px;color:#8190a6;font-weight:700}
+.logo small{display:block;font-size:9px;letter-spacing:1px;color:#8190a6}
 .header-icons{display:flex;gap:10px}
-.icon-btn{border:0;background:#f0f5fc;border-radius:50%;width:38px;height:38px;color:#1769e8;display:grid;place-items:center;font-size:15px}
-
+.icon-btn{border:0;background:#f0f5fc;border-radius:50%;width:38px;height:38px;color:#1769e8}
 main{padding:14px}
 
-/* HERO SECTION */
-.hero{
-  padding:22px 16px;
-  border-radius:26px;
-  color:#fff;
-  background: linear-gradient(180deg, rgba(7,27,64,0.75) 0%, rgba(18,89,178,0.4) 100%),
-              url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800') center/cover no-repeat;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(18,89,178,0.2);
-}
-.hero h1{font-size:25px;line-height:1.2;margin-bottom:6px;font-weight:800;text-shadow:0 2px 4px rgba(0,0,0,0.4)}
-.hero p{font-size:12px;color:#e3f1ff;margin-bottom:16px;font-weight:500;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+/* ROLE SELECT */
+#rolePage{min-height:100vh;padding:25px 18px;background:radial-gradient(circle at top,#174b91,#07152f 70%);color:white}
+.role-logo{text-align:center;padding:20px 0 25px}
+.role-logo h1{font-size:29px;font-weight:900}
+.role-logo h1 span{color:#00baff}
+.role-logo p{font-size:10px;color:#b9d9ff;margin-top:8px;letter-spacing:1px}
+.role-heading{text-align:center;margin:15px 0 24px}
+.role-heading h2{font-size:22px}
+.role-heading p{font-size:12px;color:#b8cbea;margin-top:7px}
+.role-card{width:100%;border:1px solid #ffffff44;border-radius:25px;padding:20px;margin-bottom:18px;text-align:left;color:white;overflow:hidden;box-shadow:0 16px 30px #0005,inset 0 1px 2px #ffffff55;transition:.2s}
+.role-card:active{transform:scale(.97)}
+.customer-role{background:linear-gradient(135deg,#1265c9,#071d48)}
+.provider-role{background:linear-gradient(135deg,#8b48df,#29145e)}
+.role-art{height:125px;display:flex;align-items:center;justify-content:center;gap:20px}
+.role-art i{font-size:65px;filter:drop-shadow(0 12px 8px #06152f88)}
+.role-art .small-art{font-size:38px}
+.role-card h3{font-size:21px;margin-top:8px}
+.role-card p{font-size:11px;color:#e1edff;margin-top:5px}
+.role-select{margin-top:15px;background:white;color:#1454a6;padding:11px 15px;border-radius:12px;display:inline-flex;gap:12px;font-weight:900;font-size:11px}
+.provider-role .role-select{color:#6732ad}
+.role-footer{text-align:center;color:#a9bddb;font-size:10px;margin-top:20px}
 
-.search-box{
-  background:#fff;
-  border-radius:30px;
-  padding:6px 6px 6px 16px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  margin-bottom:14px;
-}
-.search-box i.pin{color:#718096;font-size:14px;margin-right:8px}
-.search-box input{border:0;outline:0;font-size:12px;color:#333;width:100%;background:transparent}
-.search-btn{background:#0062ff;color:#fff;border:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:13px}
+/* LOGIN */
+.login-box{padding:24px 18px;background:white;border-radius:24px;margin-top:35px}
+.login-box h2{font-size:21px;margin-bottom:7px}
+.login-box p{font-size:11px;color:#748198;margin-bottom:20px}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:10px;font-weight:800;color:#53627a;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:12px}
+.primary{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(110deg,#1769e8,#0ea5e9);color:white;font-weight:800;font-size:13px;margin-top:5px}
+.back-btn{background:none;border:0;color:#1769e8;font-size:12px;font-weight:800;margin-top:15px}
 
+/* CUSTOMER HOME */
+.hero{padding:22px 16px;border-radius:26px;color:white;background:linear-gradient(180deg,#071b40bb,#1259b277),url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800') center/cover;box-shadow:0 10px 25px #1259b233}
+.hero h1{font-size:25px;line-height:1.2;margin-bottom:6px}
+.hero p{font-size:12px;color:#e3f1ff;margin-bottom:16px}
+.search-box{background:white;border-radius:30px;padding:6px 6px 6px 16px;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.search-box input{border:0;outline:0;width:100%;font-size:12px}
+.search-btn{background:#0062ff;color:white;border:0;width:36px;height:36px;border-radius:50%}
 .tags-row{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
-.tags-row::-webkit-scrollbar{display:none}
-.tag{
-  background:rgba(255,255,255,0.22);
-  border:1px solid rgba(255,255,255,0.35);
-  padding:6px 12px;
-  border-radius:20px;
-  font-size:10px;
-  color:#fff;
-  font-weight:700;
-  white-space:nowrap;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  backdrop-filter:blur(6px);
-}
-
+.tag{background:#ffffff38;border:1px solid #ffffff55;padding:6px 12px;border-radius:20px;font-size:10px;color:white;white-space:nowrap}
 .heading{display:flex;justify-content:space-between;align-items:center;margin:20px 2px 12px}
-.heading h2{font-size:16px;font-weight:800;color:#10264b;display:flex;align-items:center;gap:6px}
+.heading h2{font-size:16px;font-weight:800;color:#10264b}
 .heading span{font-size:11px;color:#1769e8;font-weight:800;cursor:pointer}
-
-/* MAIN GRID CARDS */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.service-card{
-  border:none;
-  border-radius:22px;
-  padding:14px;
-  text-align:left;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 6px 16px rgba(0,0,0,0.03);
-  transition:transform 0.15s ease;
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-.service-card:active{transform:scale(0.98)}
-
+.service-card{border:0;border-radius:22px;padding:14px;text-align:left;box-shadow:0 6px 16px #00000008;display:flex;flex-direction:column;justify-content:space-between;min-height:190px}
+.service-card:active{transform:scale(.98)}
 .card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.symbol-box{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:#fff}
-.arrow-circle{width:28px;height:28px;background:rgba(255,255,255,0.8);border-radius:50%;display:grid;place-items:center;color:#333;font-size:11px}
-
+.symbol-box{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:18px;color:white}
+.arrow-circle{width:28px;height:28px;background:#ffffffcc;border-radius:50%;display:grid;place-items:center;color:#333;font-size:11px}
 .card-title{font-size:16px;font-weight:800;color:#10264b;margin-bottom:2px}
-.card-desc{font-size:10.5px;color:#5c6b73;line-height:1.3;margin-bottom:10px;font-weight:500}
+.card-desc{font-size:10px;color:#5c6b73;line-height:1.4;margin-bottom:10px}
 .card-img{width:100%;height:90px;object-fit:cover;border-radius:14px}
-
-.ride-card{background:linear-gradient(180deg, #eaf3ff 0%, #d8e9ff 100%)}
+.ride-card{background:linear-gradient(#eaf3ff,#d8e9ff)}
 .ride-card .symbol-box{background:#1769e8}
-
-.hotel-card{background:linear-gradient(180deg, #fff0e5 0%, #ffe3d1 100%)}
+.hotel-card{background:linear-gradient(#fff0e5,#ffe3d1)}
 .hotel-card .symbol-box{background:#e98942}
-
-.package-card{background:linear-gradient(180deg, #e6f8f3 0%, #d2f3ea 100%)}
+.package-card{background:linear-gradient(#e6f8f3,#d2f3ea)}
 .package-card .symbol-box{background:#0b9f65}
-
-.ticket-card{background:linear-gradient(180deg, #f3eaff 0%, #e6d8ff 100%)}
+.ticket-card{background:linear-gradient(#f3eaff,#e6d8ff)}
 .ticket-card .symbol-box{background:#7c3aed}
-
-.ticket-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:4px;margin-top:4px}
-.t-block{border-radius:12px;padding:8px 2px;text-align:center;color:#fff}
-.t-block.bus{background:linear-gradient(180deg,#1769e8,#1056c6)}
-.t-block.train{background:linear-gradient(180deg,#7c3aed,#6528d1)}
-.t-block.flight{background:linear-gradient(180deg,#0b9f65,#088252)}
-.t-block i{font-size:16px;display:block;margin-bottom:3px}
-.t-block b{font-size:9.5px;display:block;font-weight:800}
-.t-block small{font-size:8px;opacity:0.9;display:block}
-
-/* DESTINATIONS */
-.destinations{display:grid;grid-template-columns:repeat(4, 1fr);gap:8px}
+.ticket-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:4px}
+.t-block{border-radius:10px;padding:8px 2px;text-align:center;color:white;font-size:10px}
+.t-block i{font-size:16px;display:block;margin-bottom:4px}
+.bus{background:linear-gradient(#1769e8,#1056c6)}
+.train{background:linear-gradient(#7c3aed,#6528d1)}
+.flight{background:linear-gradient(#0b9f65,#088252)}
+.destinations{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .dest-card{height:120px;position:relative;border:0;border-radius:14px;overflow:hidden;background:#dce5f2}
 .dest-card img{width:100%;height:100%;object-fit:cover}
-.dest-card:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,rgba(7,21,47,0.85))}
-.dest-card b{position:absolute;bottom:8px;left:8px;color:#fff;font-size:11px;z-index:1;display:flex;align-items:center;gap:3px}
-
-/* REELS */
+.dest-card:after{content:"";position:absolute;inset:40% 0 0;background:linear-gradient(transparent,#07152fd9)}
+.dest-card b{position:absolute;bottom:8px;left:7px;color:white;font-size:10px;z-index:1}
 .reels-row{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}
-.reels-row::-webkit-scrollbar{display:none}
 .reel-thumb{min-width:125px;height:170px;border:0;border-radius:16px;overflow:hidden;position:relative;flex-shrink:0}
 .reel-thumb img{width:100%;height:100%;object-fit:cover}
-.reel-thumb:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,rgba(0,0,0,0.8))}
-.reel-likes{position:absolute;bottom:8px;left:8px;color:white;font-size:10px;font-weight:700;z-index:2;display:flex;align-items:center;gap:4px}
-
-/* HELP CARD */
+.reel-thumb:after{content:"";position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#000b)}
+.reel-likes{position:absolute;bottom:8px;left:8px;color:white;font-size:10px;font-weight:700;z-index:2}
 .help-card{background:white;border:1px solid #e9eef6;border-radius:18px;padding:15px;margin-top:20px}
-.help-card h3{font-size:13px;margin-bottom:8px;color:#10264b;display:flex;align-items:center;gap:6px}
-.help-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #edf1f6;font-size:11.5px;color:#4a5568}
-.help-row a{color:#1769e8;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:5px}
+.help-card h3{font-size:13px;margin-bottom:8px;color:#10264b}
+.help-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #edf1f6;font-size:11px;color:#4a5568}
+.help-row a{color:#1769e8;font-weight:800;text-decoration:none}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:70px;background:white;border-top:1px solid #edf0f5;display:flex;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 20px rgba(16,41,75,0.06)}
-.nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9.5px;font-weight:700;min-width:54px}
-.nav-item i{font-size:18px}
-.nav-item.active{color:#1769e8}
-.post-icon{width:38px;height:38px;border-radius:50%;background:#fff;border:1px solid #dfe6f0;color:#1769e8!important;display:grid;place-items:center;font-size:16px!important;box-shadow:0 4px 10px rgba(0,0,0,0.05)}
+/* PROVIDER DASHBOARD */
+.provider-banner{background:linear-gradient(135deg,#071b40,#1769e8);padding:23px;border-radius:23px;color:white}
+.provider-banner h2{font-size:22px}
+.provider-banner p{font-size:11px;color:#d8e8ff;margin-top:7px}
+.provider-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.provider-option{border:0;border-radius:19px;padding:19px 12px;text-align:center;background:white;box-shadow:0 8px 20px #14244112}
+.provider-option i{font-size:35px;color:#1769e8;margin-bottom:12px}
+.provider-option h3{font-size:13px;color:#10264b}
+.provider-option p{font-size:10px;color:#7b8798;margin-top:5px}
+.provider-info{background:white;border-radius:17px;padding:16px;margin-top:18px;font-size:11px;color:#53627a;line-height:1.8}
+.logout{background:#fff0f0;color:#d63031;border:0;padding:12px;border-radius:12px;width:100%;margin-top:20px;font-weight:800}
 
-/* MODALS & CUSTOM CARDS */
-.modal-bg{display:none;position:fixed;inset:0;background:rgba(6,21,47,0.7);z-index:50;align-items:flex-end;justify-content:center}
+/* COMMON PAGES */
+.content-card{background:white;border-radius:17px;padding:16px;margin:12px 0;box-shadow:0 4px 12px #14244108}
+.content-card h3{font-size:14px;color:#10264b;margin-bottom:8px}
+.content-card p{font-size:11px;color:#64748b;line-height:1.7}
+.action-btn{border:0;border-radius:10px;background:#1769e8;color:white;padding:10px 14px;font-size:11px;font-weight:800;margin-top:10px}
+.vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vehicle{padding:9px;border:1px solid #e0e7f1;border-radius:12px;background:white;text-align:left}
+.vehicle.selected{border:2px solid #1769e8;background:#eff6ff}
+.vehicle img{width:100%;height:70px;object-fit:cover;border-radius:8px}
+.vehicle b{display:block;font-size:11px;color:#10264b;margin-top:5px}
+.vehicle small{font-size:10px;color:#718096}
+.modal-bg{display:none;position:fixed;inset:0;background:#06152fb8;z-index:50;align-items:flex-end;justify-content:center}
 .modal-bg.show{display:flex}
 .modal{width:min(100%,520px);max-height:90vh;overflow-y:auto;background:white;border-radius:24px 24px 0 0;padding:20px 18px 30px}
 .modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.modal-head h2{font-size:17px;color:#10264b;font-weight:800}
-.close{width:34px;height:34px;border:0;border-radius:10px;background:#f0f3f8;color:#42536e;display:grid;place-items:center}
-.field{margin-bottom:12px}
-.field label{display:block;font-size:10.5px;font-weight:800;color:#53627a;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #dfe6f0;border-radius:12px;background:#fbfcff;outline:none;font-size:12.5px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.primary{width:100%;border:0;border-radius:12px;padding:13px;background:linear-gradient(110deg,#1769e8,#0ea5e9);color:white;font-weight:800;font-size:13px;margin-top:5px}
-
-.vehicle-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.vehicle{padding:10px;border:1px solid #e0e7f1;border-radius:10px;background:#fff;text-align:left}
-.vehicle.selected{border:2px solid #1769e8;background:#eff6ff}
-.vehicle b{display:block;font-size:11px;color:#10264b}
-.vehicle small{font-size:9.5px;color:#718096}
-
-/* SPECIFIC HOTEL & PACKAGE CARDS IN MODAL */
-.hotel-item,.package-item{background:#fff;border:1px solid #e9eef6;border-radius:14px;overflow:hidden;margin-bottom:12px;box-shadow:0 4px 10px rgba(0,0,0,0.03)}
-.hotel-item img,.package-item img{width:100%;height:130px;object-fit:cover}
-.item-body{padding:12px}
-.item-title{font-size:14px;font-weight:800;color:#10264b;display:flex;justify-content:space-between;align-items:center}
-.item-rating{font-size:11px;color:#ff9500;font-weight:700}
-.item-price{font-size:13px;color:#1769e8;font-weight:800;margin-top:4px}
-.item-desc{font-size:11px;color:#64748b;margin:4px 0 10px}
-
+.modal-head h2{font-size:17px;color:#10264b}
+.close{width:34px;height:34px;border:0;border-radius:10px;background:#f0f3f8;color:#42536e}
 .ticket-tab-row{display:flex;gap:6px;margin-bottom:14px}
 .t-tab{flex:1;padding:10px;border-radius:10px;background:#f0f4f9;border:0;font-size:11px;font-weight:700;color:#475569}
-.t-tab.active{background:#1769e8;color:#fff}
-
+.t-tab.active{background:#1769e8;color:white}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(100%,520px);height:70px;background:white;border-top:1px solid #edf0f5;display:none;justify-content:space-around;align-items:center;z-index:30;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 20px #10294b0f}
+.nav-item{border:0;background:none;color:#8996a9;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:9px;font-weight:700;min-width:48px}
+.nav-item i{font-size:18px}
+.nav-item.active{color:#1769e8}
+.post-icon{width:37px;height:37px;border-radius:50%;background:white;border:1px solid #dfe6f0;color:#1769e8!important;display:grid;place-items:center}
 .toast{display:none;position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#10294b;color:white;padding:10px 16px;border-radius:20px;font-size:11px;z-index:100;white-space:nowrap}
+.empty{text-align:center;padding:30px 15px;color:#8492a6;font-size:12px}
+.empty i{font-size:35px;display:block;margin-bottom:12px}
 </style>
 </head>
 
 <body>
 <div class="app">
 
-<header>
- <div class="logo">NV <span>TRAVELSS</span><small>Travel • Ride • Hotel • Packages • Tickets</small></div>
- <div class="header-icons">
-  <button class="icon-btn" onclick="openSearch()"><i class="fa-solid fa-bell"></i></button>
-  <button class="icon-btn" onclick="openProfile()"><i class="fa-solid fa-user"></i></button>
+<!-- ROLE SELECTION -->
+<section id="rolePage" class="page active">
+ <div class="role-logo">
+  <h1>NV <span>TRAVELSS</span></h1>
+  <p>TRAVEL • RIDE • HOTEL • PACKAGES • TICKETS</p>
  </div>
-</header>
-
-<main id="homePage">
-
-<section class="hero">
- <div style="position:relative; z-index:2; max-width:65%;">
-  <h1>Explore The World<br>With NV Travelss</h1>
-  <p>Your journey, our responsibility 💙</p>
+ <div class="role-heading">
+  <h2>Welcome to NV Travelss</h2>
+  <p>आप क्या करना चाहते हैं?</p>
  </div>
- 
- <div class="search-box" onclick="openSearch()">
-  <i class="fa-solid fa-location-dot pin"></i>
-  <input placeholder="Where do you want to go?" readonly>
-  <button class="search-btn"><i class="fa-solid fa-arrow-right"></i></button>
- </div>
-
- <div class="tags-row">
-  <div class="tag"><i class="fa-solid fa-mountain"></i> Mountains</div>
-  <div class="tag"><i class="fa-solid fa-umbrella-beach"></i> Beaches</div>
-  <div class="tag"><i class="fa-solid fa-city"></i> City Tours</div>
-  <div class="tag"><i class="fa-solid fa-compass"></i> Adventure</div>
- </div>
+ <button class="role-card customer-role" onclick="chooseRole('customer')">
+  <div class="role-art">
+   <i class="fa-solid fa-user-tie"></i>
+   <i class="fa-solid fa-car-side small-art"></i>
+   <i class="fa-solid fa-suitcase-rolling small-art"></i>
+  </div>
+  <h3>CUSTOMER</h3>
+  <p>Ride, Hotel, Packages और Tickets बुक करें</p>
+  <span class="role-select">CONTINUE AS CUSTOMER <i class="fa-solid fa-arrow-right"></i></span>
+ </button>
+ <button class="role-card provider-role" onclick="chooseRole('provider')">
+  <div class="role-art">
+   <i class="fa-solid fa-user-gear"></i>
+   <i class="fa-solid fa-car small-art"></i>
+   <i class="fa-solid fa-hotel small-art"></i>
+  </div>
+  <h3>SERVICE PROVIDER</h3>
+  <p>Driver या Hotel Owner बनकर अपनी सर्विस दें</p>
+  <span class="role-select">CONTINUE AS PROVIDER <i class="fa-solid fa-arrow-right"></i></span>
+ </button>
+ <div class="role-footer">Your journey, our responsibility 💙</div>
 </section>
 
-<!-- MAIN SERVICE CARDS -->
-<section class="grid" style="margin-top:16px;">
- <button class="service-card ride-card" onclick="openService('ride')">
-  <div class="card-top">
-   <div class="symbol-box"><i class="fa-solid fa-car-side"></i></div>
-   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
+<!-- LOGIN -->
+<section id="loginPage" class="page">
+ <main>
+  <div class="login-box">
+   <h2 id="loginTitle">Login</h2>
+   <p id="loginSubtitle">अपनी जानकारी भरें</p>
+   <div class="field">
+    <label>YOUR FULL NAME</label>
+    <input id="loginName" placeholder="अपना नाम लिखें">
+   </div>
+   <div class="field">
+    <label>MOBILE NUMBER</label>
+    <input id="loginPhone" type="tel" maxlength="10" placeholder="10 digit mobile number">
+   </div>
+   <div class="field" id="providerTypeField" style="display:none">
+    <label>SELECT YOUR SERVICE</label>
+    <select id="providerType">
+     <option value="Driver">Driver</option>
+     <option value="Hotel Owner">Hotel Owner</option>
+    </select>
+   </div>
+   <button class="primary" onclick="loginUser()">CONTINUE <i class="fa-solid fa-arrow-right"></i></button>
+   <button class="back-btn" onclick="showPage('rolePage')">← वापस जाएँ</button>
   </div>
-  <div class="card-title">Ride</div>
-  <div class="card-desc">Book your taxi<br>in seconds</div>
-  <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400" class="card-img" alt="Taxi Car">
- </button>
-
- <button class="service-card hotel-card" onclick="openService('hotel')">
-  <div class="card-top">
-   <div class="symbol-box"><i class="fa-solid fa-hotel"></i></div>
-   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
-  </div>
-  <div class="card-title">Hotel</div>
-  <div class="card-desc">Comfortable stays<br>for your journey</div>
-  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400" class="card-img" alt="Hotel Room">
- </button>
-
- <button class="service-card package-card" onclick="openService('package')">
-  <div class="card-top">
-   <div class="symbol-box"><i class="fa-solid fa-suitcase-rolling"></i></div>
-   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
-  </div>
-  <div class="card-title">Packages</div>
-  <div class="card-desc">Discover amazing<br>tour packages</div>
-  <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400" class="card-img" alt="Tour Traveller">
- </button>
-
- <button class="service-card ticket-card" onclick="openService('tickets')">
-  <div class="card-top">
-   <div class="symbol-box"><i class="fa-solid fa-ticket"></i></div>
-   <div class="arrow-circle"><i class="fa-solid fa-chevron-right"></i></div>
-  </div>
-  <div class="card-title">Tickets</div>
-  <div class="card-desc">Bus • Train • Flight<br>All in one place</div>
-  <div class="ticket-grid">
-   <div class="t-block bus" onclick="event.stopPropagation(); openTicketsTab('bus');"><i class="fa-solid fa-bus"></i><b>Bus</b><small>बस टिकट</small></div>
-   <div class="t-block train" onclick="event.stopPropagation(); openTicketsTab('train');"><i class="fa-solid fa-train"></i><b>Train</b><small>ट्रेन टिकट</small></div>
-   <div class="t-block flight" onclick="event.stopPropagation(); openTicketsTab('flight');"><i class="fa-solid fa-plane"></i><b>Flight</b><small>हवाई टिकट</small></div>
-  </div>
- </button>
+ </main>
 </section>
 
-<!-- DESTINATIONS -->
-<div class="heading"><h2><i class="fa-solid fa-location-dot" style="color:#1769e8"></i> Popular Destinations</h2><span onclick="openSearch()">View All →</span></div>
-<section class="destinations">
- <button class="dest-card" onclick="openDestination('Manali')">
-  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400" alt="Manali"><b><i class="fa-solid fa-location-dot"></i> Manali</b>
- </button>
- <button class="dest-card" onclick="openDestination('Goa')">
-  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400" alt="Goa"><b><i class="fa-solid fa-location-dot"></i> Goa</b>
- </button>
- <button class="dest-card" onclick="openDestination('Kashmir')">
-  <img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=400" alt="Kashmir"><b><i class="fa-solid fa-location-dot"></i> Kashmir</b>
- </button>
- <button class="dest-card" onclick="openDestination('Shimla')">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400" alt="Shimla"><b><i class="fa-solid fa-location-dot"></i> Shimla</b>
- </button>
+<!-- CUSTOMER HOME -->
+<section id="customerPage" class="page">
+ <header>
+  <div class="logo">NV <span>TRAVELSS</span><small>Travel • Ride • Hotel • Packages • Tickets</small></div>
+  <div class="header-icons">
+   <button class="icon-btn" onclick="showSearch()"><i class="fa-solid fa-bell"></i></button>
+   <button class="icon-btn" onclick="showProfile()"><i class="fa-solid fa-user"></i></button>
+  </div>
+ </header>
+ <main>
+  <section class="hero">
+   <h1>Explore The World<br>With NV Travelss</h1>
+   <p>Your journey, our responsibility 💙</p>
+   <div class="search-box">
+    <i class="fa-solid fa-location-dot"></i>
+    <input id="homeSearch" placeholder="Where do you want to go?">
+    <button class="search-btn" onclick="searchDestination()"><i class="fa-solid fa-arrow-right"></i></button>
+   </div>
+   <div class="tags-row">
+    <div class="tag">⛰ Mountains</div>
+    <div class="tag">🏖 Beaches</div>
+    <div class="tag">🏙 City Tours</div>
+    <div class="tag">🧭 Adventure</div>
+   </div>
+  </section>
+
+  <section class="grid" style="margin-top:16px">
+   <button class="service-card ride-card" onclick="rideForm()">
+    <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-car-side"></i></div><div class="arrow-circle">›</div></div>
+    <div class="card-title">Ride</div>
+    <div class="card-desc">Book your taxi in seconds</div>
+    <img class="card-img" src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=400">
+   </button>
+   <button class="service-card hotel-card" onclick="hotelForm()">
+    <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-hotel"></i></div><div class="arrow-circle">›</div></div>
+    <div class="card-title">Hotel</div>
+    <div class="card-desc">Comfortable stays for your journey</div>
+    <img class="card-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400">
+   </button>
+   <button class="service-card package-card" onclick="packageForm()">
+    <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-suitcase-rolling"></i></div><div class="arrow-circle">›</div></div>
+    <div class="card-title">Packages</div>
+    <div class="card-desc">Discover amazing tour packages</div>
+    <img class="card-img" src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400">
+   </button>
+   <button class="service-card ticket-card" onclick="ticketsForm('bus')">
+    <div class="card-top"><div class="symbol-box"><i class="fa-solid fa-ticket"></i></div><div class="arrow-circle">›</div></div>
+    <div class="card-title">Tickets</div>
+    <div class="card-desc">Bus • Train • Flight</div>
+    <div class="ticket-grid">
+     <div class="t-block bus"><i class="fa-solid fa-bus"></i>Bus</div>
+     <div class="t-block train"><i class="fa-solid fa-train"></i>Train</div>
+     <div class="t-block flight"><i class="fa-solid fa-plane"></i>Flight</div>
+    </div>
+   </button>
+  </section>
+
+  <div class="heading"><h2><i class="fa-solid fa-location-dot"></i> Popular Destinations</h2><span onclick="showSearch()">View All →</span></div>
+  <section class="destinations">
+   <button class="dest-card" onclick="destination('Manali')"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400"><b>Manali</b></button>
+   <button class="dest-card" onclick="destination('Goa')"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400"><b>Goa</b></button>
+   <button class="dest-card" onclick="destination('Kashmir')"><img src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?w=400"><b>Kashmir</b></button>
+   <button class="dest-card" onclick="destination('Shimla')"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400"><b>Shimla</b></button>
+  </section>
+
+  <div class="heading"><h2><i class="fa-solid fa-circle-play"></i> Latest Reels</h2><span onclick="showReels()">View All →</span></div>
+  <section class="reels-row">
+   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"><div class="reel-likes">♥ 1.2K</div></button>
+   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"><div class="reel-likes">♥ 856</div></button>
+   <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><div class="reel-likes">♥ 932</div></button>
+  </section>
+
+  <section class="help-card">
+   <h3><i class="fa-solid fa-headset"></i> Help & Emergency</h3>
+   <div class="help-row"><span>NV Travelss Helpline</span><a href="tel:8450056438">8450056438 ☎</a></div>
+   <div class="help-row"><span>Police Emergency</span><a href="tel:112">112 ☎</a></div>
+   <div class="help-row"><span>Booking Support</span><a href="tel:9098533390">9098533390 ☎</a></div>
+  </section>
+ </main>
 </section>
 
-<!-- REELS -->
-<div class="heading"><h2><i class="fa-solid fa-circle-play" style="color:#1769e8"></i> Latest Reels</h2><span onclick="showReels()">View All →</span></div>
-<section class="reels-row">
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 1.2K</div></button>
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 856</div></button>
- <button class="reel-thumb" onclick="showReels()"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400"><div class="reel-likes"><i class="fa-solid fa-heart" style="color:#ff3b30"></i> 932</div></button>
+<!-- PROVIDER HOME -->
+<section id="providerPage" class="page">
+ <header>
+  <div class="logo">NV <span>TRAVELSS</span><small>SERVICE PROVIDER PANEL</small></div>
+  <button class="icon-btn" onclick="showProfile()"><i class="fa-solid fa-user"></i></button>
+ </header>
+ <main>
+  <div class="provider-banner">
+   <h2 id="providerWelcome">Welcome, Provider</h2>
+   <p>अपनी सर्विस मैनेज करें और बुकिंग प्राप्त करें।</p>
+  </div>
+  <div class="heading"><h2>Your Services</h2></div>
+  <div class="provider-grid">
+   <button class="provider-option" onclick="providerService('Driver')">
+    <i class="fa-solid fa-car-side"></i>
+    <h3>Driver Service</h3>
+    <p>Ride requests और कमाई</p>
+   </button>
+   <button class="provider-option" onclick="providerService('Hotel Owner')">
+    <i class="fa-solid fa-hotel"></i>
+    <h3>Hotel Service</h3>
+    <p>Hotel और room booking</p>
+   </button>
+   <button class="provider-option" onclick="providerBookings()">
+    <i class="fa-solid fa-clipboard-list"></i>
+    <h3>My Bookings</h3>
+    <p>अपनी requests देखें</p>
+   </button>
+   <button class="provider-option" onclick="providerEarnings()">
+    <i class="fa-solid fa-wallet"></i>
+    <h3>My Earnings</h3>
+    <p>कमाई और commission</p>
+   </button>
+   <button class="provider-option" onclick="providerProfile()">
+    <i class="fa-solid fa-id-card"></i>
+    <h3>My Profile</h3>
+    <p>अपनी जानकारी</p>
+   </button>
+   <button class="provider-option" onclick="notify('अधिक सुविधाएँ जल्द जोड़ी जाएँगी')">
+    <i class="fa-solid fa-headset"></i>
+    <h3>Help & Support</h3>
+    <p>सहायता प्राप्त करें</p>
+   </button>
+  </div>
+  <div class="provider-info">
+   <b>NV TRAVELSS SERVICE POLICY</b><br>
+   Driver commission: हर ride पर 15%<br>
+   Driver monthly recharge: ₹300<br>
+   Hotel owner commission: 15%<br>
+   Hotel owner monthly pass: ₹1000
+  </div>
+  <button class="logout" onclick="logout()">LOG OUT <i class="fa-solid fa-right-from-bracket"></i></button>
+ </main>
 </section>
 
-<!-- HELP & EMERGENCY -->
-<section class="help-card">
- <h3><i class="fa-solid fa-headset" style="color:#1769e8"></i> Help & Emergency</h3>
- <div class="help-row"><span>NV Travelss Helpline</span><a href="tel:8450056438">8450056438 <i class="fa-solid fa-phone"></i></a></div>
- <div class="help-row"><span>Police Emergency</span><a href="tel:112">112 <i class="fa-solid fa-phone"></i></a></div>
- <div class="help-row"><span>Booking Support</span><a href="tel:9098533390">9098533390 <i class="fa-solid fa-phone"></i></a></div>
+<!-- OTHER CONTENT PAGE -->
+<section id="otherPage" class="page">
+ <header>
+  <div class="logo">NV <span>TRAVELSS</span><small id="otherSubtitle">YOUR ACCOUNT</small></div>
+  <button class="icon-btn" onclick="goBack()"><i class="fa-solid fa-arrow-left"></i></button>
+ </header>
+ <main id="otherContent"></main>
 </section>
 
-</main>
-
-<nav class="bottom-nav">
- <button class="nav-item active" onclick="goHome(this)"><i class="fa-solid fa-house"></i>Home</button>
- <button class="nav-item" onclick="showReels(this)"><i class="fa-solid fa-clapperboard"></i>Reels</button>
- <button class="nav-item" onclick="openPost(this)"><i class="fa-solid fa-plus post-icon"></i>Post</button>
- <button class="nav-item" onclick="openSearch(this)"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
- <button class="nav-item" onclick="openProfile(this)"><i class="fa-solid fa-user"></i>Profile</button>
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottomNav">
+ <button class="nav-item active" onclick="goHome()"><i class="fa-solid fa-house"></i>Home</button>
+ <button class="nav-item" onclick="showReels()"><i class="fa-solid fa-clapperboard"></i>Reels</button>
+ <button class="nav-item" onclick="openPost()"><i class="fa-solid fa-plus post-icon"></i>Post</button>
+ <button class="nav-item" onclick="showSearch()"><i class="fa-solid fa-magnifying-glass"></i>Search</button>
+ <button class="nav-item" onclick="showProfile()"><i class="fa-solid fa-user"></i>Profile</button>
 </nav>
-
 </div>
 
 <div class="modal-bg" id="modalBg" onclick="outsideClose(event)">
  <div class="modal">
-  <div class="modal-head"><h2 id="modalTitle">NV Travelss</h2><button class="close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button></div>
+  <div class="modal-head">
+   <h2 id="modalTitle">NV Travelss</h2>
+   <button class="close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+  </div>
   <div id="modalContent"></div>
  </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-const vehicles = [
+"use strict";
+
+/* VEHICLES AND RATES */
+const vehicles=[
  ['Bike',10,'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500'],
  ['Auto',15,'https://images.unsplash.com/photo-1591768793355-74d04bb6608f?w=500'],
  ['Hatchback',16,'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=500'],
@@ -334,20 +398,22 @@ const vehicles = [
  ['Bus',60,'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?w=500']
 ];
 
+let currentRole='';
+let currentUser=null;
 let selectedVehicle='Sedan';
-let activeTicketType='bus';
+let currentTicket='bus';
+let previousPage='customerPage';
 
-function getUserProfile(){
- const savedUser = localStorage.getItem('nvUserProfile');
- return savedUser ? JSON.parse(savedUser) : { name: '', phone: '' };
+function read(key,fallback){
+ try{return JSON.parse(localStorage.getItem(key))??fallback}
+ catch(e){return fallback}
 }
-
-function saveUserProfile(name, phone){
- if(name && phone){
-   localStorage.setItem('nvUserProfile', JSON.stringify({ name, phone }));
- }
+function write(key,value){
+ localStorage.setItem(key,JSON.stringify(value));
 }
-
+function safe(s){
+ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 function notify(message){
  const box=document.getElementById('toast');
  box.textContent=message;
@@ -355,332 +421,363 @@ function notify(message){
  clearTimeout(window.toastTimer);
  window.toastTimer=setTimeout(()=>box.style.display='none',2500);
 }
-
-function modal(title,content){
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.getElementById('bottomNav').style.display=
+ (id==='customerPage')?'flex':'none';
+ window.scrollTo(0,0);
+}
+function chooseRole(role){
+ currentRole=role;
+ document.getElementById('loginTitle').textContent=role==='customer'?'Customer Login':'Service Provider Login';
+ document.getElementById('loginSubtitle').textContent=role==='customer'?'Customer account बनाने के लिए जानकारी भरें':'Driver या Hotel Owner चुनें';
+ document.getElementById('providerTypeField').style.display=role==='provider'?'block':'none';
+ showPage('loginPage');
+}
+function loginUser(){
+ const name=document.getElementById('loginName').value.trim();
+ const phone=document.getElementById('loginPhone').value.trim();
+ if(name.length<2){notify('अपना सही नाम लिखें');return}
+ if(!/^[6-9]\d{9}$/.test(phone)){notify('सही 10 अंकों का मोबाइल नंबर लिखें');return}
+ const type=currentRole==='provider'?document.getElementById('providerType').value:'Customer';
+ currentUser={name,phone,role:currentRole,type};
+ write('nvUserProfile',currentUser);
+ openDashboard();
+}
+function openDashboard(){
+ if(!currentUser)return;
+ if(currentUser.role==='provider'){
+  document.getElementById('providerWelcome').textContent='Welcome, '+currentUser.name;
+  showPage('providerPage');
+ }else{
+  showPage('customerPage');
+ }
+}
+function logout(){
+ localStorage.removeItem('nvUserProfile');
+ currentUser=null;
+ currentRole='';
+ showPage('rolePage');
+ notify('आप लॉग आउट हो गए हैं');
+}
+function goHome(){
+ if(currentUser?.role==='provider'){showPage('providerPage');return}
+ showPage('customerPage');
+ setNav(0);
+}
+function setNav(index){
+ document.querySelectorAll('.nav-item').forEach((b,i)=>b.classList.toggle('active',i===index));
+}
+function goBack(){
+ showPage(previousPage);
+}
+function modal(title,html){
  document.getElementById('modalTitle').textContent=title;
- document.getElementById('modalContent').innerHTML=content;
+ document.getElementById('modalContent').innerHTML=html;
  document.getElementById('modalBg').classList.add('show');
 }
 function closeModal(){document.getElementById('modalBg').classList.remove('show')}
 function outsideClose(e){if(e.target.id==='modalBg')closeModal()}
 
-function setNav(el){
- document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
- if(el)el.classList.add('active');
-}
-function goHome(el){
- setNav(el);
- closeModal();
- document.getElementById('homePage').style.display='block';
-}
-
-function openService(type){
- if(type==='ride'){rideForm();return}
- if(type==='hotel'){hotelForm();return}
- if(type==='package'){packageForm();return}
- if(type==='tickets'){openTicketsTab('bus');return}
-}
-
-/* 1. RIDE SERVICE FORM */
-function rideForm(){
- const user = getUserProfile();
- modal('Book Your Ride (Taxi)',`
- <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Where to pick up?"></div>
- <div class="field"><label>DROP DESTINATION</label><input id="destination" placeholder="Where to drop?"></div>
- <div class="field"><label>SELECT VEHICLE TYPE</label>${vehicleHTML()}</div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
- <button class="primary" onclick="submitBooking('ride')">Confirm Ride Request</button>`);
-}
-
+/* VEHICLE SELECTOR */
 function vehicleHTML(){
- return `<div class="vehicle-grid">${vehicles.map(v=>`
- <button class="vehicle ${selectedVehicle===v[0]?'selected':''}" onclick="selectVehicle('${v[0]}')">
- <b>${v[0]}</b><small>₹${v[1]} / km</small></button>`).join('')}</div>`;
+ return '<div class="vehicle-grid">'+vehicles.map(v=>`
+ <button type="button" class="vehicle ${selectedVehicle===v[0]?'selected':''}" onclick="selectVehicle('${v[0]}')">
+  <img src="${v[2]}" alt="${v[0]}">
+  <b>${v[0]}</b>
+  <small>₹${v[1]} / km</small>
+ </button>`).join('')+'</div>';
 }
-function selectVehicle(name){selectedVehicle=name;rideForm()}
+function selectVehicle(name){
+ selectedVehicle=name;
+ const field=document.getElementById('vehicleField');
+ if(field)field.innerHTML=vehicleHTML();
+}
 
-/* 2. HOTEL SERVICE FORM (HOTEL SPECIFIC) */
+/* BOOKING STORAGE */
+function saveBooking(data){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ data.id='NV'+Date.now();
+ data.createdAt=new Date().toLocaleString('en-IN');
+ data.status='Pending';
+ data.customer=currentUser?.name||'Customer';
+ data.phone=currentUser?.phone||'';
+ bookings.unshift(data);
+ write('nv_travelss_booking_requests',bookings);
+ notify('आपकी request सेव हो गई है');
+}
+
+/* RIDE */
+function rideForm(){
+ selectedVehicle='Sedan';
+ modal('Book Your Ride',`
+ <div class="field"><label>PICKUP LOCATION</label><input id="pickup" placeholder="Pickup location"></div>
+ <div class="field"><label>DROP DESTINATION</label><input id="destination" placeholder="Destination"></div>
+ <div class="field"><label>SELECT VEHICLE TYPE</label><div id="vehicleField">${vehicleHTML()}</div></div>
+ <div class="field"><label>TRAVEL DATE</label><input id="rideDate" type="date"></div>
+ <div class="field"><label>YOUR NAME</label><input id="rideName" value="${safe(currentUser?.name)}" placeholder="Your name"></div>
+ <button class="primary" onclick="submitRide()">CONFIRM RIDE REQUEST</button>
+ `);
+}
+function submitRide(){
+ const pickup=document.getElementById('pickup').value.trim();
+ const destination=document.getElementById('destination').value.trim();
+ if(!pickup||!destination){notify('Pickup और destination भरें');return}
+ saveBooking({type:'Ride',pickup,destination,vehicle:selectedVehicle,date:document.getElementById('rideDate').value});
+ closeModal();
+}
+
+/* HOTEL */
 function hotelForm(){
- const user = getUserProfile();
- modal('Find Perfect Stay (Hotels)',`
- <div class="field"><label>SEARCH CITY OR HOTEL</label><input id="hotelLoc" placeholder="e.g. Manali, Goa, Taj Hotel..."></div>
- <div class="grid-2">
-  <div class="field"><label>CHECK-IN</label><input type="date" id="checkIn"></div>
-  <div class="field"><label>CHECK-OUT</label><input type="date" id="checkOut"></div>
- </div>
- <div class="grid-2">
-  <div class="field"><label>ROOMS</label><input type="number" id="hRooms" value="1" min="1"></div>
-  <div class="field"><label>GUESTS</label><input type="number" id="hGuests" value="2" min="1"></div>
- </div>
-
- <h4 style="font-size:12px;margin:10px 0 8px;color:#10264b;">Featured Hotels</h4>
- 
- <div class="hotel-item">
-  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=500" alt="Luxury Hotel">
-  <div class="item-body">
-   <div class="item-title"><span>Grand Luxury Resort</span> <span class="item-rating">★ 4.8</span></div>
-   <div class="item-desc">Free Breakfast • Swimming Pool • Wi-Fi</div>
-   <div class="item-price">₹3,499 / night</div>
-  </div>
- </div>
-
- <div class="hotel-item">
-  <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=500" alt="Mountain View Hotel">
-  <div class="item-body">
-   <div class="item-title"><span>Mountain View Heritage</span> <span class="item-rating">★ 4.6</span></div>
-   <div class="item-desc">Valley View • Spa • Restaurant</div>
-   <div class="item-price">₹2,199 / night</div>
-  </div>
- </div>
-
- <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
- <button class="primary" onclick="submitHotelBooking()">Send Hotel Request</button>`);
+ modal('Hotel Booking',`
+ <div class="field"><label>DESTINATION</label><input id="hotelCity" placeholder="Where do you need a hotel?"></div>
+ <div class="field"><label>CHECK IN</label><input type="date" id="checkIn"></div>
+ <div class="field"><label>CHECK OUT</label><input type="date" id="checkOut"></div>
+ <div class="field"><label>ROOMS</label><select id="rooms"><option>1 Room</option><option>2 Rooms</option><option>3 Rooms</option><option>4 Rooms</option></select></div>
+ <button class="primary" onclick="submitHotel()">SEARCH HOTELS</button>
+ `);
 }
-
-function submitHotelBooking(){
- const loc = document.getElementById('hotelLoc').value.trim();
- const name = document.getElementById('customerName').value.trim();
- const phone = document.getElementById('customerPhone').value.trim();
- if(!loc || !name || !/^[0-9]{10}$/.test(phone)){
-  notify('Please enter Hotel location, Name & Mobile number.');
-  return;
- }
- saveUserProfile(name, phone);
- saveBookingToStorage({type:'Hotel Stay', pickup:loc, destination:'Hotel Booking', name, phone, status:'Hotel Request Sent'});
+function submitHotel(){
+ const city=document.getElementById('hotelCity').value.trim();
+ if(!city){notify('Destination लिखें');return}
+ saveBooking({type:'Hotel',destination:city,checkIn:document.getElementById('checkIn').value,checkOut:document.getElementById('checkOut').value,rooms:document.getElementById('rooms').value});
  closeModal();
- notify('Hotel request submitted successfully!');
 }
 
-/* 3. PACKAGES SERVICE FORM (PACKAGE SPECIFIC) */
+/* PACKAGES */
 function packageForm(){
- const user = getUserProfile();
- modal('Explore Tour Packages',`
- <div class="field"><label>SEARCH TOUR DESTINATION</label><input placeholder="Search Manali, Goa, Kashmir..."></div>
- 
- <div class="package-item">
-  <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=500" alt="Manali Package">
-  <div class="item-body">
-   <div class="item-title"><span>Manali Snow Special</span> <span class="item-rating">5 Days / 4 Nights</span></div>
-   <div class="item-desc">Hotel + Cab + Meals + Sightseeing Included</div>
-   <div class="item-price">₹7,999 / person</div>
-  </div>
- </div>
-
- <div class="package-item">
-  <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=500" alt="Goa Package">
-  <div class="item-body">
-   <div class="item-title"><span>Goa Beach Cruise Holiday</span> <span class="item-rating">4 Days / 3 Nights</span></div>
-   <div class="item-desc">Resort Stay + Water Sports + Cruise Ticket</div>
-   <div class="item-price">₹6,499 / person</div>
-  </div>
- </div>
-
- <div class="field"><label>SELECT PREFERRED PACKAGE</label>
-  <select id="pkgChoice">
-   <option>Manali Snow Special (5D/4N)</option>
-   <option>Goa Beach Cruise Holiday (4D/3N)</option>
-   <option>Kashmir Paradise Tour (6D/5N)</option>
-   <option>Shimla Hill Station (3D/2N)</option>
-  </select>
- </div>
- <div class="field"><label>TRAVEL DATE</label><input type="date" id="pkgDate"></div>
- <div class="field"><label>NUMBER OF PERSONS</label><input type="number" id="pkgPersons" value="2" min="1"></div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
- <button class="primary" onclick="submitPkgBooking()">Inquire Tour Package</button>`);
+ modal('Tour Packages',`
+ <div class="field"><label>SELECT DESTINATION</label><select id="packageCity"><option>Manali</option><option>Goa</option><option>Kashmir</option><option>Shimla</option><option>Jaipur</option><option>Udaipur</option><option>Kerala</option><option>Other</option></select></div>
+ <div class="field"><label>NUMBER OF DAYS</label><select id="packageDays"><option>2 Days</option><option>3 Days</option><option>4 Days</option><option>5 Days</option><option>7 Days</option><option>10 Days</option></select></div>
+ <div class="field"><label>TRAVEL DATE</label><input type="date" id="packageDate"></div>
+ <div class="field"><label>NUMBER OF PERSONS</label><input type="number" id="packagePeople" min="1" value="2"></div>
+ <button class="primary" onclick="submitPackage()">REQUEST PACKAGE</button>
+ `);
 }
-
-function submitPkgBooking(){
- const pkg = document.getElementById('pkgChoice').value;
- const name = document.getElementById('customerName').value.trim();
- const phone = document.getElementById('customerPhone').value.trim();
- if(!name || !/^[0-9]{10}$/.test(phone)){
-  notify('Please enter your Name & Mobile number.');
-  return;
- }
- saveUserProfile(name, phone);
- saveBookingToStorage({type:'Tour Package', pickup:'Package Inquiry', destination:pkg, name, phone, status:'Package Inquiry Sent'});
+function submitPackage(){
+ saveBooking({type:'Package',destination:document.getElementById('packageCity').value,days:document.getElementById('packageDays').value,date:document.getElementById('packageDate').value,people:document.getElementById('packagePeople').value});
  closeModal();
- notify('Package Inquiry Sent! We will contact you soon.');
 }
 
-/* 4. TICKETS SERVICE FORM (BUS / TRAIN / FLIGHT SPECIFIC) */
-function openTicketsTab(tType){
- activeTicketType = tType;
- const user = getUserProfile();
- modal('Book Journey Tickets',`
+/* TICKETS */
+function ticketsForm(type){
+ currentTicket=type||'bus';
+ renderTickets();
+}
+function renderTickets(){
+ const labels={bus:'Bus Ticket',train:'Train Ticket',flight:'Flight Ticket'};
+ const icons={bus:'fa-bus',train:'fa-train',flight:'fa-plane'};
+ modal('Book '+labels[currentTicket],`
  <div class="ticket-tab-row">
-  <button class="t-tab ${tType==='bus'?'active':''}" onclick="openTicketsTab('bus')"><i class="fa-solid fa-bus"></i> Bus</button>
-  <button class="t-tab ${tType==='train'?'active':''}" onclick="openTicketsTab('train')"><i class="fa-solid fa-train"></i> Train</button>
-  <button class="t-tab ${tType==='flight'?'active':''}" onclick="openTicketsTab('flight')"><i class="fa-solid fa-plane"></i> Flight</button>
+ <button class="t-tab ${currentTicket==='bus'?'active':''}" onclick="switchTicket('bus')">Bus</button>
+ <button class="t-tab ${currentTicket==='train'?'active':''}" onclick="switchTicket('train')">Train</button>
+ <button class="t-tab ${currentTicket==='flight'?'active':''}" onclick="switchTicket('flight')">Flight</button>
  </div>
+ <div style="text-align:center;padding:12px;color:#1769e8;font-size:35px"><i class="fa-solid ${icons[currentTicket]}"></i></div>
+ <div class="field"><label>FROM</label><input id="ticketFrom" placeholder="Departure city"></div>
+ <div class="field"><label>TO</label><input id="ticketTo" placeholder="Arrival city"></div>
+ <div class="field"><label>JOURNEY DATE</label><input id="ticketDate" type="date"></div>
+ <div class="field"><label>PASSENGERS</label><input id="ticketPeople" type="number" min="1" value="1"></div>
+ <button class="primary" onclick="submitTicket()">CONTINUE</button>
+ <p style="font-size:10px;color:#8190a6;margin-top:10px">यह request आपके ऐप में सेव होगी। टिकट जारी करने के लिए वास्तविक booking provider integration जरूरी है।</p>
+ `);
+}
+function switchTicket(type){currentTicket=type;renderTickets()}
+function submitTicket(){
+ const from=document.getElementById('ticketFrom').value.trim();
+ const to=document.getElementById('ticketTo').value.trim();
+ if(!from||!to){notify('From और To भरें');return}
+ saveBooking({type:currentTicket.toUpperCase()+' Ticket',from,to,date:document.getElementById('ticketDate').value,people:document.getElementById('ticketPeople').value});
+ closeModal();
+}
 
- <div class="field"><label>FROM CITY</label><input id="tFrom" placeholder="Source City"></div>
- <div class="field"><label>TO DESTINATION CITY</label><input id="tTo" placeholder="Destination City"></div>
- <div class="grid-2">
-  <div class="field"><label>JOURNEY DATE</label><input type="date" id="tDate"></div>
-  <div class="field"><label>CLASS / SEAT TYPE</label>
-   <select id="tClass">
-    ${tType==='bus'?'<option>Sleeper AC</option><option>Seater AC</option><option>Non-AC Sleeper</option>':''}
-    ${tType==='train'?'<option>3rd AC (3A)</option><option>2nd AC (2A)</option><option>Sleeper (SL)</option><option>1st AC (1A)</option>':''}
-    ${tType==='flight'?'<option>Economy</option><option>Premium Economy</option><option>Business</option>':''}
-   </select>
-  </div>
+/* DESTINATIONS */
+function destination(name){
+ modal(name+' Tour',`
+ <div class="content-card">
+ <h3>${safe(name)} की यात्रा</h3>
+ <p>अपनी यात्रा के लिए Ride, Hotel या Tour Package की request भेजें।</p>
+ <button class="action-btn" onclick="closeModal();packageForm()">VIEW TOUR PACKAGES</button>
+ <button class="action-btn" onclick="closeModal();rideForm()">BOOK A RIDE</button>
  </div>
- <div class="field"><label>YOUR NAME</label><input id="customerName" value="${safe(user.name)}" placeholder="Enter your name"></div>
- <div class="field"><label>MOBILE NUMBER</label><input id="customerPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
- <button class="primary" onclick="submitTicketBooking()">Request ${tType.toUpperCase()} Ticket</button>`);
+ `);
+}
+function searchDestination(){
+ const value=document.getElementById('homeSearch').value.trim();
+ if(!value){notify('Destination लिखें');return}
+ destination(value);
 }
 
-function submitTicketBooking(){
- const from = document.getElementById('tFrom').value.trim();
- const to = document.getElementById('tTo').value.trim();
- const name = document.getElementById('customerName').value.trim();
- const phone = document.getElementById('customerPhone').value.trim();
- if(!from || !to || !name || !/^[0-9]{10}$/.test(phone)){
-  notify('Please fill From/To cities, Name & Mobile number.');
-  return;
- }
- saveUserProfile(name, phone);
- saveBookingToStorage({type:activeTicketType.toUpperCase() + ' Ticket', pickup:from, destination:to, name, phone, status:'Ticket Request Sent'});
- closeModal();
- notify(activeTicketType.toUpperCase() + ' Ticket booking request sent!');
+/* CUSTOMER NAVIGATION */
+function setOther(title,html){
+ previousPage='customerPage';
+ document.getElementById('otherSubtitle').textContent=title.toUpperCase();
+ document.getElementById('otherContent').innerHTML=html;
+ showPage('otherPage');
+ setNav(-1);
 }
-
-function submitBooking(type){
- const pickup=document.getElementById('pickup')?.value.trim();
- const destination=document.getElementById('destination')?.value.trim();
- const name=document.getElementById('customerName')?.value.trim();
- const phone=document.getElementById('customerPhone')?.value.trim();
-
- if(!pickup||!destination||!name||!/^[0-9]{10}$/.test(phone||'')){
-  notify('Please fill all details & valid 10 digit phone number.');
-  return;
- }
- saveUserProfile(name, phone);
- saveBookingToStorage({type:'Ride Taxi', pickup, destination, name, phone, vehicle:selectedVehicle, status:'Ride Requested'});
- closeModal();
- notify('Ride Request Saved! Calling support 9098533390.');
+function showReels(){
+ setOther('Reels',`
+ <div class="heading"><h2>Travel Reels</h2></div>
+ <div class="content-card"><img style="width:100%;height:230px;object-fit:cover;border-radius:12px" src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=700"><p>Explore beautiful destinations 🌍</p><button class="action-btn" onclick="notify('Liked!')">♥ Like</button> <button class="action-btn" onclick="notify('Share feature coming soon')">Share</button></div>
+ <div class="content-card"><img style="width:100%;height:230px;object-fit:cover;border-radius:12px" src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700"><p>Discover new experiences 💙</p><button class="action-btn" onclick="notify('Liked!')">♥ Like</button></div>
+ <div class="content-card"><p>यहाँ अभी demo reels दिखाई जा रही हैं। असली वीडियो upload और feed के लिए storage/backend जोड़ना होगा।</p></div>
+ `);
 }
-
-function saveBookingToStorage(bookingObj){
- const list=JSON.parse(localStorage.getItem('nvBookings')||'[]');
- list.unshift({id:Date.now(), ...bookingObj});
- localStorage.setItem('nvBookings',JSON.stringify(list));
+function openPost(){
+ modal('Create Post',`
+ <div class="field"><label>POST CAPTION</label><textarea id="postCaption" rows="3" placeholder="Write something about your journey"></textarea></div>
+ <div class="field"><label>PHOTO / VIDEO</label><input id="postFile" type="file" accept="image/*,video/*"></div>
+ <button class="primary" onclick="submitPost()">SHARE POST</button>
+ `);
 }
-
-function openDestination(place){
- packageForm();
-}
-
-function openPost(el){
- if(el)setNav(el);
- modal('Create Post / Reel',`
- <div class="field"><label>SELECT PHOTO OR VIDEO</label><input id="postFile" type="file" accept="image/*,video/*"></div>
- <div class="field"><label>CAPTION</label><textarea id="postCaption" placeholder="Share your travel experience..."></textarea></div>
- <button class="primary" onclick="publishPost()">Publish Post</button>`);
-}
-
-function publishPost(){
- const file=document.getElementById('postFile').files[0];
+function submitPost(){
  const caption=document.getElementById('postCaption').value.trim();
- if(!file){notify('Please select photo or video.');return}
- const url=URL.createObjectURL(file);
- posts.unshift({url,type:file.type.startsWith('video')?'video':'image',caption,likes:0,comments:[]});
+ const file=document.getElementById('postFile').files[0];
+ if(!caption&&!file){notify('Caption या media चुनें');return}
+ const posts=read('nv_posts',[]);
+ posts.unshift({caption,fileName:file?.name||'',date:new Date().toLocaleString('en-IN')});
+ write('nv_posts',posts);
  closeModal();
- showReels();
- notify('Post added successfully.');
+ notify('Post details सेव हो गईं');
+}
+function showSearch(){
+ setOther('Search',`
+ <div class="content-card">
+ <h3>Search Destinations</h3>
+ <div class="field"><input id="searchPageInput" placeholder="Search places, hotels, packages..."></div>
+ <button class="primary" onclick="searchPage()">SEARCH</button>
+ </div>
+ <div class="content-card"><h3>Popular Searches</h3><p onclick="destination('Manali')">Manali</p><p onclick="destination('Goa')">Goa</p><p onclick="destination('Kashmir')">Kashmir</p></div>
+ `);
+}
+function searchPage(){
+ const q=document.getElementById('searchPageInput').value.trim();
+ if(!q){notify('Search लिखें');return}
+ destination(q);
+}
+function showProfile(){
+ if(!currentUser)return;
+ setOther('Profile',`
+ <div class="content-card">
+ <div style="text-align:center;padding:15px">
+ <i class="fa-solid fa-circle-user" style="font-size:65px;color:#1769e8"></i>
+ <h3 style="margin-top:10px">${safe(currentUser.name)}</h3>
+ <p>${safe(currentUser.phone)}</p>
+ <p>${safe(currentUser.type)}</p>
+ </div>
+ </div>
+ <button class="primary" onclick="myBookings()">MY BOOKINGS</button>
+ <button class="logout" onclick="logout()">LOG OUT</button>
+ `);
+}
+function myBookings(){
+ const bookings=read('nv_travelss_booking_requests',[]).filter(b=>b.phone===currentUser?.phone);
+ setOther('My Bookings',bookings.length?bookings.map(b=>`
+ <div class="content-card">
+ <h3>${safe(b.type)}</h3>
+ <p>${safe(b.pickup||b.from||b.destination||'')}</p>
+ <p>Status: ${safe(b.status)}</p>
+ <p>${safe(b.createdAt)}</p>
+ </div>`).join(''):'<div class="empty"><i class="fa-solid fa-calendar-xmark"></i>No bookings yet</div>');
 }
 
-function showReels(el){
- if(el)setNav(el);
- const html=posts.map((p,i)=>`
- <article style="border:1px solid #eee;border-radius:12px;overflow:hidden;margin-bottom:12px;">
- ${p.type==='video'?`<video src="${p.url}" controls playsinline style="width:100%;max-height:300px;object-fit:cover;"></video>`:`<img src="${p.url}" style="width:100%;max-height:300px;object-fit:cover;">`}
- <div style="padding:10px;font-size:12px;">${safe(p.caption||'Travel with NV Travelss ✈️')}</div>
- </article>`).join('');
-
- modal('NV Travelss Reels',`
- ${html||'<div style="text-align:center;padding:20px;font-size:12px;color:#888;">No reels uploaded yet.</div>'}
- <button class="primary" onclick="openPost()">+ Upload Reel / Post</button>`);
+/* PROVIDER FEATURES */
+function providerService(type){
+ if(type==='Driver'){
+  modal('Driver Service',`
+  <div class="field"><label>VEHICLE TYPE</label><select id="driverVehicle">${vehicles.map(v=>`<option>${v[0]}</option>`).join('')}</select></div>
+  <div class="field"><label>VEHICLE NUMBER</label><input id="driverNumber" placeholder="Vehicle registration number"></div>
+  <div class="field"><label>DRIVING LICENSE NUMBER</label><input id="licenseNumber" placeholder="Driving license number"></div>
+  <button class="primary" onclick="saveProviderService('Driver')">SAVE DRIVER DETAILS</button>
+  `);
+ }else{
+  modal('Hotel Owner Service',`
+  <div class="field"><label>HOTEL NAME</label><input id="hotelName" placeholder="Hotel name"></div>
+  <div class="field"><label>HOTEL CITY</label><input id="hotelLocation" placeholder="City"></div>
+  <div class="field"><label>ROOM PRICE</label><input id="hotelPrice" type="number" placeholder="Price per night"></div>
+  <div class="field"><label>CONTACT NUMBER</label><input id="hotelContact" type="tel" placeholder="Contact number"></div>
+  <button class="primary" onclick="saveProviderService('Hotel Owner')">SAVE HOTEL DETAILS</button>
+  `);
+ }
 }
-
-function safe(text){
- return String(text||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function saveProviderService(type){
+ const data={type,provider:currentUser?.name,phone:currentUser?.phone};
+ if(type==='Driver'){
+  data.vehicle=document.getElementById('driverVehicle').value;
+  data.vehicleNumber=document.getElementById('driverNumber').value.trim();
+  data.license=document.getElementById('licenseNumber').value.trim();
+  if(!data.vehicleNumber||!data.license){notify('सभी जानकारी भरें');return}
+ }else{
+  data.hotelName=document.getElementById('hotelName').value.trim();
+  data.location=document.getElementById('hotelLocation').value.trim();
+  data.price=document.getElementById('hotelPrice').value;
+  data.contact=document.getElementById('hotelContact').value.trim();
+  if(!data.hotelName||!data.location||!data.price){notify('सभी जरूरी जानकारी भरें');return}
+ }
+ const list=read('nv_provider_services',[]);
+ list.push(data);
+ write('nv_provider_services',list);
+ closeModal();
+ notify('आपकी सर्विस की जानकारी सेव हो गई');
 }
-
-function openSearch(el){
- if(el)setNav(el);
- modal('Search Services',`
- <div class="field"><input id="searchInput" placeholder="Search rides, hotels, packages, tickets..." oninput="searchItems()"></div>
- <div id="searchResults">
- <button class="list-button" onclick="hotelForm()">Search Hotels</button>
- <button class="list-button" onclick="packageForm()">Tour Packages</button>
- <button class="list-button" onclick="openTicketsTab('bus')">Bus / Train / Flight Tickets</button>
- </div>`);
+function providerBookings(){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ modal('Booking Requests',bookings.length?bookings.map(b=>`
+ <div class="content-card">
+ <h3>${safe(b.type)}</h3>
+ <p>${safe(b.pickup||b.from||'')} ${b.destination?' → '+safe(b.destination):''}</p>
+ <p>Customer: ${safe(b.customer)}</p>
+ <p>Phone: ${safe(b.phone)}</p>
+ <p>Status: ${safe(b.status)}</p>
+ <button class="action-btn" onclick="updateBooking('${b.id}','Accepted')">ACCEPT</button>
+ <button class="action-btn" style="background:#e74c3c" onclick="updateBooking('${b.id}','Rejected')">REJECT</button>
+ </div>`).join(''):'<div class="empty"><i class="fa-solid fa-inbox"></i>No booking requests</div>');
 }
-
-function searchItems(){
- const q=document.getElementById('searchInput').value.toLowerCase();
- const box=document.getElementById('searchResults');
- box.innerHTML=`
-  <button class="list-button" onclick="rideForm()"><i class="fa-solid fa-car"></i> Ride Taxi</button>
-  <button class="list-button" onclick="hotelForm()"><i class="fa-solid fa-hotel"></i> Hotels</button>
-  <button class="list-button" onclick="packageForm()"><i class="fa-solid fa-suitcase"></i> Tour Packages</button>
-  <button class="list-button" onclick="openTicketsTab('bus')"><i class="fa-solid fa-ticket"></i> Tickets</button>
- `;
+function updateBooking(id,status){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ const item=bookings.find(b=>b.id===id);
+ if(item){item.status=status;write('nv_travelss_booking_requests',bookings)}
+ closeModal();
+ notify('Booking status updated: '+status);
 }
-
-function openProfile(el){
- if(el)setNav(el);
- const user=getUserProfile();
- const bookings=JSON.parse(localStorage.getItem('nvBookings')||'[]');
-
- const bHtml=bookings.length?bookings.map(b=>`
-  <div style="background:#f8fafc;padding:12px;border-radius:12px;border:1px solid #edf2f7;margin-bottom:8px;font-size:12px;">
-   <div style="display:flex;justify-content:space-between;font-weight:700;color:#1a202c;">
-    <span>${b.type}</span><span style="color:#1769e8;">${b.status}</span>
-   </div>
-   <div style="color:#4a5568;margin-top:4px;">${b.pickup} ➔ ${b.destination}</div>
-  </div>
- `).join(''):'<div style="text-align:center;padding:15px;color:#888;font-size:11px;">No active requests yet.</div>';
-
- modal('My Account & Profile',`
-  <div style="display:flex;align-items:center;gap:12px;background:#f3f7fd;padding:14px;border-radius:14px;margin-bottom:14px;">
-   <div style="width:40px;height:40px;border-radius:50%;background:#1769e8;color:#fff;display:grid;place-items:center;"><i class="fa-solid fa-user"></i></div>
-   <div>
-    <b>${safe(user.name || 'NV Travelss User')}</b><br>
-    <small style="color:#718096">${safe(user.phone ? '+91 ' + user.phone : 'No saved phone')}</small>
-   </div>
-  </div>
-
-  <div style="background:#fff;padding:14px;border-radius:14px;border:1px solid #e9eef6;margin-bottom:15px;">
-    <h4 style="font-size:12px;margin-bottom:10px;color:#2d3748;">Permanent Profile (Auto-fill)</h4>
-    <div class="field"><label>YOUR NAME</label><input id="profName" value="${safe(user.name)}" placeholder="Enter your full name"></div>
-    <div class="field"><label>MOBILE NUMBER</label><input id="profPhone" value="${safe(user.phone)}" maxlength="10" inputmode="numeric" placeholder="10 digit mobile number"></div>
-    <button class="primary" style="padding:10px;font-size:12px;" onclick="updateProfileFromModal()">Save Details Permanently</button>
-  </div>
-
-  <div>
-   <h4 style="font-size:13px;margin-bottom:8px;color:#2d3748;">My Requests (${bookings.length})</h4>
-   ${bHtml}
-  </div>
+function providerEarnings(){
+ const bookings=read('nv_travelss_booking_requests',[]);
+ modal('My Earnings',`
+ <div class="content-card">
+ <h3>Commission Policy</h3>
+ <p>Driver: 15% commission on every ride.</p>
+ <p>Driver monthly recharge: ₹300.</p>
+ <p>Hotel owner: 15% commission.</p>
+ <p>Hotel monthly pass: ₹1000.</p>
+ <p>Completed rides: ${bookings.filter(b=>b.status==='Completed').length}</p>
+ </div>
+ <p style="font-size:10px;color:#8492a6">यह अभी policy information है। वास्तविक payment और settlement के लिए payment backend जरूरी है।</p>
+ `);
+}
+function providerProfile(){
+ modal('Provider Profile',`
+ <div class="content-card">
+ <h3>${safe(currentUser?.name)}</h3>
+ <p>Phone: ${safe(currentUser?.phone)}</p>
+ <p>Service: ${safe(currentUser?.type)}</p>
+ </div>
+ <button class="primary" onclick="logout()">LOG OUT</button>
  `);
 }
 
-function updateProfileFromModal(){
- const name=document.getElementById('profName')?.value.trim();
- const phone=document.getElementById('profPhone')?.value.trim();
- if(!name||!/^[0-9]{10}$/.test(phone||'')){notify('Enter valid name and 10 digit mobile.');return;}
- saveUserProfile(name, phone);
- notify('Profile saved permanently!');
- openProfile();
-}
+/* STARTUP */
+(function init(){
+ const saved=read('nvUserProfile',null);
+ if(saved&&saved.name&&saved.phone&&saved.role){
+  currentUser=saved;
+  currentRole=saved.role;
+  openDashboard();
+ }else{
+  showPage('rolePage');
+ }
+})();
 </script>
-
-<script src="script.js"></script>
-
 </body>
 </html>
